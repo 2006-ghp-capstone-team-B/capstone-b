@@ -1,4 +1,4 @@
-{ 
+{
   "name": "capstone",
   "version": "1.0.0",
   "description": "share shopping lists within your households",
@@ -7,6 +7,7 @@
   },
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
+    "seed": "node script/seed.js",
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
@@ -19,7 +20,8 @@
     "react": "~16.11.0",
     "react-dom": "~16.11.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
-    "react-native-web": "~0.11.7"
+    "react-native-web": "~0.11.7",
+    "sequelize": "^6.3.4"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
