@@ -16,12 +16,18 @@
   },
   "dependencies": {
     "expo": "~38.0.8",
+    "expo-constants": "^9.1.1",
     "expo-status-bar": "^1.0.2",
     "react": "~16.11.0",
     "react-dom": "~16.11.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
+<<<<<<< HEAD
+    "react-native-google-places-autocomplete": "^1.8.0",
+    "react-native-web": "~0.11.7"
+=======
     "react-native-web": "~0.11.7",
     "sequelize": "^6.3.4"
+>>>>>>> b2b6905952eb6e124bb75c34ceac51ff2b1e0154
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
