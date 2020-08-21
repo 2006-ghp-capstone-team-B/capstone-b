@@ -1,23 +1,34 @@
+import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 // import MapInput from "./components/MapInput.js";
 import MapContainer from "./components/MapContainer";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+// create stack
+const Stack = createStackNavigator();
 
 import Home from "./components/Home";
 import { Provider } from "react-redux";
 import store from "./store";
 
+function HomeScreen() {
+  return (
+    <Provider store={store}>
+      <Home />
+    </Provider>
+  );
+}
+
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>We're trying to display map</Text>
-      <StatusBar style="auto" />
-      <MapContainer />
-      <Provider store={store}>
-        <Home />
-      </Provider>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Map">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Map" component={MapContainer} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
