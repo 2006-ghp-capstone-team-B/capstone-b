@@ -2,15 +2,16 @@ import * as React from "react";
 import { View, StyleSheet, TextInput } from "react-native";
 import Constants from "expo-constants";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
+import API_KEY from "../secret";
 
-const GOOGLE_PLACES_API_KEY = ""; // never save your real api key in a snack!
+const GOOGLE_PLACES_API_KEY = API_KEY; // never save your real api key in a snack!
 
 const MapInput = () => {
   return (
     <View style={styles.container}>
       <GooglePlacesAutocomplete
         query={{
-          key: process.env.GOOGLE_PLACES_API_KEY,
+          key: "AIzaSyDpmGXZ0StKM3Lge-HiMvchyFHq8Hs5JNM",
           language: "en", // language of the results
         }}
         onPress={(data, details = null) => console.log(data)}
