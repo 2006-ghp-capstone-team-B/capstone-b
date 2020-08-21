@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 // import MapInput from "./components/MapInput.js";
 import MapContainer from "./components/MapContainer";
 
-import Home from "./screens/Home";
+import Home from "./components/Home";
 import { Provider } from "react-redux";
 import store from "./store";
 
