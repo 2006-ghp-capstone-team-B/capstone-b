@@ -21,3 +21,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+// This will be our initial screen where people can log in/ sign up. 
+// If user wants to stay logged in, we can add logic here to directly skip onto the "user home" (Home component)
