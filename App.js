@@ -1,14 +1,23 @@
+  
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 // import MapInput from "./components/MapInput.js";
 import MapContainer from "./components/MapContainer";
+
+import Home from './screens/Home'
+import {Provider} from 'react-redux'
+import store from './store'
+
 export default function App() {
   return (
     <View style={styles.container}>
       <Text>We're trying to display map</Text>
       <StatusBar style="auto" />
       <MapContainer />
+      <Provider store={store}>
+        <Home/>
+      </Provider>
     </View>
   );
 }

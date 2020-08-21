@@ -1,7 +1,7 @@
 'use strict'
 
-const db = require('../db')
-const {User, Item, List, Store, StorePreference, Notification, ItemUserList, ListAccess} = require('../db/models')
+const db = require('../server/db')
+const {User, Item, List, Store, StorePreference, Notification, ItemUserList, ListAccess} = require('../server/db/models')
 const {user, item, list, store, storePreference, notification, itemUserList, listAccess} = require('./seed/index')
 
 

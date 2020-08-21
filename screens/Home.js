@@ -1,59 +1,30 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, {useEffect} from "react";
 import { Text, View, ActivityIndicator } from "react-native";
 import styles from '../styles/globalStyles';
 // import MapInput from "../MapInput.js";
+import {useDispatch, useSelector} from 'react-redux'
+import {getAllUsers} from '../store/users'
 
+export default function Home(){
 
-export default class Home extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isLoading: true,
-            dataSource: null,
-        }
+    const users = useSelector(state => state.users)
+    const dispatch = useDispatch()
+    const loadAllUsers = () => {
+        dispatch(getAllUsers())
     }
-    componentDidMount() {
-        return fetch('localhost:19006/api/users/1')
-            .then((response) => response.json())
-            .then((responseJson) => {
-                this.setState({
-                    isLoading: false,
-                    dataSource: responseJson.users,
-                })
-            })
-    }
-    // async componentDidMount() {
-    //     try {
-    //         // const response = await fetch('localhost://19006/api/users/1');
-    //         // const userProfile = response.json();
+
+    useEffect(() => {
+        loadAllUsers()
+      }, [])
 
 
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
+    return (
+            <View>
+                <Text>{users}</Text>
+            </View>
 
-    // }
-
-    render() {
-        if (this.state.isLoading) {
-            return (
-                <View> <ActivityIndicator /></View>
-            )
-        } else {
-
-            let users = this.state.dataSource.map((val, key) => {
-                return <View key={key} >
-                    <Text>{val.email}</Text>
-                </View>
-            })
-
-            return (
-                <View>Content Loaded: {users}</View>
-            )
-
-        }
-    }
+    )
 
 }
 
