@@ -13,24 +13,43 @@ export default class Home extends React.Component {
             dataSource: null,
         }
     }
-
     componentDidMount() {
-        return fetch('localhost://19006/api/users/id');
+        return fetch('localhost:19006/api/users/1')
+            .then((response) => response.json())
+            .then((responseJson) => {
+                this.setState({
+                    isLoading: false,
+                    dataSource: responseJson.users,
+                })
+            })
     }
+    // async componentDidMount() {
+    //     try {
+    //         // const response = await fetch('localhost://19006/api/users/1');
+    //         // const userProfile = response.json();
+
+
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+
+    // }
 
     render() {
-        let userProfile = this.state.dataSource.map(val, key) => {
-            return <View key={key} >
-                <Text>{val.email}</Text>
-            </View>
-        })
         if (this.state.isLoading) {
             return (
                 <View> <ActivityIndicator /></View>
             )
         } else {
+
+            let users = this.state.dataSource.map((val, key) => {
+                return <View key={key} >
+                    <Text>{val.email}</Text>
+                </View>
+            })
+
             return (
-                <View>Content Loaded:</View>
+                <View>Content Loaded: {users}</View>
             )
 
         }
