@@ -16,7 +16,7 @@ router.get('/', async (req, res, next) => {
 // User can see their own user profile api/users/:id
 router.get('/:userId', async (req, res, next) => {
     try {
-        const singleUser = await User.findById(req.params.userId)
+        const singleUser = await User.findByPk(req.params.userId)
         res.json(singleUser)
     } catch (error) {
         next(error)
