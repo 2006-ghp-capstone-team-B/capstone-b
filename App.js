@@ -1,13 +1,14 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import MapInput from "./MapInput.js";
+// import MapInput from "./components/MapInput.js";
+import MapContainer from "./components/MapContainer";
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Yunice is editing the home component</Text>
+      <Text>We're trying to display map</Text>
       <StatusBar style="auto" />
-      <MapInput />
+      <MapContainer />
     </View>
   );
 }
