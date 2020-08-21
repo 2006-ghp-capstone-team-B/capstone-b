@@ -45,13 +45,13 @@ class MapContainer extends React.Component {
     return (
       <View style={styles.container}>
         <View style={{ flex: 1 }}>
-          <Text >MAP INPUT GOES HERE       .</Text>
+          <Text>MAP INPUT GOES HERE .</Text>
           <MapInput notifyChange={(loc) => this.getCoordsFromName(loc)} />
         </View>
 
         {this.state.region.latitude ? (
           <View style={{ flex: 1 }}>
-            <Text >MAP VIEW GOES HERE       .</Text>
+            <Text>MAP VIEW GOES HERE .</Text>
             <MyMapView region={this.state.region} onRegionChange={(reg) => this.onMapRegionChange(reg)} />
           </View>
         ) : null}
