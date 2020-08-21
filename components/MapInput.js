@@ -4,22 +4,26 @@ import Constants from "expo-constants";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import API_KEY from "../secret";
 
-const GOOGLE_PLACES_API_KEY = API_KEY; // never save your real api key in a snack!
+const GOOGLE_PLACES_API_KEY = API_KEY; // MAKE SURE THIS IS NOT THE REAL KEY
 
-const MapInput = () => {
+const MapInput = props => {
   return (
     <View style={styles.container}>
       <GooglePlacesAutocomplete
         query={{
-          key: "AIzaSyDpmGXZ0StKM3Lge-HiMvchyFHq8Hs5JNM",
-          language: "en", // language of the results
+          key: API_KEY,
+          language: "en",
         }}
-        onPress={(data, details = null) => console.log(data)}
+        fetchDetails={true}
+        onPress={(data, details = null) => {
+          props.notifyChange(details.geometry.location)
+          // TRIGGER THUNK TO MAKE API CALL TO ADD GROCERY PREFERENCE TO BACKEND
+        }}
         onFail={(error) => console.error(error)}
         requestUrl={{
           url: "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api",
           useOnPlatform: "web",
-        }} // this in only required for use on the web. See https://git.io/JflFv more for details.
+        }}
         styles={{
           textInputContainer: {
             backgroundColor: "rgba(0,0,0,0)",

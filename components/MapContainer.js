@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import MapInput from "./MapInput";
 import MyMapView from "./MyMapView";
 import { getLocation, geocodeLocationByName } from "./services";
@@ -11,13 +11,10 @@ class MapContainer extends React.Component {
 
   componentDidMount() {
     this.getInitialState();
-    console.log(this.state, "state in didmount");
   }
 
   getInitialState() {
     getLocation().then((data) => {
-      console.log("data from getInitial State", data);
-
       this.setState({
         region: {
           latitude: data.latitude,
@@ -26,8 +23,6 @@ class MapContainer extends React.Component {
           longitudeDelta: 0.003,
         },
       });
-
-      console.log(this.state, "state after setting");
     });
   }
 
@@ -48,15 +43,16 @@ class MapContainer extends React.Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.container}>
         <View style={{ flex: 1 }}>
+          <Text >MAP INPUT GOES HERE       .</Text>
           <MapInput notifyChange={(loc) => this.getCoordsFromName(loc)} />
         </View>
 
         {this.state.region.latitude ? (
           <View style={{ flex: 1 }}>
-            {/* <MyMapView region={this.state.region} onRegionChange={(reg) => this.onMapRegionChange(reg)} /> */}
-            <MyMapView region={this.state.region} />
+            <Text >MAP VIEW GOES HERE       .</Text>
+            <MyMapView region={this.state.region} onRegionChange={(reg) => this.onMapRegionChange(reg)} />
           </View>
         ) : null}
       </View>
@@ -65,3 +61,13 @@ class MapContainer extends React.Component {
 }
 
 export default MapContainer;
+
+const styles = StyleSheet.create({
+  container: {
+    width: 400,
+    height: 700,
+    backgroundColor: "green",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
