@@ -1,9 +1,13 @@
 import * as React from "react";
 import { View, Text, ScrollView, Button, StyleSheet, TextInput } from "react-native";
 import { Formik } from "formik";
+import {createNewUser} from '../store/singleUser'
+import {connect} from 'react-redux'
 
-export default CreateUser = () => {
+export const CreateUser = props => {
   return (
+    <ScrollView>
+      <View style={{justifyContent: "center"}}>
     <Formik
       initialValues={{ firstName: "", lastName: "", email: "", password: "" }}
       validate={(values) => {
@@ -31,7 +35,7 @@ export default CreateUser = () => {
         return errors;
       }}
       //if statement to check that we dont have errors, else make thunk call
-      onSubmit={(values) => console.log(values)}
+      onSubmit={(values) => props.register(values)}
     >
       {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
         <View style={styles.signUpForm}>
@@ -84,6 +88,8 @@ export default CreateUser = () => {
         </View>
       )}
     </Formik>
+    </View>
+    </ScrollView>
   );
 };
 
@@ -93,5 +99,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     padding: 8,
+    marginTop: 15
   },
 });
+
+const mapDispatch = dispatch => ({
+  register: (user) => dispatch(createNewUser(user))
+})
+
+export default connect(null, mapDispatch)(CreateUser)
