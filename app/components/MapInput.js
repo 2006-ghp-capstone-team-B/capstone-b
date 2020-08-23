@@ -2,7 +2,7 @@ import * as React from "react";
 import { View, StyleSheet, TextInput } from "react-native";
 import Constants from "expo-constants";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
-import API_KEY from "../secret";
+import API_KEY from "../../secret";
 
 const GOOGLE_PLACES_API_KEY = API_KEY; // MAKE SURE THIS IS NOT THE REAL KEY
 
