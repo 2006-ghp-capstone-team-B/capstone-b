@@ -7,13 +7,13 @@ import { getListPrivate } from "../store/listPrivate";
 export default function ListPrivate() {
     const listPrivate = useSelector((state) => state.listPrivate);
     const dispatch = useDispatch();
-    const loadListPrivate = () => {
-        dispatch(getListPrivate());
+    const loadListPrivate = (userId) => {
+        dispatch(getListPrivate(userId));
     };
 
     useEffect(() => {
-        loadListPrivate();
-    }, []);
+        loadListPrivate(props.match.params.userId);
+    }, [props.match.params.userId]);
 
 
     return (
