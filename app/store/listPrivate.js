@@ -22,9 +22,9 @@ const getList = list => ({
 /**
  * THUNK CREATORS
  */
-export const getListPrivate = (list) => async dispatch => {
+export const getListPrivate = (userId) => async dispatch => {
   try {
-    const { data } = await axios.get('/api/users/:userId/listPrivate/items')
+    const { data } = await axios.get(`/api/users/${userId}/listPrivate/items`)
     dispatch(getList(data))
   } catch (error) {
     console.log(error)
