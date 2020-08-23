@@ -3,7 +3,7 @@ import axios from 'axios'
 /**
  * ACTION TYPES
  */
-const GET_LIST = 'CREATE_LIST'
+const GET_LIST = 'GET_LIST'
 
 /**
  * INITIAL STATE
@@ -15,20 +15,30 @@ const initialState = []
  */
 
 const getList = list => ({
-  type: CREATE_LIST,
+  type: GET_LIST,
   list
 })
-
 
 /**
  * THUNK CREATORS
  */
-export const createListPrivate = (list) => async dispatch => {
-    try{
-      const {data} = await axios.get('/api/lists/:userId')
-      console.log('data from axios req', data)
-      dispatch(createUser(data))
-    }catch(error){
-        console.log(error)
-    }
+export const getListPrivate = (list) => async dispatch => {
+  try {
+    const { data } = await axios.get('/api/users/:userId/listPrivate/items')
+    dispatch(getList(data))
+  } catch (error) {
+    console.log(error)
   }
+}
+
+/**
+* REDUCER
+*/
+export default function (state = initialState, action) {
+  switch (action.type) {
+    case GET_LIST:
+      return action.list
+    default:
+      return state
+  }
+}

@@ -6,7 +6,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Provider } from "react-redux";
 import store from "./app/store";
-import {CreateUser} from './app/components/index'
+import { CreateUser } from './app/components/index'
+import { ListPrivate } from './app/components'
 
 // create stack
 const Stack = createStackNavigator();
@@ -23,8 +24,9 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Map">
-          <Stack.Screen name="Register" component={CreateUser} />
+        <Stack.Navigator initialRouteName="ListPrivate">
+          <Stack.Screen name="ListPrivate" component={ListPrivate} />
+          {/* <Stack.Screen name="Register" component={CreateUser} /> */}
           {/* <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Map" component={MapContainer} /> */}
         </Stack.Navigator>
