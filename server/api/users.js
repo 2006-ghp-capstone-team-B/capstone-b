@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User } = require("../db/models");
+const { User, ListAccess, List, ItemUserList, Item } = require("../db/models");
 
 //all the users
 router.get("/", async (req, res, next) => {
@@ -26,7 +26,8 @@ router.post("/", async (req, res, next) => {
   try {
     console.log('inside post req')
     const newUser = await User.create(req.body);
-    res.status(201).json(newUser);
+    req.login(user, err => (err ? next(err) : res.json(newUser)))
+    //res.status(201).json(newUser);
   } catch (error) {
     next(error);
   }
@@ -36,6 +37,63 @@ router.post("/", async (req, res, next) => {
 
 // delete route
 
-// User can see lists
+// User can see their private list
+router.get('/:userId/listPrivate', async (req, res, next) => {
+  try {
+    
+    const listAccess = await ListAccess.findOne({
+      where: {
+        userId: req.params.userId,
+        category: "private"
+      }
+    })
+    const listPrivateId = listAccess.listId
+    const list = await List.findOne({
+      where: {
+        id: listPrivateId
+      }
+    })
+    res.json(list)
+  } catch (error) {
+    next(error);
+  }
+})
+
+//user can see all the items and quantity in their private list
+//listItems is an array of object, the object has two property: item and quantity. And item is an object(with itemName inside), quantity is a number.
+router.get('/:userId/listPrivate/items', async (req, res, next) => {
+  try {
+    
+    const listAccess = await ListAccess.findOne({
+      where: {
+        userId: req.params.userId,
+        category: "private"
+      }
+    })
+    const listPrivateId = listAccess.listId
+    const items = await ItemUserList.findAll({
+      where: {
+        listId:listPrivateId
+      }
+    })
+
+    let listItems = []
+    for(let i=0; i< items.length; i++){
+      const quantity = items[i].quantity
+      const itemId = items[i].itemId
+      const item = await Item.findOne({
+        where:{
+          id: itemId
+        }
+      })
+      listItems.push({item, quantity})
+    }
+    res.json(listItems)
+
+  } catch (error) {
+    next(error);
+  }
+})
+
 
 module.exports = router;
