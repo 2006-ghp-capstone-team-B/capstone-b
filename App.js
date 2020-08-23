@@ -10,6 +10,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 const Stack = createStackNavigator();
 
 import Home from "./components/Home";
+import CreateUser from "./components/CreateUser";
 import { Provider } from "react-redux";
 import store from "./store";
 
@@ -25,8 +26,9 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Map">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Map" component={MapContainer} />
+        <Stack.Screen name="Register" component={CreateUser} />
+        {/* <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Map" component={MapContainer} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
