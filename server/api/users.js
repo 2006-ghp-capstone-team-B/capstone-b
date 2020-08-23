@@ -26,8 +26,7 @@ router.post("/", async (req, res, next) => {
   try {
     console.log('inside post req')
     const newUser = await User.create(req.body);
-    req.login(user, err => (err ? next(err) : res.json(newUser)))
-    //res.status(201).json(newUser);
+    res.status(201).json(newUser);
   } catch (error) {
     next(error);
   }
@@ -60,7 +59,7 @@ router.get('/:userId/listPrivate', async (req, res, next) => {
 })
 
 //user can see all the items and quantity in their private list
-//listItems is an array of object, the object has two property: item and quantity. And item is an object(with itemName inside), quantity is a number.
+//listItems is an array of object, the object has two property: item and quantity. And item is an object(itemName is insde), quantity is number
 router.get('/:userId/listPrivate/items', async (req, res, next) => {
   try {
     
