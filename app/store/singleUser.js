@@ -36,7 +36,7 @@ const removeUser = () => ({
  export const createNewUser = (newUser) => async dispatch => {
   try{
     console.log('inside thunk', newUser)
-    const {data} = await axios.post('/api/users', newUser)
+    const {data} = await axios.post('https://localhost:19006/api/users', newUser)
     console.log('data from axios req', data)
     dispatch(createUser(data))
   }catch(error){
@@ -45,10 +45,10 @@ const removeUser = () => ({
 }
 
 
-export const login = (credentials) => async dispatch => {
+export const login = (user) => async dispatch => {
   let res
   try {
-    res = await axios.post(`/auth/login`, credentials)
+    res = await axios.post(`/auth/login`, user)
   } catch (authError) {
     return dispatch(getUser({error: authError}))
   }
@@ -80,7 +80,7 @@ export default function(state = initialState, action) {
     switch (action.type) {
       case CREATE_USER:
         return action.user
-      case GET_USER:
+      case GET_SINGLE_USER:
         return action.user
       case REMOVE_USER:
         return defaultUser

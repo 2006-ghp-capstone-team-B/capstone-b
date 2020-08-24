@@ -33,4 +33,10 @@ router.post('/signup', async (req, res, next) => {
   }
 })
 
+router.post("/logout", async(req, res) => {
+    req.logout()
+    //req.session.destroy()
+    res.redirect('/')
+})
+
 module.exports = router
