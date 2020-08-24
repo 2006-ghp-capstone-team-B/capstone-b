@@ -8,10 +8,10 @@
 {"userId":8,"listId":8,"category":"private"},
 {"userId":9,"listId":9,"category":"private"},
 {"userId":10,"listId":10,"category":"private"},
-{"userId":1,"listId":11,"category":"household"},
-{"userId":2,"listId":11,"category":"household"},
-{"userId":3,"listId":12,"category":"household"},
-{"userId":4,"listId":12,"category":"household"},
-{"userId":5,"listId":13,"category":"household"},
-{"userId":6,"listId":13,"category":"household"},
-{"userId":7,"listId":13,"category":"household"}]
+{"userId":1,"listId":11,"category":"household",  "listName":"Household 1"},
+{"userId":2,"listId":11,"category":"household",  "listName":"Household 1"},
+{"userId":3,"listId":12,"category":"household",  "listName":"Household 2"},
+{"userId":4,"listId":12,"category":"household",  "listName":"Household 2"},
+{"userId":5,"listId":13,"category":"household",  "listName":"Household 3"},
+{"userId":6,"listId":13,"category":"household",  "listName":"Household 3"},
+{"userId":7,"listId":13,"category":"household",  "listName":"Household 3"}]
