@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {MY_IP} from '../../secret'
 
 /**
  * ACTION TYPES
@@ -36,7 +37,7 @@ const removeUser = () => ({
  export const createNewUser = (newUser) => async dispatch => {
   try{
     console.log('inside thunk', newUser)
-    const {data} = await axios.post('https://localhost:19006/api/users', newUser)
+    const {data} = await axios.post(`http://${MY_IP}:19006/api/users`, newUser)
     console.log('data from axios req', data)
     dispatch(createUser(data))
   }catch(error){
