@@ -36,6 +36,12 @@ router.post("/", async (req, res, next) => {
 
 // delete route
 
+
+/*                      */
+/* PRIVATE LISTS ROUTES */
+/*                      */
+
+
 // User can see their private list
 router.get('/:userId/listPrivate', async (req, res, next) => {
   try {
@@ -94,5 +100,66 @@ router.get('/:userId/listPrivate/items', async (req, res, next) => {
   }
 })
 
+/*                        */
+/* HOUSEHOLD LISTS ROUTES */
+/*                        */
+
+// User can see their household list
+router.get('/:userId/listHousehold', async (req, res, next) => {
+  try {
+    //for now, each user only have one household list, so .findOne
+    //after mvp, each use can have multiple household lists, so .findAll
+    const listAccess = await ListAccess.findOne({
+      where: {
+        userId: req.params.userId,
+        category: "household"
+      }
+    })
+    const listHouseholdId = listAccess.listId
+    const list = await List.findOne({
+      where: {
+        id: listHouseholdId
+      }
+    })
+    res.json(list)
+  } catch (error) {
+    next(error);
+  }
+})
+
+//after mvp, ":userId/listHousehold/:listHouseholdId/items" for each household list
+router.get('/:userId/listHousehold/items', async (req, res, next) => {
+  try {
+    
+    const listAccess = await ListAccess.findOne({
+      where: {
+        userId: req.params.userId,
+        category: "household"
+      }
+    })
+    const listHouseholdId = listAccess.listId
+    const items = await ItemUserList.findAll({
+      where: {
+        listId:listHouseholdId
+      }
+    })
+
+    let listItems = []
+    for(let i=0; i< items.length; i++){
+      const quantity = items[i].quantity
+      const itemId = items[i].itemId
+      const item = await Item.findOne({
+        where:{
+          id: itemId
+        }
+      })
+      listItems.push({item, quantity})
+    }
+    res.json(listItems)
+
+  } catch (error) {
+    next(error);
+  }
+})
 
 module.exports = router;
