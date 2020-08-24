@@ -7,7 +7,7 @@ import { NavigationContainer } from "@react-navigation/native";
 // Importing icons for the bottom bar: need to import all the fmailies of icons used
 import { MaterialCommunityIcons, AntDesign, FontAwesome } from 'react-native-vector-icons';
 // Components that will render from the bottom tab navigator
-import { Home, ListPrivate, CreateUser } from './app/components'
+import { Home, ListPrivate, CreateUser, ListHousehold } from './app/components'
 
 /* 
 CREATE BOTTOM TAB
@@ -30,21 +30,21 @@ function MyBottomTab() {
           <MaterialCommunityIcons name="home" color={color} size={size} />
         ),
       }} />
-      <BottomTab.Screen name="Your List" component={ListPrivate} options={{
+      <BottomTab.Screen name="Private" component={ListPrivate} options={{
         tabBarIcon: ({ color, size }) => (
           <MaterialCommunityIcons name="clipboard" color={color} size={size} />
         ),
       }} />
       <BottomTab.Screen name="Signup" component={CreateUser} options={{
         tabBarIcon: ({ color, size }) => (
-          <FontAwesome name="group" color={color} size={size} />
-        ),
-      }} />
-      {/* <BottomTab.Screen name="Profile" component={UserProfile} options={{
-        tabBarIcon: ({ color, size }) => (
           <AntDesign name="user" color={color} size={size} />
         ),
-      }} /> */}
+      }} />
+      <BottomTab.Screen name="Household" component={ListHousehold} options={{
+        tabBarIcon: ({ color, size }) => (
+          <FontAwesome name="group"  color={color} size={size} />
+        ),
+      }} />
     </BottomTab.Navigator>
   );
 }

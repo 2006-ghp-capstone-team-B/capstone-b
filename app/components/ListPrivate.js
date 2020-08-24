@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getListPrivate } from "../store/listPrivate";
 import { globalStyles } from '../../styles/globalStyles';
 
-export default function ListPrivate() {
+export default function ListPrivate(props) {
     // const listPrivate = useSelector((state) => state.listPrivate);
     // const dispatch = useDispatch();
     // const loadListPrivate = (userId) => {

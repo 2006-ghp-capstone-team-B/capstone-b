@@ -45,7 +45,7 @@ router.post("/", async (req, res, next) => {
 // User can see their private list
 router.get('/:userId/listPrivate', async (req, res, next) => {
   try {
-    
+
     const listAccess = await ListAccess.findOne({
       where: {
         userId: req.params.userId,
@@ -68,7 +68,7 @@ router.get('/:userId/listPrivate', async (req, res, next) => {
 //listItems is an array of object, the object has two property: item and quantity. And item is an object(itemName is insde), quantity is number
 router.get('/:userId/listPrivate/items', async (req, res, next) => {
   try {
-    
+
     const listAccess = await ListAccess.findOne({
       where: {
         userId: req.params.userId,
@@ -78,20 +78,20 @@ router.get('/:userId/listPrivate/items', async (req, res, next) => {
     const listPrivateId = listAccess.listId
     const items = await ItemUserList.findAll({
       where: {
-        listId:listPrivateId
+        listId: listPrivateId
       }
     })
 
     let listItems = []
-    for(let i=0; i< items.length; i++){
+    for (let i = 0; i < items.length; i++) {
       const quantity = items[i].quantity
       const itemId = items[i].itemId
       const item = await Item.findOne({
-        where:{
+        where: {
           id: itemId
         }
       })
-      listItems.push({item, quantity})
+      listItems.push({ item, quantity })
     }
     res.json(listItems)
 
@@ -130,7 +130,7 @@ router.get('/:userId/listHousehold', async (req, res, next) => {
 //after mvp, ":userId/listHousehold/:listHouseholdId/items" for each household list
 router.get('/:userId/listHousehold/items', async (req, res, next) => {
   try {
-    
+    // const userId = req.params.userId
     const listAccess = await ListAccess.findOne({
       where: {
         userId: req.params.userId,
@@ -140,20 +140,32 @@ router.get('/:userId/listHousehold/items', async (req, res, next) => {
     const listHouseholdId = listAccess.listId
     const items = await ItemUserList.findAll({
       where: {
-        listId:listHouseholdId
+        listId: listHouseholdId
       }
     })
 
     let listItems = []
-    for(let i=0; i< items.length; i++){
+    for (let i = 0; i < items.length; i++) {
       const quantity = items[i].quantity
       const itemId = items[i].itemId
       const item = await Item.findOne({
-        where:{
+        where: {
           id: itemId
         }
       })
-      listItems.push({item, quantity})
+      const record = await ItemUserList.findOne({
+        where: {
+          itemId: itemId,
+        }
+      })
+      const userId = record.userId;
+      const user = await User.findOne({
+        where: {
+          id: userId,
+        }
+      })
+      const userName = user.firstName
+      listItems.push({ item, quantity, userName })
     }
     res.json(listItems)
 
