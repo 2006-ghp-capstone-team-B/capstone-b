@@ -1,6 +1,5 @@
 import axios from 'axios'
 import {MY_IP} from '../../secret'
-
 /**
  * ACTION TYPES
  */
@@ -23,9 +22,9 @@ const getList = list => ({
 /**
  * THUNK CREATORS
  */
-export const getListPrivate = (userId) => async dispatch => {
+export const getListHousehold = (userId) => async dispatch => {
   try {
-    const { data } = await axios.get(`http://${MY_IP}:19006/api/users/${userId}/listPrivate/items`)
+    const { data } = await axios.get(`http://${MY_IP}:19006/api/users/${userId}/listHousehold/items`)
     dispatch(getList(data))
   } catch (error) {
     console.log(error)

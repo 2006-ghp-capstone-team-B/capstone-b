@@ -3,8 +3,7 @@ import { Text, View, ActivityIndicator } from "react-native";
 import { globalStyles } from '../../styles/globalStyles';
 
 
-//user info
-//change password
-//link to store preference
-//see their private list
-//log me out
+//see the household members
+//add/remove members
+//change the name of the household
+//see household list
