@@ -1,74 +1,73 @@
-import React, {useState, useEffect} from "react";
-import {useDispatch} from "react-redux"
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity } from "react-native";
 import { Actions } from "react-native-router-flux";
 import { login } from "../store/singleUser";
 import { readUser } from "../store/storageHelper";
-import Main from "./Main"
+import Main from "./Main";
 /*
 This will be our initial screen where people can log in/ sign up.
 If user wants to stay logged in, we can add logic here to directly skip onto the "user home" (Home component)
 */
 
 const Intro = () => {
-    //check if user is in asyncStorage, if yes, skip the log in/signup rendering and just login -> which would redirect to Dashboard
-    // const [user, setUser] = useState([""])
-    // const dispatch = useDispatch()
-    // const logUserIn = (user) => {
-    //   console.log("inside log user in", user)
-    //   dispatch(login(user))
-    // }
+  //check if user is in asyncStorage, if yes, skip the log in/signup rendering and just login -> which would redirect to Dashboard
+  const [user, setUser] = useState([""]);
+  const dispatch = useDispatch();
+  const logUserIn = (user) => {
+    console.log("inside log user in", user);
+    dispatch(login(user));
+  };
 
-    // useEffect(() => {
-    //   async function checkUser () {
-    //     const loggedInUser = await readUser();
-    //     if(loggedInUser){
-    //       setUser(loggedInUser)
-    //     }else{
-    //       return
-    //     }
-    //   }
-    //   checkUser()
-    // }, [])
-
-    // useEffect(()=> {
-    //   console.log("user", user)
-    //   logUserIn(user)
-
-    // }, user)
-
-    // const navigate = (screen) => {
-    //   Actions[screen]();
-    // }
-
-
-    // if(user !== undefined) {
-    //   //logUserIn(user)
-    //   return (
-    //     <View><Text>{user}</Text></View>
-    //   )
-    // } else {
-      return (
-        <ImageBackground source={require("../../assets/peas.jpg")} style={styles.background}>
-          <View>
-            <Image source={require("../../assets/pea.png")} style={styles.logo} resizeMode="contain"></Image>
-            <Text style={styles.header}>PEASY</Text>
-            <View style={styles.buttonView}>
-              <TouchableOpacity onPress={() => navigate("login")} title="Login">
-                <Text style={styles.button}>Log In</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={() => navigate("signup")} title="SignUp">
-                <Text style={styles.button}>Sign Up</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </ImageBackground>
-      );
+  useEffect(() => {
+    async function checkUser() {
+      const loggedInUser = await readUser();
+      console.log("loggedIn user", loggedInUser);
+      if (loggedInUser !== "null") {
+        setUser(loggedInUser);
+      } else {
+        return;
+      }
     }
-  // }
+    checkUser();
+  }, []);
 
-export default Intro
+  useEffect(() => {
+    if (user !== null) {
+      console.log("user in 37^^^^^^^^^", user);
+      logUserIn(user);
+    }
+  }, [user]);
+
+  const navigate = (screen) => {
+    Actions[screen]();
+  };
+
+  if (user !== null) {
+    //logUserIn(user)
+    return <Main />;
+  } else {
+    return (
+      <ImageBackground source={require("../../assets/peas.jpg")} style={styles.background}>
+        <View>
+          <Image source={require("../../assets/pea.png")} style={styles.logo} resizeMode="contain"></Image>
+          <Text style={styles.header}>PEASY</Text>
+          <View style={styles.buttonView}>
+            <TouchableOpacity onPress={() => navigate("login")} title="Login">
+              <Text style={styles.button}>Log In</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => navigate("signup")} title="SignUp">
+              <Text style={styles.button}>Sign Up</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ImageBackground>
+    );
+  }
+};
+
+export default Intro;
 
 const styles = StyleSheet.create({
   background: {
