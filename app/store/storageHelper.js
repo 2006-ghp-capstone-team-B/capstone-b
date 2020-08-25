@@ -16,6 +16,7 @@ export const saveUser = async (user) => {
 export const readUser = async () => {
   try {
     const user = await AsyncStorage.getItem(STORAGE_KEY);
+    console.log("we are reading the user", user)
     return user
   } catch (e) {
     alert("failed to read user!");
