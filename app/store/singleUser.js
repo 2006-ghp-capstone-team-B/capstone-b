@@ -1,6 +1,7 @@
 import axios from "axios";
 import { MY_IP } from "../../secret";
 import { Actions } from "react-native-router-flux";
+import { saveUser } from "./storageHelper";
 
 // when we login -> store user's entire obj
 // AsyncStorage is global
@@ -68,7 +69,7 @@ export const login = (user) => async (dispatch) => {
 
   try {
     dispatch(getUser(res.data));
-    //history.push('/home') //do we have home route now?
+    await saveUser(res.data)
     Actions.main(); // main screen
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr);
