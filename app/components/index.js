@@ -1,4 +1,3 @@
-export { default as Home } from './Home'
 export { default as MapInput } from './MapInput'
 export { default as MyMapView } from './MyMapView'
 export { default as UserProfile } from './UserProfile'

@@ -12,8 +12,8 @@ const BottomTab = createBottomTabNavigator();
 export default function Navbar() {
   return (
       <NavigationContainer>
-        <BottomTab.Navigator initialRouteName="Home" tabBarOptions={{ activeTintColor: '#e91e63', }}>
-        <BottomTab.Screen name="Home" component={Dashboard} options={{
+        <BottomTab.Navigator initialRouteName="Dashboard" tabBarOptions={{ activeTintColor: '#e91e63', }}>
+        <BottomTab.Screen name="Dashboard" component={Dashboard} options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
           ),
