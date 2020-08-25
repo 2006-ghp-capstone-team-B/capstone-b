@@ -2,10 +2,10 @@ import React from "react";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from "@react-navigation/native";
 import { MaterialCommunityIcons, AntDesign, FontAwesome } from 'react-native-vector-icons';
-import Dashboard from './Dashboard'
 import ListPrivate from './ListPrivate'
 import CreateUser from '../screens/CreateUser'
 import ListHousehold from './ListHousehold'
+import Dashboard from "./Dashboard"
 
 const BottomTab = createBottomTabNavigator();
 
