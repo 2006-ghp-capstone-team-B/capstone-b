@@ -1,7 +1,6 @@
 // this file is where asyncStorage funcs live
 
 import AsyncStorage from "@react-native-community/async-storage";
-import { login } from "./singleUser";
 const STORAGE_KEY = "@save_user";
 
 export const saveUser = async (user) => {
