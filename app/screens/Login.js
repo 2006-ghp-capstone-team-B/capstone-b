@@ -1,13 +1,17 @@
 import * as React from "react";
 import { View, Text, ScrollView, Button, StyleSheet, TextInput } from "react-native";
 import { Formik } from "formik";
-import {login} from '../store/singleUser'
-import {connect} from 'react-redux'
+import { login } from "../store/singleUser";
+import { connect } from "react-redux";
+
+import { useState, useEffect } from "react";
+import AsyncStorage from "@react-native-community/async-storage";
+import { saveUser } from "../store/storageHelper";
 
 export const Login = () => {
-    return (
-        <ScrollView>
-          <View style={{justifyContent: "center"}}>
+  return (
+    <ScrollView>
+      <View style={{ justifyContent: "center" }}>
         <Formik
           initialValues={{ email: "", password: "" }}
           validate={(values) => {
@@ -23,15 +27,19 @@ export const Login = () => {
             } else if (values.password.length < 6) {
               errors.password = "Password has to be at least 6 character.";
             }
-    
+
             return errors;
           }}
           //if statement to check that we dont have errors, else make thunk call
-          onSubmit={(values) => props.signin(values)}
+          onSubmit={async (values) => {
+            await props.signin(values);
+            props.saveLoginUser(values);
+          }}
+          // call saveUser
         >
           {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
             <View style={styles.signUpForm}>
-                <Text>Log in</Text>
+              <Text>Log in</Text>
               <View style={{ marginTop: 30 }}>
                 <Text>
                   Email <Text style={{ color: "red" }}> {errors.email ? errors.email : ""}</Text>
@@ -58,23 +66,24 @@ export const Login = () => {
             </View>
           )}
         </Formik>
-        </View>
-        </ScrollView>
-      );
-    };
+      </View>
+    </ScrollView>
+  );
+};
 
-    const styles = StyleSheet.create({
-        InputField: { height: 40, borderColor: "gray", borderWidth: 1 },
-        signUpForm: {
-          flex: 1,
-          justifyContent: "center",
-          padding: 8,
-          marginTop: 15
-        },
-      });
+const styles = StyleSheet.create({
+  InputField: { height: 40, borderColor: "gray", borderWidth: 1 },
+  signUpForm: {
+    flex: 1,
+    justifyContent: "center",
+    padding: 8,
+    marginTop: 15,
+  },
+});
 
-    const mapDispatch = dispatch => ({
-        signin: (user) => dispatch(login(user))
-      })  
+const mapDispatch = (dispatch) => ({
+  signin: (user) => dispatch(login(user)),
+  saveLoginUser: (user) => dispatch(saveUser(user)),
+});
 
-export default connect(null, mapDispatch)(Login)
+export default connect(null, mapDispatch)(Login);
