@@ -74,4 +74,7 @@ export const globalStyles = StyleSheet.create({
         width: 450,
         height: 500,
     },
+    box: {
+        alignItems: 'center'
+    }
 });
