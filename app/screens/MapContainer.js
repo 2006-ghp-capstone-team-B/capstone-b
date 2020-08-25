@@ -1,8 +1,8 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
-import MapInput from "./MapInput";
-import MyMapView from "./MyMapView";
-import { getLocation, geocodeLocationByName } from "./services";
+import MapInput from "../components/MapInput";
+import MyMapView from "../components/MyMapView";
+import { getLocation, geocodeLocationByName } from "../components/services";
 
 class MapContainer extends React.Component {
   state = {
