@@ -14,7 +14,7 @@ export default class Intro extends React.Component {
         <ImageBackground source={require('../../assets/peas.jpg')} style={styles.background} >
           <View>
             <Image
-              source={require('../../assets/logo.png')}
+              source={require('../../assets/pea.png')}
               style={styles.logo}
               resizeMode="contain"
             >
@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
     height: '100%'
   },
   logo: {
-    width: 280,
-    height: 280,
+    width: 100,
+    height: 100,
     marginLeft: '15%',
     marginTop: '10%'
   },
