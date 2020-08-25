@@ -37,9 +37,9 @@ const Intro = () => {
 
     // }, user)
 
-    // const navigate = (screen) => {
-    //   Actions[screen]();
-    // }
+    const navigate = (screen) => {
+      Actions[screen]();
+    }
 
 
     // if(user !== undefined) {

@@ -76,6 +76,15 @@ export const login = (user) => async (dispatch) => {
   }
 };
 
+export const me = () => async dispatch => {
+  try {
+    const res = await axios.get('/auth/me')
+    dispatch(getUser(res.data || initialState))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 export const logout = () => async (dispatch) => {
   try {
     await axios.post("/auth/logout");
