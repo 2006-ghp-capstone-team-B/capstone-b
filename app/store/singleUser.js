@@ -40,14 +40,20 @@ const removeUser = () => ({
 /**
  * THUNK CREATORS
  */
-export const createNewUser = (newUser) => async (dispatch) => {
-  try {
-    console.log("inside thunk", newUser);
-    const { data } = await axios.post(`http://${MY_IP}:19006/api/users`, newUser);
-    console.log("data from axios req", data);
-    dispatch(createUser(data));
-  } catch (error) {
-    console.log(error);
+
+//signup
+ export const createNewUser = (newUser) => async dispatch => {
+  let res
+  try{
+    res = await axios.post(`http://${MY_IP}:19006/api/users`, newUser)
+  }catch(authError){
+    return dispatch(createUser({error: authError}))
+  }
+
+  try{
+    dispatch(createUser(res.data))
+  }catch (dispatchOrHistoryErr) {
+    console.error(dispatchOrHistoryErr)
   }
 };
 
@@ -72,7 +78,6 @@ export const logout = () => async (dispatch) => {
   try {
     await axios.post("/auth/logout");
     dispatch(removeUser());
-    history.push("/login");
   } catch (err) {
     console.error(err);
   }
