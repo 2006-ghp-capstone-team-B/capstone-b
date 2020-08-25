@@ -1,54 +1,37 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity } from "react-native";
 import { Actions } from "react-native-router-flux";
-import { login } from "../store/singleUser";
-import { readUser } from "../store/storageHelper";
+
 /*
 This will be our initial screen where people can log in/ sign up.
 If user wants to stay logged in, we can add logic here to directly skip onto the "user home" (Home component)
 */
 
 const Intro = () => {
-    // check if user is in asyncStorage, if yes, skip the log in/signup rendering and just login -> which would redirect to Dashboard
-    const [user, setUser] = useState([""])
+  const navigate = (screen) => {
+    Actions[screen]();
+  };
 
-    useEffect(() => {
-      async function checkUser () {
-        const loggedInUser = await readUser();
-        setUser(loggedInUser)
-      }
-      checkUser()
-    }, [])
+  return (
+    <ImageBackground source={require("../../assets/peas.jpg")} style={styles.background}>
+      <View>
+        <Image source={require("../../assets/pea.png")} style={styles.logo} resizeMode="contain"></Image>
+        <Text style={styles.header}>PEASY</Text>
+        <View style={styles.buttonView}>
+          <TouchableOpacity onPress={() => navigate("login")} title="Login">
+            <Text style={styles.button}>Log In</Text>
+          </TouchableOpacity>
 
-    const navigate = (screen) => {
-      Actions[screen]();
-    }
+          <TouchableOpacity onPress={() => navigate("signup")} title="SignUp">
+            <Text style={styles.button}>Sign Up</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </ImageBackground>
+  );
+};
 
-    if(user !== "") {
-      login(user)
-      return null
-    } else {
-      return (
-        <ImageBackground source={require("../../assets/peas.jpg")} style={styles.background}>
-          <View>
-            <Image source={require("../../assets/pea.png")} style={styles.logo} resizeMode="contain"></Image>
-            <Text style={styles.header}>PEASY</Text>
-            <View style={styles.buttonView}>
-              <TouchableOpacity onPress={() => navigate("login")} title="Login">
-                <Text style={styles.button}>Log In</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={() => navigate("signup")} title="SignUp">
-                <Text style={styles.button}>Sign Up</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </ImageBackground>
-      );
-    }
-  }
-
-export default Intro
+export default Intro;
 
 const styles = StyleSheet.create({
   background: {
