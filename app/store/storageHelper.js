@@ -6,8 +6,9 @@ const STORAGE_KEY = "@save_user";
 
 export const saveUser = async (user) => {
   try {
-    await AsyncStorage.setItem(STORAGE_KEY, user);
-    alert("saved user successfully!");
+    // await AsyncStorage.setItem(STORAGE_KEY, user);
+    console.log('saved item to storage')
+    // alert("saved user successfully!");
   } catch (e) {
     alert("failed to save user!");
   }
@@ -23,7 +24,7 @@ export const readUser = async () => {
 };
 
 
-export const logUserOut = async => {
+export const logUserOut = async () => {
   try{
     await AsyncStorage.clear();
     alert("user cleared in async storage")

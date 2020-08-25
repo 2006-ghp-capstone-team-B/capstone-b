@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-community/async-storage";
 import { saveUser } from "../store/storageHelper";
 
-export const Login = () => {
+export const Login = props => {
   return (
     <ScrollView>
       <View style={{ justifyContent: "center" }}>
@@ -31,9 +31,9 @@ export const Login = () => {
             return errors;
           }}
           //if statement to check that we dont have errors, else make thunk call
-          onSubmit={async (values) => {
-            await props.signin(values);
-            props.saveLoginUser(values);
+          onSubmit={(values) => {
+            props.signin(values);
+            saveUser(values);
           }}
           // call saveUser
         >
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
 
 const mapDispatch = (dispatch) => ({
   signin: (user) => dispatch(login(user)),
-  saveLoginUser: (user) => dispatch(saveUser(user)),
+  saveLoginUser: (user) => saveUser(user),
 });
 
 export default connect(null, mapDispatch)(Login);

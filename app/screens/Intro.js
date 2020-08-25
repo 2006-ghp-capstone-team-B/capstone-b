@@ -12,7 +12,7 @@ export default class Intro extends React.Component {
   render() {
     // check if user is in asyncStorage, if yes, skip the log in/signup rendering and just login -> which would redirect to Dashboard
     const user = readUser();
-    if (user !== null) return login(user);
+    if (user !== null) {login(user)};
     return (
       <ImageBackground source={require("../../assets/peas.jpg")} style={styles.background}>
         <View>

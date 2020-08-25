@@ -7,4 +7,5 @@
 {"email":"pczajkowski6@boston.com","firstName":"Pietrek","lastName":"Czajkowski","password":"4StTKiz","isAdmin":false,"googleId":null},
 {"email":"khalford7@amazonaws.com","firstName":"Keely","lastName":"Halford","password":"6RwivgE","isAdmin":false,"googleId":null},
 {"email":"pverrier8@sun.com","firstName":"Pollyanna","lastName":"Verrier","password":"nUBf3T61d","isAdmin":false,"googleId":null},
-{"email":"mlitel9@1und1.de","firstName":"Marney","lastName":"Litel","password":"02KuiEaWsZ5I","isAdmin":false,"googleId":null}]
+{"email":"mlitel9@1und1.de","firstName":"Marney","lastName":"Litel","password":"02KuiEaWsZ5I","isAdmin":false,"googleId":null},
+{"email":"abc@a.com","firstName":"Ariel","lastName":"Wainer","password":"12345678","isAdmin":true,"googleId":null}]

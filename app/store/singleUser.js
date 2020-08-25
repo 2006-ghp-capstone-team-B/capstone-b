@@ -52,6 +52,7 @@ const removeUser = () => ({
 
   try{
     dispatch(createUser(res.data))
+    Actions.main();
   }catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
   }
@@ -60,7 +61,7 @@ const removeUser = () => ({
 export const login = (user) => async (dispatch) => {
   let res;
   try {
-    res = await axios.post(`/auth/login`, user);
+    res = await axios.post(`http://${MY_IP}:19006/auth/login`, user);
   } catch (authError) {
     return dispatch(getUser({ error: authError }));
   }
@@ -68,7 +69,7 @@ export const login = (user) => async (dispatch) => {
   try {
     dispatch(getUser(res.data));
     //history.push('/home') //do we have home route now?
-    Action.main(); // main screen
+    Actions.main(); // main screen
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr);
   }
