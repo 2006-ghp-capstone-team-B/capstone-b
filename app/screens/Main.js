@@ -1,19 +1,16 @@
 import React from "react";
-import { Provider } from "react-redux";
-import store from "./app/store";
-import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity} from "react-native";
-import Routes from './Router'
-import { Actions } from 'react-native-router-flux'
+import { View, StyleSheet} from "react-native";
+import Navbar from '../components/Navbar'
+import Dashboard from '../components/Dashboard'
 
-export default function App() {
+export default function Main() {
   return (
-    <Provider store={store}>
-      <Routes></Routes>
-    </Provider>
-
-  )
+    <View >
+      <Dashboard />
+      <Navbar />
+    </View>
+  );
 }
-
 
 const styles = StyleSheet.create({
   background: {
