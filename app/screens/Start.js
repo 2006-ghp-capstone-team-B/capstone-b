@@ -30,8 +30,22 @@ const Start = () => {
   }, []);
 
   useEffect(() => {
-    if (user !== null) {
-      logUserIn(user);
+    if (user !== null && user.email !== "undefined") {
+      let string = user;
+      console.log("strrrrrrrr", string);
+      const newObj = JSON.parse(string);
+      console.log("newwwwwwwwwwww", newObj);
+      let { email } = newObj;
+      console.log(email, "maillllll");
+      logUserIn({ email: `${email}` });
+      // logUserIn();
+      // console.log(user.length, "lenghtttttttttt");
+      // string = JSON.parse(string);
+      // console.log(string, "lenghtttttttttt");
+
+      // console.log(user[0], "^&^^^^^^^^^^^ before logUserIn");
+      // console.log(user.email, "email???????");
+      // logUserIn(user);
     }
   }, [user]);
 
