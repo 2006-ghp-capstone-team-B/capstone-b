@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Text, View, ActivityIndicator, ImageBackground } from "react-native";
+import { Text, View, ActivityIndicator, ImageBackground, style } from "react-native";
 import { globalStyles } from "../../styles/globalStyles";
 import { getAllHouseholds } from "../store/households";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,7 +8,7 @@ export default function HouseholdProfile() {
 
 
     const households = useSelector((state) => state.households);
-    const user = useSelector((state) => state.singleUser)
+    const user = useSelector((state) => state.singleUser);
     const dispatch = useDispatch();
     const loadAllHouseholds = (userId) => {
         dispatch(getAllHouseholds(userId));
@@ -17,12 +17,12 @@ export default function HouseholdProfile() {
     useEffect(() => {
         loadAllHouseholds(user.id);
     }, [user.id]);
-    
+
     return (
         <View>
 
-        <Text>Household Profile</Text>
-        {/* {households.map(household => {
+            <Text style={globalStyles.titleText}>Household Profile:</Text>
+            {/* {households.map(household => {
                             return (
                                 <View key={household.listHouseholdId}>
                                     <Text>Household Name: {household.listHouseholdName}</Text>
@@ -40,16 +40,17 @@ export default function HouseholdProfile() {
         } */}
 
             <View key={households.listHouseholdId}>
-                <Text>Household Name: {households.listHouseholdName}</Text>
+                <Text style={globalStyles.subtitleText}>Household Name: {households.listHouseholdName}</Text>
                 <View>
-                    <Text>Household Members: </Text>
+                    <Text style={globalStyles.subtitleText}>Household Members: </Text>
                     {
                         households.listHouseholdMembers.map(member => {
-                            return (<Text>{member.lastName}</Text>)
+                            return (<View><Text>{member.firstName} {member.lastName}</Text></View>)
                         })
                     }
                 </View>
-                <Text>Household List: haven't linked yet</Text>
+                <Text style={globalStyles.subtitleText}>Household List: </Text>
+                <Text style={globalStyles.paragraph}>haven't linked yet</Text>
             </View>
         </View>
     )

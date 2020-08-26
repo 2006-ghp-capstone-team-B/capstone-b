@@ -42,10 +42,21 @@ const removeUser = () => ({
  * THUNK CREATORS
  */
 
-export const me = () => async (dispatch) => {
+//for admin to check a specifc user
+//for each of our user to check their user Profile
+export const getSingleUser = (userId) => async dispatch => {
   try {
-    const res = await axios.get("/auth/me");
-    dispatch(getUser(res.data || initialState));
+    const res = await axios.get(`http://${MY_IP}:19006/api/users/${userId}`)
+    dispatch(getSingleUser(res.data))
+  } catch (error) {
+    console.log(error)
+  }
+}
+//for each of our users to check themselves
+export const me = () => async dispatch => {
+  try {
+    const res = await axios.get('/auth/me')
+    dispatch(get(res.data || initialState))
   } catch (err) {
     console.error(err);
   }
