@@ -20,9 +20,6 @@ export default function Dashboard() {
           <TouchableOpacity onPress={() => navigate("households")} title="My Households">
             <Text style={globalStyles.button}>My Households</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigate("householdList")} title="Household List">
-            <Text style={globalStyles.button}>Household List</Text>
-          </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
               logout();

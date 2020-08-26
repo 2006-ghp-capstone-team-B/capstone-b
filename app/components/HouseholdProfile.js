@@ -1,13 +1,17 @@
 import React, { useEffect } from "react";
-import { Text, View, ActivityIndicator, ImageBackground, style } from "react-native";
+import { Text, View, TouchableOpacity, Button } from "react-native";
 import { globalStyles } from "../../styles/globalStyles";
 import { getAllHouseholds } from "../store/households";
 import { useDispatch, useSelector } from "react-redux";
+import { Actions } from "react-native-router-flux";
 
 export default function HouseholdProfile() {
 
+    const navigate = (screen) => {
+        Actions[screen]();
+    };
 
-    const households = useSelector((state) => state.households);
+    const { listHouseholdId, listHouseholdName, listHouseholdMembers } = useSelector((state) => state.households);
     const user = useSelector((state) => state.singleUser);
     const dispatch = useDispatch();
     const loadAllHouseholds = (userId) => {
@@ -17,8 +21,8 @@ export default function HouseholdProfile() {
     useEffect(() => {
         loadAllHouseholds(user.id);
     }, [user.id]);
-    
-    return user && households && (
+
+    return (
         <View>
 
             <Text style={globalStyles.titleText}>Household Profile:</Text>
@@ -40,20 +44,22 @@ export default function HouseholdProfile() {
                       )
         }</View> */}
 
-            <View key={households.listHouseholdId}>
-                <Text style={globalStyles.subtitleText}>Household Name: {households.listHouseholdName}</Text>
-                <View>
+            <View key={listHouseholdId}>
+                <Text style={globalStyles.subtitleText}>Household Name: {listHouseholdName}</Text>
+                {/* <View>
                     <Text style={globalStyles.subtitleText}>Household Members: </Text>
                     {
-                        households.listHouseholdMembers.map(member => {
+                        listHouseholdMembers.map(member => {
                             return (<View key={member.id}><Text style={globalStyles.subtitleText}>{member.firstName} {member.lastName}</Text></View>)
                         })
                     }
-                </View>
-                <Text style={globalStyles.subtitleText}>Household List: </Text>
-                <Text style={globalStyles.paragraph}>haven't linked yet</Text>
+                </View> */}
+
             </View>
-        </View> 
+            <TouchableOpacity onPress={() => navigate("householdList")} title="Household List">
+                <Text style={globalStyles.button}> Household List </Text>
+            </TouchableOpacity>
+        </View>
     )
 }
 
