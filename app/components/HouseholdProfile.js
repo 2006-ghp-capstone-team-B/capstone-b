@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity, Button } from "react-native";
 import { globalStyles } from "../../styles/globalStyles";
 import { getAllHouseholds } from "../store/households";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,7 +11,7 @@ export default function HouseholdProfile() {
         Actions[screen]();
     };
 
-    const households = useSelector((state) => state.households);
+    const { listHouseholdId, listHouseholdName, listHouseholdMembers } = useSelector((state) => state.households);
     const user = useSelector((state) => state.singleUser);
     const dispatch = useDispatch();
     const loadAllHouseholds = (userId) => {
@@ -22,8 +22,6 @@ export default function HouseholdProfile() {
         loadAllHouseholds(user.id);
     }, [user.id]);
 
-    console.log("this is user", user)
-    console.log("this is households", households)
     return (
         <View>
 
@@ -46,20 +44,20 @@ export default function HouseholdProfile() {
                       )
         }</View> */}
 
-            <View key={households.listHouseholdId}>
-                <Text style={globalStyles.subtitleText}>Household Name: {households.listHouseholdName}</Text>
-                <View>
+            <View key={listHouseholdId}>
+                <Text style={globalStyles.subtitleText}>Household Name: {listHouseholdName}</Text>
+                {/* <View>
                     <Text style={globalStyles.subtitleText}>Household Members: </Text>
                     {
-                        households.listHouseholdMembers.map(member => {
+                        listHouseholdMembers.map(member => {
                             return (<View key={member.id}><Text style={globalStyles.subtitleText}>{member.firstName} {member.lastName}</Text></View>)
                         })
                     }
-                </View>
+                </View> */}
 
             </View>
             <TouchableOpacity onPress={() => navigate("householdList")} title="Household List">
-                <Text style={globalStyles.button}>Household List</Text>
+                <Text style={globalStyles.button}> Household List </Text>
             </TouchableOpacity>
         </View>
     )

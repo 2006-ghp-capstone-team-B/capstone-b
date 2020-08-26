@@ -68,22 +68,22 @@ export const globalStyles = StyleSheet.create({
     background: {
         width: "100%",
         height: "100%",
-      },
-      logo: {
+    },
+    logo: {
         width: 100,
         height: 100,
         marginLeft: "15%",
         marginTop: "10%",
-      },
-      header: {
+    },
+    header: {
         color: "white",
         fontSize: 60,
         textAlign: "center",
         marginTop: 50,
-      },
-      button: {
-        backgroundColor: "white",
-        color: "#3A59FF",
+    },
+    button: {
+        backgroundColor: "#6F9A88",
+        color: "#fff",
         width: "80%",
         borderRadius: 25,
         textAlign: "center",
@@ -92,11 +92,11 @@ export const globalStyles = StyleSheet.create({
         padding: "2%",
         fontSize: 25,
         marginTop: "10%",
-      },
-      style: {
+    },
+    style: {
         flex: 1,
         justifyContent: "center",
         padding: 8,
         marginTop: 15,
-      },
+    },
 });
