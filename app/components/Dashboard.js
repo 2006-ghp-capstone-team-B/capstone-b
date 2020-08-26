@@ -17,6 +17,9 @@ export default function Dashboard() {
           <TouchableOpacity onPress={() => navigate("privateList")} title="Private List">
             <Text style={globalStyles.button}>My Private List</Text>
           </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigate("households")} title="My Households">
+            <Text style={globalStyles.button}>My Households</Text>
+          </TouchableOpacity>
           <TouchableOpacity onPress={() => navigate("householdList")} title="Household List">
             <Text style={globalStyles.button}>Household List</Text>
           </TouchableOpacity>
@@ -30,6 +33,8 @@ export default function Dashboard() {
           >
             <Text style={globalStyles.button}>Log Out for now</Text>
           </TouchableOpacity>
+          
+
         </View>
       </View>
     </ImageBackground>

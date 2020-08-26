@@ -2,7 +2,7 @@ import React from "react";
 import { Router, Scene } from "react-native-router-flux";
 import { Start } from "./app/screens";
 import { Login, CreateUser, Main } from "./app/screens";
-import { Dashboard, ListPrivate, ListHousehold } from "./app/components";
+import { ListPrivate, ListHousehold, HouseholdProfile } from "./app/components";
 
 const Routes = () => {
   return (
@@ -14,6 +14,7 @@ const Routes = () => {
         <Scene key="main" title="Main" component={Main} renderLeftButton={()=>(null)}></Scene>
         <Scene key="privateList" title="My Private List" component={ListPrivate}></Scene>
         <Scene key="householdList" title="My Household List" component={ListHousehold}></Scene>
+        <Scene key="households" title="My Households" component={HouseholdProfile}></Scene>
       </Scene>
     </Router>
   );

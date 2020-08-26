@@ -26,11 +26,6 @@ export default function Main() {
             <Fontisto name="shopping-store" color={color} size={size} />
           ),
         }} />
-        <BottomTab.Screen name="My Household" component={HouseholdProfile} options={{
-          tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="users" color={color} size={size} />
-          ),
-        }} />
         <BottomTab.Screen name="Me" component={UserProfile} options={{
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="user" color={color} size={size} />
