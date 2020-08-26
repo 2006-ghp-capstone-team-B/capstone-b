@@ -104,7 +104,7 @@ router.get('/:userId/listPrivate/items', async (req, res, next) => {
 /* HOUSEHOLD LISTS ROUTES */
 /*                        */
 
-// User can see their household list
+//get the list information like list name and list members
 router.get('/:userId/listHousehold', async (req, res, next) => {
   try {
     //for now, each user only have one household list, so .findOne
@@ -116,16 +116,53 @@ router.get('/:userId/listHousehold', async (req, res, next) => {
       }
     })
     const listHouseholdId = listAccess.listId
-    const list = await List.findOne({
-      where: {
-        id: listHouseholdId
-      }
+    const listHouseholdName = listAccess.listName
+    let listHouseholdMembers = []
+    const records = await ListAccess.findAll({
+        where: {
+          listId: listHouseholdId
+        }
     })
-    res.json(list)
+
+    for(let i=0; i<records.length; i++){
+      const userId = records[i].dataValues.userId
+      const user = await User.findOne({
+        where:{
+          id: userId
+        }
+      })
+      listHouseholdMembers.push({firstName: user.firstName, lastName: user.lastName})
+    }
+
+    const householdInfo = {listHouseholdId, listHouseholdName, listHouseholdMembers}
+    res.json(householdInfo)
   } catch (error) {
     next(error);
   }
 })
+
+// // User can see their household list
+// router.get('/:userId/listHousehold', async (req, res, next) => {
+//   try {
+//     //for now, each user only have one household list, so .findOne
+//     //after mvp, each use can have multiple household lists, so .findAll
+//     const listAccess = await ListAccess.findOne({
+//       where: {
+//         userId: req.params.userId,
+//         category: "household"
+//       }
+//     })
+//     const listHouseholdId = listAccess.listId
+//     const list = await List.findOne({
+//       where: {
+//         id: listHouseholdId
+//       }
+//     })
+//     res.json(list)
+//   } catch (error) {
+//     next(error);
+//   }
+// })
 
 //after mvp, ":userId/listHousehold/:listHouseholdId/items" for each household list
 router.get('/:userId/listHousehold/items', async (req, res, next) => {
@@ -173,5 +210,7 @@ router.get('/:userId/listHousehold/items', async (req, res, next) => {
     next(error);
   }
 })
+
+
 
 module.exports = router;

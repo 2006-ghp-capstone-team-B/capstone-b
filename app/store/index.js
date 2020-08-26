@@ -5,8 +5,10 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import users from './users'
 import singleUser from './singleUser'
 import listPrivate from './listPrivate'
+import listHousehold from "./listHousehold"
+import households from "./households"
 
-const reducer = combineReducers({ users, singleUser, listPrivate })
+const reducer = combineReducers({ users, singleUser, households, listPrivate, listHousehold})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 )
