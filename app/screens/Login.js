@@ -32,8 +32,7 @@ export const Login = (props) => {
           }}
           //if statement to check that we dont have errors, else make thunk call
           onSubmit={(values) => {
-            const signTry = props.signin(values);
-            console.log('trying to sign in', signTry)
+            props.signin(values);
             saveUser(values);
             Actions.main();
           }}

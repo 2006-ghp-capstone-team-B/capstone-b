@@ -7,7 +7,7 @@
   },
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "dev": "npm run server & npm start",
+    "dev": "nodemon run server & npm start",
     "seed": "node script/seed.js",
     "start": "expo start",
     "server": "node server/index.js",
@@ -33,6 +33,7 @@
     "formik": "^2.1.5",
     "history": "^5.0.0",
     "morgan": "^1.10.0",
+    "nodemon": "^2.0.4",
     "passport": "^0.4.1",
     "pg": "^8.3.2",
     "react": "~16.11.0",
