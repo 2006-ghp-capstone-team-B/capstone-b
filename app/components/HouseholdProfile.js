@@ -46,14 +46,19 @@ export default function HouseholdProfile() {
 
             <View key={listHouseholdId}>
                 <Text style={globalStyles.subtitleText}>Household Name: {listHouseholdName}</Text>
-                {/* <View>
+                <View>
                     <Text style={globalStyles.subtitleText}>Household Members: </Text>
-                    {
-                        listHouseholdMembers.map(member => {
-                            return (<View key={member.id}><Text style={globalStyles.subtitleText}>{member.firstName} {member.lastName}</Text></View>)
+                    {listHouseholdMembers !== undefined && listHouseholdMembers.length !== 0 ?
+
+                        listHouseholdMembers.map((member, index) => {
+                            return (<View key={index}><Text style={globalStyles.subtitleText}>{member.firstName} {member.lastName}</Text></View>)
                         })
+
+                        :
+                        null
                     }
-                </View> */}
+
+                </View>
 
             </View>
             <TouchableOpacity onPress={() => navigate("householdList")} title="Household List">
