@@ -46,17 +46,18 @@ class MapContainer extends React.Component {
       <View style={styles.container}>
 
         {this.state.region.latitude ? (
-          <View style={{ marginTop: 350, width: '100%' }}>
-            <Text>My Stores:</Text>
-            <MyMapView region={this.state.region} onRegionChange={(reg) => this.onMapRegionChange(reg)} />
+          <View style={{ marginTop: 200, width: '100%' }}>
+            <View style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}>
+              <MyMapView region={this.state.region} onRegionChange={(reg) => this.onMapRegionChange(reg)} />
+
+              <MapInput notifyChange={(loc) => this.getCoordsFromName(loc)} />
+
+            </View>
+
           </View>
         ) : null}
 
-        <View >
-          <Text>Type in the name of your favorite grocery store:</Text>
-          <MapInput notifyChange={(loc) => this.getCoordsFromName(loc)} />
         </View>
-      </View>
     );
   }
 }
