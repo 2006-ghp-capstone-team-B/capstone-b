@@ -11,61 +11,40 @@ If user wants to stay logged in, we can add logic here to directly skip onto the
 */
 
 const Start = () => {
-  // const [user, setUser] = useState([""]);
-  // const dispatch = useDispatch();
-  // const logUserIn = (user) => {
-  //   dispatch(login(user));
-  // };
+  const [user, setUser] = useState([""]);
+  const dispatch = useDispatch();
+  const logUserIn = (user) => {
+    dispatch(login(user));
+  };
 
-  // useEffect(() => {
-  //   async function checkUser() {
-  //     const loggedInUser = await readUser();
-  //     if (loggedInUser !== "null") {
-  //       setUser(loggedInUser);
-  //     } else {
-  //       return;
-  //     }
-  //   }
-  //   checkUser();
-  // }, []);
-
-<<<<<<< HEAD
   useEffect(() => {
-    if (user !== null && user.email !== "undefined") {
-      let string = user;
-      console.log("strrrrrrrr", string);
-      const newObj = JSON.parse(string);
-      console.log("newwwwwwwwwwww", newObj);
-      let { email } = newObj;
-      console.log(email, "maillllll");
-      logUserIn({ email: `${email}` });
-      // logUserIn();
-      // console.log(user.length, "lenghtttttttttt");
-      // string = JSON.parse(string);
-      // console.log(string, "lenghtttttttttt");
+    let isMounted = true;
+    async function checkUser() {
+      const loggedInUser = await readUser();
+      if (loggedInUser !== "null" && isMounted) {
+        setUser(loggedInUser);
+      } else {
+        return;
+      }
+    }
+    checkUser();
+  }, []);
 
-      // console.log(user[0], "^&^^^^^^^^^^^ before logUserIn");
-      // console.log(user.email, "email???????");
-      // logUserIn(user);
+  useEffect(() => {
+    if (user !== null && user[0] !== "") {
+      logUserIn(JSON.parse(user));
     }
   }, [user]);
-=======
-  // useEffect(() => {
-  //   if (user !== null) {
-  //     logUserIn(user);
-  //   }
-  // }, [user]);
->>>>>>> a624f72813c20ca584972607427814dafb0834ff
 
-  // const navigate = (screen) => {
-  //   Actions[screen]();
-  // };
+  const navigate = (screen) => {
+    Actions[screen]();
+  };
 
-  // if (user !== null) {
-  //   return <Main />;
-  // } else {
+  if (user !== null) {
+    return <Main />;
+  } else {
     return <Intro />;
-  // }
+  }
 };
 
 export default Start;
