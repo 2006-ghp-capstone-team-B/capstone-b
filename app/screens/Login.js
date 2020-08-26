@@ -3,7 +3,7 @@ import { View, Text, ScrollView, Button, StyleSheet, TextInput } from "react-nat
 import { Formik } from "formik";
 import { login } from "../store/singleUser";
 import { connect } from "react-redux";
-
+import { Actions } from "react-native-router-flux";
 import { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-community/async-storage";
 import { saveUser } from "../store/storageHelper";
@@ -32,9 +32,10 @@ export const Login = (props) => {
           }}
           //if statement to check that we dont have errors, else make thunk call
           onSubmit={(values) => {
-            props.signin(values);
-            console.log("what am i saving to user", values);
+            const signTry = props.signin(values);
+            console.log('trying to sign in', signTry)
             saveUser(values);
+            Actions.main();
           }}
           // call saveUser
         >

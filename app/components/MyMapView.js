@@ -4,7 +4,6 @@ const MyMapView = (props) => {
   console.log( "~~~~~~~my map view props~~~~~~~", props);
   return (
       <MapView
-        style={{ flex: 1 }}
         region={props.region}
         showsUserLocation={true}
         onRegionChange={(reg) => props.onRegionChange(reg)}

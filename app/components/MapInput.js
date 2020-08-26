@@ -8,7 +8,7 @@ const GOOGLE_PLACES_API_KEY = API_KEY; // MAKE SURE THIS IS NOT THE REAL KEY
 
 const MapInput = props => {
   return (
-    <View style={styles.container}>
+    <View >
       <GooglePlacesAutocomplete
         query={{
           key: API_KEY,
@@ -46,14 +46,5 @@ const MapInput = props => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    paddingTop: Constants.statusBarHeight,
-    backgroundColor: "#ecf0f1",
-    padding: 8,
-  },
-});
 
 export default MapInput;
