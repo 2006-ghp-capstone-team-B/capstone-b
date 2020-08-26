@@ -8,7 +8,7 @@ const GET_ALL_HOUSEHOLDS = 'GET_ALL_HOUSEHOLDS'
 /**
  * INITIAL STATE
  */
-const initialState = []
+const initialState = {}
 
 /**
  * ACTION CREATORS
@@ -25,6 +25,8 @@ const getHouseholds = households => ({
 export const getAllHouseholds = (userId) => async dispatch => {
   try {
     const res = await axios.get(`http://${MY_IP}:19006/api/users/${userId}/listHousehold`)
+    console.log("this is res", res)
+    console.log("this is res.data", res.data)
     dispatch(getHouseholds(res.data))
   } catch (error) {
     console.log(error)

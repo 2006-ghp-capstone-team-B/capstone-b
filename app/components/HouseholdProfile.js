@@ -17,19 +17,20 @@ export default function HouseholdProfile() {
     useEffect(() => {
         loadAllHouseholds(user.id);
     }, [user.id]);
-
-    return (
+    
+    return user && households && (
         <View>
 
             <Text style={globalStyles.titleText}>Household Profile:</Text>
-            {/* {households.map(household => {
+            {/* Reminder: right now we only have one household, and it is an object. But eventually we want many households as an array. */}
+            {/* <View>{households.map(household => {
                             return (
                                 <View key={household.listHouseholdId}>
                                     <Text>Household Name: {household.listHouseholdName}</Text>
                                     <Text>Household Members: 
                                         {
                                             household.listHouseholdMembers.map(member => {
-                                                return (<Text>Member: {member.lastName}</Text>)
+                                                return (<Text>{member.firstName} {member.lastName}</Text>)
                                             })
                                         }</Text>
                                     <Text>Household List: haven't linked yet</Text>
@@ -37,7 +38,7 @@ export default function HouseholdProfile() {
                         )
                                     }             
                       )
-        } */}
+        }</View> */}
 
             <View key={households.listHouseholdId}>
                 <Text style={globalStyles.subtitleText}>Household Name: {households.listHouseholdName}</Text>
@@ -45,14 +46,14 @@ export default function HouseholdProfile() {
                     <Text style={globalStyles.subtitleText}>Household Members: </Text>
                     {
                         households.listHouseholdMembers.map(member => {
-                            return (<View><Text>{member.firstName} {member.lastName}</Text></View>)
+                            return (<View key={member.id}><Text style={globalStyles.subtitleText}>{member.firstName} {member.lastName}</Text></View>)
                         })
                     }
                 </View>
                 <Text style={globalStyles.subtitleText}>Household List: </Text>
                 <Text style={globalStyles.paragraph}>haven't linked yet</Text>
             </View>
-        </View>
+        </View> 
     )
 }
 
