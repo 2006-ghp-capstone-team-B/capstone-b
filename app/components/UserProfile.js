@@ -23,6 +23,12 @@ export default function UserProfile() {
             <View key={profile.id}>
                 <Text style={globalStyles.subtitleText}> Name: {profile.firstName}</Text>
                 <Text style={globalStyles.subtitleText}> Last Name: {profile.lastName}</Text>
+                <Text style={globalStyles.subtitleText}> Email: {profile.email}</Text>
+                <Text style={globalStyles.subtitleText}> Change Password: TBD</Text>
+                <Text style={globalStyles.subtitleText}> Sign Out: TBD</Text>
+
+
+
             </View>
         </View >
     )

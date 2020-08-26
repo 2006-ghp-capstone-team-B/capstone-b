@@ -9,7 +9,7 @@ export default function HouseholdProfile() {
 
     const navigate = (screen) => {
         Actions[screen]();
-      };
+    };
 
     const households = useSelector((state) => state.households);
     const user = useSelector((state) => state.singleUser);
@@ -21,10 +21,10 @@ export default function HouseholdProfile() {
     useEffect(() => {
         loadAllHouseholds(user.id);
     }, [user.id]);
-    
+
     console.log("this is user", user)
     console.log("this is households", households)
-    return  (
+    return (
         <View>
 
             <Text style={globalStyles.titleText}>Household Profile:</Text>
@@ -56,12 +56,12 @@ export default function HouseholdProfile() {
                         })
                     }
                 </View>
-                
+
             </View>
-             <TouchableOpacity onPress={() => navigate("householdList")} title="Household List">
+            <TouchableOpacity onPress={() => navigate("householdList")} title="Household List">
                 <Text style={globalStyles.button}>Household List</Text>
             </TouchableOpacity>
-        </View> 
+        </View>
     )
 }
 
