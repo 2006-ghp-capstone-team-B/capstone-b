@@ -43,12 +43,11 @@ export default function HouseholdProfile() {
                 <Text style={globalStyles.subtitleText}>Household Name: {households.listHouseholdName}</Text>
                 <View>
                     <Text style={globalStyles.subtitleText}>Household Members: </Text>
-                    {/* {
+                    {
                         households.listHouseholdMembers.map(member => {
-                            return (<Text>{member.firstName}</Text>)
-                            return (<Text>{member.lastName}</Text>)
+                            return (<View><Text>{member.firstName} {member.lastName}</Text></View>)
                         })
-                    } */}
+                    }
                 </View>
                 <Text style={globalStyles.subtitleText}>Household List: </Text>
                 <Text style={globalStyles.paragraph}>haven't linked yet</Text>
