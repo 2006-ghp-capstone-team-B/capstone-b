@@ -42,38 +42,41 @@ const removeUser = () => ({
  * THUNK CREATORS
  */
 
-// export const getSingleUser = (userId) => async dispatch => {
-//   try {
-//     const res = await axios.get(`http://${MY_IP}:19006/api/users/${userId}`)
-//     dispatch(getSingleUser(res.data))
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
+//for admin to check a specifc user
+//for each of our user to check their user Profile
+export const getSingleUser = (userId) => async dispatch => {
+  try {
+    const res = await axios.get(`http://${MY_IP}:19006/api/users/${userId}`)
+    dispatch(getSingleUser(res.data))
+  } catch (error) {
+    console.log(error)
+  }
+}
+//for each of our users to check themselves
 export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me')
     dispatch(get(res.data || initialState))
   } catch (err) {
-    console.error(err)
+    console.error(err);
   }
-}
-
+};
 
 //signup
-export const createNewUser = (newUser) => async dispatch => {
-  let res
+export const createNewUser = (newUser) => async (dispatch) => {
+  console.log("newUserrrrrrr", newUser);
+  let res;
   try {
-    res = await axios.post(`http://${MY_IP}:19006/api/users`, newUser)
+    res = await axios.post(`http://${MY_IP}:19006/auth/signup`, newUser);
   } catch (authError) {
-    return dispatch(createUser({ error: authError }))
+    return dispatch(createUser({ error: authError }));
   }
 
   try {
-    dispatch(createUser(res.data))
+    dispatch(createUser(res.data));
     Actions.main();
   } catch (dispatchOrHistoryErr) {
-    console.error(dispatchOrHistoryErr)
+    console.error(dispatchOrHistoryErr);
   }
 };
 

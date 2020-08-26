@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const { User, ListAccess, List, ItemUserList, Item } = require("../db/models");
 
-//all the users
+//all the users 
+//ADMIN only functionality
 router.get("/", async (req, res, next) => {
   try {
     const users = await User.findAll();
@@ -11,11 +12,27 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+//POTENTIALLY MOVING THIS ROUTE TO API/INDEX.JS
 // User can see their own user profile api/users/:id
 router.get("/:userId", async (req, res, next) => {
   try {
     const singleUser = await User.findByPk(req.params.userId);
-    res.json(singleUser);
+
+    //Define all the info that we will send to the front-end's user profile
+    let profileInfo = [];
+    const userName = singleUser.firstName;
+    const password = singleUser.password;
+    const listPrivate = await ListAccess.findOne({
+      where: {
+        userId: singleUser.id,
+        category: "private"
+      }
+    })
+    const storePreferences = ["Empty for now"]; //TBD
+    //Push all the info to front-end
+    profileInfo.push({ userName, password, listPrivate, storePreferences })
+
+    res.json(profileInfo);
   } catch (error) {
     next(error);
   }
@@ -119,22 +136,22 @@ router.get('/:userId/listHousehold', async (req, res, next) => {
     const listHouseholdName = listAccess.listName
     let listHouseholdMembers = []
     const records = await ListAccess.findAll({
-        where: {
-          listId: listHouseholdId
-        }
+      where: {
+        listId: listHouseholdId
+      }
     })
 
-    for(let i=0; i<records.length; i++){
+    for (let i = 0; i < records.length; i++) {
       const userId = records[i].dataValues.userId
       const user = await User.findOne({
-        where:{
+        where: {
           id: userId
         }
       })
-      listHouseholdMembers.push({firstName: user.firstName, lastName: user.lastName})
+      listHouseholdMembers.push({ firstName: user.firstName, lastName: user.lastName })
     }
 
-    const householdInfo = {listHouseholdId, listHouseholdName, listHouseholdMembers}
+    const householdInfo = { listHouseholdId, listHouseholdName, listHouseholdMembers }
     res.json(householdInfo)
   } catch (error) {
     next(error);

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Text, View, ActivityIndicator, ImageBackground } from "react-native";
+import { Text, View, ActivityIndicator, ImageBackground, style } from "react-native";
 import { globalStyles } from "../../styles/globalStyles";
 import { getAllHouseholds } from "../store/households";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,7 +21,7 @@ export default function HouseholdProfile() {
     return (
         <View>
 
-            <Text>Household Profile:</Text>
+            <Text style={globalStyles.titleText}>Household Profile:</Text>
             {/* {households.map(household => {
                             return (
                                 <View key={household.listHouseholdId}>
@@ -40,9 +40,9 @@ export default function HouseholdProfile() {
         } */}
 
             <View key={households.listHouseholdId}>
-                <Text>Household Name: {households.listHouseholdName}</Text>
+                <Text style={globalStyles.subtitleText}>Household Name: {households.listHouseholdName}</Text>
                 <View>
-                    <Text>Household Members: </Text>
+                    <Text style={globalStyles.subtitleText}>Household Members: </Text>
                     {/* {
                         households.listHouseholdMembers.map(member => {
                             return (<Text>{member.firstName}</Text>)
@@ -50,7 +50,8 @@ export default function HouseholdProfile() {
                         })
                     } */}
                 </View>
-                <Text>Household List: haven't linked yet</Text>
+                <Text style={globalStyles.subtitleText}>Household List: </Text>
+                <Text style={globalStyles.paragraph}>haven't linked yet</Text>
             </View>
         </View>
     )

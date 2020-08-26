@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-community/async-storage";
 import { saveUser } from "../store/storageHelper";
 
-export const Login = props => {
+export const Login = (props) => {
   return (
     <ScrollView>
       <View style={{ justifyContent: "center" }}>
@@ -33,6 +33,7 @@ export const Login = props => {
           //if statement to check that we dont have errors, else make thunk call
           onSubmit={(values) => {
             props.signin(values);
+            console.log("what am i saving to user", values);
             saveUser(values);
           }}
           // call saveUser
