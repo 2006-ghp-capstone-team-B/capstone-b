@@ -23,8 +23,6 @@ export default function UserProfile() {
             <View key={profile.id}>
                 <Text style={globalStyles.subtitleText}> Name: {profile.firstName}</Text>
                 <Text style={globalStyles.subtitleText}> Last Name: {profile.lastName}</Text>
-                <Text style={globalStyles.subtitleText}>Private List: </Text>
-                <Text style={globalStyles.paragraph}>haven't linked yet</Text>
             </View>
         </View >
     )
