@@ -42,11 +42,18 @@ const removeUser = () => ({
  * THUNK CREATORS
  */
 
-
+// export const getSingleUser = (userId) => async dispatch => {
+//   try {
+//     const res = await axios.get(`http://${MY_IP}:19006/api/users/${userId}`)
+//     dispatch(getSingleUser(res.data))
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
 export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me')
-    dispatch(getUser(res.data || initialState))
+    dispatch(get(res.data || initialState))
   } catch (err) {
     console.error(err)
   }
@@ -54,18 +61,18 @@ export const me = () => async dispatch => {
 
 
 //signup
- export const createNewUser = (newUser) => async dispatch => {
+export const createNewUser = (newUser) => async dispatch => {
   let res
-  try{
+  try {
     res = await axios.post(`http://${MY_IP}:19006/api/users`, newUser)
-  }catch(authError){
-    return dispatch(createUser({error: authError}))
+  } catch (authError) {
+    return dispatch(createUser({ error: authError }))
   }
 
-  try{
+  try {
     dispatch(createUser(res.data))
     Actions.main();
-  }catch (dispatchOrHistoryErr) {
+  } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
   }
 };
@@ -80,7 +87,6 @@ export const login = (user) => async (dispatch) => {
 
   try {
     dispatch(getUser(res.data));
-    await saveUser(res.data)
     Actions.main(); // main screen
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr);

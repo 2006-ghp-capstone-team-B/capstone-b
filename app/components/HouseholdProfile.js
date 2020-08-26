@@ -8,7 +8,7 @@ export default function HouseholdProfile() {
 
 
     const households = useSelector((state) => state.households);
-    const user = useSelector((state) => state.singleUser)
+    const user = useSelector((state) => state.singleUser);
     const dispatch = useDispatch();
     const loadAllHouseholds = (userId) => {
         dispatch(getAllHouseholds(userId));
@@ -17,12 +17,12 @@ export default function HouseholdProfile() {
     useEffect(() => {
         loadAllHouseholds(user.id);
     }, [user.id]);
-    
+
     return (
         <View>
 
-        <Text>Household Profile</Text>
-        {/* {households.map(household => {
+            <Text>Household Profile:</Text>
+            {/* {households.map(household => {
                             return (
                                 <View key={household.listHouseholdId}>
                                     <Text>Household Name: {household.listHouseholdName}</Text>
@@ -43,11 +43,12 @@ export default function HouseholdProfile() {
                 <Text>Household Name: {households.listHouseholdName}</Text>
                 <View>
                     <Text>Household Members: </Text>
-                    {
+                    {/* {
                         households.listHouseholdMembers.map(member => {
+                            return (<Text>{member.firstName}</Text>)
                             return (<Text>{member.lastName}</Text>)
                         })
-                    }
+                    } */}
                 </View>
                 <Text>Household List: haven't linked yet</Text>
             </View>
