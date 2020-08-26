@@ -28,13 +28,6 @@ export const globalStyles = StyleSheet.create({
         marginVertical: 8,
         lineHeight: 20,
     },
-    header: {
-        flex: 0.3,
-        backgroundColor: '#BF2F0B',
-        padding: 20,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
     body: {
         flex: 3,
         backgroundColor: '#F2BE00',
@@ -58,11 +51,6 @@ export const globalStyles = StyleSheet.create({
         fontWeight: 'bold',
         lineHeight: 1,
     },
-    logo: {
-        alignItems: 'center',
-        width: 300,
-        height: 200,
-    },
     photo: {
         alignItems: 'center',
         width: 400,
@@ -76,5 +64,39 @@ export const globalStyles = StyleSheet.create({
     },
     box: {
         alignItems: 'center'
-    }
+    },
+    background: {
+        width: "100%",
+        height: "100%",
+      },
+      logo: {
+        width: 100,
+        height: 100,
+        marginLeft: "15%",
+        marginTop: "10%",
+      },
+      header: {
+        color: "white",
+        fontSize: 60,
+        textAlign: "center",
+        marginTop: 50,
+      },
+      button: {
+        backgroundColor: "white",
+        color: "#3A59FF",
+        width: "80%",
+        borderRadius: 25,
+        textAlign: "center",
+        fontWeight: "bold",
+        marginLeft: "10%",
+        padding: "2%",
+        fontSize: 25,
+        marginTop: "10%",
+      },
+      style: {
+        flex: 1,
+        justifyContent: "center",
+        padding: 8,
+        marginTop: 15,
+      },
 });
