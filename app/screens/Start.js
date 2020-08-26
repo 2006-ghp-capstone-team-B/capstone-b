@@ -11,39 +11,39 @@ If user wants to stay logged in, we can add logic here to directly skip onto the
 */
 
 const Start = () => {
-  const [user, setUser] = useState([""]);
-  const dispatch = useDispatch();
-  const logUserIn = (user) => {
-    dispatch(login(user));
-  };
+  // const [user, setUser] = useState([""]);
+  // const dispatch = useDispatch();
+  // const logUserIn = (user) => {
+  //   dispatch(login(user));
+  // };
 
-  useEffect(() => {
-    async function checkUser() {
-      const loggedInUser = await readUser();
-      if (loggedInUser !== "null") {
-        setUser(loggedInUser);
-      } else {
-        return;
-      }
-    }
-    checkUser();
-  }, []);
+  // useEffect(() => {
+  //   async function checkUser() {
+  //     const loggedInUser = await readUser();
+  //     if (loggedInUser !== "null") {
+  //       setUser(loggedInUser);
+  //     } else {
+  //       return;
+  //     }
+  //   }
+  //   checkUser();
+  // }, []);
 
-  useEffect(() => {
-    if (user !== null) {
-      logUserIn(user);
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user !== null) {
+  //     logUserIn(user);
+  //   }
+  // }, [user]);
 
-  const navigate = (screen) => {
-    Actions[screen]();
-  };
+  // const navigate = (screen) => {
+  //   Actions[screen]();
+  // };
 
-  if (user !== null) {
-    return <Main />;
-  } else {
+  // if (user !== null) {
+  //   return <Main />;
+  // } else {
     return <Intro />;
-  }
+  // }
 };
 
 export default Start;
