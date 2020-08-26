@@ -44,17 +44,18 @@ class MapContainer extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={{ flex: 1 }}>
-          <Text>MAP INPUT GOES HERE .</Text>
-          <MapInput notifyChange={(loc) => this.getCoordsFromName(loc)} />
-        </View>
 
         {this.state.region.latitude ? (
-          <View style={{ flex: 1 }}>
-            <Text>MAP VIEW GOES HERE .</Text>
+          <View style={{ marginTop: 350, width: '100%' }}>
+            <Text>My Stores:</Text>
             <MyMapView region={this.state.region} onRegionChange={(reg) => this.onMapRegionChange(reg)} />
           </View>
         ) : null}
+
+        <View >
+          <Text>Type in the name of your favorite grocery store:</Text>
+          <MapInput notifyChange={(loc) => this.getCoordsFromName(loc)} />
+        </View>
       </View>
     );
   }
@@ -64,8 +65,8 @@ export default MapContainer;
 
 const styles = StyleSheet.create({
   container: {
-    width: 400,
-    height: 700,
+    width: '100%',
+    height: '100%',
     backgroundColor: "green",
     alignItems: "center",
     justifyContent: "center",

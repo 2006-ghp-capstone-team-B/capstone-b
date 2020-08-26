@@ -23,7 +23,7 @@ export default function Dashboard() {
             onPress={() => {
               logout();
               logUserOut();
-              navigate("home");
+              navigate("Welcome To Peasy");
             }}
             title="Home"
           >

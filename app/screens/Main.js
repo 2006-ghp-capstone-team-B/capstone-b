@@ -1,8 +1,9 @@
 import React from "react";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from "@react-navigation/native";
-import { MaterialCommunityIcons, AntDesign, FontAwesome } from 'react-native-vector-icons';
+import { MaterialCommunityIcons, AntDesign, FontAwesome, Fontisto } from 'react-native-vector-icons';
 import {Dashboard, UserProfile, Notifications,HouseholdProfile } from "../components"
+import MapContainer from "./MapContainer";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -20,9 +21,9 @@ export default function Main() {
             <MaterialCommunityIcons name="clipboard" color={color} size={size} />
           ),
         }} />
-        <BottomTab.Screen name="Household" component={HouseholdProfile} options={{
+        <BottomTab.Screen name="My Stores" component={MapContainer} options={{
           tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="group"  color={color} size={size} />
+            <Fontisto name="shopping-store" color={color} size={size} />
           ),
         }} />
         <BottomTab.Screen name="Me" component={UserProfile} options={{

@@ -79,7 +79,7 @@ export const login = (user) => async (dispatch) => {
 
   try {
     dispatch(getUser(res.data));
-    Actions.main(); // main screen
+    // Actions.main(); // main screen
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr);
   }

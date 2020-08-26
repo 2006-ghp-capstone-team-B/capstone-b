@@ -36,10 +36,6 @@ const Start = () => {
     }
   }, [user]);
 
-  const navigate = (screen) => {
-    Actions[screen]();
-  };
-
   if (user !== null) {
     return <Main />;
   } else {
