@@ -1,22 +1,27 @@
-import React, { useEffect } from "react";
-import { Text, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import { getListHousehold } from "../store/listHousehold";
+import React from "react";
+import { Text, View, ImageBackground, TouchableOpacity} from "react-native";
 import { globalStyles } from '../../styles/globalStyles';
+import { Actions } from "react-native-router-flux";
 
-export default function Dashboard(props) {
+export default function Dashboard() {
+
+  const navigate = (screen) => {
+    Actions[screen]();
+  };
+
     return (
-        <View style={globalStyles.container}>
-          <Text >Dashboard</Text>
-          <View style={globalStyles.box}>
-            <Text style={globalStyles.subtitleText}>My Private List</Text>
-          </View>
-          <View style={globalStyles.box}>
-            <Text style={globalStyles.subtitleText}>My Household List</Text>
-          </View>
-          <View style={globalStyles.box}>
-            <Text style={globalStyles.subtitleText}>My Household List</Text>
+      <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
+        <View>
+          <View style={globalStyles.buttonView}>
+          <TouchableOpacity onPress={() => navigate("privateList")} title="Private List">
+            <Text style={globalStyles.button}>My Private List</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigate("householdList")} title="Household List">
+            <Text style={globalStyles.button}>Household List</Text>
+          </TouchableOpacity>
           </View>
         </View>
+      </ImageBackground>
     );
 }
+

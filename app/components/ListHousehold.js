@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
-import { Text, View } from "react-native";
+import { View, ImageBackground } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { getListHousehold } from "../store/listHousehold";
 import { globalStyles } from '../../styles/globalStyles';
+import styled from 'styled-components'
+
 
 export default function ListHousehold() {
 
@@ -13,24 +15,49 @@ export default function ListHousehold() {
         dispatch(getListHousehold(userId));
     };
 
-    console.log("listhousehold", listHousehold)
     useEffect(() => {
         loadListHousehold(user.id);
-    }, user.id);
+    }, [user.id]);
 
 
     return (
-        <View style={globalStyles.container}>
-            <Text> This is your household list!</Text>
-            {listHousehold.map(item => {
-                return (
-                    <View>
-                        <Text>{item.item.name}</Text>
-                        <Text>{item.quantity}</Text>
-                        <Text>{item.userName}</Text>
-                    </View>
-                )
-            })}
-        </View>
+        <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
+                <Container>
+                {listHousehold.map(item => {
+                    return (
+                        <Item key={item.item.id}>
+                            <Title>Item: {item.item.itemName}</Title>
+                            <Title>Quantity: {item.quantity}</Title>
+                            <Title>Added by:{item.userName}</Title>
+                        </Item>
+                    )
+                })}
+                </Container>
+        </ImageBackground>
     );
 }
+
+
+
+const Container=styled.View`
+    flex:1;
+    padding:50px 0;
+    justify-content:center;
+    background-color:#f4f4f4;
+    align-items:center
+`
+const Title=styled.Text`
+font-size:20px;
+text-align:center;
+ color:black;
+`
+const Item=styled.View`
+flex:0.2;
+border:1px solid #ccc;
+margin:2px 2px;
+border-radius:10px;
+box-shadow:0 0 10px #6d706f;
+background-color:#ebfcf8;
+width:80%;
+padding:10px;
+`

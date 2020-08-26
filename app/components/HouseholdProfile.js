@@ -1,6 +1,15 @@
-import React, { useEffect } from "react";
-import { Text, View, ActivityIndicator } from "react-native";
-import { globalStyles } from '../../styles/globalStyles';
+import React from "react";
+import { Text, View, ActivityIndicator, ImageBackground } from "react-native";
+import { globalStyles } from "../../styles/globalStyles";
+
+
+export default function HouseholdProfile() {
+    return (
+        <View>
+        <Text>Household Profile Page</Text>
+        </View>
+    )
+}
 
 
 //see the household members

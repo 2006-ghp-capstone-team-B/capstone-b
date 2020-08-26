@@ -1,11 +1,90 @@
-[{"email":"rsteggals0@bizjournals.com","firstName":"Ruthi","lastName":"Steggals","password":"cGzNSp6XL3","isAdmin":false,"googleId":null},
-{"email":"smahood1@marriott.com","firstName":"Sig","lastName":"Mahood","password":"TZURhEx7oo","isAdmin":false,"googleId":null},
-{"email":"cwainer2@salon.com","firstName":"Claudine","lastName":"Wainer","password":"TfzE2vUGTVX","isAdmin":false,"googleId":null},
-{"email":"jdaniele3@dyndns.org","firstName":"Jocelin","lastName":"Daniele","password":"cW5UYcpUsayM","isAdmin":false,"googleId":null},
-{"email":"sbaterip4@arizona.edu","firstName":"Shermy","lastName":"Baterip","password":"xpR9YtKoXgx","isAdmin":false,"googleId":null},
-{"email":"ddy5@archive.org","firstName":"Daron","lastName":"Dy","password":"wZ14hD3M","isAdmin":false,"googleId":null},
-{"email":"pczajkowski6@boston.com","firstName":"Pietrek","lastName":"Czajkowski","password":"4StTKiz","isAdmin":false,"googleId":null},
-{"email":"khalford7@amazonaws.com","firstName":"Keely","lastName":"Halford","password":"6RwivgE","isAdmin":false,"googleId":null},
-{"email":"pverrier8@sun.com","firstName":"Pollyanna","lastName":"Verrier","password":"nUBf3T61d","isAdmin":false,"googleId":null},
-{"email":"mlitel9@1und1.de","firstName":"Marney","lastName":"Litel","password":"02KuiEaWsZ5I","isAdmin":false,"googleId":null},
-{"email":"abc@a.com","firstName":"Ariel","lastName":"Wainer","password":"12345678","isAdmin":true,"googleId":null}]
+[
+  {
+    "email": "rsteggals0@bizjournals.com",
+    "firstName": "Ruthi",
+    "lastName": "Steggals",
+    "password": "cGzNSp6XL3",
+    "isAdmin": false,
+    "googleId": null
+  },
+  {
+    "email": "smahood1@marriott.com",
+    "firstName": "Sig",
+    "lastName": "Mahood",
+    "password": "TZURhEx7oo",
+    "isAdmin": false,
+    "googleId": null
+  },
+  {
+    "email": "cwainer2@salon.com",
+    "firstName": "Claudine",
+    "lastName": "Wainer",
+    "password": "TfzE2vUGTVX",
+    "isAdmin": false,
+    "googleId": null
+  },
+  {
+    "email": "jdaniele3@dyndns.org",
+    "firstName": "Jocelin",
+    "lastName": "Daniele",
+    "password": "cW5UYcpUsayM",
+    "isAdmin": false,
+    "googleId": null
+  },
+  {
+    "email": "sbaterip4@arizona.edu",
+    "firstName": "Shermy",
+    "lastName": "Baterip",
+    "password": "xpR9YtKoXgx",
+    "isAdmin": false,
+    "googleId": null
+  },
+  {
+    "email": "ddy5@archive.org",
+    "firstName": "Daron",
+    "lastName": "Dy",
+    "password": "wZ14hD3M",
+    "isAdmin": false,
+    "googleId": null
+  },
+  {
+    "email": "pczajkowski6@boston.com",
+    "firstName": "Pietrek",
+    "lastName": "Czajkowski",
+    "password": "4StTKiz",
+    "isAdmin": false,
+    "googleId": null
+  },
+  {
+    "email": "khalford7@amazonaws.com",
+    "firstName": "Keely",
+    "lastName": "Halford",
+    "password": "6RwivgE",
+    "isAdmin": false,
+    "googleId": null
+  },
+  {
+    "email": "pverrier8@sun.com",
+    "firstName": "Pollyanna",
+    "lastName": "Verrier",
+    "password": "nUBf3T61d",
+    "isAdmin": false,
+    "googleId": null
+  },
+  {
+    "email": "mlitel9@1und1.de",
+    "firstName": "Marney",
+    "lastName": "Litel",
+    "password": "02KuiEaWsZ5I",
+    "isAdmin": false,
+    "googleId": null
+  },
+  {
+    "email": "abc@a.com",
+    "firstName": "Ariel",
+    "lastName": "Wainer",
+    "password": "12345678",
+    "isAdmin": true,
+    "googleId": null
+  }
+]

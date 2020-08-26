@@ -42,6 +42,17 @@ const removeUser = () => ({
  * THUNK CREATORS
  */
 
+
+export const me = () => async dispatch => {
+  try {
+    const res = await axios.get('/auth/me')
+    dispatch(getUser(res.data || initialState))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+
 //signup
  export const createNewUser = (newUser) => async dispatch => {
   let res
@@ -75,15 +86,6 @@ export const login = (user) => async (dispatch) => {
     console.error(dispatchOrHistoryErr);
   }
 };
-
-export const me = () => async dispatch => {
-  try {
-    const res = await axios.get('/auth/me')
-    dispatch(getUser(res.data || initialState))
-  } catch (err) {
-    console.error(err)
-  }
-}
 
 export const logout = () => async (dispatch) => {
   try {

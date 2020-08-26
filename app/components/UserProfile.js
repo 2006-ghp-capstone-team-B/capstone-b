@@ -2,7 +2,15 @@ import React, { useEffect } from "react";
 import { Text, View, ActivityIndicator } from "react-native";
 import { globalStyles } from "../../styles/globalStyles";
 
-export const UserProfile = () => {};
+
+export default function UserProfile() {
+    return (
+        <View>
+            <Text>User Profile Page</Text>
+        </View>
+    )
+}
+
 
 //user info
 //change password
