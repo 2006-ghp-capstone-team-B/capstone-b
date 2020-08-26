@@ -5,6 +5,7 @@ import { Actions } from "react-native-router-flux";
 import { logUserOut } from "../store/storageHelper";
 import { logout } from "../store/singleUser";
 export default function Dashboard() {
+
   const navigate = (screen) => {
     Actions[screen]();
   };
@@ -23,7 +24,7 @@ export default function Dashboard() {
             onPress={() => {
               logout();
               logUserOut();
-              navigate("Welcome To Peasy");
+              navigate("home");
             }}
             title="Home"
           >
