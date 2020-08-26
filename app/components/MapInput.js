@@ -29,6 +29,9 @@ const MapInput = props => {
             backgroundColor: "rgba(0,0,0,0)",
             borderTopWidth: 0,
             borderBottomWidth: 0,
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
           },
           textInput: {
             marginLeft: 0,
@@ -36,6 +39,7 @@ const MapInput = props => {
             height: 38,
             color: "#5d5d5d",
             fontSize: 16,
+
           },
           predefinedPlacesDescription: {
             color: "#1faadb",
