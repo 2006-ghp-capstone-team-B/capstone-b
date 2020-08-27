@@ -10,7 +10,7 @@ export default function UserProfile() {
     const profile = useSelector((state) => state.singleUser);
     const dispatch = useDispatch();
     const loadProfileInfo = () => {
-        dispatch(getSingleUser());
+        dispatch(getSingleUser(profile.id));
     }
 
     useEffect(() => {
