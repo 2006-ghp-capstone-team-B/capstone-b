@@ -1,17 +1,251 @@
-[{"storeName":"Pasta - Cannelloni, Sheets, Fresh","coordinates1":11.1300808,"coordinates2":124.6005108,"coordinates":[11.1300808, 124.6005108],"category":"Groceries"},
-{"storeName":"Puree - Blackcurrant","coordinates1":40.7929026,"coordinates2":43.8464971,"coordinates":[40.7929026, 43.8464971],"category":"Groceries"},
-{"storeName":"Water Chestnut - Canned","coordinates1":19.3579802,"coordinates2":-99.0806088,"coordinates":[19.3579802, -99.0806088],"category":"Groceries"},
-{"storeName":"Wine - Ej Gallo Sonoma","coordinates1":40.5851643,"coordinates2":46.8429953,"coordinates":[40.5851643, 46.8429953],"category":"Groceries"},
-{"storeName":"Cake - Cake Sheet Macaroon","coordinates1":33.4180537,"coordinates2":131.6156723,"coordinates":[33.4180537, 131.6156723],"category":"Groceries"},
-{"storeName":"Lamb Rack - Ontario","coordinates1":-30.6357648,"coordinates2":-67.4658213,"coordinates":[-30.6357648, -67.4658213],"category":"Groceries"},
-{"storeName":"Beer - Rickards Red","coordinates1":37.1212974,"coordinates2":79.9088564,"coordinates":[37.1212974, 79.9088564],"category":"Groceries"},
-{"storeName":"Wine - White, Chardonnay","coordinates1":49.9466816,"coordinates2":18.8244645,"coordinates":[49.9466816, 18.8244645],"category":"Groceries"},
-{"storeName":"Yokaline","coordinates1":10.2453984,"coordinates2":-74.041805,"coordinates":[10.2453984, -74.041805],"category":"Groceries"},
-{"storeName":"Longan","coordinates1":38.8757453,"coordinates2":-7.1728338,"coordinates":[38.8757453, -7.1728338],"category":"Groceries"},
-{"storeName":"Venison - Denver Leg Boneless","coordinates1":7.1796355,"coordinates2":-2.1008486,"coordinates":[7.1796355, -2.1008486],"category":"Groceries"},
-{"storeName":"Wine - Casillero Del Diablo","coordinates1":31.927317,"coordinates2":35.299468,"coordinates":[31.927317, 35.299468],"category":"Groceries"},
-{"storeName":"Sole - Iqf","coordinates1":-10.3869996,"coordinates2":28.7023068,"coordinates":[-10.3869996, 28.7023068],"category":"Groceries"},
-{"storeName":"Cheese - Colby","coordinates1":31.223878,"coordinates2":121.524135,"coordinates":[31.223878, 121.524135],"category":"Groceries"},
-{"storeName":"Olive - Spread Tapenade","coordinates1":39.8019855,"coordinates2":-8.8714085,"coordinates":[39.8019855, -8.8714085],"category":"Groceries"},
-{"storeName":"Bread Roll Foccacia","coordinates1":11.186148,"coordinates2":123.7487563,"coordinates":[11.186148, 123.7487563],"category":"Groceries"},
-{"storeName":"Peas Snow","coordinates1":59.5194054,"coordinates2":15.9767049,"coordinates":[59.5194054, 15.9767049],"category":"Groceries"}]
+[{
+  "storeName": "Stehr, Senger and VonRueden",
+  "latitude": 44.780865,
+  "longitude": 128.447649,
+  "category": "Groceries"
+}, {
+  "storeName": "Wilderman, Cruickshank and Dare",
+  "latitude": 22.7325323,
+  "longitude": -12.4753205,
+  "category": "Groceries"
+}, {
+  "storeName": "Waters, MacGyver and Ledner",
+  "latitude": 50.9131655,
+  "longitude": 31.1168458,
+  "category": "Groceries"
+}, {
+  "storeName": "Schowalter Inc",
+  "latitude": 31.859964,
+  "longitude": 120.411393,
+  "category": "Groceries"
+}, {
+  "storeName": "Heidenreich, Bergnaum and Lakin",
+  "latitude": -15.2090734,
+  "longitude": -39.1959729,
+  "category": "Groceries"
+}, {
+  "storeName": "Carroll-Lynch",
+  "latitude": 9.6389796,
+  "longitude": -68.129727,
+  "category": "Groceries"
+}, {
+  "storeName": "Grady-Roob",
+  "latitude": 59.33549,
+  "longitude": 18.0685774,
+  "category": "Groceries"
+}, {
+  "storeName": "Willms-Cruickshank",
+  "latitude": -8.1924285,
+  "longitude": 112.7011258,
+  "category": "Groceries"
+}, {
+  "storeName": "Lehner, Hamill and Jenkins",
+  "latitude": -26.58041,
+  "longitude": -59.63094,
+  "category": "Groceries"
+}, {
+  "storeName": "Prosacco Inc",
+  "latitude": 46.3789875,
+  "longitude": 14.0683139,
+  "category": "Groceries"
+}, {
+  "storeName": "Effertz, Borer and Langworth",
+  "latitude": 39.61335,
+  "longitude": -8.9519943,
+  "category": "Groceries"
+}, {
+  "storeName": "Cremin Inc",
+  "latitude": 38.6099176,
+  "longitude": -8.8036223,
+  "category": "Groceries"
+}, {
+  "storeName": "Medhurst and Sons",
+  "latitude": 38.17979,
+  "longitude": 107.47506,
+  "category": "Groceries"
+}, {
+  "storeName": "Bartoletti LLC",
+  "latitude": 49.6522215,
+  "longitude": 23.486531,
+  "category": "Groceries"
+}, {
+  "storeName": "Spencer, Kozey and Hettinger",
+  "latitude": 30.4338104,
+  "longitude": 31.0564425,
+  "category": "Groceries"
+}, {
+  "storeName": "Smith and Sons",
+  "latitude": 48.7277622,
+  "longitude": 100.7724281,
+  "category": "Groceries"
+}, {
+  "storeName": "Koss Inc",
+  "latitude": 16.0765691,
+  "longitude": 97.5843171,
+  "category": "Groceries"
+}, {
+  "storeName": "Bogan-Koch",
+  "latitude": 26.9373041,
+  "longitude": 90.4879916,
+  "category": "Groceries"
+}, {
+  "storeName": "Bruen-Murphy",
+  "latitude": 2.9175611,
+  "longitude": 101.6821575,
+  "category": "Groceries"
+}, {
+  "storeName": "Leuschke Group",
+  "latitude": 8.662577,
+  "longitude": -75.128872,
+  "category": "Groceries"
+}, {
+  "storeName": "Gulgowski-Satterfield",
+  "latitude": 30.260023,
+  "longitude": 120.205192,
+  "category": "Groceries"
+}, {
+  "storeName": "Krajcik LLC",
+  "latitude": 42.76618,
+  "longitude": 123.15486,
+  "category": "Groceries"
+}, {
+  "storeName": "Luettgen-Daniel",
+  "latitude": 14.5807588,
+  "longitude": 100.8338593,
+  "category": "Groceries"
+}, {
+  "storeName": "Turcotte, Robel and Jaskolski",
+  "latitude": 41.4610499,
+  "longitude": -8.2673764,
+  "category": "Groceries"
+}, {
+  "storeName": "Kirlin and Sons",
+  "latitude": -6.7575785,
+  "longitude": 38.131876,
+  "category": "Groceries"
+}, {
+  "storeName": "Howe-Thompson",
+  "latitude": 51.386359,
+  "longitude": 21.897405,
+  "category": "Groceries"
+}, {
+  "storeName": "Wolf, Stehr and Conn",
+  "latitude": 58.0780287,
+  "longitude": 13.0188387,
+  "category": "Groceries"
+}, {
+  "storeName": "Doyle Inc",
+  "latitude": 15.1766973,
+  "longitude": 106.2345633,
+  "category": "Groceries"
+}, {
+  "storeName": "McCullough-Runte",
+  "latitude": 34.0724454,
+  "longitude": 72.0577733,
+  "category": "Groceries"
+}, {
+  "storeName": "Jacobi and Sons",
+  "latitude": 36.363178,
+  "longitude": 25.7693535,
+  "category": "Groceries"
+}, {
+  "storeName": "Beier, Oberbrunner and Goodwin",
+  "latitude": -7.1568,
+  "longitude": 107.9439,
+  "category": "Groceries"
+}, {
+  "storeName": "Kessler Inc",
+  "latitude": 51.4090959,
+  "longitude": 22.051777,
+  "category": "Groceries"
+}, {
+  "storeName": "Turcotte, Kuphal and Jast",
+  "latitude": -37.6097143,
+  "longitude": -73.6483294,
+  "category": "Groceries"
+}, {
+  "storeName": "Leannon-Gutmann",
+  "latitude": 14.1652083,
+  "longitude": -16.0757749,
+  "category": "Groceries"
+}, {
+  "storeName": "Sipes, Mraz and Adams",
+  "latitude": 49.4250351,
+  "longitude": 16.5911908,
+  "category": "Groceries"
+}, {
+  "storeName": "Gislason-Kiehn",
+  "latitude": -6.7686246,
+  "longitude": 107.7517775,
+  "category": "Groceries"
+}, {
+  "storeName": "Willms LLC",
+  "latitude": -20.5360441,
+  "longitude": 29.2814687,
+  "category": "Groceries"
+}, {
+  "storeName": "Dietrich-Jacobson",
+  "latitude": 25.9375976,
+  "longitude": -100.3638252,
+  "category": "Groceries"
+}, {
+  "storeName": "O'Hara-O'Hara",
+  "latitude": 9.7209866,
+  "longitude": 123.8784551,
+  "category": "Groceries"
+}, {
+  "storeName": "Ferry Group",
+  "latitude": 26.497669,
+  "longitude": 104.980581,
+  "category": "Groceries"
+}, {
+  "storeName": "Ebert and Sons",
+  "latitude": 1.5316053,
+  "longitude": -77.4128193,
+  "category": "Groceries"
+}, {
+  "storeName": "Steuber, Ziemann and Veum",
+  "latitude": 20.1788256,
+  "longitude": 106.0728356,
+  "category": "Groceries"
+}, {
+  "storeName": "Schoen, Dietrich and King",
+  "latitude": 38.5301118,
+  "longitude": 68.2146857,
+  "category": "Groceries"
+}, {
+  "storeName": "Romaguera Group",
+  "latitude": -7.068917,
+  "longitude": 108.399785,
+  "category": "Groceries"
+}, {
+  "storeName": "Kassulke, Rempel and McKenzie",
+  "latitude": -13.02483,
+  "longitude": -74.448357,
+  "category": "Groceries"
+}, {
+  "storeName": "Ratke Group",
+  "latitude": -12.883333,
+  "longitude": -74.466667,
+  "category": "Groceries"
+}, {
+  "storeName": "Dare-O'Reilly",
+  "latitude": 5.2287989,
+  "longitude": 6.1911526,
+  "category": "Groceries"
+}, {
+  "storeName": "Christiansen-Greenfelder",
+  "latitude": 55.8389853,
+  "longitude": 37.1414146,
+  "category": "Groceries"
+}, {
+  "storeName": "Kshlerin-Morar",
+  "latitude": -5.7577862,
+  "longitude": 105.6984455,
+  "category": "Groceries"
+}, {
+  "storeName": "Cole, Berge and Bechtelar",
+  "latitude": 13.2317498,
+  "longitude": 123.7702587,
+  "category": "Groceries"
+}]
