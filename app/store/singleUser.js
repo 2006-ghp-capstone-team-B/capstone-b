@@ -47,7 +47,7 @@ const removeUser = () => ({
 export const getSingleUser = (userId) => async (dispatch) => {
   try {
     const res = await axios.get(`http://${MY_IP}:19006/api/users/${userId}`);
-    dispatch(getSingleUser(res.data));
+    dispatch(getUser(res.data));
   } catch (error) {
     console.log(error);
   }
