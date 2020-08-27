@@ -93,6 +93,18 @@ export const globalStyles = StyleSheet.create({
         fontSize: 25,
         marginTop: "10%",
     },
+    smallButton: {
+        backgroundColor: "#6F9A88",
+        color: "#fff",
+        width: "10%",
+        borderRadius: 25,
+        textAlign: "center",
+        fontWeight: "bold",
+        marginLeft: "10%",
+        padding: "2%",
+        fontSize: 25,
+        marginTop: "10%",
+    },
     style: {
         flex: 1,
         justifyContent: "center",
