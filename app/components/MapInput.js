@@ -6,9 +6,9 @@ import API_KEY from "../../secret";
 
 const GOOGLE_PLACES_API_KEY = API_KEY; // MAKE SURE THIS IS NOT THE REAL KEY
 
-const MapInput = props => {
+const MapInput = (props) => {
   return (
-    <View >
+    <View>
       <GooglePlacesAutocomplete
         query={{
           key: API_KEY,
@@ -16,9 +16,9 @@ const MapInput = props => {
         }}
         fetchDetails={true}
         onPress={(data, details = null) => {
-          console.log('input details:', details.geometry)
-          console.log('input data:', data.types)
-          props.notifyChange(details.geometry.location)
+          console.log("input details:", details.geometry);
+          console.log("input data:", data.types);
+          props.notifyChange(details.geometry.location);
           // TRIGGER THUNK TO MAKE API CALL TO ADD GROCERY PREFERENCE TO BACKEND
         }}
         onFail={(error) => console.error(error)}
@@ -31,9 +31,12 @@ const MapInput = props => {
             backgroundColor: "rgba(0,0,0,0)",
             borderTopWidth: 0,
             borderBottomWidth: 0,
-            width: '100%',
-            justifyContent: 'center',
-            alignItems: 'center',
+            width: 300,
+            height: "10%",
+            // left: -50,
+            // top: -10,
+            justifyContent: "flex-start",
+            alignItems: "center",
           },
           textInput: {
             marginLeft: 0,
@@ -41,7 +44,6 @@ const MapInput = props => {
             height: 38,
             color: "#5d5d5d",
             fontSize: 16,
-
           },
           predefinedPlacesDescription: {
             color: "#1faadb",
@@ -51,6 +53,5 @@ const MapInput = props => {
     </View>
   );
 };
-
 
 export default MapInput;
