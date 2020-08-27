@@ -12,7 +12,7 @@ export default function Dashboard() {
 
   return (
     <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
-      <View>
+      <View style={{ marginTop: 30 }}>
         <View style={globalStyles.buttonView}>
           <TouchableOpacity onPress={() => navigate("privateList")} title="Private List">
             <Text style={globalStyles.button}>My Private List</Text>
@@ -30,7 +30,7 @@ export default function Dashboard() {
           >
             <Text style={globalStyles.button}>Log Out for now</Text>
           </TouchableOpacity>
-          
+
 
         </View>
       </View>
