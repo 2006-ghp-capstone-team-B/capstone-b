@@ -111,4 +111,15 @@ export const globalStyles = StyleSheet.create({
         padding: 8,
         marginTop: 15,
     },
+    signUpForm: {
+        flex: 1,
+        justifyContent: "center",
+        padding: 8,
+        marginTop: 15,
+    },
+    InputField: {
+        height: 40,
+        borderColor: "gray",
+        borderWidth: 1
+    },
 });

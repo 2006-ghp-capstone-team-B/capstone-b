@@ -1,18 +1,18 @@
 import React, { useEffect } from "react";
-import { Text, View, ScrollView, ImageBackground, Button, styles } from "react-native";
+import { Text, TextInput, View, ScrollView, ImageBackground, Button } from "react-native";
 import { globalStyles } from "../../styles/globalStyles";
 import { Formik } from "formik";
 
-export default function AddMember(props) {
+export default function AddMember() {
     return (
         <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
             <View>
                 <Text style={globalStyles.button}> Invite a member to join your Household:  </Text>
             </View>
-            {/* <ScrollView>
+            <ScrollView>
                 <View style={{ justifyContent: "center" }}>
                     <Formik
-                        initialValues={{ email: "" }}
+                        initialValues={{ name: "", email: "" }}
                         validate={(values) => {
                             const errors = {};
                             if (!values.email) {
@@ -22,36 +22,37 @@ export default function AddMember(props) {
                             }
                             return errors;
                         }}
-                        //if statement to check that we dont have errors, else make thunk call
-                        onSubmit={(values) => {
-                            props.signin(values);
-                            saveUser(values);
-                            Actions.main();
-                        }}
-                    // call saveUser
+                    //if statement to check that we dont have errors, else make thunk call
+                    // onSubmit={(values) => {
+                    //     props.signin(values);
+
+                    //     Actions.main();
+                    // }}
                     >
                         {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
-                            <View style={styles.signUpForm}>
-                                <View style={{ marginTop: 30 }}>
-                                    <Text>
-                                        Your household member's email <Text style={{ color: "red" }}> {errors.email ? errors.email : ""}</Text>
-                                    </Text>
-                                    <TextInput
-                                        style={styles.InputField}
-                                        onChangeText={handleChange("email")}
-                                        onBlur={handleBlur("email")}
-                                        value={values.email}
-                                    />
-                                </View>
+                            <View style={globalStyles.signUpForm}>
+
                                 <View style={{ marginTop: 30 }}>
                                     <Text>
                                         Your household member's first name <Text style={{ color: "red" }}> </Text>
                                     </Text>
                                     <TextInput
-                                        style={styles.InputField}
+                                        style={globalStyles.InputField}
                                         onChangeText={handleChange("firstName")}
                                         onBlur={handleBlur("firstName")}
                                         value={values.firstName}
+                                    />
+                                </View>
+
+                                <View style={{ marginTop: 30 }}>
+                                    <Text>
+                                        Your household member's email <Text style={{ color: "red" }}> {errors.email ? errors.email : ""}</Text>
+                                    </Text>
+                                    <TextInput
+                                        style={globalStyles.InputField}
+                                        onChangeText={handleChange("email")}
+                                        onBlur={handleBlur("email")}
+                                        value={values.email}
                                     />
                                     <Button onPress={handleSubmit} title="Submit" />
                                 </View>
@@ -59,7 +60,7 @@ export default function AddMember(props) {
                         )}
                     </Formik>
                 </View>
-            </ScrollView> */}
+            </ScrollView>
         </ImageBackground>
     )
 }
