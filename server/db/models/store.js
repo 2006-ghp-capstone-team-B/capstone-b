@@ -26,8 +26,15 @@ const Store = db.define("store", {
       notEmpty: true
     }
   },
-  coordinates: { // 40.7175795,-73.9945671
-    type: Sequelize.ARRAY(Sequelize.DECIMAL),
+  latitude: {
+    type: Sequelize.DECIMAL,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  },
+  longitude: {
+    type: Sequelize.DECIMAL,
     allowNull: false,
     validate: {
       notEmpty: true

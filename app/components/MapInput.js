@@ -16,6 +16,8 @@ const MapInput = props => {
         }}
         fetchDetails={true}
         onPress={(data, details = null) => {
+          console.log('input details:', details.geometry)
+          console.log('input data:', data.types)
           props.notifyChange(details.geometry.location)
           // TRIGGER THUNK TO MAKE API CALL TO ADD GROCERY PREFERENCE TO BACKEND
         }}
