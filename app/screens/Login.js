@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text, ScrollView, Button, StyleSheet, TextInput } from "react-native";
+import { View, Text, ScrollView, Button, TextInput } from "react-native";
 import { Formik } from "formik";
 import { login } from "../store/singleUser";
 import { connect } from "react-redux";
@@ -7,6 +7,8 @@ import { Actions } from "react-native-router-flux";
 import { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-community/async-storage";
 import { saveUser } from "../store/storageHelper";
+import { globalStyles } from "../../styles/globalStyles";
+
 
 export const Login = (props) => {
   return (
@@ -36,17 +38,17 @@ export const Login = (props) => {
             saveUser(values);
             Actions.main();
           }}
-          // call saveUser
+        // call saveUser
         >
           {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
-            <View style={styles.signUpForm}>
+            <View style={globalStyles.signUpForm}>
               <Text>Log in</Text>
               <View style={{ marginTop: 30 }}>
                 <Text>
                   Email <Text style={{ color: "red" }}> {errors.email ? errors.email : ""}</Text>
                 </Text>
                 <TextInput
-                  style={styles.InputField}
+                  style={globalStyles.InputField}
                   onChangeText={handleChange("email")}
                   onBlur={handleBlur("email")}
                   value={values.email}
@@ -57,7 +59,7 @@ export const Login = (props) => {
                   Password <Text style={{ color: "red" }}> {errors.password ? errors.password : ""}</Text>
                 </Text>
                 <TextInput
-                  style={styles.InputField}
+                  style={globalStyles.InputField}
                   onChangeText={handleChange("password")}
                   onBlur={handleBlur("password")}
                   value={values.password}
@@ -71,16 +73,6 @@ export const Login = (props) => {
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  InputField: { height: 40, borderColor: "gray", borderWidth: 1 },
-  signUpForm: {
-    flex: 1,
-    justifyContent: "center",
-    padding: 8,
-    marginTop: 15,
-  },
-});
 
 const mapDispatch = (dispatch) => ({
   signin: (user) => dispatch(login(user)),
