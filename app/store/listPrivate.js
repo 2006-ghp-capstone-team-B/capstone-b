@@ -5,6 +5,8 @@ import {MY_IP} from '../../secret'
  * ACTION TYPES
  */
 const GET_LIST = 'GET_LIST'
+const DECREASE_QUANTITY = "DECREASE_QUANTITY"
+const INCREASE_QUANTITY = "INCREASE_QUANTITY"
 
 /**
  * INITIAL STATE
@@ -20,6 +22,16 @@ const getList = list => ({
   list
 })
 
+const increaseQuantity = quantity => ({
+  type: 'INCREASE_QUANTITY',
+  quantity
+});
+
+const decreaseQuantity = quantity => ({
+  type: 'DECREASE_QUANTITY',
+  quantity
+});
+
 /**
  * THUNK CREATORS
  */
@@ -32,6 +44,29 @@ export const getListPrivate = (userId) => async dispatch => {
   }
 }
 
+export const increaseItem = (userId, itemId) => async dispatch => {
+  try{
+    const res = await axios.get(`http://${MY_IP}:19006/api/users/${userId}/listPrivate/items`)
+    const items = res.data
+    console.log("items before increase", items)
+    if(res){
+      for(let i=0; i< items.length; i++){
+        if(items[i].item.id === itemId){
+          items[i].quantity += 1
+        }
+      }
+    }
+    console.log("items after increase", items)
+    await axios.put(`http://${MY_IP}:19006/api/users/${userId}/listPrivate/items`, items)
+    dispatch(increaseQuantity(quantity))
+  }catch(error){
+    console.log(error)
+  }
+}
+
+// export const decreaseItem = (userId, itemId) => async dispatch => {
+
+// }
 /**
 * REDUCER
 */
@@ -39,6 +74,16 @@ export default function (state = initialState, action) {
   switch (action.type) {
     case GET_LIST:
       return action.list
+    case INCREASE_QUANTITY:
+      return {
+        ...state,
+        quantity: action.quantity
+      };
+    case DECREASE_QUANTITY:
+        return {
+          ...state,
+          quantity: action.quantity
+        };
     default:
       return state
   }

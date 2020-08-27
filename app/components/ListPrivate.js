@@ -1,18 +1,29 @@
 import React, { useEffect } from "react";
-import { Text, View, ImageBackground, StyleSheet, SafeAreaView, FlatList  } from "react-native";
+import { Text, View, ImageBackground, SafeAreaView, FlatList, Button  } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { getListPrivate } from "../store/listPrivate";
+import { getListPrivate, increaseItem } from "../store/listPrivate";
 import { globalStyles } from '../../styles/globalStyles';
 
 export default function ListPrivate() {
 
-    const renderItem = ({ item }) => (
+    const plus = (userId, itemId) => {
+        dispatch(increaseItem(userId, itemId))
+    }
+
+    const renderItem = ({ item, userId }) => (
         <View>
             <Text>Item: {item.item.itemName}</Text>
+            <Button
+                            title="-"
+                            onPress={() => console.log(item)}
+                        />
             <Text>Quantity: {item.quantity}</Text>
+            <Button
+                            title="+"
+                            onPress={() => plus(userId, item.item.id)}
+            />
         </View>
     );
-
 
 
     const listPrivate = useSelector((state) => state.listPrivate);
@@ -21,6 +32,7 @@ export default function ListPrivate() {
     const loadListPrivate = (userId) => {
         dispatch(getListPrivate(userId));
     };
+    
 
     useEffect(() => {
         loadListPrivate(user.id);
@@ -40,8 +52,11 @@ export default function ListPrivate() {
                                 data={listPrivate}
                                 renderItem={renderItem}
                                 keyExtractor={(item) => item.item.id}
+                                extraData={user.id}
                             />
                         </SafeAreaView>
+
+
             </ImageBackground>
         );
     }

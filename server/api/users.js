@@ -158,28 +158,6 @@ router.get('/:userId/listHousehold', async (req, res, next) => {
   }
 })
 
-// // User can see their household list
-// router.get('/:userId/listHousehold', async (req, res, next) => {
-//   try {
-//     //for now, each user only have one household list, so .findOne
-//     //after mvp, each use can have multiple household lists, so .findAll
-//     const listAccess = await ListAccess.findOne({
-//       where: {
-//         userId: req.params.userId,
-//         category: "household"
-//       }
-//     })
-//     const listHouseholdId = listAccess.listId
-//     const list = await List.findOne({
-//       where: {
-//         id: listHouseholdId
-//       }
-//     })
-//     res.json(list)
-//   } catch (error) {
-//     next(error);
-//   }
-// })
 
 //after mvp, ":userId/listHousehold/:listHouseholdId/items" for each household list
 router.get('/:userId/listHousehold/items', async (req, res, next) => {
@@ -228,6 +206,17 @@ router.get('/:userId/listHousehold/items', async (req, res, next) => {
   }
 })
 
+
+router.put('/:userId/listHousehold/items', async (req, res, next) => {
+  try {
+    console.log("this is the req.body", req.body)
+    const updatedItems = await ItemUserList.update(req.body)
+    console.log("this is the updatedItems", updatedItems)
+    res.json(updatedItems)
+  } catch (error) {
+    next(error)
+  }
+})
 
 
 module.exports = router;
