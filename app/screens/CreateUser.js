@@ -1,9 +1,11 @@
 import * as React from "react";
-import { View, Text, ScrollView, Button, StyleSheet, TextInput } from "react-native";
+import { View, Text, ScrollView, Button, TextInput } from "react-native";
 import { Formik } from "formik";
 import { createNewUser } from "../store/singleUser";
 import { connect } from "react-redux";
 import { saveUser } from "../store/storageHelper";
+import { globalStyles } from "../../styles/globalStyles";
+
 export const CreateUser = (props) => {
   return (
     <ScrollView>
@@ -41,14 +43,14 @@ export const CreateUser = (props) => {
           }}
         >
           {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
-            <View style={styles.signUpForm}>
+            <View style={globalStyles.signUpForm}>
               <Text> Create an Account</Text>
               <View style={{ marginTop: 30 }}>
                 <Text>
                   Firstname <Text style={{ color: "red" }}> {errors.firstName ? errors.firstName : ""}</Text>
                 </Text>
                 <TextInput
-                  style={styles.InputField}
+                  style={globalStyles.InputField}
                   onChangeText={handleChange("firstName")}
                   onBlur={handleBlur("firstName")}
                   value={values.firstName}
@@ -59,7 +61,7 @@ export const CreateUser = (props) => {
                   Lastname <Text style={{ color: "red" }}> {errors.lastName ? errors.lastName : ""} </Text>
                 </Text>
                 <TextInput
-                  style={styles.InputField}
+                  style={globalStyles.InputField}
                   onChangeText={handleChange("lastName")}
                   onBlur={handleBlur("lastName")}
                   value={values.lastName}
@@ -70,7 +72,7 @@ export const CreateUser = (props) => {
                   Email <Text style={{ color: "red" }}> {errors.email ? errors.email : ""}</Text>
                 </Text>
                 <TextInput
-                  style={styles.InputField}
+                  style={globalStyles.InputField}
                   onChangeText={handleChange("email")}
                   onBlur={handleBlur("email")}
                   value={values.email}
@@ -81,7 +83,7 @@ export const CreateUser = (props) => {
                   Password <Text style={{ color: "red" }}> {errors.password ? errors.password : ""}</Text>
                 </Text>
                 <TextInput
-                  style={styles.InputField}
+                  style={globalStyles.InputField}
                   onChangeText={handleChange("password")}
                   onBlur={handleBlur("password")}
                   value={values.password}
@@ -95,16 +97,6 @@ export const CreateUser = (props) => {
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  InputField: { height: 40, borderColor: "gray", borderWidth: 1 },
-  signUpForm: {
-    flex: 1,
-    justifyContent: "center",
-    padding: 8,
-    marginTop: 15,
-  },
-});
 
 const mapDispatch = (dispatch) => ({
   register: (user) => dispatch(createNewUser(user)),
