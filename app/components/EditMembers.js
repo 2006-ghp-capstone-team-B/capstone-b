@@ -3,11 +3,11 @@ import { Text, TextInput, View, ScrollView, ImageBackground, Button } from "reac
 import { globalStyles } from "../../styles/globalStyles";
 import { Formik } from "formik";
 
-export default function AddMember() {
+export default function EditMembers() {
     return (
         <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
-            <View>
-                <Text style={globalStyles.button}> Invite a member to join your Household:  </Text>
+            <View style={{ marginTop: 30 }}>
+                <Text style={globalStyles.subtitleText}> Invite a member to join your Household:  </Text>
             </View>
             <ScrollView>
                 <View style={{ justifyContent: "center" }}>
@@ -32,7 +32,7 @@ export default function AddMember() {
                         {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
                             <View style={globalStyles.signUpForm}>
 
-                                <View style={{ marginTop: 30 }}>
+                                <View >
                                     <Text>
                                         Your household member's first name <Text style={{ color: "red" }}> </Text>
                                     </Text>
@@ -59,6 +59,11 @@ export default function AddMember() {
                             </View>
                         )}
                     </Formik>
+                </View>
+                <View style={{ marginTop: 30 }}>
+                    <Text style={globalStyles.subtitleText}> Delete a member from your household:  </Text>
+                    <Text style={globalStyles.paragraph}> TBD drop down list? </Text>
+
                 </View>
             </ScrollView>
         </ImageBackground>
