@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 import MapInput from "../components/MapInput";
 import MyMapView from "../components/MyMapView";
-import ListStorePrefs from "../components/ListStorePrefs";
+
 import { getLocation, geocodeLocationByName } from "../components/services";
 
 class MapContainer extends React.Component {
