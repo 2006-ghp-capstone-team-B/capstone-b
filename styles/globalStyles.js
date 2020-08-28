@@ -131,9 +131,6 @@ export const globalStyles = StyleSheet.create({
         padding: 8,
         marginTop: 15,
     },
-<<<<<<< HEAD
-});
-=======
     signUpForm: {
         flex: 1,
         justifyContent: "center",
@@ -146,4 +143,3 @@ export const globalStyles = StyleSheet.create({
         borderWidth: 1
     },
 });
->>>>>>> dc858b6e35bcd8de9d7d18526b1df43f94352d0c
