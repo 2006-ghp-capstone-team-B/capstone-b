@@ -45,6 +45,7 @@ const removeUser = () => ({
 //for admin to check a specifc user
 //for each of our user to check their user Profile
 export const getSingleUser = (userId) => async (dispatch) => {
+  console.log("^^^^^^^^^^^UserId in getsingleUser", userId);
   try {
     const res = await axios.get(`http://${MY_IP}:19006/api/users/${userId}`);
     dispatch(getUser(res.data));
