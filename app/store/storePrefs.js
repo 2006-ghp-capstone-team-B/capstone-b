@@ -2,7 +2,7 @@ import axios from "axios";
 import { MY_IP } from "../../secret";
 
 const GET_STORE_PREFS = "GET_STORE_PREFS";
-const ADD_STORE_PREF = 'ADD_STORE_PREF'
+const ADD_STORE_PREF = "ADD_STORE_PREF";
 const DELETE_STORE_FROM_PREFS = "DELETE_STORE_FROM_PREFS";
 
 const initialState = [];
@@ -14,8 +14,8 @@ const getStorePrefs = (storePrefs) => ({
 
 const addStorePref = (newPref) => ({
   type: ADD_STORE_PREF,
-  newPref
-})
+  newPref,
+});
 const deleteStoreFromPrefs = (storePrefs) => ({
   type: DELETE_STORE_FROM_PREFS,
   storePrefs,
@@ -31,15 +31,16 @@ export const fetchStorePrefs = (userId) => async (dispatch) => {
   }
 };
 
-export const createNewPref = (userId, newPref) => async dispatch => {
+export const createNewPref = (userId, newPref) => async (dispatch) => {
   try {
+    console.log("inside createNewPref ");
     const { data } = await axios.post(`http://${MY_IP}:19006/api/stores/${userId}`, newPref);
+    console.log("after createNewPRef post route");
     dispatch(addStorePref(data));
   } catch (e) {
-    console.log(e)
+    console.log(e);
   }
-}
-
+};
 
 export const deleteStoreThunk = (userId, storeId) => async (dispatch) => {
   try {
@@ -55,7 +56,7 @@ export default function (state = initialState, action) {
     case GET_STORE_PREFS:
       return action.storePrefs;
     case ADD_STORE_PREF:
-      return [...state, action.newPref]
+      return [...state, action.newPref];
     case DELETE_STORE_FROM_PREFS:
       return action.storePrefs;
     default:
