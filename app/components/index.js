@@ -6,4 +6,4 @@ export { default as ListHousehold } from "./ListHousehold"
 export { default as Dashboard } from "./Dashboard"
 export { default as Notifications } from "./Notifications"
 export { default as HouseholdProfile } from "./HouseholdProfile"
-
+export { default as EditMembers } from "./EditMembers"
