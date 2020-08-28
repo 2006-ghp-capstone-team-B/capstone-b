@@ -25,7 +25,8 @@ const getList = list => ({
  */
 export const getListPrivate = (userId) => async dispatch => {
   try {
-    const { data } = await axios.get(`http://${MY_IP}:19006/api/users/${userId}/listPrivate/items`)
+    const { data } = await axios.get(`http://${MY_IP}:19006/api/lists/private/${userId}`)
+
     dispatch(getList(data))
   } catch (error) {
     console.log(error)

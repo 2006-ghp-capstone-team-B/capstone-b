@@ -23,6 +23,7 @@ ItemUserList.belongsTo(User, { targetKey: "id", foreignKey: "userId" });
 ItemUserList.belongsTo(List, { targetKey: "id", foreignKey: "listId" });
 ItemUserList.belongsTo(Item, { targetKey: "id", foreignKey: "itemId" });
 
+
 module.exports = {
   User,
   Item,

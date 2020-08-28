@@ -1,23 +1,43 @@
 const router = require('express').Router()
-const { List } = require('../db/models')
+const { ListAccess, ItemUserList, Item } = require('../db/models')
 
 
 //all the lists
-router.get('/', async (req, res, next) => {
+// router.get('/', async (req, res, next) => {
+//     try {
+//         const lists = await List.findAll()
+//         res.json(lists)
+//     } catch (error) {
+//         next(error)
+//     }
+// })
+
+
+// route for api/lists/:listId
+router.get('/private/:userId', async (req, res, next) => {
     try {
-        const lists = await List.findAll()
-        res.json(lists)
+        const listPrivate = await ListAccess.findOne({where: {
+            userId: req.params.userId,
+            category: 'private'
+        },
+    })
+        const listItems = await ItemUserList.findAll({
+            where: {listId: listPrivate.listId},
+            include: {model: Item}
+        })
+    res.json(listItems)
     } catch (error) {
         next(error)
     }
 })
 
-
-// route for api/lists/:listId
-router.get('/:listId', async (req, res, next) => {
+router.get('/household/:listId', async (req, res, next) => {
     try {
-        const listPrivate = await List.findByPk(req.params.listId)
-        res.json(listPrivate)
+        const listItems = await ItemUserList.findAll({
+            where: {listId: req.params.listId},
+            include: {model: Item}
+        })
+    res.json(listItems)
     } catch (error) {
         next(error)
     }
