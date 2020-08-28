@@ -89,9 +89,10 @@ export const globalStyles = StyleSheet.create({
         textAlign: "center",
         fontWeight: "bold",
         marginLeft: "10%",
-        padding: "2%",
+        padding: "4%",
         fontSize: 25,
         marginTop: "10%",
+        marginBottom: '10%'
     },
     style: {
         flex: 1,

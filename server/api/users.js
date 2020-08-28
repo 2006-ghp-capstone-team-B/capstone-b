@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { User, ListAccess, List, ItemUserList, Item } = require("../db/models");
 
-//all the users 
+//all the users
 //ADMIN only functionality
 router.get("/", async (req, res, next) => {
   try {
@@ -29,7 +29,7 @@ router.get("/:userId", async (req, res, next) => {
       }
     })
     const storePreferences = ["Empty for now"]; //TBD
-    //Push all the info to front-end
+    // //Push all the info to front-end
     profileInfo.push({ userName, password, listPrivate, storePreferences })
 
     res.json(profileInfo);
