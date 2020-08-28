@@ -48,17 +48,18 @@ export const increaseItem = (userId, itemId) => async dispatch => {
   try{
     const res = await axios.get(`http://${MY_IP}:19006/api/users/${userId}/listPrivate/items`)
     const items = res.data
-    console.log("items before increase", items)
-    if(res){
+    if(items){
       for(let i=0; i< items.length; i++){
         if(items[i].item.id === itemId){
+          console.log("items before increase", items[i])
           items[i].quantity += 1
+          console.log("items after increase", items[i])
+          const {data} = await axios.put(`http://${MY_IP}:19006/api/users/${userId}/listPrivate/items`, items[i])
+          console.log("data", data)
+          //dispatch(increaseQuantity(items[i].quantity))
         }
       }
     }
-    console.log("items after increase", items)
-    await axios.put(`http://${MY_IP}:19006/api/users/${userId}/listPrivate/items`, items)
-    dispatch(increaseQuantity(quantity))
   }catch(error){
     console.log(error)
   }

@@ -10,20 +10,20 @@ export default function ListPrivate() {
         dispatch(increaseItem(userId, itemId))
     }
 
-    const renderItem = ({ item, userId }) => (
-        <View>
-            <Text>Item: {item.item.itemName}</Text>
-            <Button
-                            title="-"
-                            onPress={() => console.log(item)}
-                        />
-            <Text>Quantity: {item.quantity}</Text>
-            <Button
-                            title="+"
-                            onPress={() => plus(userId, item.item.id)}
-            />
-        </View>
-    );
+    // const renderItem = ({ item }) => (
+    //     <View>
+    //         <Text>Item: {item.item.itemName}</Text>
+    //         <Button
+    //                         title="-"
+    //                         onPress={() => console.log(item)}
+    //                     />
+    //         <Text>Quantity: {item.quantity}</Text>
+    //         <Button
+    //                         title="+"
+    //                         onPress={() => plus(item)}
+    //         />
+    //     </View>
+    // );
 
 
     const listPrivate = useSelector((state) => state.listPrivate);
@@ -47,16 +47,28 @@ export default function ListPrivate() {
     }else{
         return (
             <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
-                        <SafeAreaView>
+                {
+                listPrivate 
+                ?
+                listPrivate.map(item => {return(
+                            <View key={item.itemId}>
+                                <Text>Item: {item.item.itemName}</Text>
+                                <Button title="-"  onPress={() => console.log(item)}/>
+                                <Text>Quantity: {item.quantity}</Text>
+                                <Button title="+" onPress={() => plus(user.id, item.itemId)}/>
+                            </View>
+                    )}
+                )
+                :
+                null
+                }
+                        {/* <SafeAreaView>
                             <FlatList
                                 data={listPrivate}
                                 renderItem={renderItem}
                                 keyExtractor={(item) => item.item.id}
-                                extraData={user.id}
                             />
-                        </SafeAreaView>
-
-
+                        </SafeAreaView> */}
             </ImageBackground>
         );
     }

@@ -96,24 +96,39 @@ router.get('/:userId/listPrivate/items', async (req, res, next) => {
     const items = await ItemUserList.findAll({
       where: {
         listId: listPrivateId
-      }
+      },
+      include: {model: Item}
     })
 
-    let listItems = []
-    for (let i = 0; i < items.length; i++) {
-      const quantity = items[i].quantity
-      const itemId = items[i].itemId
-      const item = await Item.findOne({
-        where: {
-          id: itemId
-        }
-      })
-      listItems.push({ item, quantity })
-    }
-    res.json(listItems)
+    
+    // let listItems = []
+    // for (let i = 0; i < items.length; i++) {
+    //   const quantity = items[i].quantity
+    //   const itemId = items[i].itemId
+    //   const item = await Item.findOne({
+    //     where: {
+    //       id: itemId
+    //     }
+    //   })
+    //   listItems.push({ item, quantity })
+    // }
+    res.json(items)
 
   } catch (error) {
     next(error);
+  }
+})
+
+
+router.put('/:userId/listPrivate/items', async (req, res, next) => {
+  try {
+    console.log("in put request")
+    console.log("this is req.body:", req.body)
+    const updatedItems = await ItemUserList.update({quantity: req.body.quantity}, {where:{userId: req.params.userId}})
+    console.log("this is the updatedItems", updatedItems)
+    res.json(updatedItems)
+  } catch (error) {
+    next(error)
   }
 })
 
@@ -207,16 +222,6 @@ router.get('/:userId/listHousehold/items', async (req, res, next) => {
 })
 
 
-router.put('/:userId/listHousehold/items', async (req, res, next) => {
-  try {
-    console.log("this is the req.body", req.body)
-    const updatedItems = await ItemUserList.update(req.body)
-    console.log("this is the updatedItems", updatedItems)
-    res.json(updatedItems)
-  } catch (error) {
-    next(error)
-  }
-})
 
 
 module.exports = router;
