@@ -10,6 +10,7 @@ export default function UserProfile() {
   const loadProfileInfo = () => {
     if (profile.id !== undefined) {
       dispatch(getSingleUser(profile.id));
+      pm;
     }
   };
 
