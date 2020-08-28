@@ -5,31 +5,30 @@ import { getSingleUser } from "../store/singleUser";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function UserProfile() {
-  const profile = useSelector((state) => state.singleUser);
-  const dispatch = useDispatch();
-  const loadProfileInfo = () => {
-    if (profile.id !== undefined) {
-      dispatch(getSingleUser(profile.id));
-      pm;
-    }
-  };
+    const profile = useSelector((state) => state.singleUser);
+    const dispatch = useDispatch();
+    const loadProfileInfo = () => {
+        if (profile.id !== undefined) {
+            dispatch(getSingleUser(profile.id));
+        }
+    };
 
-  useEffect(() => {
-    loadProfileInfo();
-  });
+    useEffect(() => {
+        loadProfileInfo();
+    });
 
-  return (
-    <View>
-      <Text style={globalStyles.titleText}>User Profile Page:</Text>
-      <View key={profile.id}>
-        <Text style={globalStyles.subtitleText}> Name: {profile.firstName}</Text>
-        <Text style={globalStyles.subtitleText}> Last Name: {profile.lastName}</Text>
-        <Text style={globalStyles.subtitleText}> Email: {profile.email}</Text>
-        <Text style={globalStyles.subtitleText}> Change Password: TBD</Text>
-        <Text style={globalStyles.subtitleText}> Sign Out: TBD</Text>
-      </View>
-    </View>
-  );
+    return (
+        <View>
+            <Text style={globalStyles.titleText}>User Profile Page:</Text>
+            <View key={profile.id}>
+                <Text style={globalStyles.subtitleText}> Name: {profile.firstName}</Text>
+                <Text style={globalStyles.subtitleText}> Last Name: {profile.lastName}</Text>
+                <Text style={globalStyles.subtitleText}> Email: {profile.email}</Text>
+                <Text style={globalStyles.subtitleText}> Change Password: TBD</Text>
+                <Text style={globalStyles.subtitleText}> Sign Out: TBD</Text>
+            </View>
+        </View>
+    );
 }
 
 //user info
