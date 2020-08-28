@@ -9,7 +9,9 @@ export default function AllHouseholds() {
 
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity style={{backgroundColor: 'white', width: '80%', alignSelf: 'center', margin: '5%'}} onPress={() => Actions.SingleHouseholdList({householdId: item.listId})}>
+    <TouchableOpacity style={{backgroundColor: 'white', width: '80%', alignSelf: 'center', margin: '5%', borderWidth: 1,
+    borderColor: "grey",
+    borderRadius: 6, padding: '2%'}} onPress={() => Actions.SingleHouseholdList({householdId: item.listId})}>
         <Text >Household: {item.listName}</Text>
         <Text >House ID: {item.listId}</Text>
     </TouchableOpacity>
@@ -26,21 +28,17 @@ export default function AllHouseholds() {
       loadHouseholds(user.id);
     }, [user]);
 
-    if (!user.id) {
+    return (
+      <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
 
-    return (
-      <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
-        <Text>You don't have any households saved</Text>
-      </ImageBackground>
-    );
-  } else {
-    console.log("ALLLLLL", allHouseholds)
-    return (
-      <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
-        <SafeAreaView>
+        {!user.id
+        ? <View style={{ marginTop: 30, backgroundColor: 'rbga(255,0,0,0.5)', height: '90%', width: '95%', alignSelf: 'center', borderRadius: 25 }}>
+          <Text>You don't have any households saved</Text>
+        </View>
+      : <SafeAreaView style={{ marginTop: 30, backgroundColor: 'white', height: '90%', width: '95%', alignSelf: 'center', borderRadius: 25 }}>
           <FlatList data={allHouseholds} renderItem={renderItem} keyExtractor={(item, idx) => idx} />
         </SafeAreaView>
+      }
       </ImageBackground>
     );
-  }
 }

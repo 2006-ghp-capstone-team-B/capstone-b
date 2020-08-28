@@ -12,7 +12,7 @@ export default function Dashboard() {
 
   return (
     <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
-      <View style={{ marginTop: 30 }}>
+      <View style={{ marginTop: 30, backgroundColor: 'white', height: '90%', width: '95%', alignSelf: 'center', borderRadius: 25 }}>
         <View style={globalStyles.buttonView}>
           <TouchableOpacity onPress={() => navigate("privateList")} title="Private List">
             <Text style={globalStyles.button}>My Private List</Text>
