@@ -6,7 +6,7 @@ import NewStorePref from "../components/NewStorePref";
 import ListStorePrefs from "../components/ListStorePrefs";
 import { getLocation, geocodeLocationByName } from "../components/services";
 import { connect } from "react-redux";
-import { fetchStorePrefs } from "../store/storePrefs";
+import { fetchStorePrefs, createNewPref } from "../store/storePrefs";
 
 class MapContainer extends React.Component {
   state = {
@@ -18,6 +18,7 @@ class MapContainer extends React.Component {
 
   componentDidMount() {
     this.getInitialState();
+    this.props.loadStorePrefs()
   }
 
   getInitialState() {
@@ -49,6 +50,10 @@ class MapContainer extends React.Component {
     this.setState({ region});
   }
 
+  async addNewPreference (newPref) {
+    await createNewPref(1, newPref)
+  }
+
   render() {
     console.log('user', this.props)
     return (
@@ -62,7 +67,7 @@ class MapContainer extends React.Component {
 
             {this.state.name !== ''
             ? <View style={{width: '100%', marginTop: '5%', marginBottom: '2.5%'}}>
-                <NewStorePref name={this.state.name} address={this.state.address} category={this.state.category} latitude={this.state.region.latitude} longitude={this.state.region.longitude}/>
+                <NewStorePref name={this.state.name} address={this.state.address} category={this.state.category} latitude={this.state.region.latitude} longitude={this.state.region.longitude} addNewPreference={this.addNewPreference(newPref)}/>
               </View>
             : null}
 

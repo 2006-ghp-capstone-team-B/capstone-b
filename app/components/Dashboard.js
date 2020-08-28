@@ -17,7 +17,7 @@ export default function Dashboard() {
           <TouchableOpacity onPress={() => navigate("privateList")} title="Private List">
             <Text style={globalStyles.button}>My Private List</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigate("households")} title="My Households">
+          <TouchableOpacity onPress={() => navigate("AllHouseholds")} title="My Households">
             <Text style={globalStyles.button}>My Households</Text>
           </TouchableOpacity>
           <TouchableOpacity

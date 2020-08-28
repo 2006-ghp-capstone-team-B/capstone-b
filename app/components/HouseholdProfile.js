@@ -20,14 +20,14 @@ export default function HouseholdProfile() {
 
     const { listHouseholdId, listHouseholdName, listHouseholdMembers } = useSelector((state) => state.households);
     const user = useSelector((state) => state.singleUser);
-    const dispatch = useDispatch();
-    const loadAllHouseholds = (userId) => {
-        dispatch(getAllHouseholds(userId));
-    };
+    // const dispatch = useDispatch();
+    // const loadAllHouseholds = (userId) => {
+    //     dispatch(getAllHouseholds(userId));
+    // };
 
-    useEffect(() => {
-        loadAllHouseholds(user.id);
-    }, [user.id]);
+    // useEffect(() => {
+    //     loadAllHouseholds(user.id);
+    // }, [user.id]);
 
     if (!listHouseholdId) {
         return (

@@ -7,13 +7,11 @@ import { globalStyles } from '../../styles/globalStyles';
 export default function ListPrivate() {
 
     const renderItem = ({ item }) => (
-        <View>
+        <View style={{backgroundColor: 'white', width: '80%', alignSelf: 'center', margin: '5%'}}>
             <Text>Item: {item.item.itemName}</Text>
             <Text>Quantity: {item.quantity}</Text>
         </View>
     );
-
-
 
     const listPrivate = useSelector((state) => state.listPrivate);
     const user = useSelector((state) => state.singleUser);
@@ -39,7 +37,7 @@ export default function ListPrivate() {
                             <FlatList
                                 data={listPrivate}
                                 renderItem={renderItem}
-                                keyExtractor={(item) => item.item.id}
+                                keyExtractor={(item) => item.item.id.toString()}
                             />
                         </SafeAreaView>
             </ImageBackground>
