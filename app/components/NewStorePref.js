@@ -16,7 +16,7 @@ export default function NewStorePref (props) {
       </View>
 
       <View style={{flex:1}}>
-          <TouchableOpacity onPress={() => dispatch(createNewPref(1, storeObj))} title="save">
+          <TouchableOpacity onPress={props.addNewPreference(storeObj)} title="save">
             <Text style={{
               backgroundColor: "#6F9A88",
               color: "#fff",
