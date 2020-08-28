@@ -8,8 +8,7 @@ export default function NewStorePref(props) {
   const { name, address, latitude, longitude, category } = props;
   const storeObj = { storeName: name, address, latitude, longitude, category };
   const dispatch = useDispatch();
-  console.log("~~~~~~~~~~~~~~newSotrepref's props", props);
-  console.log("storeObj", storeObj);
+
   return (
     <View style={{ alignItems: "stretch", flexDirection: "row", justifyContent: "center", width: "100%" }}>
       <View style={{ flex: 2, marginLeft: "5%" }}>

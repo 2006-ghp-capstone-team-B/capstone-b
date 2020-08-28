@@ -57,19 +57,16 @@ class MapContainer extends React.Component {
   }
 
   addNewPreference(newPref) {
-    console.log("hitting add new preference");
     return async (newPref) => {
-      console.log("are we hitting in side async", newPref);
-      await this.props.addNewPref(1, newPref);
+      await this.props.addNewPref(this.props.singleUser.id, newPref);
+      await this.props.loadStorePrefs(this.props.singleUser.id);
+      this.setState({ name: "", address: "", category: "" });
     };
   }
 
   render() {
-    console.log("props in MapContainer", this.props);
-    console.log("^^^^^^^^^^^storePrefs??", this.props.storePrefs);
     const newPref = {
       name: this.state.name,
-      address: this.state.address,
       category: this.state.category,
       latitude: this.state.region.latitude,
       longitude: this.state.region.longitude,
@@ -96,7 +93,7 @@ class MapContainer extends React.Component {
             ) : null}
 
             <View styles={{ flex: 1, marginTop: "2.5%" }}>
-              <ListStorePrefs storePrefs={this.props.storePrefs} />
+              <ListStorePrefs />
             </View>
           </View>
         ) : null}
@@ -123,7 +120,6 @@ class MapContainer extends React.Component {
   }
 }
 const mapState = (state) => {
-  console.log("state~~~~~~~~~", state);
   return {
     singleUser: state.singleUser,
     storePrefs: state.storePrefs,
