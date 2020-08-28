@@ -24,25 +24,23 @@ export default function ListPrivate() {
         loadListPrivate(user.id);
     }, [user.id]);
 
-    if(!user.id && listPrivate.length === 0){
         return (
             <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
-                <Text>You don't have any item in your private list!</Text>
+
+                {!user.id && listPrivate.length === 0
+                ? <View style={{ marginTop: 30, backgroundColor: 'rbga(255,0,0,0.5)', height: '90%', width: '95%', alignSelf: 'center', borderRadius: 25 }}>
+                    <Text>You don't have any item in your private list!</Text>
+                </View>
+            : <SafeAreaView style={{ marginTop: 30, backgroundColor: 'white', height: '90%', width: '95%', alignSelf: 'center', borderRadius: 25 }}>
+                <FlatList
+                    data={listPrivate}
+                    renderItem={renderItem}
+                    keyExtractor={(item) => item.item.id.toString()}
+                    />
+                </SafeAreaView>
+            }
             </ImageBackground>
         )
-    }else{
-        return (
-            <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
-                        <SafeAreaView>
-                            <FlatList
-                                data={listPrivate}
-                                renderItem={renderItem}
-                                keyExtractor={(item) => item.item.id.toString()}
-                            />
-                        </SafeAreaView>
-            </ImageBackground>
-        );
-    }
-
 }
+
 

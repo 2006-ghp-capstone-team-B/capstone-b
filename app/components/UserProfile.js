@@ -6,16 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function UserProfile() {
     const profile = useSelector((state) => state.singleUser);
-    // const dispatch = useDispatch();
-    // const loadProfileInfo = () => {
-    //     if (profile.id !== undefined) {
-    //         dispatch(getSingleUser(profile.id));
-    //     }
-    // };
-
-    // useEffect(() => {
-    //     loadProfileInfo();
-    // });
 
     return (
         <View>
