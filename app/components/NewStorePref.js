@@ -7,6 +7,7 @@ import { globalStyles } from '../../styles/globalStyles';
 export default function NewStorePref (props) {
   const {name, latitude, longitude, category} = props
   const storeObj = {storeName: name, latitude, longitude, category}
+  const dispatch = useDispatch();
   return (
     <View style={{alignItems: "stretch", flexDirection: 'row', justifyContent: 'center', width: '100%'}}>
       <View style={{flex: 2, marginLeft: '5%'}}>
@@ -15,7 +16,7 @@ export default function NewStorePref (props) {
       </View>
 
       <View style={{flex:1}}>
-          <TouchableOpacity onPress={createNewPref(1, storeObj)} title="save">
+          <TouchableOpacity onPress={() => dispatch(createNewPref(1, storeObj))} title="save">
             <Text style={{
               backgroundColor: "#6F9A88",
               color: "#fff",
