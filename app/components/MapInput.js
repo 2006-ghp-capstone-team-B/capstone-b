@@ -16,10 +16,14 @@ const MapInput = (props) => {
         }}
         fetchDetails={true}
         onPress={(data, details = null) => {
-          console.log("input details:", details.geometry);
-          console.log("input data:", data.types);
-          props.notifyChange(details.geometry.location);
-          // TRIGGER THUNK TO MAKE API CALL TO ADD GROCERY PREFERENCE TO BACKEND
+          const coords = details.geometry.location
+          const name = data.structured_formatting.main_text
+          const address = details.formatted_address
+          let category = "Other"
+          if(data.types.includes('supermarket')) {
+            category = "Groceries"
+          }
+          props.notifyChange(coords, name, address, category);
         }}
         onFail={(error) => console.error(error)}
         requestUrl={{
@@ -27,16 +31,14 @@ const MapInput = (props) => {
           useOnPlatform: "web",
         }}
         styles={{
+          borderWidth: 4,
+          borderColor: 'purple',
           textInputContainer: {
-            backgroundColor: "rgba(0,0,0,0)",
+            width: '100%',
+            alignSelf: 'center',
             borderTopWidth: 0,
             borderBottomWidth: 0,
-            width: 300,
-            height: "10%",
-            // left: -50,
-            // top: -10,
-            justifyContent: "flex-start",
-            alignItems: "center",
+            backgroundColor: 'white'
           },
           textInput: {
             marginLeft: 0,
