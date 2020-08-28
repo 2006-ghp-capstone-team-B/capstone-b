@@ -38,6 +38,7 @@ const removeUser = () => ({
   type: REMOVE_USER,
 });
 
+
 /**
  * THUNK CREATORS
  */
@@ -85,7 +86,7 @@ export const login = (user) => async (dispatch) => {
   try {
     res = await axios.post(`http://${MY_IP}:19006/auth/login`, user);
   } catch (authError) {
-    return dispatch(getUser({ error: authError }));
+    console.error(authError)
   }
 
   try {
