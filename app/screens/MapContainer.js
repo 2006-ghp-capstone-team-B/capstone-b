@@ -9,16 +9,20 @@ import { connect } from "react-redux";
 import { fetchStorePrefs, createNewPref } from "../store/storePrefs";
 
 class MapContainer extends React.Component {
+  constructor() {
+    super();
+    this.addNewPreference = this.addNewPreference.bind(this);
+  }
   state = {
     region: {},
-    name: '',
-    address: '',
-    category: ''
+    name: "",
+    address: "",
+    category: "",
   };
 
   componentDidMount() {
     this.getInitialState();
-    this.props.loadStorePrefs()
+    this.props.loadStorePrefs(this.props.singleUser.id);
   }
 
   getInitialState() {
@@ -42,57 +46,93 @@ class MapContainer extends React.Component {
         latitudeDelta: 0.003,
         longitudeDelta: 0.003,
       },
-      name, address, category
+      name,
+      address,
+      category,
     });
   }
 
   onMapRegionChange(region) {
-    this.setState({ region});
+    this.setState({ region });
   }
 
-  async addNewPreference (newPref) {
-    await createNewPref(1, newPref)
+  addNewPreference(newPref) {
+    console.log("hitting add new preference");
+    return async (newPref) => {
+      console.log("are we hitting in side async", newPref);
+      await this.props.addNewPref(1, newPref);
+    };
   }
 
   render() {
-    console.log('user', this.props)
+    console.log("props in MapContainer", this.props);
+    console.log("^^^^^^^^^^^storePrefs??", this.props.storePrefs);
+    const newPref = {
+      name: this.state.name,
+      address: this.state.address,
+      category: this.state.category,
+      latitude: this.state.region.latitude,
+      longitude: this.state.region.longitude,
+    };
     return (
       <View style={styles.container}>
         {this.state.region.latitude ? (
-          <View style={{ width: "100%", height: '70%', flexDirection: 'column' }}>
-
-            <View style={{ width: "100%", height: '100%', flex:1}}>
+          <View style={{ width: "100%", height: "70%", flexDirection: "column" }}>
+            <View style={{ width: "100%", height: "100%", flex: 1 }}>
               <MyMapView region={this.state.region} onRegionChange={(reg) => this.onMapRegionChange(reg)} />
             </View>
 
-            {this.state.name !== ''
-            ? <View style={{width: '100%', marginTop: '5%', marginBottom: '2.5%'}}>
-                <NewStorePref name={this.state.name} address={this.state.address} category={this.state.category} latitude={this.state.region.latitude} longitude={this.state.region.longitude} addNewPreference={this.addNewPreference(newPref)}/>
+            {this.state.name !== "" ? (
+              <View style={{ width: "100%", marginTop: "5%", marginBottom: "2.5%" }}>
+                <NewStorePref
+                  name={this.state.name}
+                  address={this.state.address}
+                  category={this.state.category}
+                  latitude={this.state.region.latitude}
+                  longitude={this.state.region.longitude}
+                  addNewPreference={this.addNewPreference(newPref)}
+                />
               </View>
-            : null}
-
-            <View styles={{flex:1, marginTop: '2.5%' }}>
-              <ListStorePrefs />
-            </View>
-
-          </View>
             ) : null}
 
-          <View style={{ width: "90%", position: 'absolute', top: 10, justifyContent: "flex-start", alignItems: 'stretch',borderWidth: 4, borderColor: 'green', borderRadius: 6, backgroundColor: 'white'}}>
-            <MapInput notifyChange={(loc, name, address, category) => this.getCoordsFromName(loc, name, address, category)} />
+            <View styles={{ flex: 1, marginTop: "2.5%" }}>
+              <ListStorePrefs storePrefs={this.props.storePrefs} />
+            </View>
           </View>
+        ) : null}
+
+        <View
+          style={{
+            width: "90%",
+            position: "absolute",
+            top: 10,
+            justifyContent: "flex-start",
+            alignItems: "stretch",
+            borderWidth: 4,
+            borderColor: "green",
+            borderRadius: 6,
+            backgroundColor: "white",
+          }}
+        >
+          <MapInput
+            notifyChange={(loc, name, address, category) => this.getCoordsFromName(loc, name, address, category)}
+          />
+        </View>
       </View>
     );
   }
 }
 const mapState = (state) => {
-  console.log('state~~~~~~~~~', state)
-  return ({
-singleUser: state.singleUser,
-})}
+  console.log("state~~~~~~~~~", state);
+  return {
+    singleUser: state.singleUser,
+    storePrefs: state.storePrefs,
+  };
+};
 
 const mapDispatch = (dispatch) => ({
   loadStorePrefs: (user) => dispatch(fetchStorePrefs(user)),
+  addNewPref: (userId, newPref) => dispatch(createNewPref(userId, newPref)),
 });
 
 export default connect(mapState, mapDispatch)(MapContainer);

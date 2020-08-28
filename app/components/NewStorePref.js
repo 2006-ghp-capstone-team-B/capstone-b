@@ -2,22 +2,26 @@ import React, { useEffect } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { createNewPref } from "../store/storePrefs";
-import { globalStyles } from '../../styles/globalStyles';
+import { globalStyles } from "../../styles/globalStyles";
 
-export default function NewStorePref (props) {
-  const {name, latitude, longitude, category} = props
-  const storeObj = {storeName: name, latitude, longitude, category}
+export default function NewStorePref(props) {
+  const { name, address, latitude, longitude, category } = props;
+  const storeObj = { storeName: name, address, latitude, longitude, category };
   const dispatch = useDispatch();
+  console.log("~~~~~~~~~~~~~~newSotrepref's props", props);
+  console.log("storeObj", storeObj);
   return (
-    <View style={{alignItems: "stretch", flexDirection: 'row', justifyContent: 'center', width: '100%'}}>
-      <View style={{flex: 2, marginLeft: '5%'}}>
+    <View style={{ alignItems: "stretch", flexDirection: "row", justifyContent: "center", width: "100%" }}>
+      <View style={{ flex: 2, marginLeft: "5%" }}>
         <Text>Add {props.name} to your list?</Text>
         <Text>{props.address}</Text>
       </View>
 
-      <View style={{flex:1}}>
-          <TouchableOpacity onPress={props.addNewPreference(storeObj)} title="save">
-            <Text style={{
+      <View style={{ flex: 1 }}>
+        {/* props.addNewPreference(storeObj) */}
+        <TouchableOpacity onPress={() => props.addNewPreference(storeObj)} title="save">
+          <Text
+            style={{
               backgroundColor: "#6F9A88",
               color: "#fff",
               width: "50%",
@@ -27,11 +31,13 @@ export default function NewStorePref (props) {
               padding: "3%",
               fontSize: 15,
               marginTop: "5%",
-              marginBottom: '5%'
-              }}>Save</Text>
-          </TouchableOpacity>
-        </View>
-
+              marginBottom: "5%",
+            }}
+          >
+            Save
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
