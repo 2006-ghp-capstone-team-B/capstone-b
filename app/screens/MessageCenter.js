@@ -1,8 +1,9 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import { connect } from "react-redux";
-import { fetchStorePrefs, createNewPref } from "../store/storePrefs";
-import { Container, Header, Left, Body, Right, Title } from 'native-base';
+import { fetchNotifications} from "../store/notifications";
+import { Container, Header, Content, Body, List,  Title } from 'native-base';
+import {Notification} from '../components'
 
 
 class MessageCenter extends React.Component {
@@ -12,19 +13,25 @@ class MessageCenter extends React.Component {
   state = {};
 
   componentDidMount() {
-    // this.loadMessages(userId);
+    this.props.loadMessages(this.props.singleUser.id);
    }
 
   render() {
+    console.log("~~~~~~NOTESHERE", this.props.notifications)
     return (
       <Container>
-        <Header>
-          <Left/>
+        <Header >
           <Body>
-            <Title>Header</Title>
+          <Title>Notification Center</Title>
           </Body>
-          <Right />
         </Header>
+        <Content>
+          <List>
+            {this.props.notifications
+            ? this.props.notifications.map(message => <Notification key={message.id} message={message}/>)
+          : <Text>You have no new messages</Text>}
+          </List>
+        </Content>
       </Container>
     );
   }
@@ -32,11 +39,12 @@ class MessageCenter extends React.Component {
 const mapState = (state) => {
   return {
     singleUser: state.singleUser,
+    notifications: state.notifications
   };
 };
 
 const mapDispatch = (dispatch) => ({
-  loadMessages: (userId) => dispatch(fetchMessages(userId)),
+  loadMessages: (userId) => dispatch(fetchNotifications(userId)),
 });
 
 export default connect(mapState, mapDispatch)(MessageCenter);

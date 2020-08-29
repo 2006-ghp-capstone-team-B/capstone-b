@@ -4,7 +4,8 @@ export { default as UserProfile } from './UserProfile'
 export { default as ListPrivate } from './ListPrivate'
 export { default as AllHouseholds } from "./AllHouseholds"
 export { default as Dashboard } from "./Dashboard"
-export { default as Notifications } from "./Notifications"
+export { default as Notifications } from "./Notification"
 export { default as HouseholdProfile } from "./HouseholdProfile"
 export { default as EditMembers } from "./EditMembers"
 export { default as SingleHouseholdList } from "./SingleHouseholdList"
+export { default as Notification } from "./Notification"
