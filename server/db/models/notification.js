@@ -9,6 +9,14 @@ const Notification = db.define("notification", {
             notEmpty: true
         }
     },
+    unread: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+        validate: {
+            notEmpty: true
+        }
+    }
 });
 
 module.exports = Notification;
