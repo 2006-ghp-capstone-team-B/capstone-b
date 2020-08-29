@@ -13,7 +13,6 @@ export default function ListStorePrefs(props) {
   const getUpdatedStores = (userId) => {
     dispatch(fetchStorePrefs(userId));
   };
-  console.log("storePrefs", storePrefs);
 
   useEffect(() => {
     getUpdatedStores(user.id);
@@ -41,7 +40,8 @@ export default function ListStorePrefs(props) {
           <View style={{ flex: 1 }}>
             <TouchableOpacity
               onPress={() => {
-                console.log("I PRESSED Remove!");
+                console.log("I PRESSED Remove!", item.store.id);
+                props.removePreference(user.id, item.store.id);
               }}
             >
               <Text
@@ -66,6 +66,8 @@ export default function ListStorePrefs(props) {
       ) : null}
     </View>
   );
+
+  console.log("ListStsorePrefs props", props);
 
   return (
     <View>

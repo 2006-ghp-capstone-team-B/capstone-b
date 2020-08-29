@@ -44,7 +44,11 @@ export const createNewPref = (userId, newPref) => async (dispatch) => {
 
 export const deleteStoreThunk = (userId, storeId) => async (dispatch) => {
   try {
-    const res = await axios.delete(`http://${MY_IP}:19006/api/stores/${userId}`, storeId);
+    storeId = JSON.stringify(storeId);
+    console.log("typeof?????", typeof storeId);
+    console.log("I made it to deletestore", userId, storeId);
+    const res = await axios.delete(`http://${MY_IP}:19006/api/stores/${userId}`, { storeId: storeId });
+    console.log("Im done deleting after axios");
     dispatch(deleteStoreFromPrefs(res.data));
   } catch (e) {
     console.log(e);
