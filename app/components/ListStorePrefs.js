@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Text, View, ImageBackground, SafeAreaView, FlatList } from "react-native";
+import { Text, View, ImageBackground, SafeAreaView, FlatList, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchStorePrefs } from "../store/storePrefs";
 import { connect } from "formik";
@@ -20,7 +20,51 @@ export default function ListStorePrefs(props) {
   }, [user.id]);
 
   const renderItem = ({ item }) => (
-    <View>{item.store !== undefined ? <Text>Store: {item.store.storeName}</Text> : null}</View>
+    <View>
+      {item.store !== undefined ? (
+        <View
+          style={{
+            backgroundColor: "white",
+            width: "80%",
+            alignSelf: "center",
+            margin: "1%",
+            borderWidth: 1,
+            borderColor: "grey",
+            borderRadius: 6,
+            padding: "2%",
+            flexDirection: "row",
+          }}
+        >
+          <View style={{ flex: 3, marginLeft: "5%" }}>
+            <Text>Store: {item.store.storeName}</Text>
+          </View>
+          <View style={{ flex: 1 }}>
+            <TouchableOpacity
+              onPress={() => {
+                console.log("I PRESSED Remove!");
+              }}
+            >
+              <Text
+                style={{
+                  backgroundColor: "#6F9A88",
+                  color: "#fff",
+                  width: "100%",
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  marginRight: "50%",
+                  padding: "3%",
+                  fontSize: 14,
+                  marginTop: "5%",
+                  marginBottom: "5%",
+                }}
+              >
+                remove
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      ) : null}
+    </View>
   );
 
   return (
