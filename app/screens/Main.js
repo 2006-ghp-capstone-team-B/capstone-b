@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { MaterialCommunityIcons, AntDesign, FontAwesome, Fontisto } from 'react-native-vector-icons';
 import { Dashboard, UserProfile, Notifications, HouseholdProfile } from "../components"
 import MapContainer from "./MapContainer";
+import MessageCenter from './MessageCenter'
 
 const BottomTab = createBottomTabNavigator();
 
@@ -16,7 +17,7 @@ export default function Main() {
             <MaterialCommunityIcons name="home" color={color} size={size} />
           ),
         }} />
-        <BottomTab.Screen name="Notifications" component={Notifications} options={{
+        <BottomTab.Screen name="Notifications" component={MessageCenter} options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="clipboard" color={color} size={size} />
           ),
