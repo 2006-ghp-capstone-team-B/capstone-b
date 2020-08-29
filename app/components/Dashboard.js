@@ -4,6 +4,8 @@ import { globalStyles } from "../../styles/globalStyles";
 import { Actions } from "react-native-router-flux";
 import { logUserOut } from "../store/storageHelper";
 import { logout } from "../store/singleUser";
+import { Button } from 'react-native-elements';
+
 export default function Dashboard() {
 
   const navigate = (screen) => {
@@ -30,6 +32,7 @@ export default function Dashboard() {
           >
             <Text style={globalStyles.button}>Log Out for now</Text>
           </TouchableOpacity>
+
 
 
         </View>
