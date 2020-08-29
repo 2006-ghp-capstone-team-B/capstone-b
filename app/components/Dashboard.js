@@ -1,10 +1,11 @@
 import React from "react";
-import { Text, View, ImageBackground, TouchableOpacity } from "react-native";
+import { View, ImageBackground, TouchableOpacity } from "react-native";
 import { globalStyles } from "../../styles/globalStyles";
 import { Actions } from "react-native-router-flux";
 import { logUserOut } from "../store/storageHelper";
 import { logout } from "../store/singleUser";
-import { Button } from 'react-native-elements';
+import { Container, Text, Button } from 'native-base';
+
 
 export default function Dashboard() {
 
@@ -32,8 +33,6 @@ export default function Dashboard() {
           >
             <Text style={globalStyles.button}>Log Out for now</Text>
           </TouchableOpacity>
-
-
 
         </View>
       </View>
