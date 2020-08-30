@@ -2,7 +2,8 @@ import React from 'react'
 import { Input } from 'react-native-elements'
 import { View } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-import { globalStyles } from "../../styles/globalStyles";
+
+//This component helps with the password fields in our forms
 
 const FormInput = ({
     iconName,
@@ -17,7 +18,6 @@ const FormInput = ({
             <Input
 
                 leftIcon={<Ionicons name={iconName} size={28} color={iconColor} />}
-                // leftIconContainerStyle={globalStyles.leftIconStyle}
                 placeholderTextColor='grey'
                 name={name}
                 placeholder={placeholder}

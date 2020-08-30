@@ -31,7 +31,7 @@ export default function HouseholdProfile() {
 
     if (!listHouseholdId) {
         return (
-            <View style={globalStyles.containerTop}>
+            <View style={globalStyles.container}>
                 <Text style={globalStyles.titleText}>You haven't joined any household!</Text>
 
                 <TouchableOpacity onPress={() => navigate("householdList")} title="CreateNewHousehold">
@@ -45,7 +45,7 @@ export default function HouseholdProfile() {
 
     }
     return (
-        <ScrollView style={globalStyles.containerScroll}>
+        <ScrollView>
 
             {/* Reminder: right now we only have one household, and it is an object. But eventually we want many households as an array. */}
 
