@@ -2,14 +2,32 @@ import React, { useEffect } from "react";
 import {View, ImageBackground, SafeAreaView, FlatList, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { globalStyles } from "../../styles/globalStyles";
-import {getListHousehold} from "../store/listHousehold"
-import { Text, Button, Icon, Container , } from 'native-base';
-import Item from './Item'
+import {getListHousehold, increaseItemQuantity, decreaseItemQuantity} from "../store/listHousehold"
+import { Text, Icon, Body, Right, Button, ListItem, Card, Left, Container } from 'native-base';
+// import Item from './Item'
 
 export default function SingleHouseholdList(props) {
   const renderItem = ({ item }) => {
     return (
-      <Item item={item} />
+      <ListItem icon>
+      <Left />
+      <Body>
+        <Text numberOfLines={1}>{item.item.itemName}</Text>
+        <Text note numberOfLines={1}>Quantity: {item.quantity}</Text>
+      </Body>
+      <Right style={{ width: "35%" }}>
+        <Button style={styles.button} transparent onPress={() =>  increase(item.listId, item.itemId, item.quantity)}>
+          <Text>+</Text>
+        </Button>
+        <Button style={styles.button} transparent onPress={() => decrease(item.listId, item.itemId, item.quantity)}>
+          <Text>-</Text>
+        </Button>
+        <Button style={styles.button} transparent onPress={() => console.log("DELETE ITEM")}>
+          <Text>x</Text>
+        </Button>
+      </Right>
+    </ListItem>
+ 
   )};
 
   const {listId} = props
@@ -19,6 +37,15 @@ export default function SingleHouseholdList(props) {
   const loadHouseholdList = (id) => {
     dispatch(getListHousehold(id));
   };
+  const increase = (listId, itemId, quantity) => {
+    dispatch(increaseItemQuantity(listId, itemId, quantity))
+  }
+  const decrease = (listId, itemId, quantity) => {
+    if(quantity > 1){
+      dispatch(decreaseItemQuantity(listId, itemId, quantity))
+    }
+  }
+
 
   useEffect(() => {
       loadHouseholdList(listId);
@@ -64,8 +91,7 @@ var styles = StyleSheet.create({
     flex: 1
   },
   button: {
-    margin: '5%',
-    backgroundColor: 'pink'
+    marginHorizontal: '-5%'
   },
   background: {
     marginVertical: 30, backgroundColor: 'white', width: '85%', flexDirection: 'column', borderRadius: 25,  justifyContent: 'space-between', flex: 1, alignSelf: 'center', paddingVertical: 10
