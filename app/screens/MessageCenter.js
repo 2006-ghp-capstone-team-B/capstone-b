@@ -13,19 +13,24 @@ class MessageCenter extends React.Component {
     this.closeModal = this.closeModal.bind(this)
   }
   state = {
-    modalVisible: false
+    modalVisible: false,
+    type: "",
+    title: "",
+    body: "",
   };
 
   componentDidMount() {
     this.props.loadMessages(this.props.singleUser.id);
    }
 
-  openModal() {
-    this.setState({modalVisible: true})
+  openModal(type, title, body) {
+    this.setState({modalVisible: true,
+    title,
+  body})
   }
 
   closeModal() {
-    this.setState({modalVisible: false})
+    this.setState({modalVisible: false, title: "", body:""})
   }
 
   render() {
@@ -48,10 +53,11 @@ class MessageCenter extends React.Component {
       ? <View visible={this.state.modalVisible} style={styles.modalWrapper}>
       <Modal transparent={true}>
         <View style={styles.modalContent}>
-          <Button onPress={() => this.closeModal()}>
+          <Button style={{alignSelf: 'flex-end'}} onPress={() => this.closeModal()}>
             <Text>X</Text>
           </Button>
-          <Text>Testing...</Text>
+          <Title style={{alignSelf: 'flex-start', marginVertical: '10%'}}>{this.state.title}</Title>
+          <Text>{this.state.body}</Text>
         </View>
       </Modal>
     </View>

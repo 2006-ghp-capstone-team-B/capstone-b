@@ -3,7 +3,7 @@ import { Text, Body, Left, Right, Button, Icon, ListItem } from 'native-base';
 
 
 export default function RequestNotification(props) {
-  const {notificationTitle, notificationBody} = props.message
+  const {notificationTitle, notificationBody, type} = props.message
     return (
         <ListItem icon>
         <Left>
@@ -17,9 +17,8 @@ export default function RequestNotification(props) {
         </Body>
         <Right>
           {/* Button displays ability to accept or reject request */}
-          <Button transparent onPress={()=> {
-            console.log('PRESSING BUTTON')
-            props.openModal()}}>
+          <Button transparent onPress={()=>
+            props.openModal(type, notificationTitle, notificationBody)}>
             <Text>View</Text>
           </Button>
         </Right>
