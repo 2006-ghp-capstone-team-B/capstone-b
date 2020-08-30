@@ -44,11 +44,14 @@ router.post("/:userId", async (req, res, next) => {
   }
 });
 
-// delete the store from StorePreference
-// but have it still be in Store
-router.delete("/:userId", async (req, res, next) => {
+router.delete("/:userId/:storeId", async (req, res, next) => {
   try {
-    await StorePreference.destroy({ where: { storeId: req.body.storeId } });
+    const storeToDelete = await StorePreference.destroy({
+      where: {
+        userId: req.params.userId,
+        storeId: req.params.storeId,
+      },
+    });
 
     // get updated StorePref list
     const updatedStorePrefs = await StorePreference.findAll({
@@ -56,9 +59,8 @@ router.delete("/:userId", async (req, res, next) => {
       include: { model: Store },
     });
     res.json(updatedStorePrefs);
-  } catch (error) {
-    next(error);
+  } catch (e) {
+    next(e);
   }
 });
-
 module.exports = router;
