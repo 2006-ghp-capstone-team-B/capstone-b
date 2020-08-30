@@ -142,4 +142,7 @@ export const globalStyles = StyleSheet.create({
         borderColor: "gray",
         borderWidth: 1
     },
+    leftIconStyle: {
+        marginRight: 10
+    }
 });
