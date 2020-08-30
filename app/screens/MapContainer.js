@@ -12,7 +12,6 @@ class MapContainer extends React.Component {
   constructor() {
     super();
     this.addNewPreference = this.addNewPreference.bind(this);
-    this.removePreference = this.removePreference.bind(this);
   }
   state = {
     region: {},
@@ -65,13 +64,6 @@ class MapContainer extends React.Component {
     };
   }
 
-  removePreference(userId, storeId) {
-    return async (userId, storeId) => {
-      console.log("im made it into remove in MapContainer", storeId);
-      await this.props.deleteOldPref(this.props.singleUser.id, storeId);
-    };
-  }
-
   render() {
     const newPref = {
       name: this.state.name,
@@ -101,7 +93,7 @@ class MapContainer extends React.Component {
             ) : null}
 
             <View styles={{ flex: 1, marginTop: "2.5%" }}>
-              <ListStorePrefs removePreference={this.removePreference()} />
+              <ListStorePrefs />
             </View>
           </View>
         ) : null}

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Text, View, ImageBackground, SafeAreaView, FlatList, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchStorePrefs } from "../store/storePrefs";
+import { fetchStorePrefs, deleteStoreThunk } from "../store/storePrefs";
 import { connect } from "formik";
 
 export default function ListStorePrefs(props) {
@@ -12,6 +12,9 @@ export default function ListStorePrefs(props) {
   const user = useSelector((state) => state.singleUser);
   const getUpdatedStores = (userId) => {
     dispatch(fetchStorePrefs(userId));
+  };
+  const deleteStore = (userId, storeId) => {
+    dispatch(deleteStoreThunk(userId, storeId));
   };
 
   useEffect(() => {
@@ -40,8 +43,7 @@ export default function ListStorePrefs(props) {
           <View style={{ flex: 1 }}>
             <TouchableOpacity
               onPress={() => {
-                console.log("I PRESSED Remove!", item.store.id);
-                props.removePreference(user.id, item.store.id);
+                deleteStore(user.id, item.store.id);
               }}
             >
               <Text

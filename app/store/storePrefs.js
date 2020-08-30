@@ -16,9 +16,9 @@ const addStorePref = (newPref) => ({
   type: ADD_STORE_PREF,
   newPref,
 });
-const deleteStoreFromPrefs = (storePrefs) => ({
+const deleteStoreFromPrefs = (updatedStorePref) => ({
   type: DELETE_STORE_FROM_PREFS,
-  storePrefs,
+  updatedStorePref,
 });
 
 // thunk creator
@@ -44,11 +44,7 @@ export const createNewPref = (userId, newPref) => async (dispatch) => {
 
 export const deleteStoreThunk = (userId, storeId) => async (dispatch) => {
   try {
-    storeId = JSON.stringify(storeId);
-    console.log("typeof?????", typeof storeId);
-    console.log("I made it to deletestore", userId, storeId);
-    const res = await axios.delete(`http://${MY_IP}:19006/api/stores/${userId}`, { storeId: storeId });
-    console.log("Im done deleting after axios");
+    const res = await axios.delete(`http://${MY_IP}:19006/api/stores/${userId}/${storeId}`);
     dispatch(deleteStoreFromPrefs(res.data));
   } catch (e) {
     console.log(e);
@@ -62,7 +58,7 @@ export default function (state = initialState, action) {
     case ADD_STORE_PREF:
       return [...state, action.newPref];
     case DELETE_STORE_FROM_PREFS:
-      return action.storePrefs;
+      return action.updatedStorePref;
     default:
       return state;
   }
