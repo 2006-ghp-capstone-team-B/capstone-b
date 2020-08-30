@@ -2,7 +2,7 @@ import React from "react";
 import { View, ImageBackground, TouchableOpacity } from "react-native";
 import { globalStyles } from "../../styles/globalStyles";
 import { Actions } from "react-native-router-flux";
-import { Container, Text, Button } from 'native-base';
+import { Text } from 'native-base';
 
 
 export default function Dashboard() {

@@ -9,38 +9,32 @@ import { Actions } from "react-native-router-flux";
 
 export default function UserProfile() {
 
-    const navigate = (screen) => {
-        Actions[screen]();
-    };
-    
-    const profile = useSelector((state) => state.singleUser);
+  const navigate = (screen) => {
+    Actions[screen]();
+  };
 
-    return (
-        <View>
-            <Text style={globalStyles.titleText}>User Profile Page:</Text>
-            <View key={profile.id}>
-                <Text style={globalStyles.subtitleText}> Name: {profile.firstName}</Text>
-                <Text style={globalStyles.subtitleText}> Last Name: {profile.lastName}</Text>
-                <Text style={globalStyles.subtitleText}> Email: {profile.email}</Text>
-                <Text style={globalStyles.subtitleText}> Change Password: TBD</Text>
-                <Text style={globalStyles.subtitleText}> Sign Out: TBD</Text>
-            </View>
-            <TouchableOpacity
-            onPress={() => {
-              logout();
-              logUserOut();
-              navigate("home");
-            }}
-            title="Home"
-          >
-            <Text style={globalStyles.button}>Log Out</Text>
-          </TouchableOpacity>
-        </View>
-    );
+  const profile = useSelector((state) => state.singleUser);
+
+  return (
+    <View>
+      <Text style={globalStyles.titleText}>User Profile Page:</Text>
+      <View key={profile.id}>
+        <Text style={globalStyles.subtitleText}> Name: {profile.firstName}</Text>
+        <Text style={globalStyles.subtitleText}> Last Name: {profile.lastName}</Text>
+        <Text style={globalStyles.subtitleText}> Email: {profile.email}</Text>
+        <Text style={globalStyles.subtitleText}> Change Password: TBD</Text>
+        <Text style={globalStyles.subtitleText}> Sign Out: TBD</Text>
+      </View>
+      <TouchableOpacity
+        onPress={() => {
+          logout();
+          logUserOut();
+          navigate("home");
+        }}
+        title="Home"
+      >
+        <Text style={globalStyles.button}>Log Out</Text>
+      </TouchableOpacity>
+    </View>
+  );
 }
-
-//user info
-//change password
-//link to store preference(screens/mapContainer)
-//see their private list
-//log me out
