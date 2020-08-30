@@ -1,23 +1,33 @@
 import * as React from "react";
-import { View, Text, ScrollView, Button, TextInput } from "react-native";
+import { View, Text, ScrollView, Button, TextInput, TouchableOpacity } from "react-native";
+import { useState } from "react";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
-import { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-community/async-storage";
 import { saveUser } from "../store/storageHelper";
 import { globalStyles } from "../../styles/globalStyles";
 import { login } from "../store/singleUser";
 import { Formik } from "formik";
-import { Entypo } from 'react-native-vector-icons';
+import { FormInput } from '../components'
+import { Ionicons } from 'react-native-vector-icons';
 
 
 export const Login = (props) => {
-
-  //Hooks to show/hide password
-  const [passwordShown, setPasswordShown] = useState(false);
-  const togglePasswordVisiblity = () => {
-    setPasswordShown(passwordShown ? false : true);
+  //Navigate to Sign up from Login
+  const navigate = (screen) => {
+    Actions[screen]();
   };
+  const goToSignup = () => navigate('signup')
+
+  // Use hooks to set initial state:
+  const [passwordShown, setPasswordShown] = useState(true);
+  const [leftIcon, setLeftIcon] = useState('ios-eye');
+  // Change state:
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(!passwordShown);
+    setLeftIcon(leftIcon === 'ios-eye' ? 'ios-eye-off' : 'ios-eye');
+  };
+
 
   return (
     <ScrollView>
@@ -65,23 +75,34 @@ export const Login = (props) => {
                   Password <Text style={{ color: "red" }}> {errors.password ? errors.password : ""}</Text>
 
                 </Text>
-                <TextInput
-                  secureTextEntry={true}
-                  style={globalStyles.InputField}
+                <FormInput
+                  secureTextEntry={passwordShown}
+                  // style={globalStyles.InputField}
                   onChangeText={handleChange("password")}
+                  placeholder='Enter password, min. 6 characters'
                   onBlur={handleBlur("password")}
                   value={values.password}
+                  leftIcon={<TouchableOpacity onPress={togglePasswordVisiblity} >
+                    <Ionicons name={leftIcon} size={20} />
+                  </TouchableOpacity>}
                 />
 
-                <Text onClick={togglePasswordVisiblity}> <Entypo name="eye" size={20} /></Text>
 
                 <Button onPress={handleSubmit} title="Submit" />
               </View>
+              <Button
+                title="Don't have an account? Sign Up"
+                onPress={goToSignup}
+                titleStyle={{
+                  color: '#F57C00'
+                }}
+                type='clear'
+              />
             </View>
           )}
         </Formik>
       </View>
-    </ScrollView>
+    </ScrollView >
   );
 };
 
