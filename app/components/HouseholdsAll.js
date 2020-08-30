@@ -46,7 +46,7 @@ export default function AllHouseholds() {
               <Icon name='ios-add' />
               <Text>Create A Household</Text>
             </Button>
-            <Button block iconLeft style={styles.button} onPress={()=>console.log("JOIN")}>
+            <Button block iconLeft style={styles.button} onPress={()=>Actions.HouseholdFind()}>
               <Icon name='ios-add' />
               <Text>Request To Join A Household</Text>
             </Button>

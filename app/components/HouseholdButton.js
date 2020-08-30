@@ -5,8 +5,8 @@ import { Actions } from "react-native-router-flux";
 
 
 export default function HouseholdButton(props) {
-  const {listId, listName} = props.household
-  console.log('listy:', listId)
+  const {listId} = props.household
+  const {listName} = props.household.list
     return (
       <ListItem icon>
       <Left>

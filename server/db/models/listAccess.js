@@ -16,14 +16,6 @@ const ListAccess = db.define("listAccess", {
     //         notEmpty: true
     //     }
     // },
-    listName: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        validate: {
-            notEmpty: true
-        },
-        defaultValue: "My List"
-    },
     category: {
         type: Sequelize.ENUM(
             "private",
@@ -34,6 +26,13 @@ const ListAccess = db.define("listAccess", {
             notEmpty: true
         }
     },
+    confirmed: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        validate: {
+            notEmpty: true
+        }
+    }
 });
 
 module.exports = ListAccess;
