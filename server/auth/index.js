@@ -4,7 +4,9 @@ const { User } = require("../db/models");
 router.post("/login", async (req, res, next) => {
   const { email, password } = req.body;
   try {
+    console.log("reqqq", req.body)
     const user = await User.findOne({ where: { email } });
+    console.log("LOG", user)
     if (!user) {
       console.log("No such user found:", email);
       res.status(401).send("Wrong username and/or password");

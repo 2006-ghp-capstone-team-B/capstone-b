@@ -7,7 +7,8 @@ router.get("/:userId", async (req, res, next) => {
       where: {
         userId: req.params.userId,
         category: "household"
-       }
+       },
+       include: List
     });
     res.json(households);
   } catch (error) {
