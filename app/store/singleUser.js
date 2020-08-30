@@ -83,6 +83,7 @@ export const createNewUser = (newUser) => async (dispatch) => {
 export const login = (user) => async (dispatch) => {
   let res;
   try {
+    console.log('userhere', user)
     res = await axios.post(`http://${MY_IP}:19006/auth/login`, user);
   } catch (authError) {
     console.error(authError)
