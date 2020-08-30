@@ -1,12 +1,18 @@
 import React, { useEffect } from "react";
-import {View, ImageBackground, SafeAreaView, FlatList, StyleSheet } from "react-native";
+import {View, ImageBackground, SafeAreaView, FlatList, StyleSheet, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { globalStyles } from "../../styles/globalStyles";
 import {getListHousehold, increaseItemQuantity, decreaseItemQuantity} from "../store/listHousehold"
 import { Text, Icon, Body, Right, Button, ListItem, Card, Left, Container } from 'native-base';
-// import Item from './Item'
+import { Actions } from "react-native-router-flux";
+
 
 export default function SingleHouseholdList(props) {
+
+  const navigate = (screen) => {
+    Actions[screen]();
+  };
+
   const renderItem = ({ item }) => {
     return (
       <ListItem icon>
@@ -46,11 +52,9 @@ export default function SingleHouseholdList(props) {
     }
   }
 
-
   useEffect(() => {
       loadHouseholdList(listId);
     }, [listId]);
-
 
     return (
       <Container>
@@ -69,10 +73,9 @@ export default function SingleHouseholdList(props) {
             : <Text>You do not currently belong to a household</Text>}
           </View>
           <View style={{flex: 1, marginTop: '5%'}}>
-            <Button block iconLeft style={styles.button} onPress={()=>console.log("CREATE")}>
-              <Icon name='ios-add' />
-              <Text>Add New Item</Text>
-            </Button>
+              <TouchableOpacity onPress={() => navigate("AddNewItem")} title="Add New Item">
+                  <Text style={globalStyles.button}>Add New Item</Text>
+              </TouchableOpacity>
 
           </View>
           </View>
