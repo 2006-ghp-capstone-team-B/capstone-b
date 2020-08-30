@@ -1,12 +1,21 @@
 import * as React from "react";
 import { View, Text, ScrollView, Button, TextInput } from "react-native";
-import { Formik } from "formik";
-import { createNewUser } from "../store/singleUser";
+import { useState } from "react";
 import { connect } from "react-redux";
 import { saveUser } from "../store/storageHelper";
+import { createNewUser } from "../store/singleUser";
 import { globalStyles } from "../../styles/globalStyles";
+import { Formik } from "formik";
+import { Entypo } from 'react-native-vector-icons';
 
 export const CreateUser = (props) => {
+
+  //Hooks to show/hide password
+  const [passwordShown, setPasswordShown] = useState(false);
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
+
   return (
     <ScrollView>
       <View style={{ justifyContent: "center" }}>
@@ -83,11 +92,14 @@ export const CreateUser = (props) => {
                   Password <Text style={{ color: "red" }}> {errors.password ? errors.password : ""}</Text>
                 </Text>
                 <TextInput
+                  secureTextEntry={true}
                   style={globalStyles.InputField}
                   onChangeText={handleChange("password")}
                   onBlur={handleBlur("password")}
                   value={values.password}
                 />
+                <Text onClick={togglePasswordVisiblity}> <Entypo name="eye" size={20} /></Text>
+
                 <Button onPress={handleSubmit} title="Submit" />
               </View>
             </View>

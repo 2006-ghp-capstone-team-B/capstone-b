@@ -1,16 +1,24 @@
 import * as React from "react";
 import { View, Text, ScrollView, Button, TextInput } from "react-native";
-import { Formik } from "formik";
-import { login } from "../store/singleUser";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
 import { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-community/async-storage";
 import { saveUser } from "../store/storageHelper";
 import { globalStyles } from "../../styles/globalStyles";
+import { login } from "../store/singleUser";
+import { Formik } from "formik";
+import { Entypo } from 'react-native-vector-icons';
 
 
 export const Login = (props) => {
+
+  //Hooks to show/hide password
+  const [passwordShown, setPasswordShown] = useState(false);
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
+
   return (
     <ScrollView>
       <View style={{ justifyContent: "center" }}>
@@ -23,13 +31,11 @@ export const Login = (props) => {
             } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
               errors.email = "Invalid email address";
             }
-
             if (!values.password) {
               errors.password = "Required";
             } else if (values.password.length < 6) {
               errors.password = "Password has to be at least 6 character.";
             }
-
             return errors;
           }}
           //if statement to check that we dont have errors, else make thunk call
@@ -57,13 +63,18 @@ export const Login = (props) => {
               <View style={{ marginTop: 30 }}>
                 <Text>
                   Password <Text style={{ color: "red" }}> {errors.password ? errors.password : ""}</Text>
+
                 </Text>
                 <TextInput
+                  secureTextEntry={true}
                   style={globalStyles.InputField}
                   onChangeText={handleChange("password")}
                   onBlur={handleBlur("password")}
                   value={values.password}
                 />
+
+                <Text onClick={togglePasswordVisiblity}> <Entypo name="eye" size={20} /></Text>
+
                 <Button onPress={handleSubmit} title="Submit" />
               </View>
             </View>
