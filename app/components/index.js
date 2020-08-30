@@ -14,8 +14,4 @@ export { default as GeneralNotification } from "./NotificationGeneral"
 export { default as AddNewItem } from "./AddNewItem"
 export { default as FormInput } from "./FormInput"
 export { default as HouseholdCreate } from "./HouseholdCreate"
-<<<<<<< HEAD
 export { default as HouseholdFind } from "./HouseholdFind"
-=======
-export { default as HouseholdFind } from "./HouseholdFind"
->>>>>>> 93446468bb9841de1222b72573dabda4926a49a2
