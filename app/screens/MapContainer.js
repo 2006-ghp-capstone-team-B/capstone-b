@@ -6,7 +6,7 @@ import NewStorePref from "../components/NewStorePref";
 import ListStorePrefs from "../components/ListStorePrefs";
 import { getLocation, geocodeLocationByName } from "../components/services";
 import { connect } from "react-redux";
-import { fetchStorePrefs, createNewPref } from "../store/storePrefs";
+import { fetchStorePrefs, createNewPref, deleteStoreThunk } from "../store/storePrefs";
 
 class MapContainer extends React.Component {
   constructor() {
@@ -129,6 +129,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => ({
   loadStorePrefs: (user) => dispatch(fetchStorePrefs(user)),
   addNewPref: (userId, newPref) => dispatch(createNewPref(userId, newPref)),
+  deleteOldPref: (userId, storeId) => dispatch(deleteStoreThunk(userId, storeId)),
 });
 
 export default connect(mapState, mapDispatch)(MapContainer);

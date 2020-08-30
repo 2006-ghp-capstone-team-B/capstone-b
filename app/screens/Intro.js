@@ -1,7 +1,7 @@
 import React from "react";
 import { View, ImageBackground, Image, TouchableOpacity, Text } from "react-native";
 import { Actions } from "react-native-router-flux";
-import { globalStyles } from '../../styles/globalStyles';
+import { globalStyles } from "../../styles/globalStyles";
 
 /*
 This will be our initial screen where people can log in/ sign up.
