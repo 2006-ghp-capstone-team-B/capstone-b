@@ -2,8 +2,6 @@ import React from "react";
 import { View, ImageBackground, TouchableOpacity } from "react-native";
 import { globalStyles } from "../../styles/globalStyles";
 import { Actions } from "react-native-router-flux";
-import { logUserOut } from "../store/storageHelper";
-import { logout } from "../store/singleUser";
 import { Container, Text, Button } from 'native-base';
 
 
@@ -23,17 +21,6 @@ export default function Dashboard() {
           <TouchableOpacity onPress={() => navigate("AllHouseholds")} title="My Households">
             <Text style={globalStyles.button}>My Households</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              logout();
-              logUserOut();
-              navigate("home");
-            }}
-            title="Home"
-          >
-            <Text style={globalStyles.button}>Log Out for now</Text>
-          </TouchableOpacity>
-
         </View>
       </View>
     </ImageBackground>
