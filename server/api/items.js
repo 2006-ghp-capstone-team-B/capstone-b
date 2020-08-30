@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Item, Store, StorePreference } = require("../db/models");
+const { Item, Store, StorePreference, ItemUserList } = require("../db/models");
 
 //all the Items
 router.get("/", async (req, res, next) => {
@@ -20,5 +20,6 @@ router.get("/:itemId", async (req, res, next) => {
     next(error);
   }
 });
+
 
 module.exports = router;
