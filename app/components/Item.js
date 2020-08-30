@@ -5,14 +5,15 @@ import { Actions } from "react-native-router-flux";
 import { useDispatch } from "react-redux";
 import { increaseItemQuantity, decreaseItemQuantity } from "../store/item";
 
-
 export default function Item(props) {
+
 
   const {itemName} = props.item.item
   const {quantity, listId, userId, itemId} = props.item
   const dispatch = useDispatch()
   const increase = (listId, itemId, quantity) => {
     dispatch(increaseItemQuantity(listId, itemId, quantity))
+    forceUpdate
   }
   const decrease = (listId, itemId, quantity) => {
     if(quantity > 1){

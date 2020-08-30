@@ -2,14 +2,21 @@ import React, { useEffect } from "react";
 import {View, ImageBackground, SafeAreaView, FlatList, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { globalStyles } from "../../styles/globalStyles";
-import {getListHousehold} from "../store/listHousehold"
-import { Text, Button, Icon, Container , } from 'native-base';
-import Item from './Item'
+import {getListHousehold, increaseItemQuantity, decreaseItemQuantity} from "../store/listHousehold"
+import { Text, Button, Icon, Container } from 'native-base';
+// import Item from './Item'
 
 export default function SingleHouseholdList(props) {
   const renderItem = ({ item }) => {
     return (
-      <Item item={item} />
+      <View style={{backgroundColor: 'white', width: '80%', alignSelf: 'center', margin: '5%'}}>
+        <Text>Item: {item.item.itemName}</Text>
+        <Button style={globalStyles.button} title="+" transparent onPress={() => increase(item.listId, item.itemId, item.quantity)}>
+        </Button>
+        <Text>Quantity: {item.quantity}</Text>
+        <Button style={globalStyles.button} title="-" transparent onPress={() => decrease(item.listId, item.itemId, item.quantity)}>
+        </Button>
+      </View>
   )};
 
   const {listId} = props
@@ -19,6 +26,15 @@ export default function SingleHouseholdList(props) {
   const loadHouseholdList = (id) => {
     dispatch(getListHousehold(id));
   };
+  const increase = (listId, itemId, quantity) => {
+    dispatch(increaseItemQuantity(listId, itemId, quantity))
+  }
+  const decrease = (listId, itemId, quantity) => {
+    if(quantity > 1){
+      dispatch(decreaseItemQuantity(listId, itemId, quantity))
+    }
+  }
+
 
   useEffect(() => {
       loadHouseholdList(listId);
