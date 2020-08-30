@@ -1,5 +1,5 @@
 import React from "react";
-import { View, ImageBackground, Image, TouchableOpacity } from "react-native";
+import { View, ImageBackground, Image, TouchableOpacity, Text } from "react-native";
 import { Actions } from "react-native-router-flux";
 import { globalStyles } from '../../styles/globalStyles';
 
