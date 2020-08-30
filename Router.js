@@ -4,6 +4,7 @@ import { Start } from "./app/screens";
 import { Login, CreateUser, Main } from "./app/screens";
 import { ListPrivate, EditMembers, AllHouseholds, SingleHouseholdList } from "./app/components";
 
+
 const Routes = () => {
   return (
     <Router>
@@ -14,8 +15,8 @@ const Routes = () => {
         <Scene key="main" title="Main" component={Main} renderLeftButton={() => null}></Scene>
         <Scene key="privateList" title="My Private List" component={ListPrivate}></Scene>
         <Scene key="AllHouseholds" title="My Households" component={AllHouseholds}></Scene>
-        <Scene key="SingleHouseholdList" title="House List" component={SingleHouseholdList}></Scene>
-        <Scene key="editMembers" title="Edit Members" component={EditMembers}></Scene>
+        <Scene key="ListSingleHousehold" title="House List" component={SingleHouseholdList}></Scene>
+        <Scene key="Members" title="Edit Members" component={EditMembers}></Scene>
       </Scene>
     </Router>
   );

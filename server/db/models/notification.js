@@ -16,6 +16,18 @@ const Notification = db.define("notification", {
             notEmpty: true
         }
     },
+    type: {
+        type: Sequelize.ENUM(
+            "memberRequest",
+            "welcome",
+            "newItem",
+            "other"
+        ),
+        allowNull: false,
+        validate: {
+            notEmpty: true
+        }
+    },
     unread: {
         type: Sequelize.BOOLEAN,
         allowNull: false,

@@ -25,7 +25,7 @@ router.get('/private/:userId', async (req, res, next) => {
             where: {listId: listPrivate.listId},
             include: {model: Item}
         })
-    res.json(listItems)
+        res.json(listItems)
     } catch (error) {
         next(error)
     }
@@ -37,11 +37,30 @@ router.get('/household/:listId', async (req, res, next) => {
             where: {listId: req.params.listId},
             include: {model: Item}
         })
-    res.json(listItems)
+        res.json(listItems)
     } catch (error) {
         next(error)
     }
 })
 
+//update item quantity
+router.put("/:listId/:itemId", async (req, res, next) => {
+    try{
+        console.log("in put request")
+        console.log("this is req.body", req.body)
+        const item = await ItemUserList.findOne({
+            where: {
+                listId: req.params.listId, 
+                itemId: req.params.itemId
+            }
+        })
+        console.log("this is the item we found to update",item)
+        const updatedItem = await item.update({quantity: req.body.quantity})
+        console.log("this is updateditem", updatedItem)
+        res.json(updatedItem)
+    }catch(error){
+        console.log(error)
+    }
+})
 
 module.exports = router
