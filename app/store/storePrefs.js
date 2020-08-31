@@ -24,7 +24,7 @@ const deleteStoreFromPrefs = (updatedStorePref) => ({
 // thunk creator
 export const fetchStorePrefs = (userId) => async (dispatch) => {
   try {
-    const { data } = await axios.get(`http://${MY_IP}:19006/api/stores/${userId}`);
+    const { data } = await axios.get(`https://peasy-server.herokuapp.com/api/stores/${userId}`);
     dispatch(getStorePrefs(data));
   } catch (e) {
     console.log(e);
@@ -34,7 +34,7 @@ export const fetchStorePrefs = (userId) => async (dispatch) => {
 export const createNewPref = (userId, newPref) => async (dispatch) => {
   try {
     console.log("inside createNewPref ");
-    const { data } = await axios.post(`http://${MY_IP}:19006/api/stores/${userId}`, newPref);
+    const { data } = await axios.post(`https://peasy-server.herokuapp.com/api/stores/${userId}`, newPref);
     console.log("after createNewPRef post route");
     dispatch(addStorePref(data));
   } catch (e) {
@@ -44,7 +44,7 @@ export const createNewPref = (userId, newPref) => async (dispatch) => {
 
 export const deleteStoreThunk = (userId, storeId) => async (dispatch) => {
   try {
-    const res = await axios.delete(`http://${MY_IP}:19006/api/stores/${userId}/${storeId}`);
+    const res = await axios.delete(`https://peasy-server.herokuapp.com/api/stores/${userId}/${storeId}`);
     dispatch(deleteStoreFromPrefs(res.data));
   } catch (e) {
     console.log(e);
