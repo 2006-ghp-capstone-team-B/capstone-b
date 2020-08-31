@@ -87,6 +87,24 @@ export const globalStyles = StyleSheet.create({
     //     height: '100%',
     //     flex: 1
     // },
+//         borderWidth: 1
+//     },
+    leftIconStyle: {
+        marginRight: 10
+    },
+    buttonGroup: {
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        flex: 1
+    },
+    buttonGroupRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        marginTop: '10%'
+    },
     button: {
         fontSize: 25,
         backgroundColor: "#6F9A88",
