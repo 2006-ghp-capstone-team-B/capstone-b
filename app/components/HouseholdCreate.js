@@ -3,9 +3,11 @@ import { Text, TextInput, View, ScrollView, ImageBackground, Button, TouchableOp
 import { globalStyles } from "../../styles/globalStyles";
 import { Formik } from "formik";
 import { Actions } from "react-native-router-flux";
+import { connect } from "react-redux";
+import { createHouseholdList } from "../store/listHousehold";
 
 
-export default function HouseholdCreate() {
+export function HouseholdCreate(props) {
   const navigate = (screen) => {
     Actions[screen]();
   };
@@ -20,7 +22,10 @@ export default function HouseholdCreate() {
 
 
           <Formik initialValues={{ listName: "" }}
-            onSubmit={(values) => { props.signin(values) }}>
+            onSubmit={(values) => {
+              props.newHouseholdList(values)
+            }}
+          >
             {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
               <View style={globalStyles.LogInSignUpForm}>
                 <Text>Enter Household Name:</Text>
@@ -43,9 +48,9 @@ export default function HouseholdCreate() {
 };
 
 const mapDispatch = (dispatch) => ({
-  newHouseholdList: (listName) => dispatch(creteHouseholdList(listName)),
+  newHouseholdList: (listName) => dispatch(createHouseholdList(listName)),
 });
-// export default connect(null, mapDispatch)(creteHouseholdList);
+export default connect(null, mapDispatch)(HouseholdCreate);
 
 /*
 After the user clicked the submit button, screen with Household Profile

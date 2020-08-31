@@ -49,8 +49,10 @@ export const getListHousehold = (listId) => async dispatch => {
 // creates a new household list
 export const createNewHouseholdList = (newHouseholdList) => async (dispatch) => {
   try {
-    let res = await axios.post(`http://${MY_IP}:19006/api/lists`, newHouseholdList);
-    dispatch(createHouseholdList(res))
+    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!Inside of createNewHouseholdList redux store")
+    console.log(newHouseholdList)
+    let res = await axios.post(`http://${MY_IP}:19006/api/lists`, newHouseholdList.listName);
+    dispatch(createHouseholdList(res.data))
   } catch (error) {
     console.log(error)
   }
@@ -92,7 +94,6 @@ export default function (state = initialState, action) {
       return action.list
     case DECREASE_ITEM:
       return action.list
-
     default:
       return state
   }
