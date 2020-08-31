@@ -12,6 +12,17 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+// //route for get user's private list Id
+// router.get("/:userId", async (req, res, next) => {
+//   try {
+//     const user = await User.findByPk(req.params.userId);
+    
+//     res.json(users);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
+
 // post route
 router.post("/", async (req, res, next) => {
   try {

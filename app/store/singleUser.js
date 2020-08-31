@@ -85,6 +85,7 @@ export const login = (user) => async (dispatch) => {
     console.log("userhere", user);
     res = await axios.post(`https://peasy-server.herokuapp.com/auth/login`, user);
   } catch (authError) {
+    // console.error(authError);
     console.error(authError);
   }
 
