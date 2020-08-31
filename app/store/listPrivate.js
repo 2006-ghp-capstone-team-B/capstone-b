@@ -7,7 +7,7 @@ import {MY_IP} from '../../secret'
 const GET_LIST = 'GET_LIST'
 const INCREASE_ITEM = "INCREASE_ITEM"
 const DECREASE_ITEM = "DECREASE_ITEM"
-
+const DELETE_ITEM = "DELETE_ITEM"
 /**
  * INITIAL STATE
  */
@@ -32,6 +32,10 @@ const decreaseItem = (list) => ({
   list
 })
 
+const deleteItem = (list) => ({
+  type: DELETE_ITEM,
+  list
+})
 /**
  * THUNK CREATORS
  */
@@ -68,6 +72,16 @@ export const decreaseItemQuantity = (userId, listId, itemId, quantity) => async 
   }
 }
 
+export const deleteSingleItem = (userId, listId, itemId) => async dispatch => {
+  try {
+    await axios.delete(`http://${MY_IP}:19006/api/lists/${listId}/${itemId}`)
+    const { data } = await axios.get(`http://${MY_IP}:19006/api/lists/private/${userId}`)
+    dispatch(deleteItem(data))
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 /**
 * REDUCER
 */
@@ -78,6 +92,8 @@ export default function (state = initialState, action) {
     case INCREASE_ITEM:
       return action.list
     case DECREASE_ITEM:
+      return action.list
+    case DELETE_ITEM:
       return action.list
     default:
       return state

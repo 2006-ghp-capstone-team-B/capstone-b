@@ -7,6 +7,8 @@ const GET_HOUSE_LIST = 'GET_HOUSE_LIST'
 const INCREASE_ITEM = "INCREASE_ITEM"
 const DECREASE_ITEM = "DECREASE_ITEM"
 const CREATE_HOUSEHOLD_LIST = "CREATE_HOUSEHOLD_LIST "
+const DELETE_ITEM = "DELETE_ITEM"
+
 /**
  * INITIAL STATE
  */
@@ -30,6 +32,10 @@ const increaseItem = (list) => ({
 })
 const decreaseItem = (list) => ({
   type: DECREASE_ITEM,
+  list
+})
+const deleteItem = (list) => ({
+  type: DELETE_ITEM,
   list
 })
 
@@ -80,6 +86,18 @@ export const decreaseItemQuantity = (listId, itemId, quantity) => async dispatch
   }
 }
 
+
+export const deleteSingleItem = (listId, itemId) => async dispatch => {
+  try {
+    await axios.delete(`http://${MY_IP}:19006/api/lists/${listId}/${itemId}`)
+    const { data } = await axios.get(`http://${MY_IP}:19006/api/lists/household/${listId}`)
+    dispatch(deleteItem(data))
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
 /**
 * REDUCER
 */
@@ -93,6 +111,8 @@ export default function (state = initialState, action) {
     case INCREASE_ITEM:
       return action.list
     case DECREASE_ITEM:
+      return action.list
+    case DELETE_ITEM:
       return action.list
     default:
       return state
