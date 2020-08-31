@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
 import constants from 'expo-constants';
 
-//Below is a bunch of sample styles code for the app. You may edit or delete any piece
 export const globalStyles = StyleSheet.create({
     container: {
         flex: 1,
@@ -9,14 +8,6 @@ export const globalStyles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         paddingTop: constants.statusBarHeight,
-    },
-    containerTop: {
-        flex: 1,
-        alignItems: "center",
-        paddingTop: constants.statusBarHeight,
-    },
-    containerScroll: {
-        flex: 1,
     },
     titleText: {
         fontSize: 30,
@@ -40,33 +31,6 @@ export const globalStyles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    // body2: {
-    //     flex: 3,
-    //     backgroundColor: '#fff',
-    //     padding: 20,
-    //     alignItems: 'center',
-    //     justifyContent: 'center',
-    // },
-    // footer: {
-    //     backgroundColor: '#BF2F0B',
-    //     padding: 20,
-    //     alignItems: 'center',
-    //     justifyContent: 'center',
-    //     color: '#F2BE00',
-    //     fontWeight: 'bold',
-    //     lineHeight: 1,
-    // },
-    // photo: {
-    //     alignItems: 'center',
-    //     width: 400,
-    //     height: 300,
-    // },
-    // promos: {
-    //     alignItems: 'center',
-    //     flexShrink: 1,
-    //     width: 450,
-    //     height: 500,
-    // },
     box: {
         alignItems: 'center'
     },
@@ -85,6 +49,35 @@ export const globalStyles = StyleSheet.create({
         fontSize: 60,
         textAlign: "center",
         marginTop: 50,
+    },
+
+    style: {
+        flex: 1,
+        justifyContent: "center",
+        padding: 8,
+        marginTop: 15,
+    },
+    signUpForm: {
+        flex: 1,
+        justifyContent: "center",
+        padding: 8,
+        marginTop: 15,
+    },
+    InputField: {
+        height: 40,
+        borderColor: "gray",
+        borderWidth: 1
+    },
+    leftIconStyle: {
+        marginRight: 10
+    },
+    buttonGroup: {
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        flex: 1
     },
     button: {
         fontSize: 25,
@@ -125,21 +118,14 @@ export const globalStyles = StyleSheet.create({
         padding: "2%",
         marginTop: "5%",
     },
-    style: {
-        flex: 1,
-        justifyContent: "center",
-        padding: 8,
-        marginTop: 15,
+    buttonPink: {
+        margin: '5%',
+        backgroundColor: 'pink'
     },
-    signUpForm: {
-        flex: 1,
-        justifyContent: "center",
-        padding: 8,
-        marginTop: 15,
+    buttonMini: {
+        marginHorizontal: '-5%'
     },
-    InputField: {
-        height: 40,
-        borderColor: "gray",
-        borderWidth: 1
-    },
+    backgroundBox: {
+        marginVertical: 30, backgroundColor: 'white', width: '85%', flexDirection: 'column', borderRadius: 25, justifyContent: 'space-between', flex: 1, alignSelf: 'center', paddingVertical: 10
+    }
 });
