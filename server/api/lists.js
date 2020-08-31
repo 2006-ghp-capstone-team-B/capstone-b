@@ -50,7 +50,7 @@ router.put("/:listId/:itemId", async (req, res, next) => {
         console.log("this is req.body", req.body)
         const item = await ItemUserList.findOne({
             where: {
-                listId: req.params.listId, 
+                listId: req.params.listId,
                 itemId: req.params.itemId
             }
         })
