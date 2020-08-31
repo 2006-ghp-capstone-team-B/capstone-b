@@ -3,7 +3,7 @@ import { Text, TextInput, View, ImageBackground, Button } from "react-native";
 import { globalStyles } from "../../styles/globalStyles";
 import { Formik } from "formik";
 
-export default function EditMembers() {
+export default function HouseholdEditMembers() {
     return (
         <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
             <View style={globalStyles.backgroundBox}>
