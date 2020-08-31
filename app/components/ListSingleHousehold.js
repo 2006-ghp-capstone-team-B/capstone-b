@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { View, ImageBackground, SafeAreaView, FlatList, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { globalStyles } from "../../styles/globalStyles";
-import { getListHousehold, increaseItemQuantity, decreaseItemQuantity } from "../store/listHousehold"
+import { getListHousehold, increaseItemQuantity, decreaseItemQuantity, deleteSingleItem } from "../store/listHousehold"
 import { Text, Icon, Body, Right, Button, ListItem, Card, Left, Container } from 'native-base';
 import { Actions } from "react-native-router-flux";
 
@@ -28,7 +28,7 @@ export default function SingleHouseholdList(props) {
           <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => decrease(item.listId, item.itemId, item.quantity)}>
             <Text>-</Text>
           </Button>
-          <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => console.log("DELETE ITEM")}>
+          <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => deleteItem(item.listId, item.itemId)}>
             <Text>x</Text>
           </Button>
         </Right>
@@ -52,6 +52,10 @@ export default function SingleHouseholdList(props) {
       dispatch(decreaseItemQuantity(listId, itemId, quantity))
     }
   }
+  const deleteItem = (listId, itemId) => {
+    dispatch(deleteSingleItem(listId, itemId))
+  }
+
 
   useEffect(() => {
     loadHouseholdList(listId);

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { View, ImageBackground, SafeAreaView, FlatList, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { getListPrivate, increaseItemQuantity, decreaseItemQuantity } from "../store/listPrivate";
+import { getListPrivate, increaseItemQuantity, decreaseItemQuantity, deleteSingleItem } from "../store/listPrivate";
 import { globalStyles } from '../../styles/globalStyles';
 import { Text, Icon, Body, Right, Button, ListItem, Card, Left, Container } from 'native-base';
 import { Actions } from "react-native-router-flux";
@@ -28,7 +28,7 @@ export default function ListPrivate() {
           <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => decrease(item.userId, item.listId, item.itemId, item.quantity)}>
             <Text>-</Text>
           </Button>
-          <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => console.log("DELETE ITEM")}>
+          <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => deleteItem(item.userId, item.listId, item.itemId)}>
             <Text>x</Text>
           </Button>
         </Right>
@@ -50,6 +50,9 @@ export default function ListPrivate() {
       dispatch(decreaseItemQuantity(userId, listId, itemId, quantity))
     }
   }
+  const deleteItem = (userId, listId, itemId) => {
+    dispatch(deleteSingleItem(userId, listId, itemId))
+  }
 
   useEffect(() => {
     loadListPrivate(user.id);
@@ -60,7 +63,7 @@ export default function ListPrivate() {
       <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
         <View style={globalStyles.backgroundBox}>
           <View>
-            {!user.id && listPrivate.length === 0
+            {!user.id || listPrivate.length === 0 
               ? <View style={{ marginTop: 30, backgroundColor: 'rbga(255,0,0,0.5)', height: '90%', width: '95%', alignSelf: 'center', borderRadius: 25 }}>
                 <Text>You don't have any item in your private list!</Text>
               </View>
