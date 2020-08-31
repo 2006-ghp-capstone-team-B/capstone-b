@@ -8,7 +8,7 @@ export default function RequestNotification(props) {
         <ListItem icon>
         <Left>
           <Button style={{ backgroundColor: "#FF9501" }}>
-            <Icon active name="nutrition" />
+            <Icon active name="ios-person" />
           </Button>
         </Left>
         <Body>

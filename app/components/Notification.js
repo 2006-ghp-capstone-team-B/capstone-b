@@ -11,7 +11,7 @@ export default function Notification(props) {
       <View>
         {type === 'memberRequest'
           ? <RequestNotification message={props.message} openModal={props.openModal}/>
-          : <GeneralNotification message={props.message}/>
+          : <GeneralNotification message={props.message} openModal={props.openModal}/>
           }
       </View>
     )

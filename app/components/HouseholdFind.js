@@ -14,7 +14,9 @@ export default function AddNewItem() {
 
                 <View>
                   <Formik initialValues={{ id: ""}}
-                  // replace signin with search thunk
+
+                  // replace signin with search thunk, find household name and ID and add to state? Make class component?
+
                   onSubmit={(values) => {props.signin(values)}}
           >
                       {({ handleChange, handleBlur, handleSubmit, values, errors }) => (

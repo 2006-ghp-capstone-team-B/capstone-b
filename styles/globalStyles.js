@@ -79,6 +79,11 @@ export const globalStyles = StyleSheet.create({
         height: '100%',
         flex: 1
     },
+    buttonGroupRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        marginTop: '10%'
+    },
     button: {
         fontSize: 25,
         backgroundColor: "#6F9A88",
