@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { fetchNotifications} from "../store/notifications";
 import { Container, Header, Content, Body, List,  Title, Text, Button } from 'native-base';
 import {Notification} from '../components'
+import ModalRequest from '../components/ModalRequest'
 
 
 class MessageCenter extends React.Component {
@@ -26,11 +27,12 @@ class MessageCenter extends React.Component {
   openModal(type, title, body) {
     this.setState({modalVisible: true,
     title,
-  body})
+  body,
+type})
   }
 
   closeModal() {
-    this.setState({modalVisible: false, title: "", body:""})
+    this.setState({modalVisible: false, title: "", body:"", type: ""})
   }
 
   render() {
@@ -50,20 +52,9 @@ class MessageCenter extends React.Component {
         </Content>
 
       {this.state.modalVisible
-      ? <View visible={this.state.modalVisible} style={styles.modalWrapper}>
-      <Modal transparent={true}>
-        <View style={styles.modalContent}>
-          <Button style={{alignSelf: 'flex-end'}} onPress={() => this.closeModal()}>
-            <Text>X</Text>
-          </Button>
-          <Title style={{alignSelf: 'flex-start', marginVertical: '10%'}}>{this.state.title}</Title>
-          <Text>{this.state.body}</Text>
-        </View>
-      </Modal>
-    </View>
-    : null
-    }
-
+        ? <ModalRequest type={this.state.type} title={this.state.title} body={this.state.body} closeModal={this.closeModal}/>
+        : null
+      }
       </Container>
     );
   }
