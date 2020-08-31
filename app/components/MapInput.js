@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, StyleSheet, TextInput } from "react-native";
+import { View, TextInput } from "react-native";
 import Constants from "expo-constants";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import API_KEY from "../../secret";
@@ -20,7 +20,7 @@ const MapInput = (props) => {
           const name = data.structured_formatting.main_text
           const address = details.formatted_address
           let category = "Other"
-          if(data.types.includes('supermarket')) {
+          if (data.types.includes('supermarket')) {
             category = "Groceries"
           }
           props.notifyChange(coords, name, address, category);

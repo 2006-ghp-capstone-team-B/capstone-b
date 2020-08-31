@@ -18,20 +18,7 @@ export default function NewStorePref(props) {
       <View style={{ flex: 1 }}>
         {/* props.addNewPreference(storeObj) */}
         <TouchableOpacity onPress={() => props.addNewPreference(storeObj)} title="save">
-          <Text
-            style={{
-              backgroundColor: "#6F9A88",
-              color: "#fff",
-              width: "50%",
-              textAlign: "center",
-              fontWeight: "bold",
-              marginLeft: "25%",
-              padding: "3%",
-              fontSize: 15,
-              marginTop: "5%",
-              marginBottom: "5%",
-            }}
-          >
+          <Text style={globalStyles.buttonSave}>
             Save
           </Text>
         </TouchableOpacity>

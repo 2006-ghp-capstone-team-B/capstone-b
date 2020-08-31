@@ -12,7 +12,7 @@ export const globalStyles = StyleSheet.create({
     titleText: {
         fontSize: 30,
         fontWeight: 'bold',
-        color: 'green',
+        color: '#6F9A88',
         textAlign: "center",
     },
     subtitleText: {
@@ -24,16 +24,16 @@ export const globalStyles = StyleSheet.create({
         lineHeight: 20,
         textAlign: "center",
     },
-    body: {
-        flex: 3,
-        backgroundColor: '#F2BE00',
-        padding: 20,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    box: {
-        alignItems: 'center'
-    },
+    // body: {
+    //     flex: 3,
+    //     backgroundColor: '#F2BE00',
+    //     padding: 20,
+    //     alignItems: 'center',
+    //     justifyContent: 'center',
+    // },
+    // box: {
+    //     alignItems: 'center'
+    // },
     background: {
         width: "100%",
         height: "100%",
@@ -84,13 +84,14 @@ export const globalStyles = StyleSheet.create({
         backgroundColor: "#6F9A88",
         color: "#fff",
         width: "80%",
-        borderRadius: 25,
+        // borderRadius: 25,
         textAlign: "center",
         fontWeight: "bold",
+        padding: "2%",
         marginLeft: "10%",
         marginRight: "10%",
-        padding: "2%",
         marginTop: "5%",
+        marginBottom: "5%",
     },
     mButton: {
         fontSize: 16,
@@ -127,5 +128,29 @@ export const globalStyles = StyleSheet.create({
     },
     backgroundBox: {
         marginVertical: 30, backgroundColor: 'white', width: '85%', flexDirection: 'column', borderRadius: 25, justifyContent: 'space-between', flex: 1, alignSelf: 'center', paddingVertical: 10
-    }
+    },
+    buttonRemove: {
+        backgroundColor: "#6F9A88",
+        color: "#fff",
+        width: "100%",
+        textAlign: "center",
+        fontWeight: "bold",
+        marginRight: "50%",
+        padding: "3%",
+        fontSize: 14,
+        marginTop: "5%",
+        marginBottom: "5%",
+    },
+    buttonSave: {
+        backgroundColor: "#6F9A88",
+        color: "#fff",
+        width: "50%",
+        textAlign: "center",
+        fontWeight: "bold",
+        marginLeft: "25%",
+        padding: "3%",
+        fontSize: 15,
+        marginTop: "5%",
+        marginBottom: "5%",
+    },
 });
