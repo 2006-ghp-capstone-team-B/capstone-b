@@ -10,7 +10,15 @@ import households from "./households";
 import listHousehold from "./listHousehold";
 import notifications from "./notifications";
 
-const reducer = combineReducers({ users, singleUser,listPrivate, storePrefs, households, listHousehold, notifications });
+const reducer = combineReducers({
+  users,
+  singleUser,
+  listPrivate,
+  storePrefs,
+  households,
+  listHousehold,
+  notifications,
+});
 const middleware = composeWithDevTools(applyMiddleware(thunkMiddleware, createLogger({ collapsed: true })));
 const store = createStore(reducer, middleware);
 
