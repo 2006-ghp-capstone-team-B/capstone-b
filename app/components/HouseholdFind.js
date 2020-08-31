@@ -1,10 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, TextInput, View, ScrollView, ImageBackground, Button } from "react-native";
 import { globalStyles } from "../../styles/globalStyles";
 import { Formik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+import {findHousehold} from "../store/households"
 
 
 export default function HouseholdFind() {
+  const [listId, setListId] = useState([""])
+
+  const dispatch = useDispatch();
+  const fetchList = async (listId) => {
+      const houz = await dispatch(findHousehold(listId));
+      console.log('houz', houz)
+  };
+
+  useEffect(() => {
+    console.log('LIST', listId[0])
+    if(listId[0] !== "") {
+      fetchList(Number(listId[0]))
+    }
+  }, [listId]);
+
   return (
     <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
       <View style={globalStyles.backgroundBox}>
@@ -17,7 +34,7 @@ export default function HouseholdFind() {
 
                 // replace signin with search thunk, find household name and ID and add to state? Make class component?
 
-                onSubmit={(values) => { props.signin(values) }}
+                onSubmit={(values) => { setListId([values.id]) }}
               >
                 {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
                   <View style={{

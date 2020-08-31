@@ -54,6 +54,26 @@ router.post("/", async (req, res, next) => {
     }
 })
 
+
+//get the list by id
+router.get('/:listId', async (req, res, next) => {
+    try {
+        const list = await ListAccess.findOne({
+            where: {
+                listId: req.params.listId,
+                category: 'household'
+            },
+            include: {
+                model: List,
+            }
+        })
+        res.json(list)
+    } catch (error) {
+        next(error)
+    }
+})
+
+
 //update item quantity
 router.put("/:listId/:itemId", async (req, res, next) => {
     try {
