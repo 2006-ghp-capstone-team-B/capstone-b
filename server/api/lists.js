@@ -47,10 +47,8 @@ router.get('/household/:listId', async (req, res, next) => {
 //create new household list
 router.post("/", async (req, res, next) => {
     try {
-        console.log("~~~~~~~~~this is req/body", req.body)
-        const newList = await List.create({
-            listName: req.body,
-        })
+        console.log("~~~~~~~~~this is req.body.listName", req.body)
+        const newList = await List.create(req.body)
         res.json(newList)
     } catch (error) {
         next(error)

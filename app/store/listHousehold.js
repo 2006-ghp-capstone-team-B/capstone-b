@@ -22,7 +22,7 @@ const getHouseList = (list) => ({
   type: GET_HOUSE_LIST,
   list
 })
-const createHouseholdList = (listName) => ({
+const createHouseholdList = (list) => ({
   type: CREATE_HOUSEHOLD_LIST,
   list
 })
@@ -56,9 +56,9 @@ export const getListHousehold = (listId) => async dispatch => {
 export const createNewHouseholdList = (newHouseholdList) => async (dispatch) => {
   try {
     console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!Inside of createNewHouseholdList redux store")
-    console.log(newHouseholdList)
-    let res = await axios.post(`http://${MY_IP}:19006/api/lists`, newHouseholdList.listName);
-    dispatch(createHouseholdList(res.data))
+    console.log("this is list passed in thunk creator:", newHouseholdList)
+    let {data} = await axios.post(`http://${MY_IP}:19006/api/lists`, newHouseholdList);
+    dispatch(createHouseholdList(data))
   } catch (error) {
     console.log(error)
   }

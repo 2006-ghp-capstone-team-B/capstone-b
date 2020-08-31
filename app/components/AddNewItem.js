@@ -5,7 +5,9 @@ import { globalStyles } from "../../styles/globalStyles";
 import { Formik } from "formik";
 
 
-export default function AddNewItem() {
+export default function AddNewItem(props) {
+    console.log("props of add new item:" , props)
+
     return (
         <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
             <View style={globalStyles.backgroundBox}>
