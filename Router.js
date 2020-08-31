@@ -2,7 +2,7 @@ import React from "react";
 import { Router, Scene } from "react-native-router-flux";
 import { Start } from "./app/screens";
 import { Login, CreateUser, Main } from "./app/screens";
-import { ListPrivate, HouseholdEditMembers, AllHouseholds, SingleHouseholdList, AddNewItem, HouseholdFind, HouseholdCreate } from "./app/components";
+import { ListPrivate, HouseholdProfile, AllHouseholds, SingleHouseholdList, AddNewItem, HouseholdFind, HouseholdCreate } from "./app/components";
 
 
 const Routes = () => {
@@ -17,7 +17,7 @@ const Routes = () => {
         <Scene key="AddNewItem" title="Add New Item" component={AddNewItem}></Scene>
         <Scene key="AllHouseholds" title="All My Households" component={AllHouseholds}></Scene>
         <Scene key="ListSingleHousehold" title="Single Household List" component={SingleHouseholdList}></Scene>
-        <Scene key="HouseholdEditMembers" title="Edit Household Members" component={HouseholdEditMembers}></Scene>
+        <Scene key="HouseholdProfile" title="Household Profile" component={HouseholdProfile}></Scene>
         <Scene key="HouseholdFind" title="Find A Household" component={HouseholdFind}></Scene>
         <Scene key="HouseholdCreate" title="Create A New Household" component={HouseholdCreate}></Scene>
 

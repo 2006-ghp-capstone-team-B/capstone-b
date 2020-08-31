@@ -59,8 +59,7 @@
     "redux-thunk": "^2.3.0",
     "save": "^2.4.0",
     "sequelize": "^6.3.4",
-    "styled-components": "^5.1.1",
-    "undefined": "react-native-community/async-storage"
+    "styled-components": "^5.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",

@@ -1,18 +1,26 @@
 import React, { useEffect } from "react";
-import { Text, TextInput, View, ScrollView, ImageBackground, Button } from "react-native";
+import { Text, TextInput, View, ScrollView, ImageBackground, Button, TouchableOpacity } from "react-native";
 import { globalStyles } from "../../styles/globalStyles";
 import { Formik } from "formik";
+import { Actions } from "react-native-router-flux";
 
 
 export default function HouseholdCreate() {
+  const navigate = (screen) => {
+    Actions[screen]();
+  };
+
   return (
     <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
       <View style={globalStyles.backgroundBox}>
-        <ScrollView>
-          <Text style={globalStyles.subtitle}>Create a New household! </Text>
-          <Text>You will receive an ID for your household list once you've submitted.</Text>
-          <Text>Share the Household ID with your housemates so they can request to join, or invite them directly. </Text>
-          <Formik initialValues={{ listName: "" }} onSubmit={(values) => { props.signin(values) }}>
+        <ScrollView style={{ margin: "15%" }}>
+          <Text style={globalStyles.subtitleText}>Create a New household! </Text>
+          <Text style={globalStyles.paragraph}>You will receive an ID for your household list once you've submitted.</Text>
+          <Text style={globalStyles.paragraph}>Share the Household ID with your housemates so they can request to join, or invite them directly. </Text>
+
+
+          <Formik initialValues={{ listName: "" }}
+            onSubmit={(values) => { props.signin(values) }}>
             {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
               <View style={globalStyles.LogInSignUpForm}>
                 <Text>Enter Household Name:</Text>
@@ -27,8 +35,21 @@ export default function HouseholdCreate() {
             )}
           </Formik>
 
+
         </ScrollView>
       </View>
     </ImageBackground>
-  )
-}
+  );
+};
+
+const mapDispatch = (dispatch) => ({
+  newHouseholdList: (listName) => dispatch(creteHouseholdList(listName)),
+});
+// export default connect(null, mapDispatch)(creteHouseholdList);
+
+/*
+After the user clicked the submit button, screen with Household Profile
+<TouchableOpacity onPress={() => navigate("HouseholdProfile")} title="Add New Member">
+  <Text style={globalStyles.button}>Add New Member</Text>
+</TouchableOpacity>
+*/

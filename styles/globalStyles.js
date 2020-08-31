@@ -68,10 +68,9 @@ export const globalStyles = StyleSheet.create({
     //     marginTop: 15,
     // },
     LogInSignUpForm: {
-        flex: 1,
+        // flex: 1,
         justifyContent: "center",
-        padding: 8,
-        marginTop: 15,
+        padding: "5%",
     },
     InputField: {
         height: 40,
@@ -106,7 +105,7 @@ export const globalStyles = StyleSheet.create({
         marginTop: '10%'
     },
     button: {
-        fontSize: 25,
+        fontSize: 20,
         backgroundColor: "#6F9A88",
         color: "#fff",
         width: "80%",
