@@ -1,13 +1,19 @@
 import { StyleSheet } from 'react-native';
-import constants from 'expo-constants';
+import Constants from 'expo-constants';
 
 export const globalStyles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#6F9A88",
-        alignItems: "center",
-        justifyContent: "center",
-        paddingTop: constants.statusBarHeight,
+    // container: {
+    //     flex: 1,
+    //     backgroundColor: "#6F9A88",
+    //     alignItems: "center",
+    //     justifyContent: "center",
+    //     paddingTop: Constants.statusBarHeight,
+    // },
+    bigTitle: {
+        color: "white",
+        fontSize: 60,
+        textAlign: "center",
+        marginTop: 50,
     },
     titleText: {
         fontSize: 30,
@@ -38,26 +44,30 @@ export const globalStyles = StyleSheet.create({
         width: "100%",
         height: "100%",
     },
+    backgroundBox: {
+        marginVertical: 30,
+        backgroundColor: 'white',
+        width: '85%',
+        flexDirection: 'column',
+        borderRadius: 25,
+        justifyContent: 'space-between',
+        flex: 1,
+        alignSelf: 'center',
+        paddingVertical: 10
+    },
     logo: {
         width: 100,
         height: 100,
         marginLeft: "15%",
         marginTop: "10%",
     },
-    header: {
-        color: "white",
-        fontSize: 60,
-        textAlign: "center",
-        marginTop: 50,
-    },
-
-    style: {
-        flex: 1,
-        justifyContent: "center",
-        padding: 8,
-        marginTop: 15,
-    },
-    signUpForm: {
+    // style: {
+    //     flex: 1,
+    //     justifyContent: "center",
+    //     padding: 8,
+    //     marginTop: 15,
+    // },
+    LogInSignUpForm: {
         flex: 1,
         justifyContent: "center",
         padding: 8,
@@ -66,19 +76,17 @@ export const globalStyles = StyleSheet.create({
     InputField: {
         height: 40,
         borderColor: "gray",
-        borderWidth: 1
+        borderWidth: 1,
+        padding: "3%",
     },
-    leftIconStyle: {
-        marginRight: 10
-    },
-    buttonGroup: {
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-        flex: 1
-    },
+    // buttonGroup: {
+    //     justifyContent: 'flex-end',
+    //     alignItems: 'center',
+    //     position: 'absolute',
+    //     width: '100%',
+    //     height: '100%',
+    //     flex: 1
+    // },
     button: {
         fontSize: 25,
         backgroundColor: "#6F9A88",
@@ -93,42 +101,40 @@ export const globalStyles = StyleSheet.create({
         marginTop: "5%",
         marginBottom: "5%",
     },
-    mButton: {
-        fontSize: 16,
-        backgroundColor: "#6F9A88",
-        color: "#fff",
-        width: "80%",
-        borderRadius: 25,
-        textAlign: "center",
-        fontWeight: "bold",
-        marginLeft: "10%",
-        marginRight: "10%",
-        padding: "2%",
-        marginTop: "5%",
-    },
-    sButton: {
-        fontSize: 10,
-        backgroundColor: "#6F9A88",
-        color: "#fff",
-        width: "35%",
-        borderRadius: 25,
-        textAlign: "center",
-        fontWeight: "bold",
-        marginLeft: "5%",
-        marginRight: "5%",
-        padding: "2%",
-        marginTop: "5%",
-    },
+    // mButton: {
+    //     fontSize: 16,
+    //     backgroundColor: "#6F9A88",
+    //     color: "#fff",
+    //     width: "80%",
+    //     borderRadius: 25,
+    //     textAlign: "center",
+    //     fontWeight: "bold",
+    //     marginLeft: "10%",
+    //     marginRight: "10%",
+    //     padding: "2%",
+    //     marginTop: "5%",
+    // },
+    // sButton: {
+    //     fontSize: 10,
+    //     backgroundColor: "#6F9A88",
+    //     color: "#fff",
+    //     width: "35%",
+    //     borderRadius: 25,
+    //     textAlign: "center",
+    //     fontWeight: "bold",
+    //     marginLeft: "5%",
+    //     marginRight: "5%",
+    //     padding: "2%",
+    //     marginTop: "5%",
+    // },
     buttonPink: {
         margin: '5%',
         backgroundColor: 'pink'
     },
-    buttonMini: {
+    buttonPlusMinus: {
         marginHorizontal: '-5%'
     },
-    backgroundBox: {
-        marginVertical: 30, backgroundColor: 'white', width: '85%', flexDirection: 'column', borderRadius: 25, justifyContent: 'space-between', flex: 1, alignSelf: 'center', paddingVertical: 10
-    },
+
     buttonRemove: {
         backgroundColor: "#6F9A88",
         color: "#fff",

@@ -22,13 +22,13 @@ export default function SingleHouseholdList(props) {
           <Text note numberOfLines={1}>Quantity: {item.quantity}</Text>
         </Body>
         <Right style={{ width: "35%" }}>
-          <Button style={globalStyles.buttonMini} transparent onPress={() => increase(item.listId, item.itemId, item.quantity)}>
+          <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => increase(item.listId, item.itemId, item.quantity)}>
             <Text>+</Text>
           </Button>
-          <Button style={globalStyles.buttonMini} transparent onPress={() => decrease(item.listId, item.itemId, item.quantity)}>
+          <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => decrease(item.listId, item.itemId, item.quantity)}>
             <Text>-</Text>
           </Button>
-          <Button style={globalStyles.buttonMini} transparent onPress={() => console.log("DELETE ITEM")}>
+          <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => console.log("DELETE ITEM")}>
             <Text>x</Text>
           </Button>
         </Right>

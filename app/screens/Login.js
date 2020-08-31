@@ -57,7 +57,7 @@ export const Login = (props) => {
         // call saveUser
         >
           {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
-            <View style={globalStyles.signUpForm}>
+            <View style={globalStyles.LogInSignUpForm}>
               <Text>Log in</Text>
               <View style={{ marginTop: 30 }}>
                 <Text>

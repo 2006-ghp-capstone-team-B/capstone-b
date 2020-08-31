@@ -20,10 +20,10 @@ export default function HouseholdButton(props) {
       </Body>
       <Right style={{ width: "35%" }}>
         {/* Button displays ability to accept or reject request */}
-        <Button style={globalStyles.buttonMini} transparent onPress={() => Actions['ListSingleHousehold']({ listId: listId })}>
+        <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => Actions['ListSingleHousehold']({ listId: listId })}>
           <Text>List</Text>
         </Button>
-        <Button style={globalStyles.buttonMini} transparent onPress={() => Actions['Members']()}>
+        <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => Actions['Members']()}>
           <Text>Members</Text>
         </Button>
       </Right>
