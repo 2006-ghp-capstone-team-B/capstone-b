@@ -63,7 +63,7 @@ export const CreateUser = (props) => {
           }}
         >
           {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
-            <View style={globalStyles.signUpForm}>
+            <View style={globalStyles.LogInSignUpForm}>
               <Text> Create an Account</Text>
               <View style={{ marginTop: 30 }}>
                 <Text>

@@ -3,6 +3,7 @@ import { Text, View, ImageBackground, SafeAreaView, FlatList, TouchableOpacity }
 import { useDispatch, useSelector } from "react-redux";
 import { fetchStorePrefs, deleteStoreThunk } from "../store/storePrefs";
 import { connect } from "formik";
+import { globalStyles } from "../../styles/globalStyles";
 
 export default function ListStorePrefs(props) {
   // storePrefs is an array of preferred stores.
@@ -46,20 +47,7 @@ export default function ListStorePrefs(props) {
                 deleteStore(user.id, item.store.id);
               }}
             >
-              <Text
-                style={{
-                  backgroundColor: "#6F9A88",
-                  color: "#fff",
-                  width: "100%",
-                  textAlign: "center",
-                  fontWeight: "bold",
-                  marginRight: "50%",
-                  padding: "3%",
-                  fontSize: 14,
-                  marginTop: "5%",
-                  marginBottom: "5%",
-                }}
-              >
+              <Text style={globalStyles.buttonRemove}>
                 remove
               </Text>
             </TouchableOpacity>
@@ -78,8 +66,8 @@ export default function ListStorePrefs(props) {
           <FlatList data={storePrefs} renderItem={renderItem} keyExtractor={(item, index) => index.toString()} />
         </SafeAreaView>
       ) : (
-        <Text> No Stores Saved!</Text>
-      )}
+          <Text> No Stores Saved!</Text>
+        )}
     </View>
   );
 }

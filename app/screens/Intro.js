@@ -17,7 +17,7 @@ const Intro = () => {
     <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
       <View>
         <Image source={require("../../assets/pea.png")} style={globalStyles.logo} resizeMode="contain"></Image>
-        <Text style={globalStyles.header}>PEASY</Text>
+        <Text style={globalStyles.bigTitle}>PEASY</Text>
         <View style={globalStyles.buttonView}>
           <TouchableOpacity onPress={() => navigate("login")} title="Login">
             <Text style={globalStyles.button}>Log In</Text>
