@@ -4,10 +4,11 @@ import { globalStyles } from "../../styles/globalStyles";
 import { Formik } from "formik";
 import { Actions } from "react-native-router-flux";
 import { connect } from "react-redux";
-import { createHouseholdList } from "../store/listHousehold";
+import { createNewHouseholdList } from "../store/listHousehold";
 
 
 export function HouseholdCreate(props) {
+
   const navigate = (screen) => {
     Actions[screen]();
   };
@@ -48,7 +49,7 @@ export function HouseholdCreate(props) {
 };
 
 const mapDispatch = (dispatch) => ({
-  newHouseholdList: (listName) => dispatch(createHouseholdList(listName)),
+  newHouseholdList: (listName) => {dispatch(createNewHouseholdList(listName))},
 });
 export default connect(null, mapDispatch)(HouseholdCreate);
 

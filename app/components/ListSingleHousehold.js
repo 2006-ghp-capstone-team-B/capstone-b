@@ -78,7 +78,7 @@ export default function SingleHouseholdList(props) {
               : <Text>You do not currently belong to a household</Text>}
           </View>
           <View style={{ flex: 1, marginTop: '5%' }}>
-            <TouchableOpacity onPress={() => navigate("AddNewItem")} title="Add New Item">
+            <TouchableOpacity onPress={() => Actions.AddNewItem({listId: listId})} title="Add New Item">
               <Text style={globalStyles.button}>Add New Item</Text>
             </TouchableOpacity>
 

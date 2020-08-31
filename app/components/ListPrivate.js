@@ -9,9 +9,9 @@ import { Actions } from "react-native-router-flux";
 export default function ListPrivate() {
 
 
-  const navigate = (screen) => {
-    Actions[screen]();
-  };
+  // const navigate = (screen) => {
+  //   Actions[screen]();
+  // };
 
   const renderItem = ({ item }) => {
     return (
@@ -77,7 +77,7 @@ export default function ListPrivate() {
             }
           </View>
           <View style={{ flex: 1, marginTop: '3%' }}>
-            <TouchableOpacity onPress={() => navigate("AddNewItem")} title="Add New Item">
+            <TouchableOpacity onPress={() => Actions.AddNewItem({})} title="Add New Item">
               <Text style={globalStyles.button}>Add New Item</Text>
             </TouchableOpacity>
           </View>
