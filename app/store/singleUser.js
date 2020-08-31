@@ -38,7 +38,6 @@ const removeUser = () => ({
   type: REMOVE_USER,
 });
 
-
 /**
  * THUNK CREATORS
  */
@@ -47,7 +46,7 @@ const removeUser = () => ({
 //for each of our user to check their user Profile
 export const getSingleUser = (userId) => async (dispatch) => {
   try {
-    const res = await axios.get(`http://${MY_IP}:19006/api/users/${userId}`);
+    const res = await axios.get(`https://peasy-server.herokuapp.com/api/users/${userId}`);
     dispatch(getUser(res.data));
   } catch (error) {
     console.log(error);
@@ -56,7 +55,7 @@ export const getSingleUser = (userId) => async (dispatch) => {
 //for each of our users to check themselves
 export const me = () => async (dispatch) => {
   try {
-    const res = await axios.get("/auth/me");
+    const res = await axios.get("https://peasy-server.herokuapp.com/auth/me");
     dispatch(get(res.data || initialState));
   } catch (err) {
     console.error(err);
@@ -67,7 +66,7 @@ export const me = () => async (dispatch) => {
 export const createNewUser = (newUser) => async (dispatch) => {
   let res;
   try {
-    res = await axios.post(`http://${MY_IP}:19006/auth/signup`, newUser);
+    res = await axios.post(`https://peasy-server.herokuapp.com/auth/signup`, newUser);
   } catch (authError) {
     return dispatch(createUser({ error: authError }));
   }
@@ -83,10 +82,10 @@ export const createNewUser = (newUser) => async (dispatch) => {
 export const login = (user) => async (dispatch) => {
   let res;
   try {
-    console.log('userhere', user)
-    res = await axios.post(`http://${MY_IP}:19006/auth/login`, user);
+    console.log("userhere", user);
+    res = await axios.post(`https://peasy-server.herokuapp.com/auth/login`, user);
   } catch (authError) {
-    console.error(authError)
+    console.error(authError);
   }
 
   try {
@@ -98,7 +97,7 @@ export const login = (user) => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
   try {
-    await axios.post("/auth/logout");
+    await axios.post("https://peasy-server.herokuapp.com/auth/logout");
     dispatch(removeUser());
   } catch (err) {
     console.error(err);
