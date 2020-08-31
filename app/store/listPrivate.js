@@ -1,5 +1,4 @@
 import axios from "axios";
-import { MY_IP } from "../../secret";
 
 /**
  * ACTION TYPES
@@ -74,8 +73,8 @@ export const decreaseItemQuantity = (userId, listId, itemId, quantity) => async 
 
 export const deleteSingleItem = (userId, listId, itemId) => async (dispatch) => {
   try {
-    await axios.delete(`http://${MY_IP}:19006/api/lists/${listId}/${itemId}`);
-    const { data } = await axios.get(`http://${MY_IP}:19006/api/lists/private/${userId}`);
+    await axios.delete(`https://peasy-server.herokuapp.com/api/lists/${listId}/${itemId}`);
+    const { data } = await axios.get(`https://peasy-server.herokuapp.com/api/lists/private/${userId}`);
     dispatch(deleteItem(data));
   } catch (error) {
     console.log(error);

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { MY_IP } from "../../secret";
 import { Actions } from "react-native-router-flux";
 import { saveUser } from "./storageHelper";
 

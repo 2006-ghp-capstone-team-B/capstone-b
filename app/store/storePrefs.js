@@ -1,5 +1,4 @@
 import axios from "axios";
-import { MY_IP } from "../../secret";
 
 const GET_STORE_PREFS = "GET_STORE_PREFS";
 const ADD_STORE_PREF = "ADD_STORE_PREF";
