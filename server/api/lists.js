@@ -63,4 +63,18 @@ router.put("/:listId/:itemId", async (req, res, next) => {
     }
 })
 
+//DELETE sinle item
+router.delete("/:listId/:itemId", async (req, res, next) => {
+    try{
+        const deletedItem = await ItemUserList.destroy({where: {
+            listId: req.params.listId,
+            itemId: req.params.itemId
+        }})
+        res.json(deletedItem)
+    }catch(error){
+        console.log(error)
+    }
+})
+
+
 module.exports = router
