@@ -47,7 +47,6 @@ router.get('/household/:listId', async (req, res, next) => {
 //create new household list
 router.post("/", async (req, res, next) => {
     try {
-        console.log("~~~~~~~~~this is req.body.listName", req.body)
         const newList = await List.create(req.body)
         res.json(newList)
     } catch (error) {
@@ -58,17 +57,13 @@ router.post("/", async (req, res, next) => {
 //update item quantity
 router.put("/:listId/:itemId", async (req, res, next) => {
     try {
-        console.log("in put request")
-        console.log("this is req.body", req.body)
         const item = await ItemUserList.findOne({
             where: {
                 listId: req.params.listId,
                 itemId: req.params.itemId
             }
         })
-        console.log("this is the item we found to update", item)
         const updatedItem = await item.update({ quantity: req.body.quantity })
-        console.log("this is updateditem", updatedItem)
         res.json(updatedItem)
     } catch (error) {
         console.log(error)
