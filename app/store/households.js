@@ -1,11 +1,11 @@
 import axios from "axios";
-import {MY_IP} from '../../secret'
+import { MY_IP } from "../../secret";
 
 /**
  * ACTION TYPES
  */
 const GET_ALL_HOUSEHOLDS = "GET_ALL_HOUSEHOLDS";
-const SEARCH_HOUSEHOLDS = "SEARCH_HOUSEHOLDS"
+const SEARCH_HOUSEHOLDS = "SEARCH_HOUSEHOLDS";
 /**
  * INITIAL STATE
  */
@@ -19,7 +19,6 @@ const getHouseholds = (households) => ({
   type: GET_ALL_HOUSEHOLDS,
   households,
 });
-
 
 /**
  * THUNK CREATORS
@@ -38,16 +37,17 @@ export const findHousehold = (listId) => async (dispatch) => {
     const { data } = await axios.get(`https://peasy-server.herokuapp.com/api/lists/${listId}`);
     return data;
   } catch (error) {
-      console.log('err', error)
+    console.log("err", error);
   }
 };
 
 export const addMember = (listId, user) => async (dispatch) => {
+  console.log("inside add member thunk");
   try {
-    const {id, firstName, lastName} = user
-    await axios.post(`https://peasy-server.herokuapp.com/api/lists/join`, {listId, id, firstName, lastName});
+    const { id, firstName, lastName } = user;
+    await axios.post(`https://peasy-server.herokuapp.com/api/lists/join`, { listId, id, firstName, lastName });
   } catch (error) {
-      console.log('err', error)
+    console.log("err", error);
   }
 };
 
