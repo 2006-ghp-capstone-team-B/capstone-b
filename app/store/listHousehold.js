@@ -1,5 +1,5 @@
 import axios from "axios";
-import { MY_IP } from "../../secret";
+
 /**
  * ACTION TYPES
  */
