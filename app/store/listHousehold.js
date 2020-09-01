@@ -1,4 +1,5 @@
 import axios from "axios";
+import {MY_IP} from "../../secret.js"
 
 /**
  * ACTION TYPES
@@ -6,7 +7,6 @@ import axios from "axios";
 const GET_HOUSE_LIST = 'GET_HOUSE_LIST'
 const INCREASE_ITEM = "INCREASE_ITEM"
 const DECREASE_ITEM = "DECREASE_ITEM"
-const CREATE_HOUSEHOLD_LIST = "CREATE_HOUSEHOLD_LIST "
 const DELETE_ITEM = "DELETE_ITEM"
 const ADD_NEW_ITEM = "ADD_NEW_ITEM"
 
@@ -23,10 +23,7 @@ const getHouseList = (list) => ({
   type: GET_HOUSE_LIST,
   list,
 });
-// const createHouseholdList = (list) => ({
-//   type: CREATE_HOUSEHOLD_LIST,
-//   list,
-// });
+
 // const createHouseholdListAccess = (listAccess) => ({
 //   type: CREATE_HOUSEHOLD_LIST_ACCESS,
 //   listAccess,
@@ -61,16 +58,7 @@ export const getListHousehold = (listId) => async (dispatch) => {
   }
 };
 
-// // creates a new household list
-// export const createNewHouseholdList = (newHouseholdList) => async (dispatch) => {
-//   try {
-//     let { data } = await axios.post(`http://${MY_IP}:19006/api/lists`, newHouseholdList);
-//     // let { data } = await axios.post(`https://peasy-server.herokuapp.com/api/lists`, newHouseholdList);
-//     dispatch(createHouseholdList(data));
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+
 
 // creates a new household list Accesss
 // export const createNewHouseholdListAccess = (listId, userId) => async (dispatch) => {
@@ -136,8 +124,6 @@ export default function (state = initialState, action) {
   switch (action.type) {
     case GET_HOUSE_LIST:
       return action.list;
-    // case CREATE_HOUSEHOLD_LIST:
-    //   return action.list;
     // case CREATE_HOUSEHOLD_LIST_ACCESS:
     //   return action.listAccess;
     case INCREASE_ITEM:

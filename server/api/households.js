@@ -26,4 +26,14 @@ router.get("/:userId", async (req, res, next) => {
   }
 });
 
+
+router.post("/:userId", async(req, res, next) => {
+  try {
+    const newHousehold = await ListAccess.create(req.body)
+    res.json(newHousehold);
+  } catch (error) {
+    next(error);
+  }
+})
+
 module.exports = router

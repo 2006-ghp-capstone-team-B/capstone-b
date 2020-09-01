@@ -43,7 +43,7 @@ export default function AllHouseholds() {
             : <Text>You do not currently belong to a household</Text>}
 
           <View>
-            <Button block iconLeft style={globalStyles.buttonPink} onPress={() => Actions.HouseholdCreate()}>
+            <Button block iconLeft style={globalStyles.buttonPink} onPress={() => Actions.HouseholdCreate({userId: user.id})}>
               <Icon name='ios-add' />
               <Text>Create A Household</Text>
             </Button>

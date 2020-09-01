@@ -62,8 +62,7 @@ router.get("/household/:listId", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     const newList = await List.create(req.body);
-    res.json(newList.id);
-    res.sendStatus(201);
+    res.json(newList)
   } catch (error) {
     next(error);
   }
@@ -81,27 +80,6 @@ router.get("/:listId", async (req, res, next) => {
       },
     });
     res.json(list);
-  } catch (error) {
-    next(error);
-  }
-});
-
-router.post("/access/:listId/:userId", async (req, res, next) => {
-  try {
-    // console.log("222222222222222222222) right before list access")
-    // console.log(req.params.userId)
-    // console.log(typeof (req.params.userId))
-
-    // console.log(req.params.listId)
-    // console.log(typeof (req.params.listId))
-    await ListAccess.create({
-      listId: req.params.listId,
-      userId: req.params.userId,
-      category: "household",
-      confirmed: true,
-    });
-    // console.log("hi");
-    res.sendStatus(201);
   } catch (error) {
     next(error);
   }
