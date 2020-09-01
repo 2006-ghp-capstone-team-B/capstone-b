@@ -63,7 +63,6 @@ export const increaseItemQuantity = (userId, listId, itemId, quantity) => async 
     quantity += 1;
     await axios.put(`https://peasy-server.herokuapp.com/api/lists/${listId}/${itemId}`, { quantity });
     const { data } = await axios.get(`https://peasy-server.herokuapp.com/api/lists/private/${userId}`);
-    console.log("this is data", data);
     dispatch(increaseItem(data));
   } catch (error) {
     console.log(error);
@@ -75,7 +74,6 @@ export const decreaseItemQuantity = (userId, listId, itemId, quantity) => async 
     quantity -= 1;
     await axios.put(`https://peasy-server.herokuapp.com/api/lists/${listId}/${itemId}`, { quantity });
     const { data } = await axios.get(`https://peasy-server.herokuapp.com/api/lists/private/${userId}`);
-    console.log("this is data", data);
     dispatch(decreaseItem(data));
   } catch (error) {
     console.log(error);
@@ -94,15 +92,15 @@ export const deleteSingleItem = (userId, listId, itemId) => async (dispatch) => 
 
 export const addNewItem = (item, listId, userId) => async dispatch => {
   try {
-      const {itemName, quantity} = item
-      const { data } = await axios.post(`https://peasy-server.herokuapp.com/api/items`, {itemName})
-      const {id} = data
-      const newItem = {itemId: id, userId: userId, listId: listId, quantity: quantity}
-      await axios.post(`https://peasy-server.herokuapp.com/api/lists/${listId}`, newItem)
-      const res = await axios.get(`https://peasy-server.herokuapp.com/api/lists/private/${userId}`)
-      dispatch(addItem(res.data))
+    const { itemName, quantity } = item
+    const { data } = await axios.post(`https://peasy-server.herokuapp.com/api/items`, { itemName })
+    const { id } = data
+    const newItem = { itemId: id, userId: userId, listId: listId, quantity: quantity }
+    await axios.post(`https://peasy-server.herokuapp.com/api/lists/${listId}`, newItem)
+    const res = await axios.get(`https://peasy-server.herokuapp.com/api/lists/private/${userId}`)
+    dispatch(addItem(res.data))
   } catch (error) {
-      console.log(error)
+    console.log(error)
   }
 }
 

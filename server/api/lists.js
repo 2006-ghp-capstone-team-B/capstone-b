@@ -1,17 +1,9 @@
 const router = require("express").Router();
 const { List, ListAccess, ItemUserList, Item, Notification } = require("../db/models");
 
-//all the lists
-// router.get('/', async (req, res, next) => {
-//     try {
-//         const lists = await List.findAll()
-//         res.json(lists)
-//     } catch (error) {
-//         next(error)
-//     }
-// })
+//The route to find all the household lists has moved to api/households
 
-//route for get the private list info (not items in lst)
+// route for get the private list info (not items in lst)
 router.get("/privatelist/:userId", async (req, res, next) => {
   try {
     const privateList = await ListAccess.findOne({
@@ -87,19 +79,12 @@ router.get("/:listId", async (req, res, next) => {
 
 router.post("/access/:listId/:userId", async (req, res, next) => {
   try {
-    // console.log("222222222222222222222) right before list access")
-    // console.log(req.params.userId)
-    // console.log(typeof (req.params.userId))
-
-    // console.log(req.params.listId)
-    // console.log(typeof (req.params.listId))
     await ListAccess.create({
       listId: req.params.listId,
       userId: req.params.userId,
       category: "household",
       confirmed: true,
     });
-    // console.log("hi");
     res.sendStatus(201);
   } catch (error) {
     next(error);

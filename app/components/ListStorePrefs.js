@@ -57,8 +57,6 @@ export default function ListStorePrefs(props) {
     </View>
   );
 
-  console.log("ListStsorePrefs props", props);
-
   return (
     <View>
       {storePrefs !== undefined && storePrefs.length !== 0 ? (

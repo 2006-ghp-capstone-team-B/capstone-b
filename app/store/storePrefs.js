@@ -32,9 +32,7 @@ export const fetchStorePrefs = (userId) => async (dispatch) => {
 
 export const createNewPref = (userId, newPref) => async (dispatch) => {
   try {
-    console.log("inside createNewPref ");
     const { data } = await axios.post(`https://peasy-server.herokuapp.com/api/stores/${userId}`, newPref);
-    console.log("after createNewPRef post route");
     dispatch(addStorePref(data));
   } catch (e) {
     console.log(e);

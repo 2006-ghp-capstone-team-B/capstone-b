@@ -4,8 +4,7 @@ import { Actions } from "react-native-router-flux";
 import { globalStyles } from "../../styles/globalStyles";
 
 /*
-This will be our initial screen where people can log in/ sign up.
-If user wants to stay logged in, we can add logic here to directly skip onto the "user home" (Home component)
+This will be our initial screen where people can log in/ sign up, unless already logged in and remembered
 */
 
 const Intro = () => {
