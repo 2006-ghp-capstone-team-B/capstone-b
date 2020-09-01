@@ -27,15 +27,15 @@ export default function ModalRequest(props) {
           {type === "memberRequest" ? (
             <View style={globalStyles.buttonGroupRow}>
               <Button
-                onPress={() => {
-                  console.log("Pressing accept for req userId & listId:", requestUserId, requestListId);
-                  acceptingMember(requestUserId, requestListId);
+                onPress={async () => {
+                  await acceptingMember(requestUserId, requestListId);
+                  closeModal()
                 }}
               >
                 <Text>Accept</Text>
               </Button>
 
-              <Button onPress={() => console.log("IGNORE")}>
+              <Button onPress={() => closeModal()}>
                 <Text>Ignore</Text>
               </Button>
             </View>

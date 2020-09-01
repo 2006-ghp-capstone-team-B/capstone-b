@@ -7,21 +7,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { findHousehold, addMember } from "../store/households";
 import { add } from "react-native-reanimated";
 
-export default function HouseholdFind() {
+export default function HouseholdFind(props) {
   const user = useSelector((state) => state.singleUser);
   const [listId, setListId] = useState([""]);
   const [listName, setListName] = useState([""]);
   const [searchErr, setSearchErr] = useState(false);
+  const householdList = props.allHouseholds.map(house => house.listId)
 
   const dispatch = useDispatch();
   const fetchList = async (listId) => {
-    const household = await dispatch(findHousehold(listId));
-    if (household) {
-      setListName(household.list.listName);
-      setSearchErr(false);
-    } else {
+
+    const household = await dispatch(findHousehold(listId))
+
+    if (!household) {
       setSearchErr(true);
       setListName([""]);
+    } else {
+      const alreadyAMember = householdList.includes(household.listId)
+      if(alreadyAMember) {
+        setSearchErr(true);
+        setListName([""]);
+      } else {
+        setListName(household.list.listName);
+        setSearchErr(false);
+      }
     }
   };
 
