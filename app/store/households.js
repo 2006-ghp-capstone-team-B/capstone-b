@@ -1,44 +1,44 @@
-import axios from 'axios'
-import {MY_IP} from '../../secret'
+import axios from "axios";
+
 /**
  * ACTION TYPES
  */
-const GET_ALL_HOUSEHOLDS = 'GET_ALL_HOUSEHOLDS'
+const GET_ALL_HOUSEHOLDS = "GET_ALL_HOUSEHOLDS";
 
 /**
  * INITIAL STATE
  */
-const initialState = []
+const initialState = [];
 
 /**
  * ACTION CREATORS
  */
 
-const getHouseholds = households => ({
+const getHouseholds = (households) => ({
   type: GET_ALL_HOUSEHOLDS,
-  households
-})
+  households,
+});
 
 /**
  * THUNK CREATORS
  */
-export const getAllHouseholds = (userId) => async dispatch => {
+export const getAllHouseholds = (userId) => async (dispatch) => {
   try {
-    const {data} = await axios.get(`http://${MY_IP}:19006/api/households/${userId}`)
-    dispatch(getHouseholds(data))
+    const { data } = await axios.get(`https://peasy-server.herokuapp.com/api/households/${userId}`);
+    dispatch(getHouseholds(data));
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
 /**
-* REDUCER
-*/
+ * REDUCER
+ */
 export default function (state = initialState, action) {
   switch (action.type) {
     case GET_ALL_HOUSEHOLDS:
-      return action.households
+      return action.households;
     default:
-      return state
+      return state;
   }
 }
