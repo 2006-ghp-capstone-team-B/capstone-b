@@ -3,14 +3,12 @@ import { Text, TextInput, View, ScrollView, ImageBackground, Button, TouchableOp
 import { useDispatch, useSelector } from "react-redux";
 import { connect } from "react-redux";
 import { globalStyles } from "../../styles/globalStyles";
-import { createNewHouseholdList, createNewHouseholdListAccess } from "../store/listHousehold";
+import { createNewHousehold } from "../store/households";
 import { Actions } from "react-native-router-flux";
 import { Formik } from "formik";
-import axios from "axios";
-import { MY_IP } from "../../secret";
 
-
-export default function HouseholdCreate(props) {
+export function HouseholdCreate(props) {
+  const {userId} = props
   return (
     <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
       <View style={globalStyles.backgroundBox}>
@@ -22,10 +20,7 @@ export default function HouseholdCreate(props) {
 
           <Formik initialValues={{ listName: "" }}
             onSubmit={async (values) => {
-              // props.newHouseholdList(values);
-              const userId = 1;
-              const { data } = await axios.post(`http://${MY_IP}:19006/api/lists`, values);
-              await axios.post(`http://${MY_IP}:19006/api/lists/access/${data}/${userId}`);
+              props.newHousehold(values.listName, userId);
               Actions.AllHouseholds();
             }}
           >
@@ -50,14 +45,8 @@ export default function HouseholdCreate(props) {
   );
 };
 
-// const mapState = (state) => {
-//   return {
-//     singleUser: state.singleUser,
-//   };
-// };
 
-// const mapDispatch = (dispatch) => ({
-//   newHouseholdList: (listName, userId) => { dispatch(createNewHouseholdList(listName, userId)) },
-//   // newHouseholdListAccess: (listId, userId) => { dispatch(createNewHouseholdListAccess(listId, userId)) }
-// });
-// export default connect(mapState, mapDispatch)(HouseholdCreate);
+const mapDispatch = (dispatch) => ({
+  newHousehold: (listName, userId) => { dispatch(createNewHousehold(listName, userId)) }
+});
+export default connect(null, mapDispatch)(HouseholdCreate);

@@ -62,8 +62,7 @@ router.get("/household/:listId", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     const newList = await List.create(req.body);
-    res.json(newList.id);
-    res.sendStatus(201);
+    res.json(newList)
   } catch (error) {
     next(error);
   }

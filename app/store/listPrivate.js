@@ -94,7 +94,6 @@ export const deleteSingleItem = (userId, listId, itemId) => async (dispatch) => 
 
 export const addNewItem = (item, listId, userId) => async dispatch => {
   try {
-      console.log("in thunk creator, this is listId and userId passed in", listId, userId)
       const {itemName, quantity} = item
       const { data } = await axios.post(`https://peasy-server.herokuapp.com/api/items`, {itemName})
       const {id} = data

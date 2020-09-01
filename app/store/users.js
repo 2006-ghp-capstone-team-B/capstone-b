@@ -1,4 +1,5 @@
 import axios from "axios";
+import {MY_IP} from "../../secret.js"
 
 /**
  * ACTION TYPES
@@ -25,7 +26,7 @@ const setAllUsers = (users) => ({
 
 export const getAllUsers = () => async (dispatch) => {
   try {
-    const { data } = await axios.get("https://peasy-server.herokuapp.com/api/users");
+    const { data } = await axios.get(`https://peasy-server.herokuapp.com/api/users`);
     dispatch(setAllUsers(data));
   } catch (error) {
     console.log(error);
