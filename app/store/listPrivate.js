@@ -10,7 +10,6 @@ const DECREASE_ITEM = "DECREASE_ITEM"
 const DELETE_ITEM = "DELETE_ITEM"
 const ADD_NEW_ITEM = "ADD_NEW_ITEM"
 
-
 /**
  * INITIAL STATE
  */
@@ -19,7 +18,6 @@ const initialState = [];
 /**
  * ACTION CREATORS
  */
-
 
 const getList = list => ({
   type: GET_LIST,
