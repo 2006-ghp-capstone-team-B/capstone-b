@@ -1,5 +1,7 @@
-const router = require("express").Router();
-const { List, ListAccess, ItemUserList, Item, User } = require("../db/models");
+const router = require('express').Router()
+const { List, ListAccess, ItemUserList, Item, Notification } = require('../db/models')
+
+
 
 //all the lists
 // router.get('/', async (req, res, next) => {
@@ -116,6 +118,60 @@ router.post("/:listId", async (req, res, next) => {
     console.log(error);
   }
 });
+
+// request to join a household
+router.post("/join", async (req, res, next) => {
+    try {
+        const {listId, id, firstName, lastName} = req.body
+        const [newMember, addedMember] = await ListAccess.findOrCreate({
+            where: {
+                userId: id,
+                listId,
+                category: 'household',
+            }
+        })
+
+        const householdMembers = await ListAccess.findAll({
+            where: {
+                listId,
+                confirmed: true
+            }
+        })
+
+        for(let i = 0; i < householdMembers.length; i++) {
+            const noty = await Notification.findOrCreate({
+                where: {
+                    userId: householdMembers[i].userId,
+                    notificationTitle: 'New Household Request',
+                    notificationBody: `${firstName} ${lastName} would like to join your household. Please choose an option below.`,
+                    type: 'memberRequest'
+                }
+            })
+        }
+    } catch (error) {
+        next(error)
+    }
+})
+
+
+//get the list by id
+router.get('/:listId', async (req, res, next) => {
+    try {
+        const list = await ListAccess.findOne({
+            where: {
+                listId: req.params.listId,
+                category: 'household'
+            },
+            include: {
+                model: List,
+            }
+        })
+        res.json(list)
+    } catch (error) {
+        next(error)
+    }
+})
+
 
 //update item quantity
 router.put("/:listId/:itemId", async (req, res, next) => {

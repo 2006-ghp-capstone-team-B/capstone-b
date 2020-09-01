@@ -30,6 +30,7 @@ export const fetchNotifications = (userId) => async (dispatch) => {
   }
 };
 
+
 /**
  * REDUCER
  */

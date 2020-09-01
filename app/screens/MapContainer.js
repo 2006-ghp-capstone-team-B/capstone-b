@@ -79,8 +79,9 @@ class MapContainer extends React.Component {
               <MyMapView region={this.state.region} onRegionChange={(reg) => this.onMapRegionChange(reg)} />
             </View>
 
+            <View style={{ width: "100%", height: "100%", flex: 1 }}>
             {this.state.name !== "" ? (
-              <View style={{ width: "100%", marginTop: "5%", marginBottom: "2.5%" }}>
+              <View style={{ width: "100%", marginTop: "5%", marginBottom: "2.5%", flex:1 }}>
                 <NewStorePref
                   name={this.state.name}
                   address={this.state.address}
@@ -94,6 +95,7 @@ class MapContainer extends React.Component {
 
             <View styles={{ flex: 1, marginTop: "2.5%" }}>
               <ListStorePrefs />
+            </View>
             </View>
           </View>
         ) : null}

@@ -29,6 +29,7 @@ const ListAccess = db.define("listAccess", {
     confirmed: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
+        defaultValue: false,
         validate: {
             notEmpty: true
         }
