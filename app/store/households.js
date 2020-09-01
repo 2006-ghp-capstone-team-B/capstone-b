@@ -48,6 +48,8 @@ export const addMember = (listId, user) => async (dispatch) => {
     await axios.post(`https://peasy-server.herokuapp.com/api/lists/join`, { listId, id, firstName, lastName });
   } catch (error) {
     console.log("err", error);
+    console.log("res errrrrrrr", error.response);
+    console.log("req errrrrrrr", error.request);
   }
 };
 
