@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { List, ListAccess, ItemUserList, Item } = require('../db/models')
+const { List, ListAccess, ItemUserList, Item, User} = require('../db/models')
 
 
 //all the lists
@@ -12,6 +12,22 @@ const { List, ListAccess, ItemUserList, Item } = require('../db/models')
 //     }
 // })
 
+
+//route for get the private list info (not items in lst)
+router.get("/privatelist/:userId", async (req, res, next) => {
+    try {
+      const privateList = await ListAccess.findOne({
+        where:{
+          userId: req.params.userId,
+          category: "private"
+        },
+        include: List
+      })
+      res.json(privateList);
+    } catch (error) {
+      next(error);
+    }
+  });
 
 // route for api/lists/:listId
 router.get('/private/:userId', async (req, res, next) => {
@@ -75,6 +91,17 @@ router.post("/access/:listId/:userId", async (req, res, next) => {
         next(error)
     }
 })
+
+//add new item to ItemUserList
+router.post("/:listId", async (req, res, next) => {
+    try {
+        const newItem = await ItemUserList.create(req.body)
+        res.json(newItem)
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 
 //update item quantity
 router.put("/:listId/:itemId", async (req, res, next) => {

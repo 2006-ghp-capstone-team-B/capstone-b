@@ -3,12 +3,13 @@ import { MY_IP } from "../../secret";
 /**
  * ACTION TYPES
  */
-const GET_HOUSE_LIST = "GET_HOUSE_LIST";
-const INCREASE_ITEM = "INCREASE_ITEM";
-const DECREASE_ITEM = "DECREASE_ITEM";
-// const CREATE_HOUSEHOLD_LIST = "CREATE_HOUSEHOLD_LIST ";
-// const CREATE_HOUSEHOLD_LIST_ACCESS = "CREATE_HOUSEHOLD_LIST_ACCESS ";
-const DELETE_ITEM = "DELETE_ITEM";
+
+const GET_HOUSE_LIST = 'GET_HOUSE_LIST'
+const INCREASE_ITEM = "INCREASE_ITEM"
+const DECREASE_ITEM = "DECREASE_ITEM"
+const CREATE_HOUSEHOLD_LIST = "CREATE_HOUSEHOLD_LIST "
+const DELETE_ITEM = "DELETE_ITEM"
+const ADD_NEW_ITEM = "ADD_NEW_ITEM"
 
 /**
  * INITIAL STATE
@@ -41,8 +42,14 @@ const decreaseItem = (list) => ({
 });
 const deleteItem = (list) => ({
   type: DELETE_ITEM,
-  list,
-});
+  list
+})
+const addItem = list => ({
+  type: ADD_NEW_ITEM,
+  list
+})
+
+
 
 /**
  * THUNK CREATORS
@@ -107,7 +114,22 @@ export const deleteSingleItem = (listId, itemId) => async (dispatch) => {
   } catch (error) {
     console.log(error);
   }
-};
+}
+
+export const addNewItem = (item, listId, userId) => async dispatch => {
+  try {
+      const {itemName, quantity} = item
+      const { data } = await axios.post(`http://${MY_IP}:19006/api/items`, {itemName})
+      const {id} = data
+      const newItem = {itemId: id, userId: userId, listId: listId, quantity: quantity}
+      await axios.post(`http://${MY_IP}:19006/api/lists/${listId}`, newItem)
+      const res = await axios.get(`http://${MY_IP}:19006/api/lists/household/${listId}`)
+      dispatch(addItem(res.data))
+  } catch (error) {
+      console.log(error)
+  }
+}
+
 
 /**
  * REDUCER
@@ -126,7 +148,9 @@ export default function (state = initialState, action) {
     case DECREASE_ITEM:
       return action.list;
     case DELETE_ITEM:
-      return action.list;
+      return action.list
+    case ADD_NEW_ITEM:
+      return action.list
     default:
       return state;
   }
