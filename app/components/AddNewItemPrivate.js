@@ -3,11 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { Text, TextInput, View, ScrollView, ImageBackground, Button } from "react-native";
 import { globalStyles } from "../../styles/globalStyles";
 import { Formik } from "formik";
+import {addNewItem} from "../store/listPrivate"
 
+export default function AddNewItemPrivate(props) {
 
-export default function AddNewItem(props) {
-    console.log("props of add new item:" , props)
-
+    const {listId, userId} = props
+    const dispatch = useDispatch()
+    const submitNewItem = (values, listId, userId) => {
+        dispatch(addNewItem(values, listId, userId))
+    }
+    
     return (
         <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
             <View style={globalStyles.backgroundBox}>
@@ -25,6 +30,9 @@ export default function AddNewItem(props) {
                         }
                         return errors;
                     }}
+                    onSubmit={(values) => {
+                        submitNewItem(values, listId, userId)
+                      }}
                 >
                     {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
                         <View style={globalStyles.signUpForm}>
@@ -42,7 +50,7 @@ export default function AddNewItem(props) {
 
                             <View style={{ marginTop: 30 }}>
                                 <Text>
-                                    Item Quantity <Text style={{ color: "red" }}> {errors.email ? errors.email : ""}</Text>
+                                    Item Quantity <Text style={{ color: "red" }}> {errors.quantity ? errors.quantity : ""}</Text>
                                 </Text>
                                 <TextInput
                                     style={globalStyles.InputField}

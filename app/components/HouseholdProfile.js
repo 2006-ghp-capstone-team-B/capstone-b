@@ -27,7 +27,7 @@ export default function HouseholdProfile() {
     useEffect(() => {
         loadAllHouseholds(user.id);
     }, [user.id]);
-    console.log(listHouseholdName)
+    
     return (
         <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
             <View style={globalStyles.backgroundBox}>
