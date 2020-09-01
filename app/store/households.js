@@ -45,7 +45,7 @@ export const findHousehold = (listId) => async (dispatch) => {
 export const addMember = (listId, user) => async (dispatch) => {
   try {
     const {id, firstName, lastName} = user
-    await axios.post(`http://${MY_IP}:19006/api/lists/join`, {listId, id, firstName, lastName});
+    await axios.post(`https://peasy-server.herokuapp.com/api/lists/join`, {listId, id, firstName, lastName});
   } catch (error) {
       console.log('err', error)
   }
