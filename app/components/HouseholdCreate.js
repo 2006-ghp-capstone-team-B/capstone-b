@@ -1,18 +1,16 @@
 import React, { useEffect } from "react";
 import { Text, TextInput, View, ScrollView, ImageBackground, Button, TouchableOpacity } from "react-native";
-import { globalStyles } from "../../styles/globalStyles";
-import { Formik } from "formik";
-import { Actions } from "react-native-router-flux";
+import { useDispatch, useSelector } from "react-redux";
 import { connect } from "react-redux";
-import { createNewHouseholdList } from "../store/listHousehold";
+import { globalStyles } from "../../styles/globalStyles";
+import { createNewHouseholdList, createNewHouseholdListAccess } from "../store/listHousehold";
+import { Actions } from "react-native-router-flux";
+import { Formik } from "formik";
+import axios from "axios";
+import { MY_IP } from "../../secret";
 
 
-export function HouseholdCreate(props) {
-
-  const navigate = (screen) => {
-    Actions[screen]();
-  };
-
+export default function HouseholdCreate(props) {
   return (
     <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
       <View style={globalStyles.backgroundBox}>
@@ -23,8 +21,12 @@ export function HouseholdCreate(props) {
 
 
           <Formik initialValues={{ listName: "" }}
-            onSubmit={(values) => {
-              props.newHouseholdList(values)
+            onSubmit={async (values) => {
+              // props.newHouseholdList(values);
+              const userId = 1;
+              const { data } = await axios.post(`http://${MY_IP}:19006/api/lists`, values);
+              await axios.post(`http://${MY_IP}:19006/api/lists/access/${data}/${userId}`);
+              Actions.AllHouseholds();
             }}
           >
             {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
@@ -48,14 +50,14 @@ export function HouseholdCreate(props) {
   );
 };
 
-const mapDispatch = (dispatch) => ({
-  newHouseholdList: (listName) => {dispatch(createNewHouseholdList(listName))},
-});
-export default connect(null, mapDispatch)(HouseholdCreate);
+// const mapState = (state) => {
+//   return {
+//     singleUser: state.singleUser,
+//   };
+// };
 
-/*
-After the user clicked the submit button, screen with Household Profile
-<TouchableOpacity onPress={() => navigate("HouseholdProfile")} title="Add New Member">
-  <Text style={globalStyles.button}>Add New Member</Text>
-</TouchableOpacity>
-*/
+// const mapDispatch = (dispatch) => ({
+//   newHouseholdList: (listName, userId) => { dispatch(createNewHouseholdList(listName, userId)) },
+//   // newHouseholdListAccess: (listId, userId) => { dispatch(createNewHouseholdListAccess(listId, userId)) }
+// });
+// export default connect(mapState, mapDispatch)(HouseholdCreate);
