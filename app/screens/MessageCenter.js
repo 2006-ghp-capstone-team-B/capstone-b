@@ -22,7 +22,12 @@ class MessageCenter extends React.Component {
 
   componentDidMount() {
     this.props.loadMessages(this.props.singleUser.id);
+    this.focusListener = this.props.navigation.addListener('focus',
+       () => this.props.loadMessages(this.props.singleUser.id)
+     );
    }
+
+
 
   openModal(type, title, body) {
     this.setState({modalVisible: true,
