@@ -4,7 +4,7 @@ import axios from "axios";
  * ACTION TYPES
  */
 const GET_ALL_HOUSEHOLDS = "GET_ALL_HOUSEHOLDS";
-const CREATE_HOUSEHOLD = "CREATE_HOUSEHOLD"
+const CREATE_HOUSEHOLD = "CREATE_HOUSEHOLD";
 const SEARCH_HOUSEHOLDS = "SEARCH_HOUSEHOLDS";
 
 /**
@@ -42,15 +42,15 @@ export const getAllHouseholds = (userId) => async (dispatch) => {
 export const createNewHousehold = (listName, userId) => async (dispatch) => {
   try {
     const { data } = await axios.post(`https://peasy-server.herokuapp.com/api/lists`, { listName });
-    const listId = data.id
-    const household = { listId: listId, userId: userId, confirmed: "TRUE", category: "household" }
-    await axios.post(`https://peasy-server.herokuapp.com/api/households/:userId`, household)
-    const res = await axios.get(`https://peasy-server.herokuapp.com/api/households/${userId}`)
+    const listId = data.id;
+    const household = { listId: listId, userId: userId, confirmed: "TRUE", category: "household" };
+    await axios.post(`https://peasy-server.herokuapp.com/api/households/:userId`, household);
+    const res = await axios.get(`https://peasy-server.herokuapp.com/api/households/${userId}`);
     dispatch(createHousehold(res.data));
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 export const findHousehold = (listId) => async (dispatch) => {
   try {
@@ -70,6 +70,16 @@ export const addMember = (listId, user) => async (dispatch) => {
     console.log("err", error);
     console.log("res errrrrrrr", error.response);
     console.log("req errrrrrrr", error.request);
+  }
+};
+
+export const acceptMember = (userId, listId) => async (dispatch) => {
+  try {
+    await axios.post(`https://peasy-server.herokuapp.com/api/lists/accept`, { userId, listId });
+  } catch (e) {
+    console.log("ressssssss e", e.response);
+    console.log("reqqqqqqqqe ", e.request);
+    console.log(e);
   }
 };
 
