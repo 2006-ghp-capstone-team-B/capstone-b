@@ -6,7 +6,8 @@ import { MY_IP } from "../../secret";
 const GET_HOUSE_LIST = "GET_HOUSE_LIST";
 const INCREASE_ITEM = "INCREASE_ITEM";
 const DECREASE_ITEM = "DECREASE_ITEM";
-const CREATE_HOUSEHOLD_LIST = "CREATE_HOUSEHOLD_LIST ";
+// const CREATE_HOUSEHOLD_LIST = "CREATE_HOUSEHOLD_LIST ";
+// const CREATE_HOUSEHOLD_LIST_ACCESS = "CREATE_HOUSEHOLD_LIST_ACCESS ";
 const DELETE_ITEM = "DELETE_ITEM";
 
 /**
@@ -22,10 +23,14 @@ const getHouseList = (list) => ({
   type: GET_HOUSE_LIST,
   list,
 });
-const createHouseholdList = (list) => ({
-  type: CREATE_HOUSEHOLD_LIST,
-  list,
-});
+// const createHouseholdList = (list) => ({
+//   type: CREATE_HOUSEHOLD_LIST,
+//   list,
+// });
+// const createHouseholdListAccess = (listAccess) => ({
+//   type: CREATE_HOUSEHOLD_LIST_ACCESS,
+//   listAccess,
+// });
 const increaseItem = (list) => ({
   type: INCREASE_ITEM,
   list,
@@ -51,15 +56,26 @@ export const getListHousehold = (listId) => async (dispatch) => {
   }
 };
 
-// creates a new household list
-export const createNewHouseholdList = (newHouseholdList) => async (dispatch) => {
-  try {
-    let { data } = await axios.post(`https://peasy-server.herokuapp.com/api/lists`, newHouseholdList);
-    dispatch(createHouseholdList(data));
-  } catch (error) {
-    console.log(error);
-  }
-};
+// // creates a new household list
+// export const createNewHouseholdList = (newHouseholdList) => async (dispatch) => {
+//   try {
+//     let { data } = await axios.post(`http://${MY_IP}:19006/api/lists`, newHouseholdList);
+//     // let { data } = await axios.post(`https://peasy-server.herokuapp.com/api/lists`, newHouseholdList);
+//     dispatch(createHouseholdList(data));
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+// creates a new household list Accesss
+// export const createNewHouseholdListAccess = (listId, userId) => async (dispatch) => {
+//   try {
+//     let { data } = await axios.post(`http://${MY_IP}:19006/api/lists/access/${listId}/${userId}`);
+//     dispatch(createHouseholdListAccess(data));
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 export const increaseItemQuantity = (listId, itemId, quantity) => async (dispatch) => {
   try {
@@ -101,8 +117,10 @@ export default function (state = initialState, action) {
   switch (action.type) {
     case GET_HOUSE_LIST:
       return action.list;
-    case CREATE_HOUSEHOLD_LIST:
-      return action.list;
+    // case CREATE_HOUSEHOLD_LIST:
+    //   return action.list;
+    // case CREATE_HOUSEHOLD_LIST_ACCESS:
+    //   return action.listAccess;
     case INCREASE_ITEM:
       return action.list;
     case DECREASE_ITEM:
