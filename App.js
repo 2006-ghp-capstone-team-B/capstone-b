@@ -1,9 +1,7 @@
 import React from "react";
 import { Provider } from "react-redux";
 import store from "./app/store";
-import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity} from "react-native";
 import Routes from './Router'
-
 
 const theme = {
   Button: {
@@ -22,5 +20,3 @@ export default function App() {
 
   )
 }
-
-

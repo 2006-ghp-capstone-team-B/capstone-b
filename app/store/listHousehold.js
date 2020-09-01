@@ -1,5 +1,4 @@
 import axios from "axios";
-import {MY_IP} from "../../secret.js"
 
 /**
  * ACTION TYPES
@@ -24,10 +23,6 @@ const getHouseList = (list) => ({
   list,
 });
 
-// const createHouseholdListAccess = (listAccess) => ({
-//   type: CREATE_HOUSEHOLD_LIST_ACCESS,
-//   listAccess,
-// });
 const increaseItem = (list) => ({
   type: INCREASE_ITEM,
   list,
@@ -57,18 +52,6 @@ export const getListHousehold = (listId) => async (dispatch) => {
     console.log(error);
   }
 };
-
-
-
-// creates a new household list Accesss
-// export const createNewHouseholdListAccess = (listId, userId) => async (dispatch) => {
-//   try {
-//     let { data } = await axios.post(`http://${MY_IP}:19006/api/lists/access/${listId}/${userId}`);
-//     dispatch(createHouseholdListAccess(data));
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
 
 export const increaseItemQuantity = (listId, itemId, quantity) => async (dispatch) => {
   try {
@@ -104,15 +87,15 @@ export const deleteSingleItem = (listId, itemId) => async (dispatch) => {
 
 export const addNewItem = (item, listId, userId) => async dispatch => {
   try {
-      const {itemName, quantity} = item
-      const { data } = await axios.post(`https://peasy-server.herokuapp.com/api/items`, {itemName})
-      const {id} = data
-      const newItem = {itemId: id, userId: userId, listId: listId, quantity: quantity}
-      await axios.post(`https://peasy-server.herokuapp.com/api/lists/${listId}`, newItem)
-      const res = await axios.get(`https://peasy-server.herokuapp.com/api/lists/household/${listId}`)
-      dispatch(addItem(res.data))
+    const { itemName, quantity } = item
+    const { data } = await axios.post(`https://peasy-server.herokuapp.com/api/items`, { itemName })
+    const { id } = data
+    const newItem = { itemId: id, userId: userId, listId: listId, quantity: quantity }
+    await axios.post(`https://peasy-server.herokuapp.com/api/lists/${listId}`, newItem)
+    const res = await axios.get(`https://peasy-server.herokuapp.com/api/lists/household/${listId}`)
+    dispatch(addItem(res.data))
   } catch (error) {
-      console.log(error)
+    console.log(error)
   }
 }
 
@@ -124,8 +107,6 @@ export default function (state = initialState, action) {
   switch (action.type) {
     case GET_HOUSE_LIST:
       return action.list;
-    // case CREATE_HOUSEHOLD_LIST_ACCESS:
-    //   return action.listAccess;
     case INCREASE_ITEM:
       return action.list;
     case DECREASE_ITEM:
