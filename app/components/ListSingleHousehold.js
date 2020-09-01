@@ -9,9 +9,6 @@ import { Actions } from "react-native-router-flux";
 
 export default function SingleHouseholdList(props) {
 
-  const navigate = (screen) => {
-    Actions[screen]();
-  };
 
   const renderItem = ({ item }) => {
     return (
@@ -37,7 +34,7 @@ export default function SingleHouseholdList(props) {
     )
   };
 
-  const { listId } = props
+  const { listId, userId } = props
   const listHousehold = useSelector((state) => state.listHousehold);
 
   const dispatch = useDispatch();
@@ -78,7 +75,7 @@ export default function SingleHouseholdList(props) {
               : <Text>You do not currently belong to a household</Text>}
           </View>
           <View style={{ flex: 1, marginTop: '5%' }}>
-            <TouchableOpacity onPress={() => Actions.AddNewItem({listId: listId})} title="Add New Item">
+            <TouchableOpacity onPress={() => Actions.AddNewItemHousehold({listId: listId, userId: userId})} title="Add New Item">
               <Text style={globalStyles.button}>Add New Item</Text>
             </TouchableOpacity>
 

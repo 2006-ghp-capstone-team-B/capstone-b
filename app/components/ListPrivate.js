@@ -2,16 +2,13 @@ import React, { useEffect } from "react";
 import { View, ImageBackground, SafeAreaView, FlatList, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { getListPrivate, increaseItemQuantity, decreaseItemQuantity, deleteSingleItem } from "../store/listPrivate";
+import {fetchListInfo} from "../store/listInfo"
 import { globalStyles } from '../../styles/globalStyles';
 import { Text, Icon, Body, Right, Button, ListItem, Card, Left, Container } from 'native-base';
 import { Actions } from "react-native-router-flux";
 
 export default function ListPrivate() {
 
-
-  // const navigate = (screen) => {
-  //   Actions[screen]();
-  // };
 
   const renderItem = ({ item }) => {
     return (
@@ -37,9 +34,11 @@ export default function ListPrivate() {
   };
 
   const listPrivate = useSelector((state) => state.listPrivate);
+  const listInfo = useSelector((state) => state.listInfo);
   const user = useSelector((state) => state.singleUser);
   const dispatch = useDispatch();
   const loadListPrivate = (userId) => {
+    dispatch(fetchListInfo(userId))
     dispatch(getListPrivate(userId));
   };
   const increase = (userId, listId, itemId, quantity) => {
@@ -77,7 +76,7 @@ export default function ListPrivate() {
             }
           </View>
           <View style={{ flex: 1, marginTop: '3%' }}>
-            <TouchableOpacity onPress={() => Actions.AddNewItem({})} title="Add New Item">
+            <TouchableOpacity onPress={() => Actions.AddNewItemPrivate({listId: listInfo.listId, userId: user.id})} title="Add New Item">
               <Text style={globalStyles.button}>Add New Item</Text>
             </TouchableOpacity>
           </View>

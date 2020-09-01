@@ -4,10 +4,14 @@ import {MY_IP} from '../../secret'
 /**
  * ACTION TYPES
  */
+
 const GET_LIST = 'GET_LIST'
 const INCREASE_ITEM = "INCREASE_ITEM"
 const DECREASE_ITEM = "DECREASE_ITEM"
 const DELETE_ITEM = "DELETE_ITEM"
+const ADD_NEW_ITEM = "ADD_NEW_ITEM"
+
+
 /**
  * INITIAL STATE
  */
@@ -16,6 +20,7 @@ const initialState = []
 /**
  * ACTION CREATORS
  */
+
 
 const getList = list => ({
   type: GET_LIST,
@@ -36,9 +41,17 @@ const deleteItem = (list) => ({
   type: DELETE_ITEM,
   list
 })
+
+const addItem = list => ({
+  type: ADD_NEW_ITEM,
+  list
+})
+
 /**
  * THUNK CREATORS
  */
+
+
 export const getListPrivate = (userId) => async dispatch => {
   try {
     const { data } = await axios.get(`http://${MY_IP}:19006/api/lists/private/${userId}`)
@@ -82,6 +95,21 @@ export const deleteSingleItem = (userId, listId, itemId) => async dispatch => {
   }
 }
 
+export const addNewItem = (item, listId, userId) => async dispatch => {
+  try {
+      console.log("in thunk creator, this is listId and userId passed in", listId, userId)
+      const {itemName, quantity} = item
+      const { data } = await axios.post(`http://${MY_IP}:19006/api/items`, {itemName})
+      const {id} = data
+      const newItem = {itemId: id, userId: userId, listId: listId, quantity: quantity}
+      await axios.post(`http://${MY_IP}:19006/api/lists/${listId}`, newItem)
+      const res = await axios.get(`http://${MY_IP}:19006/api/lists/private/${userId}`)
+      dispatch(addItem(res.data))
+  } catch (error) {
+      console.log(error)
+  }
+}
+
 /**
 * REDUCER
 */
@@ -94,6 +122,8 @@ export default function (state = initialState, action) {
     case DECREASE_ITEM:
       return action.list
     case DELETE_ITEM:
+      return action.list
+    case ADD_NEW_ITEM:
       return action.list
     default:
       return state
