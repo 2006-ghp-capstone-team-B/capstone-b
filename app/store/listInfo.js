@@ -23,7 +23,7 @@ const getListInfo = list => ({
 //to get the private list Id without fetching the whole list private array
 export const fetchListInfo = (userId) => async dispatch => {
     try {
-        const { data } = await axios.get(`http://${MY_IP}:19006/api/lists/privatelist/${userId}`)
+        const { data } = await axios.get(`https://peasy-server.herokuapp.com/api/lists/privatelist/${userId}`)
         dispatch(getListInfo(data))
     } catch (error) {
         console.log(error)
