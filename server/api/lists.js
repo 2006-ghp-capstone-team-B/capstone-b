@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { List, ListAccess, ItemUserList, Item } = require('../db/models')
+const { List, ListAccess, ItemUserList, Item, User} = require('../db/models')
 
 
 //all the lists
@@ -12,6 +12,22 @@ const { List, ListAccess, ItemUserList, Item } = require('../db/models')
 //     }
 // })
 
+
+//route for get the private list info (not items in lst)
+router.get("/privatelist/:userId", async (req, res, next) => {
+    try {
+      const privateList = await ListAccess.findOne({
+        where:{
+          userId: req.params.userId,
+          category: "private"
+        },
+        include: List
+      })
+      res.json(privateList);
+    } catch (error) {
+      next(error);
+    }
+  });
 
 // route for api/lists/:listId
 router.get('/private/:userId', async (req, res, next) => {
@@ -48,11 +64,44 @@ router.get('/household/:listId', async (req, res, next) => {
 router.post("/", async (req, res, next) => {
     try {
         const newList = await List.create(req.body)
-        res.json(newList)
+        res.json(newList.id)
+        res.sendStatus(201)
     } catch (error) {
         next(error)
     }
 })
+
+router.post("/access/:listId/:userId", async (req, res, next) => {
+    try {
+        // console.log("222222222222222222222) right before list access")
+        // console.log(req.params.userId)
+        // console.log(typeof (req.params.userId))
+
+        // console.log(req.params.listId)
+        // console.log(typeof (req.params.listId))
+        await ListAccess.create({
+            listId: req.params.listId,
+            userId: req.params.userId,
+            category: "household",
+            confirmed: true,
+        });
+        // console.log("hi");
+        res.sendStatus(201);
+    } catch (error) {
+        next(error)
+    }
+})
+
+//add new item to ItemUserList
+router.post("/:listId", async (req, res, next) => {
+    try {
+        const newItem = await ItemUserList.create(req.body)
+        res.json(newItem)
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 
 //update item quantity
 router.put("/:listId/:itemId", async (req, res, next) => {
@@ -72,13 +121,15 @@ router.put("/:listId/:itemId", async (req, res, next) => {
 
 //DELETE sinle item
 router.delete("/:listId/:itemId", async (req, res, next) => {
-    try{
-        const deletedItem = await ItemUserList.destroy({where: {
-            listId: req.params.listId,
-            itemId: req.params.itemId
-        }})
+    try {
+        const deletedItem = await ItemUserList.destroy({
+            where: {
+                listId: req.params.listId,
+                itemId: req.params.itemId
+            }
+        })
         res.json(deletedItem)
-    }catch(error){
+    } catch (error) {
         console.log(error)
     }
 })

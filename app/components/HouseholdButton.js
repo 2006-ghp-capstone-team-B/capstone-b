@@ -5,7 +5,7 @@ import { globalStyles } from "../../styles/globalStyles";
 
 
 export default function HouseholdButton(props) {
-  const { listId } = props.household
+  const { listId, userId } = props.household
   const { listName } = props.household.list
   return (
     <ListItem icon>
@@ -20,7 +20,7 @@ export default function HouseholdButton(props) {
       </Body>
       <Right style={{ width: "35%" }}>
         {/* Button displays ability to accept or reject request */}
-        <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => Actions['ListSingleHousehold']({ listId: listId })}>
+        <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => Actions['ListSingleHousehold']({ listId: listId, userId: userId })}>
           <Text>List</Text>
         </Button>
         <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => Actions['HouseholdProfile']()}>
