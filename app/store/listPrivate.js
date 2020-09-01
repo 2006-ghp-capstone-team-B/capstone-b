@@ -50,7 +50,6 @@ const addItem = list => ({
 
 
 export const getListPrivate = (userId) => async dispatch => {
-
   try {
     const { data } = await axios.get(`https://peasy-server.herokuapp.com/api/lists/private/${userId}`);
     dispatch(getList(data));
@@ -97,11 +96,11 @@ export const addNewItem = (item, listId, userId) => async dispatch => {
   try {
       console.log("in thunk creator, this is listId and userId passed in", listId, userId)
       const {itemName, quantity} = item
-      const { data } = await axios.post(`http://${MY_IP}:19006/api/items`, {itemName})
+      const { data } = await axios.post(`https://peasy-server.herokuapp.com/api/items`, {itemName})
       const {id} = data
       const newItem = {itemId: id, userId: userId, listId: listId, quantity: quantity}
-      await axios.post(`http://${MY_IP}:19006/api/lists/${listId}`, newItem)
-      const res = await axios.get(`http://${MY_IP}:19006/api/lists/private/${userId}`)
+      await axios.post(`https://peasy-server.herokuapp.com/api/lists/${listId}`, newItem)
+      const res = await axios.get(`https://peasy-server.herokuapp.com/api/lists/private/${userId}`)
       dispatch(addItem(res.data))
   } catch (error) {
       console.log(error)
@@ -120,7 +119,7 @@ export default function (state = initialState, action) {
     case DECREASE_ITEM:
       return action.list;
     case DELETE_ITEM:
-      return action.list
+      return action.list;
     case ADD_NEW_ITEM:
       return action.list
     default:

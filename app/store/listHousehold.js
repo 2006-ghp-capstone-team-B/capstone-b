@@ -3,7 +3,6 @@ import axios from "axios";
 /**
  * ACTION TYPES
  */
-
 const GET_HOUSE_LIST = 'GET_HOUSE_LIST'
 const INCREASE_ITEM = "INCREASE_ITEM"
 const DECREASE_ITEM = "DECREASE_ITEM"
@@ -48,7 +47,6 @@ const addItem = list => ({
   type: ADD_NEW_ITEM,
   list
 })
-
 
 
 /**
@@ -119,17 +117,16 @@ export const deleteSingleItem = (listId, itemId) => async (dispatch) => {
 export const addNewItem = (item, listId, userId) => async dispatch => {
   try {
       const {itemName, quantity} = item
-      const { data } = await axios.post(`http://${MY_IP}:19006/api/items`, {itemName})
+      const { data } = await axios.post(`https://peasy-server.herokuapp.com/api/items`, {itemName})
       const {id} = data
       const newItem = {itemId: id, userId: userId, listId: listId, quantity: quantity}
-      await axios.post(`http://${MY_IP}:19006/api/lists/${listId}`, newItem)
-      const res = await axios.get(`http://${MY_IP}:19006/api/lists/household/${listId}`)
+      await axios.post(`https://peasy-server.herokuapp.com/api/lists/${listId}`, newItem)
+      const res = await axios.get(`https://peasy-server.herokuapp.com/api/lists/household/${listId}`)
       dispatch(addItem(res.data))
   } catch (error) {
       console.log(error)
   }
 }
-
 
 /**
  * REDUCER
