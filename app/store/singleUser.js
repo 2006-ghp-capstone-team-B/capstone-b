@@ -1,7 +1,6 @@
 import axios from "axios";
 import { Actions } from "react-native-router-flux";
 import { saveUser } from "./storageHelper";
-
 // when we login -> store user's entire obj
 // AsyncStorage is global
 // each page would fetch user's info based on asyncstorage info
@@ -54,7 +53,7 @@ export const getSingleUser = (userId) => async (dispatch) => {
 //for each of our users to check themselves
 export const me = () => async (dispatch) => {
   try {
-    const res = await axios.get("https://peasy-server.herokuapp.com/auth/me");
+    const res = await axios.get(`https://peasy-server.herokuapp.com/auth/me`);
     dispatch(get(res.data || initialState));
   } catch (err) {
     console.error(err);
@@ -81,7 +80,6 @@ export const createNewUser = (newUser) => async (dispatch) => {
 export const login = (user) => async (dispatch) => {
   let res;
   try {
-    console.log("userhere", user);
     res = await axios.post(`https://peasy-server.herokuapp.com/auth/login`, user);
   } catch (authError) {
     // console.error(authError);
@@ -97,7 +95,7 @@ export const login = (user) => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
   try {
-    await axios.post("https://peasy-server.herokuapp.com/auth/logout");
+    await axios.post(`https://peasy-server.herokuapp.com/auth/logout`);
     dispatch(removeUser());
   } catch (err) {
     console.error(err);

@@ -15,6 +15,7 @@ const addStorePref = (newPref) => ({
   type: ADD_STORE_PREF,
   newPref,
 });
+
 const deleteStoreFromPrefs = (updatedStorePref) => ({
   type: DELETE_STORE_FROM_PREFS,
   updatedStorePref,
