@@ -27,9 +27,9 @@ export default function ModalRequest(props) {
           {type === "memberRequest" ? (
             <View style={globalStyles.buttonGroupRow}>
               <Button
-                onPress={async () => {
-                  await acceptingMember(requestUserId, requestListId);
-                  closeModal()
+                onPress={() => {
+                  closeModal();
+                  acceptingMember(requestUserId, requestListId);
                 }}
               >
                 <Text>Accept</Text>
