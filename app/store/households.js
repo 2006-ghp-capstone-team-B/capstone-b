@@ -1,10 +1,10 @@
 import axios from "axios";
+import {MY_IP} from '../../secret'
 
 /**
  * ACTION TYPES
  */
 const GET_ALL_HOUSEHOLDS = "GET_ALL_HOUSEHOLDS";
-
 const SEARCH_HOUSEHOLDS = "SEARCH_HOUSEHOLDS"
 /**
  * INITIAL STATE
@@ -19,14 +19,6 @@ const getHouseholds = (households) => ({
   type: GET_ALL_HOUSEHOLDS,
   households,
 });
-
-const getHouse = (house) => {
-  console.log('inside action creator')
-  return {
-  type: SEARCH_HOUSEHOLDS,
-  house,
-}};
-
 
 
 /**
@@ -44,20 +36,18 @@ export const getAllHouseholds = (userId) => async (dispatch) => {
 export const findHousehold = (listId) => async (dispatch) => {
   try {
     const { data } = await axios.get(`https://peasy-server.herokuapp.com/api/lists/${listId}`);
-    dispatch(getHouse(data));
     return data;
   } catch (error) {
-    if(error.response) {
-      console.log('data', error.response.data);
-      console.log('status', error.response.status);
-      console.log('headers', error.response.headers);
-    } else if (error.request) {
-      console.log('2');
-    } else {
-      console.log('3');
       console.log('err', error)
-    }
+  }
+};
 
+export const addMember = (listId, user) => async (dispatch) => {
+  try {
+    const {id, firstName, lastName} = user
+    await axios.post(`http://${MY_IP}:19006/api/lists/join`, {listId, id, firstName, lastName});
+  } catch (error) {
+      console.log('err', error)
   }
 };
 

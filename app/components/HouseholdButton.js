@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Icon, Body, Right, Button, ListItem, Card, View, Left, T } from 'native-base';
+import { Text, Icon, Body, Right, Button, ListItem, Left, } from 'native-base';
 import { Actions } from "react-native-router-flux";
 import { globalStyles } from "../../styles/globalStyles";
 
