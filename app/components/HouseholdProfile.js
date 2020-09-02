@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Text, TextInput, View, ImageBackground, Button, FlatList, SafeAreaView } from "react-native";
 import { globalStyles } from "../../styles/globalStyles";
-import { getAllHouseholdMembers } from "../store/households";
+import { getAllHouseholdMembers } from "../store/householdMembers";
 // If someone decided to leave the household... we would redirect them to their "All Households" screen
 import { Actions } from "react-native-router-flux";
 import { Formik } from "formik";
@@ -14,14 +14,14 @@ export default function HouseholdProfile(props) {
 
     const renderItem = ({ item }) => (
         <View>
-            <Text>{item.firstName} {item.lastName}</Text>
+            <Text>{item.user.firstName} {item.user.lastName}</Text>
         </View>
     );
 
     // const navigate = (screen) => {
     //     Actions[screen]();
     // };
-    // const allhouseholds = useSelector((state) => state.households);
+    const members = useSelector((state) => state.householdMembers);
     // const { listMembers } = useSelector((state) => state.households);
 
 
@@ -48,7 +48,7 @@ export default function HouseholdProfile(props) {
                     <SafeAreaView style={{ flexDirection: 'row', alignItems: "center", justifyContent: "center", }}>
                         <FlatList
                             // numColumns={2}
-                            data={user}
+                            data={members}
                             renderItem={renderItem}
                             keyExtractor={(item, index) => index.toString()}
                         />

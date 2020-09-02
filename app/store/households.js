@@ -6,7 +6,6 @@ import { MY_IP } from "../../secret.js"
 const GET_ALL_HOUSEHOLDS = "GET_ALL_HOUSEHOLDS";
 const CREATE_HOUSEHOLD = "CREATE_HOUSEHOLD";
 const SEARCH_HOUSEHOLDS = "SEARCH_HOUSEHOLDS";
-const GET_HOUSEHOLD_MEMBERS = "GET_HOUSEHOLD_MEMBERS"
 /**
  * INITIAL STATE
  */
@@ -26,10 +25,10 @@ const createHousehold = (households) => ({
   households,
 });
 
-const getHouseholdMembers = (households) => ({
-  type: GET_HOUSEHOLD_MEMBERS,
-  households,
-})
+// const getHouseholdMembers = (households) => ({
+//   type: GET_HOUSEHOLD_MEMBERS,
+//   households,
+// })
 
 /**
  * THUNK CREATORS
@@ -57,16 +56,16 @@ export const createNewHousehold = (listName, userId) => async (dispatch) => {
   }
 };
 
-//gets all household members
-export const getAllHouseholdMembers = (listId) => async (dispatch) => {
-  try {
-    const { data } = await axios.get(`http://${MY_IP}:19006/api/lists/${listId}/members`);
-    const members = data.firstName;
-    res.json(members);
-  } catch (error) {
-    console.log(error)
-  }
-}
+// //gets all household members
+// export const getAllHouseholdMembers = (listId) => async (dispatch) => {
+//   try {
+//     const { data } = await axios.get(`http://${MY_IP}:19006/api/lists/${listId}/members`);
+//     // const members = data.firstName;
+//     dispatch(getHouseholdMembers(data));
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
 
 export const findHousehold = (listId) => async (dispatch) => {
   try {
@@ -108,6 +107,8 @@ export default function (state = initialState, action) {
       return action.households;
     case CREATE_HOUSEHOLD:
       return action.households;
+    // case GET_HOUSEHOLD_MEMBERS:
+    //   return action.households;
     default:
       return state;
   }
