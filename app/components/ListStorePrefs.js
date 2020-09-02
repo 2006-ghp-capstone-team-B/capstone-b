@@ -61,7 +61,11 @@ export default function ListStorePrefs(props) {
     <View>
       {storePrefs !== undefined && storePrefs.length !== 0 ? (
         <SafeAreaView style={{ flexDirection: "row", alignItems: "center", justifyContent: "center" }}>
-          <FlatList data={storePrefs} renderItem={renderItem} keyExtractor={(item, index) => index.toString()} />
+          <FlatList
+            data={storePrefs}
+            renderItem={renderItem}
+            keyExtractor={(item, index) => index.toString()}
+          />
         </SafeAreaView>
       ) : (
           <Text> No Stores Saved!</Text>
