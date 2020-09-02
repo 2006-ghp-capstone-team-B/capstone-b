@@ -2,13 +2,13 @@ import { StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 
 export const globalStyles = StyleSheet.create({
-    // container: {
-    //     flex: 1,
-    //     backgroundColor: "#6F9A88",
-    //     alignItems: "center",
-    //     justifyContent: "center",
-    //     paddingTop: Constants.statusBarHeight,
-    // },
+    container: {
+        flex: 1,
+        backgroundColor: "#6F9A88",
+        alignItems: "center",
+        justifyContent: "center",
+        paddingTop: Constants.statusBarHeight,
+    },
     bigTitle: {
         color: "white",
         fontSize: 60,

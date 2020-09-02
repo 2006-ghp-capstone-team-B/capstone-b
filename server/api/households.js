@@ -27,6 +27,19 @@ router.get("/:userId", async (req, res, next) => {
   }
 });
 
+// find all the users that have access to a specific household list
+router.get("/:listId/members", async (req, res, next) => {
+  try {
+    const members = await ListAccess.findAll({
+      where: { listId: req.params.listId },
+      include: { model: User },
+    });
+    res.json(members)
+  } catch (error) {
+    next(error)
+  }
+});
+
 // creates new listAccess for newly created household list
 router.post("/:userId", async (req, res, next) => {
   try {
