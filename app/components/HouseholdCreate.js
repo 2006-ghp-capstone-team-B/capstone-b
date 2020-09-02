@@ -13,10 +13,17 @@ export function HouseholdCreate(props) {
       <View style={globalStyles.backgroundBox}>
         <ScrollView style={{ margin: "15%" }}>
           <Text style={globalStyles.subtitleText}>Create a New household! </Text>
-          <Text style={globalStyles.paragraph}>You will receive an ID for your household list once you've submitted.</Text>
-          <Text style={globalStyles.paragraph}>Share the Household ID with your housemates so they can request to join, or invite them directly. </Text>
 
           <Formik initialValues={{ listName: "" }}
+                  validate={(values) => {
+                    const errors = {};
+                    if (!values.listName) {
+                      errors.listName = "Required";
+                    } else if (values.listName.length > 14) {
+                      errors.listName = "Household name cannot exceed 14 characters";
+                    }
+                    return errors;
+                  }}
             onSubmit={async (values) => {
               props.newHousehold(values.listName, userId);
               Actions.pop();
@@ -24,7 +31,10 @@ export function HouseholdCreate(props) {
           >
             {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
               <View style={globalStyles.LogInSignUpForm}>
-                <Text>Enter Household Name:</Text>
+                <Text>
+                  Enter Household Name:
+                  <Text style={{ color: "red" }}> {errors.listName ? errors.listName : ""}</Text>
+                </Text>
                 <TextInput
                   style={globalStyles.InputField}
                   onChangeText={handleChange("listName")}
@@ -34,8 +44,10 @@ export function HouseholdCreate(props) {
                 <Button onPress={handleSubmit} title="Submit" />
               </View>
             )}
+            
           </Formik>
-
+          <Text style={globalStyles.paragraph}>You will receive an ID for your household list once you've submitted.</Text>
+          <Text style={globalStyles.paragraph}>Share the Household ID with your housemates so they can request to join, or invite them directly. </Text>
         </ScrollView>
       </View>
     </ImageBackground>

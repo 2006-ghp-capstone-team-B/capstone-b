@@ -9,6 +9,28 @@ import { Actions } from "react-native-router-flux";
 
 export default function SingleHouseholdList(props) {
 
+  const renderSample = ({ item }) => {
+    return (
+      <ListItem icon>
+        <Left />
+        <Body>
+          <Text numberOfLines={1}>Your First Item</Text>
+          <Text note numberOfLines={1}>Quantity: 100</Text>
+        </Body>
+        <Right style={{ width: "35%" }}>
+          <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => alert("This will increment your item count.")}>
+            <Text>+</Text>
+          </Button>
+          <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => alert("This will decrement your item count.")}>
+            <Text>-</Text>
+          </Button>
+          <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => alert("This will remove your item.")}>
+            <Text>x</Text>
+          </Button>
+        </Right>
+      </ListItem>
+    )
+  };
 
   const renderItem = ({ item }) => {
     return (
@@ -72,7 +94,14 @@ export default function SingleHouseholdList(props) {
                   keyExtractor={item => item.id.toString()}
                 />
               </SafeAreaView>
-              : <Text>You do not currently belong to a household</Text>}
+              : <SafeAreaView style={{ marginTop: 30, backgroundColor: 'white', height: '80%', width: '95%', alignSelf: 'center', borderRadius: 25 }}>
+              <FlatList
+                data={['sample']}
+                renderItem={renderSample}
+                keyExtractor={(item) => item}
+              />
+            </SafeAreaView>
+            } 
           </View>
           <View style={{ flex: 1, marginTop: '5%' }}>
             <TouchableOpacity onPress={() => Actions.AddNewItemHousehold({listId: listId, userId: userId})} title="Add New Item">
