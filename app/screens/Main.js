@@ -22,16 +22,13 @@ export default function Main() {
   const [prefsLoaded, setPrefsLoaded] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.singleUser);
-  const stores = useSelector((state) => {
-    if(state.storePrefs !== []) {
-      return state.storePrefs
-    }});
+  const stores = useSelector((state) => state.storePrefs)
 
   const sendLocationMessage = () => {
     dispatch(newLocationMessage (user.id))
   }
   const loadStorePrefs = async () => {
-   await dispatch(fetchStorePrefs(user.id))
+    dispatch(fetchStorePrefs(user.id))
     setPrefsLoaded(true)
   }
 
@@ -50,21 +47,17 @@ export default function Main() {
 
   useEffect( () => {
     if(user) {
+      console.log('settings', prefsLoaded)
       loadStorePrefs();
     }
   }, [user])
-
-  if(prefsLoaded) {
-
-    console.log('stores', stores)
-  }
 
 
 
   // if(location) {
   //   console.log('change in distance', haversine(start, {latitude: location.coords.latitude, longitude: location.coords.longitude}, {unit: 'mile'}))
   // }
-
+console.log('story', stores)
   return (
     <NavigationContainer>
       <BottomTab.Navigator initialRouteName="Dashboard" tabBarOptions={{ activeTintColor: '#e91e63', }}>
