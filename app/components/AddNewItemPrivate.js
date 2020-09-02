@@ -4,6 +4,7 @@ import { Text, TextInput, View, ScrollView, ImageBackground, Button } from "reac
 import { globalStyles } from "../../styles/globalStyles";
 import { Formik } from "formik";
 import {addNewItem} from "../store/listPrivate"
+import { Actions } from "react-native-router-flux";
 
 export default function AddNewItemPrivate(props) {
 
@@ -30,8 +31,9 @@ export default function AddNewItemPrivate(props) {
                         }
                         return errors;
                     }}
-                    onSubmit={(values) => {
+                    onSubmit={async (values) => {
                         submitNewItem(values, listId, userId)
+                        Actions.pop();
                       }}
                 >
                     {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
