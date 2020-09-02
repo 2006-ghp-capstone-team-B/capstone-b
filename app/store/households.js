@@ -6,7 +6,7 @@ import axios from "axios";
 const GET_ALL_HOUSEHOLDS = "GET_ALL_HOUSEHOLDS";
 const CREATE_HOUSEHOLD = "CREATE_HOUSEHOLD";
 const SEARCH_HOUSEHOLDS = "SEARCH_HOUSEHOLDS";
-
+const GET_HOUSEHOLD_MEMBERS = "GET_HOUSEHOLD_MEMBERS"
 /**
  * INITIAL STATE
  */
@@ -26,6 +26,11 @@ const createHousehold = (households) => ({
   households,
 });
 
+const getHouseholdMembers = (households) => ({
+  type: GET_HOUSEHOLD_MEMBERS,
+  households,
+})
+
 /**
  * THUNK CREATORS
  */
@@ -44,13 +49,24 @@ export const createNewHousehold = (listName, userId) => async (dispatch) => {
     const { data } = await axios.post(`https://peasy-server.herokuapp.com/api/lists`, { listName });
     const listId = data.id;
     const household = { listId: listId, userId: userId, confirmed: "TRUE", category: "household" };
-    await axios.post(`https://peasy-server.herokuapp.com/api/households/:userId`, household);
+    await axios.post(`https://peasy-server.herokuapp.com/api/households/${userId}`, household);
     const res = await axios.get(`https://peasy-server.herokuapp.com/api/households/${userId}`);
     dispatch(createHousehold(res.data));
   } catch (error) {
     console.log(error);
   }
 };
+
+//gets all household members
+export const getAllHouseholdMembers = (listId) => async (dispatch) => {
+  try {
+    const { data } = await axios.get(`https://peasy-server.herokuapp.com/api/lists/${listId}/members`);
+    const members = data.firstName;
+    res.json(members);
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 export const findHousehold = (listId) => async (dispatch) => {
   try {
