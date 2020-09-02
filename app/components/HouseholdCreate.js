@@ -19,7 +19,7 @@ export function HouseholdCreate(props) {
           <Formik initialValues={{ listName: "" }}
             onSubmit={async (values) => {
               props.newHousehold(values.listName, userId);
-              Actions.AllHouseholds();
+              Actions.pop();
             }}
           >
             {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
