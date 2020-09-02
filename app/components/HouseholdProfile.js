@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Text, TextInput, View, ImageBackground, Button, FlatList, SafeAreaView } from "react-native";
 import { globalStyles } from "../../styles/globalStyles";
-import { getAllHouseholds } from "../store/households";
+import { getAllHouseholdMembers } from "../store/households";
 // If someone decided to leave the household... we would redirect them to their "All Households" screen
 import { Actions } from "react-native-router-flux";
 import { Formik } from "formik";
@@ -25,14 +25,14 @@ export default function HouseholdProfile(props) {
     // const { listMembers } = useSelector((state) => state.households);
 
 
-    // const dispatch = useDispatch();
-    // const loadAllHouseholds = (userId) => {
-    //     dispatch(getAllHouseholds(userId));
-    // };
+    const dispatch = useDispatch();
+    const loadAllHouseholdMembers = (listId) => {
+        dispatch(getAllHouseholdMembers(listId));
+    };
 
-    // useEffect(() => {
-    //     loadAllHouseholds(user.id);
-    // }, [user.id]);
+    useEffect(() => {
+        loadAllHouseholdMembers(listId);
+    }, [listId]);
 
     return (
         <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
