@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Text, TextInput, View, ScrollView, ImageBackground, Button } from "react-native";
+import { Text, TextInput, View, ScrollView, ImageBackground, Button, KeyboardAvoidingView, Platform, Image } from "react-native";
 import { globalStyles } from "../../styles/globalStyles";
 import { Formik } from "formik";
 import {addNewItem} from "../store/listHousehold"
@@ -16,10 +16,10 @@ export default function AddNewItemHousehold(props) {
     
     return (
         <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
-            <View style={globalStyles.backgroundBox}>
-                <Text style={globalStyles.titleText}> Add a new item to your list: </Text>
+            <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"} style={globalStyles.backgroundBox}>
 
-                {/* <View style={{ justifyContent: "center" }}> */}
+                <Text style={globalStyles.titleText2}> Add new item </Text>
+                <Image source={require('../../public/pea.jpg')} style={{ height: 180, width:180, alignSelf: "center" }} />
                 <Formik
                     initialValues={{ itemName: "", quantity: "" }}
                     validate={(values) => {
@@ -37,8 +37,8 @@ export default function AddNewItemHousehold(props) {
                       }}
                 >
                     {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
-                        <View style={globalStyles.signUpForm}>
-                            <View >
+                        <View style={globalStyles.LogInSignUpForm}>
+                            <View style={{ marginTop: 0, marginLeft: 20, marginRight: 20}} >
                                 <Text>
                                     Item Name <Text style={{ color: "red" }}> </Text>
                                 </Text>
@@ -50,7 +50,7 @@ export default function AddNewItemHousehold(props) {
                                 />
                             </View>
 
-                            <View style={{ marginTop: 30 }}>
+                            <View style={{ marginTop: 20, marginLeft: 20, marginRight: 20, marginBottom: 150 }}>
                                 <Text>
                                     Item Quantity <Text style={{ color: "red" }}> {errors.quantity ? errors.quantity : ""}</Text>
                                 </Text>
@@ -66,7 +66,10 @@ export default function AddNewItemHousehold(props) {
                     )}
                 </Formik>
 
-            </View>
+            {/* </View> */}
+            </KeyboardAvoidingView>
         </ImageBackground>
     )
 }
+
+

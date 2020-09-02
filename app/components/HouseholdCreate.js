@@ -11,8 +11,8 @@ export function HouseholdCreate(props) {
   return (
     <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
       <View style={globalStyles.backgroundBox}>
-        <ScrollView style={{ margin: "15%" }}>
-          <Text style={globalStyles.subtitleText}>Create a New household! </Text>
+        <ScrollView style={{ margin: "5%" }}>
+          <Text style={globalStyles.titleText2}>Create New household </Text>
 
           <Formik initialValues={{ listName: "" }}
                   validate={(values) => {
@@ -31,6 +31,7 @@ export function HouseholdCreate(props) {
           >
             {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
               <View style={globalStyles.LogInSignUpForm}>
+                <View style={{ marginTop: 20, marginLeft: 20, marginRight: 20, marginBottom: 10 }}>
                 <Text>
                   Enter Household Name:
                   <Text style={{ color: "red" }}> {errors.listName ? errors.listName : ""}</Text>
@@ -42,12 +43,14 @@ export function HouseholdCreate(props) {
                   value={values.listName}
                 />
                 <Button onPress={handleSubmit} title="Submit" />
+                </View>
               </View>
             )}
-            
           </Formik>
           <Text style={globalStyles.paragraph}>You will receive an ID for your household list once you've submitted.</Text>
           <Text style={globalStyles.paragraph}>Share the Household ID with your housemates so they can request to join, or invite them directly. </Text>
+
+
         </ScrollView>
       </View>
     </ImageBackground>
