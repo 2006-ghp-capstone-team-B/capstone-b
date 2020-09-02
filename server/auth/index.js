@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { User } = require("../db/models");
+const List = require("../db/models/list");
 
 router.post("/login", async (req, res, next) => {
   const { email, password } = req.body;
@@ -25,6 +26,25 @@ router.post("/signup", async (req, res, next) => {
   const { firstName, lastName, email, password } = req.body;
   try {
     const user = await User.create({ firstName, lastName, email, password });
+
+    const noty = await Notification.create({
+      userId: user.id,
+      notificationTitle: 'Welcome to Peasy!',
+      notificationBody: `Hi ${firstName}! We're so excited you've joined Peasy. To get started, head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.`,
+      type: 'welcome'
+    })
+
+    const privateList = await List.create({
+      listName: `${firstName}'s List`
+    })
+
+    const listOwnership = await ListAccess.create({
+      category: 'private',
+      confirmed: true,
+      userId: user.id,
+      listId: privateList.id
+    })
+
     req.login(user, (err) => (err ? next(err) : res.json(user)));
   } catch (err) {
     if (err.name === "SequelizeUniqueConstraintError") {

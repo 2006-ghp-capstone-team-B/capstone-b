@@ -33,6 +33,29 @@ export default function ListPrivate() {
     )
   };
 
+  const renderSample = ({ item }) => {
+    return (
+      <ListItem icon>
+        <Left />
+        <Body>
+          <Text numberOfLines={1}>Your First Item</Text>
+          <Text note numberOfLines={1}>Quantity: 100</Text>
+        </Body>
+        <Right style={{ width: "35%" }}>
+          <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => alert("This will increment your item count.")}>
+            <Text>+</Text>
+          </Button>
+          <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => alert("This will decrement your item count.")}>
+            <Text>-</Text>
+          </Button>
+          <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => alert("This will remove your item.")}>
+            <Text>x</Text>
+          </Button>
+        </Right>
+      </ListItem>
+    )
+  };
+
   const listPrivate = useSelector((state) => state.listPrivate);
   const listInfo = useSelector((state) => state.listInfo);
   const user = useSelector((state) => state.singleUser);
@@ -57,15 +80,20 @@ export default function ListPrivate() {
     loadListPrivate(user.id);
   }, [user.id]);
 
+
   return (
     <Container>
       <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
         <View style={globalStyles.backgroundBox}>
           <View>
-            {!user.id || listPrivate.length === 0 
-              ? <View style={{ marginTop: 30, backgroundColor: 'rbga(255,0,0,0.5)', height: '90%', width: '95%', alignSelf: 'center', borderRadius: 25 }}>
-                <Text>You don't have any item in your private list!</Text>
-              </View>
+            {!user.id || listPrivate.length === 0
+              ? <SafeAreaView style={{ marginTop: 30, backgroundColor: 'white', height: '80%', width: '95%', alignSelf: 'center', borderRadius: 25 }}>
+              <FlatList
+                data={['sample']}
+                renderItem={renderSample}
+                keyExtractor={(item) => item}
+              />
+            </SafeAreaView>
               : <SafeAreaView style={{ marginTop: 30, backgroundColor: 'white', height: '80%', width: '95%', alignSelf: 'center', borderRadius: 25 }}>
                 <FlatList
                   data={listPrivate}
