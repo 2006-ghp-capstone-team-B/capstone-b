@@ -23,7 +23,7 @@ export default function HouseholdButton(props) {
         <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => Actions['ListSingleHousehold']({ listId: listId, userId: userId })}>
           <Text>List</Text>
         </Button>
-        <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => Actions['HouseholdProfile']({ listId: listId, userId: userId, listName: listName })}>
+        <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => Actions['HouseholdProfile']({ listId: listId, listName: listName })}>
           <Text>Members</Text>
         </Button>
       </Right>
