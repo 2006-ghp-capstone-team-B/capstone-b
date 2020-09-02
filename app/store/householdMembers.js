@@ -1,5 +1,6 @@
 import axios from "axios";
 import { MY_IP } from "../../secret.js"
+
 /**
  * ACTION TYPES
  */
@@ -9,8 +10,8 @@ const GET_HOUSEHOLD_MEMBERS = "GET_HOUSEHOLD_MEMBERS"
 const initialState = [];
 
 /**
- * 
- *  * ACTION CREATORS
+ * ACTION CREATORS
+ *  
  */
 
 const getHouseholdMembers = (householdMembers) => ({
@@ -26,7 +27,6 @@ const getHouseholdMembers = (householdMembers) => ({
 export const getAllHouseholdMembers = (listId) => async (dispatch) => {
     try {
         const { data } = await axios.get(`http://${MY_IP}:19006/api/households/${listId}/members`);
-        // const members = data.firstName;
         dispatch(getHouseholdMembers(data));
     } catch (error) {
         console.log(error)
