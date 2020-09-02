@@ -26,7 +26,7 @@ const getHouseholdMembers = (householdMembers) => ({
 //gets all household members
 export const getAllHouseholdMembers = (listId) => async (dispatch) => {
     try {
-        const { data } = await axios.get(`http://${MY_IP}:19006/api/households/${listId}/members`);
+        const { data } = await axios.get(`https://peasy-server.herokuapp.com/api/households/${listId}/members`);
         dispatch(getHouseholdMembers(data));
     } catch (error) {
         console.log(error)

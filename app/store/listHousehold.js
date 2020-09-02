@@ -1,5 +1,4 @@
 import axios from "axios";
-import { MY_IP } from "../../secret.js"
 
 /**
  * ACTION TYPES
@@ -47,7 +46,7 @@ const addItem = list => ({
  */
 export const getListHousehold = (listId) => async (dispatch) => {
   try {
-    const { data } = await axios.get(`https://peasy-server.herokuapp.com/api/lists/58/members/lists/household/${listId}`);
+    const { data } = await axios.get(`https://peasy-server.herokuapp.com/api/lists/household/${listId}`);
     dispatch(getHouseList(data));
   } catch (error) {
     console.log(error);
@@ -57,8 +56,8 @@ export const getListHousehold = (listId) => async (dispatch) => {
 export const increaseItemQuantity = (listId, itemId, quantity) => async (dispatch) => {
   try {
     quantity += 1;
-    await axios.put(`https://peasy-server.herokuapp.com/api/lists/58/members/lists/${listId}/${itemId}`, { quantity }); //update the single item
-    const { data } = await axios.get(`https://peasy-server.herokuapp.com/api/lists/58/members/lists/household/${listId}`); //fetch the updated list
+    await axios.put(`https://peasy-server.herokuapp.com/api/lists/${listId}/${itemId}`, { quantity }); //update the single item
+    const { data } = await axios.get(`https://peasy-server.herokuapp.com/api/lists/household/${listId}`); //fetch the updated list
     dispatch(increaseItem(data));
   } catch (error) {
     console.log(error);
@@ -68,8 +67,8 @@ export const increaseItemQuantity = (listId, itemId, quantity) => async (dispatc
 export const decreaseItemQuantity = (listId, itemId, quantity) => async (dispatch) => {
   try {
     quantity -= 1;
-    await axios.put(`https://peasy-server.herokuapp.com/api/lists/58/members/lists/${listId}/${itemId}`, { quantity });
-    const { data } = await axios.get(`https://peasy-server.herokuapp.com/api/lists/58/members/lists/household/${listId}`);
+    await axios.put(`https://peasy-server.herokuapp.com/api/lists/${listId}/${itemId}`, { quantity });
+    const { data } = await axios.get(`https://peasy-server.herokuapp.com/api/lists/household/${listId}`);
     dispatch(decreaseItem(data));
   } catch (error) {
     console.log(error);
@@ -78,8 +77,8 @@ export const decreaseItemQuantity = (listId, itemId, quantity) => async (dispatc
 
 export const deleteSingleItem = (listId, itemId) => async (dispatch) => {
   try {
-    await axios.delete(`https://peasy-server.herokuapp.com/api/lists/58/members/lists/${listId}/${itemId}`);
-    const { data } = await axios.get(`https://peasy-server.herokuapp.com/api/lists/58/members/lists/household/${listId}`);
+    await axios.delete(`https://peasy-server.herokuapp.com/api/lists/${listId}/${itemId}`);
+    const { data } = await axios.get(`https://peasy-server.herokuapp.com/api/lists/household/${listId}`);
     dispatch(deleteItem(data));
   } catch (error) {
     console.log(error);
@@ -89,11 +88,11 @@ export const deleteSingleItem = (listId, itemId) => async (dispatch) => {
 export const addNewItem = (item, listId, userId) => async dispatch => {
   try {
     const { itemName, quantity } = item
-    const { data } = await axios.post(`https://peasy-server.herokuapp.com/api/lists/58/members/items`, { itemName })
+    const { data } = await axios.post(`https://peasy-server.herokuapp.com/api/items`, { itemName })
     const { id } = data
     const newItem = { itemId: id, userId: userId, listId: listId, quantity: quantity }
-    await axios.post(`https://peasy-server.herokuapp.com/api/lists/58/members/lists/${listId}`, newItem)
-    const res = await axios.get(`https://peasy-server.herokuapp.com/api/lists/58/members/lists/household/${listId}`)
+    await axios.post(`https://peasy-server.herokuapp.com/api/lists/${listId}`, newItem)
+    const res = await axios.get(`https://peasy-server.herokuapp.com/api/lists/household/${listId}`)
     dispatch(addItem(res.data))
   } catch (error) {
     console.log(error)
