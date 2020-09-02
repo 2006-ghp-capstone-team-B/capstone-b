@@ -7,25 +7,24 @@ import { saveUser } from "../store/storageHelper";
 import { createNewUser } from "../store/singleUser";
 import { globalStyles } from "../../styles/globalStyles";
 import { Formik } from "formik";
-import { FormInput } from '../components'
-import { Ionicons } from 'react-native-vector-icons';
+import { FormInput } from "../components";
+import { Ionicons } from "react-native-vector-icons";
 
 export const CreateUser = (props) => {
   //Navigate to Log In from SignUp
   const navigate = (screen) => {
     Actions[screen]();
   };
-  goToLogIn = () => navigate('login')
+  goToLogIn = () => navigate("login");
 
   // Use hooks to set initial state:
   const [passwordVisibility, setPasswordVisibility] = useState(true);
-  const [leftIcon, setLeftIcon] = useState('ios-eye');
+  const [leftIcon, setLeftIcon] = useState("ios-eye");
   // Change state:
   const togglePasswordVisiblity = () => {
     setPasswordVisibility(!passwordVisibility);
-    setLeftIcon(leftIcon === 'ios-eye' ? 'ios-eye-off' : 'ios-eye');
+    setLeftIcon(leftIcon === "ios-eye" ? "ios-eye-off" : "ios-eye");
   };
-
 
   return (
     <ScrollView>
@@ -60,6 +59,7 @@ export const CreateUser = (props) => {
           onSubmit={(values) => {
             props.register(values);
             saveUser(values);
+            alert("Welcome To Peasy!");
           }}
         >
           {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
@@ -106,13 +106,14 @@ export const CreateUser = (props) => {
                   secureTextEntry={passwordVisibility}
                   // style={globalStyles.InputField}
                   onChangeText={handleChange("password")}
-                  placeholder='Enter password, min. 6 characters'
+                  placeholder="Enter password, min. 6 characters"
                   onBlur={handleBlur("password")}
                   value={values.password}
                   leftIcon={
-                    <TouchableOpacity onPress={togglePasswordVisiblity} >
+                    <TouchableOpacity onPress={togglePasswordVisiblity}>
                       <Ionicons name={leftIcon} size={20} />
-                    </TouchableOpacity>}
+                    </TouchableOpacity>
+                  }
                 />
 
                 <Button onPress={handleSubmit} title="Submit" />
@@ -121,9 +122,9 @@ export const CreateUser = (props) => {
                 title="Already have an account? Log In"
                 onPress={goToLogIn}
                 titleStyle={{
-                  color: '#F57C00'
+                  color: "#F57C00",
                 }}
-                type='clear'
+                type="clear"
               />
             </View>
           )}
