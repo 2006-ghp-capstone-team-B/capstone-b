@@ -74,7 +74,7 @@ class MapContainer extends React.Component {
     return (
       <View style={styles.container}>
         {this.state.region.latitude ? (
-          <View style={{ width: "100%", height: "70%", flexDirection: "column" }}>
+          <View style={{ width: "100%", height: "100%", flexDirection: "column" }}>
             <View style={{ width: "100%", height: "100%", flex: 1 }}>
               <MyMapView region={this.state.region} onRegionChange={(reg) => this.onMapRegionChange(reg)} />
             </View>
