@@ -5,7 +5,6 @@ const List = require("../db/models/list");
 router.post("/login", async (req, res, next) => {
   const { email, password } = req.body;
   try {
-    console.log("reqqq", req.body)
     const user = await User.findOne({ where: { email } });
     console.log("LOG", user)
     if (!user) {
