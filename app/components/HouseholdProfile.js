@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Text, TextInput, View, ImageBackground, Button } from "react-native";
+import { Text, TextInput, View, ImageBackground, Button, FlatList } from "react-native";
 import { globalStyles } from "../../styles/globalStyles";
 import { getAllHouseholds } from "../store/households";
 import { Actions } from "react-native-router-flux";
@@ -16,9 +16,23 @@ export default function HouseholdProfile() {
     const navigate = (screen) => {
         Actions[screen]();
     };
+    const allhouseholds = useSelector((state) => state.households);
+    console.log("~~~~~~~~~~~~~~~~~~~state.households~~~~~~~~~~~~~~~~: ", allhouseholds)
+    //the households state is an Array of objects. Each Object is a listAccess (listId, userId and access to the list table)
+    // on the list table, we have access to the listName (to display on top)
 
-    const { listHouseholdId, listHouseholdName, listHouseholdMembers } = useSelector((state) => state.households);
+    // QUESTION: CAN WE really extract householdmembers from here? 
+    // 1) Find all listAccess with the listId and print out the userId
+    // 2) With each userId, find firstName from users list
+    // const { listHouseholdId, listHouseholdName, listHouseholdMembers } = useSelector((state) => state.households);
+    // console.log("~~~~~~~~~~~~~~~~~~~listHouseholdId~~~~~~~~~~~~~~~~: ", listHouseholdId)
+    // console.log("~~~~~~~~~~~~~~~~~~~listHouseholdName~~~~~~~~~~~~~~~~: ", listHouseholdName)
+    // console.log("~~~~~~~~~~~~~~~~~~~listHouseholdMembers~~~~~~~~~~~~~~~~: ", listHouseholdMembers)
+
+    // const listMembers = await ListAccess.findAll({ where listId = 58 }) 
     const user = useSelector((state) => state.singleUser);
+    console.log("~~~~~~~~~~~~~~~~~~~state.user~~~~~~~~~~~~~~~~: ", user)
+
     const dispatch = useDispatch();
     const loadAllHouseholds = (userId) => {
         dispatch(getAllHouseholds(userId));
@@ -27,11 +41,11 @@ export default function HouseholdProfile() {
     useEffect(() => {
         loadAllHouseholds(user.id);
     }, [user.id]);
-    
+
     return (
         <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
             <View style={globalStyles.backgroundBox}>
-
+                {/* 
                 <View key={listHouseholdId}>
                     <View>
                         <Text style={globalStyles.titleText}> {listHouseholdName}</Text>
@@ -48,19 +62,20 @@ export default function HouseholdProfile() {
                             ?
                             <SafeAreaView >
                                 <FlatList
+                                    numColumns={2}
                                     data={listHouseholdMembers}
                                     renderItem={renderItem}
-                                    keyExtractor={(item, index) => index.toString()}
+                                    keyExtractor={(item) => item.id}
                                 />
                             </SafeAreaView>
                             :
                             <Text style={globalStyles.paragraph}>Household member not found!</Text>
                         }
                     </View>
-                </View>
+                </View> */}
 
 
-                <Text style={globalStyles.subtitleText}> Invite a member to join your Household:  </Text>
+                {/* <Text style={globalStyles.subtitleText}> Invite a member to join your Household:  </Text>
                 <View style={globalStyles.LogInSignUpForm}>
                     <Formik
                         initialValues={{ name: "", email: "" }}
@@ -106,7 +121,7 @@ export default function HouseholdProfile() {
 
 
                 <Text style={globalStyles.subtitleText}> Delete a member from your household:  </Text>
-                <Text style={globalStyles.paragraph}> TBD drop down list? </Text>
+                <Text style={globalStyles.paragraph}> TBD drop down list? </Text> */}
 
 
             </View>
