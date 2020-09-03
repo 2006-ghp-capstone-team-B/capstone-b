@@ -8,26 +8,24 @@ import { saveUser } from "../store/storageHelper";
 import { globalStyles } from "../../styles/globalStyles";
 import { login } from "../store/singleUser";
 import { Formik } from "formik";
-import { FormInput } from '../components'
-import { Ionicons } from 'react-native-vector-icons';
-
+import { FormInput } from "../components";
+import { Ionicons } from "react-native-vector-icons";
 
 export const Login = (props) => {
   //Navigate to Sign up from Login
   const navigate = (screen) => {
     Actions[screen]();
   };
-  const goToSignup = () => navigate('signup')
+  const goToSignup = () => navigate("signup");
 
   // Use hooks to set initial state:
   const [passwordShown, setPasswordShown] = useState(true);
-  const [leftIcon, setLeftIcon] = useState('ios-eye');
+  const [leftIcon, setLeftIcon] = useState("ios-eye");
   // Change state:
   const togglePasswordVisiblity = () => {
     setPasswordShown(!passwordShown);
-    setLeftIcon(leftIcon === 'ios-eye' ? 'ios-eye-off' : 'ios-eye');
+    setLeftIcon(leftIcon === "ios-eye" ? "ios-eye-off" : "ios-eye");
   };
-
 
   return (
     <ScrollView>
@@ -52,9 +50,9 @@ export const Login = (props) => {
           onSubmit={(values) => {
             props.signin(values);
             saveUser(values);
-            Actions.main();
+            Actions.home();
           }}
-        // call saveUser
+          // call saveUser
         >
           {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
             <View style={globalStyles.LogInSignUpForm}>
@@ -73,20 +71,20 @@ export const Login = (props) => {
               <View style={{ marginTop: 30 }}>
                 <Text>
                   Password <Text style={{ color: "red" }}> {errors.password ? errors.password : ""}</Text>
-
                 </Text>
                 <FormInput
                   secureTextEntry={passwordShown}
                   // style={globalStyles.InputField}
                   onChangeText={handleChange("password")}
-                  placeholder='Enter password, min. 6 characters'
+                  placeholder="Enter password, min. 6 characters"
                   onBlur={handleBlur("password")}
                   value={values.password}
-                  leftIcon={<TouchableOpacity onPress={togglePasswordVisiblity} >
-                    <Ionicons name={leftIcon} size={20} />
-                  </TouchableOpacity>}
+                  leftIcon={
+                    <TouchableOpacity onPress={togglePasswordVisiblity}>
+                      <Ionicons name={leftIcon} size={20} />
+                    </TouchableOpacity>
+                  }
                 />
-
 
                 <Button onPress={handleSubmit} title="Submit" />
               </View>
@@ -94,15 +92,15 @@ export const Login = (props) => {
                 title="Don't have an account? Sign Up"
                 onPress={goToSignup}
                 titleStyle={{
-                  color: '#F57C00'
+                  color: "#F57C00",
                 }}
-                type='clear'
+                type="clear"
               />
             </View>
           )}
         </Formik>
       </View>
-    </ScrollView >
+    </ScrollView>
   );
 };
 

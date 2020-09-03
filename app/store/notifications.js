@@ -32,13 +32,12 @@ export const fetchNotifications = (userId) => async (dispatch) => {
 
 export const newLocationMessage = (userId) => async (dispatch) => {
   try {
-    const { data } = await axios.post(`https://peasy-server.herokuapp.com/api/notifications/locationError`, {userId});
+    const { data } = await axios.post(`https://peasy-server.herokuapp.com/api/notifications/locationError`, { userId });
     dispatch(getNotifications(data));
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
-
+};
 
 /**
  * REDUCER

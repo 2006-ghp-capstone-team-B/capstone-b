@@ -19,7 +19,14 @@ export const globalStyles = StyleSheet.create({
         fontSize: 30,
         fontWeight: 'bold',
         color: '#6F9A88',
+        textAlign: "center"
+    },
+    titleText2: {
+        fontSize: 23,
+        fontWeight: 'bold',
+        color: '#6F9A88',
         textAlign: "center",
+        marginBottom: 0
     },
     subtitleText: {
         fontSize: 20,
