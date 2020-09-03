@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, Body, Left, Right, Button, Icon, ListItem } from "native-base";
 import { markRead } from "../store/notifications";
-
+import { useDispatch, useSelector } from "react-redux";
 export default function RequestNotification(props) {
   const dispatch = useDispatch();
   const markingRead = (notificationId) => {
