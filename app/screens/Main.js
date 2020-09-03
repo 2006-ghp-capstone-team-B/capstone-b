@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Constants from 'expo-constants';
 import * as Location from 'expo-location';
 import haversine from 'haversine'
+import { connect } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
 import { Platform, Text, View, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -15,49 +16,37 @@ import { fetchStorePrefs } from "../store/storePrefs";
 
 const BottomTab = createBottomTabNavigator();
 
-export default function Main() {
-
-  const [location, setLocation] = useState(null);
-  const [storePrefs, setStorePrefs] = useState(null);
-  const [prefsLoaded, setPrefsLoaded] = useState(false);
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.singleUser);
-  const stores = useSelector((state) => state.storePrefs)
-
-  const sendLocationMessage = () => {
-    dispatch(newLocationMessage (user.id))
+class Main extends React.Component {
+  constructor () {
+    super()
+    this.getLocation = this.getLocation.bind(this)
   }
-  const loadStorePrefs = async () => {
-    dispatch(fetchStorePrefs(user.id))
-    setPrefsLoaded(true)
+  state = {
+    permissionStatus: '',
+    location: {}
   }
 
-  useEffect(() => {
-      (async () => {
-        let { status } = await Location.requestPermissionsAsync();
-        if (status !== 'granted') {
-          sendLocationMessage()
-        }
-        else {
-          let location = await Location.getCurrentPositionAsync({});
-          setLocation(location);
-        }
-      })();
-  }, );
+  async componentDidMount() {
+    await this.props.loadStorePrefs(this.props.singleUser.id)
+    this.getLocation()
+  }
 
-  useEffect( () => {
-    if(user) {
-      console.log('settings', prefsLoaded)
-      loadStorePrefs();
+  getLocation = async () => {
+    let { status } = await Location.requestPermissionsAsync();
+    this.setState({permissionStatus: status})
+
+    if (this.state.permissionStatus !== 'granted') {
+      this.props.sendLocationMessage(this.props.singleUser.id)
     }
-  }, [user])
+    else {
+      let currentLocation = await Location.getCurrentPositionAsync({});
+      this.setState({location: currentLocation.coords});
+    }
+  }
 
+  render () {
+    console.log('statey', this.state)
 
-
-  // if(location) {
-  //   console.log('change in distance', haversine(start, {latitude: location.coords.latitude, longitude: location.coords.longitude}, {unit: 'mile'}))
-  // }
-console.log('story', stores)
   return (
     <NavigationContainer>
       <BottomTab.Navigator initialRouteName="Dashboard" tabBarOptions={{ activeTintColor: '#e91e63', }}>
@@ -84,4 +73,17 @@ console.log('story', stores)
       </BottomTab.Navigator>
     </NavigationContainer>
   )
+  }
 }
+
+const MapState = (state) => ({
+  singleUser: state.singleUser,
+  storePrefs: state.storePrefs
+})
+
+const mapDispatch = (dispatch) => ({
+  loadStorePrefs: (userId) => { dispatch(fetchStorePrefs(userId)) },
+  sendLocationMessage: (userId) => dispatch(newLocationMessage(userId))
+});
+
+export default connect(MapState, mapDispatch)(Main);
