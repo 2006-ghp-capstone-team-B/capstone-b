@@ -73,46 +73,42 @@ class MapContainer extends React.Component {
     };
     return (
       <View style={styles.container}>
+
         {this.state.region.latitude ? (
           <View style={{ width: "100%", height: "100%", flexDirection: "column" }}>
+            {/* This is the map area */}
             <View style={{ width: "100%", height: "100%", flex: 1 }}>
               <MyMapView region={this.state.region} onRegionChange={(reg) => this.onMapRegionChange(reg)} />
             </View>
-
+            {/* This is the new store to be added to preferences */}
             <View style={{ width: "100%", height: "100%", flex: 1 }}>
-            {this.state.name !== "" ? (
-              <View style={{ width: "100%", marginTop: "5%", marginBottom: "2.5%", flex:1 }}>
-                <NewStorePref
-                  name={this.state.name}
-                  address={this.state.address}
-                  category={this.state.category}
-                  latitude={this.state.region.latitude}
-                  longitude={this.state.region.longitude}
-                  addNewPreference={this.addNewPreference(newPref)}
-                />
-              </View>
-            ) : null}
+              {this.state.name !== "" ? (
+                <View>
+                  <NewStorePref
+                    name={this.state.name}
+                    address={this.state.address}
+                    category={this.state.category}
+                    latitude={this.state.region.latitude}
+                    longitude={this.state.region.longitude}
+                    addNewPreference={this.addNewPreference(newPref)}
+                  />
+                </View>
+              )
+                :
+                <Text>
 
-            <View styles={{ flex: 1, marginTop: "2.5%" }}>
-              <ListStorePrefs />
-            </View>
+                </Text>
+              }
+              {/* These are the saved favorite stores */}
+              <View styles={{ flex: 1, marginTop: "2.5%" }}>
+                <ListStorePrefs />
+              </View>
             </View>
           </View>
         ) : null}
 
-        <View
-          style={{
-            width: "90%",
-            position: "absolute",
-            top: 10,
-            justifyContent: "flex-start",
-            alignItems: "stretch",
-            borderWidth: 4,
-            borderColor: "green",
-            borderRadius: 6,
-            backgroundColor: "white",
-          }}
-        >
+        {/* This is the input bar */}
+        <View style={styles.searchBar}>
           <MapInput
             notifyChange={(loc, name, address, category) => this.getCoordsFromName(loc, name, address, category)}
           />
@@ -138,10 +134,22 @@ export default connect(mapState, mapDispatch)(MapContainer);
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     width: "100%",
     height: "100%",
     backgroundColor: "white",
     alignItems: "center",
     justifyContent: "flex-start",
   },
+  searchBar: {
+    width: "90%",
+    position: "absolute",
+    top: 10,
+    justifyContent: "flex-start",
+    alignItems: "stretch",
+    borderWidth: 4,
+    borderColor: "green",
+    borderRadius: 6,
+    backgroundColor: "white",
+  }
 });

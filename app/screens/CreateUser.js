@@ -59,7 +59,7 @@ export const CreateUser = (props) => {
           onSubmit={(values) => {
             props.register(values);
             saveUser(values);
-            alert("Welcome To Peasy!");
+            // alert("Welcome To Peasy!");
           }}
         >
           {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
