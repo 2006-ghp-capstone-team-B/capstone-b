@@ -71,7 +71,6 @@ export const createNewUser = (newUser) => async (dispatch) => {
 
   try {
     dispatch(createUser(res.data));
-    Actions.main();
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr);
   }
