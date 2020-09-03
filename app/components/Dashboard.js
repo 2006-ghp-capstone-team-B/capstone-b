@@ -21,6 +21,9 @@ export default function Dashboard() {
           <TouchableOpacity onPress={() => navigate("AllHouseholds")} title="My Households">
             <Text style={globalStyles.button}>My Households</Text>
           </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigate("Scanner")} title="Scanner">
+            <Text style={globalStyles.button}>Scanner for now</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </ImageBackground>
