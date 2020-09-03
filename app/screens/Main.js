@@ -12,6 +12,7 @@ import MapContainer from "./MapContainer";
 import MessageCenter from "./MessageCenter";
 import { newLocationMessage } from "../store/notifications";
 import { fetchStorePrefs } from "../store/storePrefs";
+import Geofence from "react-native-expo-geofence";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -49,6 +50,30 @@ export default function Main() {
       loadStorePrefs();
     }
   }, [user]);
+
+  var points = [
+    { latitude: -23.658739, longitude: -46.666305 },
+    { latitude: -23.651814, longitude: -46.664129 },
+  ];
+
+  var startPoint = {
+    latitude: -23.652508,
+    longitude: -46.661474,
+  };
+
+  useEffect(() => {
+    (async () => {
+      const maxDistanceInKM = 0.5;
+      let result = await Geofence.filterByProximity(startPoint, points, maxDistanceInKM);
+      console.log("!!!!!!!!!!GEO", Geofence);
+      console.log("!###################", Geofence.filterByProximity);
+      // if (result !== undefined) {
+      //   const distance = result[0].distanceInKM;
+      //   console.log("distance", distance);
+      // }
+      console.log("~~~~~~~~~~~~~~~~~~~~result", JSON.stringify(result));
+    })();
+  }, []);
 
   // if(location) {
   //   console.log('change in distance', haversine(start, {latitude: location.coords.latitude, longitude: location.coords.longitude}, {unit: 'mile'}))
