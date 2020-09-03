@@ -13,11 +13,14 @@ import MessageCenter from "./MessageCenter";
 import { newLocationMessage } from "../store/notifications";
 import { fetchStorePrefs } from "../store/storePrefs";
 import Geofence from "react-native-expo-geofence";
+import {createNotification} from '../../App'
 
 const BottomTab = createBottomTabNavigator();
 
 export default function Main() {
   const [location, setLocation] = useState(null);
+  const [pushTime, setPushTime] = useState(null);
+  const [inGeofence, setInGeoFence] = useState(null);
   const [prefsLoaded, setPrefsLoaded] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.singleUser);
@@ -39,6 +42,7 @@ export default function Main() {
     setPrefsLoaded(true);
   };
 
+  // Check if location tracking is enabled
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestPermissionsAsync();
@@ -87,11 +91,32 @@ export default function Main() {
         const maxDistanceInKM = 1;
         let result = await Geofence.filterByProximity(startPoint, storePrefCoords, maxDistanceInKM)
 
-        // if result.length > 0, push notification
-        console.log('resut', result)
+        if(result.length) {
+          setInGeoFence(result)
+        }
+
       })();
     }
   }, [location]);
+
+  useEffect(() => {
+    let d = new Date();
+    let n = d.getTime();
+    let timeDiff = Math.abs(n - pushTime)
+    console.log('inside', inGeofence)
+    if(inGeofence) {
+      if(!pushTime || timeDiff > 3.6*1000000 ) {
+        const title = `Reminder: You're nearby ${inGeofence[0].title}`
+        const body = `Your have X items in your cart`
+        const message = `We don't know what this does`
+        // createNotification(title, body, message)
+        setPushTime(n)
+      }
+    }
+  }, [inGeofence])
+
+
+
 
   return (
     <NavigationContainer>
