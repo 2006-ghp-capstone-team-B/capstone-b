@@ -18,11 +18,18 @@ const BottomTab = createBottomTabNavigator();
 
 export default function Main() {
   const [location, setLocation] = useState(null);
-  const [storePrefs, setStorePrefs] = useState(null);
   const [prefsLoaded, setPrefsLoaded] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.singleUser);
-  const stores = useSelector((state) => state.storePrefs);
+  const storePrefs = useSelector((state) => state.storePrefs);
+  const [storePrefCoords, setStorePrefCoords] = useState(null);
+
+  if(storePrefs.length && !storePrefCoords) {
+    let coords = storePrefs.map(store => {
+      return {latitude: store.store.latitude, longitude: store.store.longitude, title: store.store.storeName}
+    })
+    setStorePrefCoords(coords)
+  }
 
   const sendLocationMessage = () => {
     dispatch(newLocationMessage(user.id));
@@ -38,47 +45,54 @@ export default function Main() {
       if (status !== "granted") {
         sendLocationMessage();
       } else {
-        let location = await Location.getCurrentPositionAsync({});
-        setLocation(location);
+        let firstLocation = await Location.getCurrentPositionAsync({});
+        setLocation(firstLocation);
       }
     })();
   }, []);
 
+  // fetch user's saved stores from the database
   useEffect(() => {
     if (user) {
-      console.log("settings", prefsLoaded);
       loadStorePrefs();
     }
   }, [user]);
 
-  var points = [
-    { latitude: -23.658739, longitude: -46.666305 },
-    { latitude: -23.651814, longitude: -46.664129 },
-  ];
-
-  var startPoint = {
-    latitude: -23.652508,
-    longitude: -46.661474,
-  };
-
+  // Check for change in location every 10 seconds
   useEffect(() => {
-    (async () => {
-      const maxDistanceInKM = 0.5;
-      let result = await Geofence.filterByProximity(startPoint, points, maxDistanceInKM);
-      console.log("!!!!!!!!!!GEO", Geofence);
-      console.log("!###################", Geofence.filterByProximity);
-      // if (result !== undefined) {
-      //   const distance = result[0].distanceInKM;
-      //   console.log("distance", distance);
-      // }
-      console.log("~~~~~~~~~~~~~~~~~~~~result", JSON.stringify(result));
-    })();
+    const interval = setInterval(async () => {
+      if(location) {
+        let newLocation = await Location.getCurrentPositionAsync({});
+        let start = {latitude:location.coords.latitude, longitude: location.coords.longitude}
+        let end = {latitude: newLocation.coords.latitude, longitude: newLocation.coords.longitude}
+       let change = haversine(start, end)
+
+        if(change > .05) {
+          setLocation(newLocation);
+        }
+      }
+    }, 10000);
+    return () => clearInterval(interval);
   }, []);
 
-  // if(location) {
-  //   console.log('change in distance', haversine(start, {latitude: location.coords.latitude, longitude: location.coords.longitude}, {unit: 'mile'}))
-  // }
-  console.log("story", stores);
+// If user's location has changed, check if user has entered the geogence radius
+  useEffect(() => {
+    if(location && storePrefCoords) {
+      (async () => {
+        let startPoint = {
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
+        };
+
+        const maxDistanceInKM = 1;
+        let result = await Geofence.filterByProximity(startPoint, storePrefCoords, maxDistanceInKM)
+
+        // if result.length > 0, push notification
+        console.log('resut', result)
+      })();
+    }
+  }, [location]);
+
   return (
     <NavigationContainer>
       <BottomTab.Navigator initialRouteName="Dashboard" tabBarOptions={{ activeTintColor: "#e91e63" }}>
@@ -115,14 +129,3 @@ export default function Main() {
   );
 }
 
-const MapState = (state) => ({
-  singleUser: state.singleUser,
-  storePrefs: state.storePrefs
-})
-
-const mapDispatch = (dispatch) => ({
-  loadStorePrefs: (userId) => { dispatch(fetchStorePrefs(userId)) },
-  sendLocationMessage: (userId) => dispatch(newLocationMessage(userId))
-});
-
-export default connect(MapState, mapDispatch)(Main);
