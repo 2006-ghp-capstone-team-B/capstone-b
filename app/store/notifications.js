@@ -30,10 +30,10 @@ export const fetchNotifications = (userId) => async (dispatch) => {
   }
 };
 
-export const markRead = (notificationId) => async (dispatch) => {
+export const newLocationMessage = (userId) => async (dispatch) => {
   try {
-    const { data } = await axios.put(`https://peasy-server.herokuapp.com/api/notifications/read`, { notificationId });
-    dispatch(getNotifications(DataTransferItemList));
+    const { data } = await axios.post(`https://peasy-server.herokuapp.com/api/notifications/locationError`, { userId });
+    dispatch(getNotifications(data));
   } catch (error) {
     console.log(error);
   }

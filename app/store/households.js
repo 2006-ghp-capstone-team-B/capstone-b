@@ -1,4 +1,5 @@
 import axios from "axios";
+// import { MY_IP } from "../../secret.js"
 
 /**
  * ACTION TYPES
@@ -6,7 +7,6 @@ import axios from "axios";
 const GET_ALL_HOUSEHOLDS = "GET_ALL_HOUSEHOLDS";
 const CREATE_HOUSEHOLD = "CREATE_HOUSEHOLD";
 const SEARCH_HOUSEHOLDS = "SEARCH_HOUSEHOLDS";
-
 /**
  * INITIAL STATE
  */
@@ -26,9 +26,11 @@ const createHousehold = (households) => ({
   households,
 });
 
+
 /**
  * THUNK CREATORS
  */
+
 export const getAllHouseholds = (userId) => async (dispatch) => {
   try {
     const { data } = await axios.get(`https://peasy-server.herokuapp.com/api/households/${userId}`);
@@ -44,7 +46,7 @@ export const createNewHousehold = (listName, userId) => async (dispatch) => {
     const { data } = await axios.post(`https://peasy-server.herokuapp.com/api/lists`, { listName });
     const listId = data.id;
     const household = { listId: listId, userId: userId, confirmed: "TRUE", category: "household" };
-    await axios.post(`https://peasy-server.herokuapp.com/api/households/:userId`, household);
+    await axios.post(`https://peasy-server.herokuapp.com/api/households/${userId}`, household);
     const res = await axios.get(`https://peasy-server.herokuapp.com/api/households/${userId}`);
     dispatch(createHousehold(res.data));
   } catch (error) {
