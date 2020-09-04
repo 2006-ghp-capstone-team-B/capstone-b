@@ -39,6 +39,15 @@ export const newLocationMessage = (userId) => async (dispatch) => {
   }
 };
 
+export const markRead = (notificationId) => async (dispatch) => {
+  try {
+    await axios.post(`https://peasy-server.herokuapp.com/api/notifications/locationError`, { notificationId });
+
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 /**
  * REDUCER
  */

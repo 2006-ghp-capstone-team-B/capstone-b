@@ -1,23 +1,12 @@
 import React from 'react';
-import {
-	ActivityIndicator,
-	Button,
-	Clipboard,
-	FlatList,
-	Image,
-	Share,
-	StyleSheet,
-	Text,
-	ScrollView,
-  View
-} from 'react-native';
+import { ActivityIndicator, Button, Clipboard, FlatList, Image, Share, StyleSheet, Text, ScrollView, View, TouchableOpacity} from 'react-native';
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
-// import { v4 as uuidv4 } from 'uuid';
 import Environment from '../../config/environment';
 import firebase from '../../config/firebase';
-// import { nanoid } from 'nanoid/async/index.native'
 import { nanoid } from 'nanoid/non-secure'
+import { Actions } from "react-native-router-flux";
+import { globalStyles } from "../../styles/globalStyles";
 
 
 export default class App extends React.Component {
@@ -54,12 +43,17 @@ export default class App extends React.Component {
 
 						<Button onPress={this._takePhoto} title="Take a photo" />
 						{this.state.googleResponse && (
-							<FlatList
-								data={this.state.googleResponse.responses[0].textAnnotations}
-								extraData={this.state}
-								keyExtractor={this._keyExtractor}
-								renderItem={({ item }) => <Text>Item: {item.description}</Text>}
-							/>
+								<View style={{ flex: 1, marginTop: '3%' }}>
+									<TouchableOpacity onPress={() => Actions.BoughtItems({Items: this.state.googleResponse.responses[0].textAnnotations[0].description})} title="Bought Items">
+										<Text style={globalStyles.button}>Bought Items</Text>
+									</TouchableOpacity>
+								</View>
+							// <FlatList
+							// 	data={this.state.googleResponse.responses[0].textAnnotations}
+							// 	extraData={this.state}
+							// 	keyExtractor={this._keyExtractor}
+							// 	renderItem={({ item }) => <Text>Item: {item.description}</Text>}
+							// />
 						)}
 						{this._maybeRenderImage()}
 						{this._maybeRenderUploadingOverlay()}
