@@ -1,9 +1,19 @@
-const router = require("express").Router();
-const { List, ListAccess, ItemUserList, Item, Notification } = require("../db/models");
+const router = require('express').Router()
+const { List, ListAccess, ItemUserList, Item, Notification } = require('../db/models')
 
-//The route to find all the household lists has moved to api/households
 
-// route for get the private list info (not items in lst)
+
+//all the lists
+// router.get('/', async (req, res, next) => {
+//     try {
+//         const lists = await List.findAll()
+//         res.json(lists)
+//     } catch (error) {
+//         next(error)
+//     }
+// })
+
+//route for get the private list info (not items in lst)
 router.get("/privatelist/:userId", async (req, res, next) => {
   try {
     const privateList = await ListAccess.findOne({
@@ -54,76 +64,69 @@ router.get("/household/:listId", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     const newList = await List.create(req.body);
-    res.json(newList)
-  } catch (error) {
-    next(error);
-  }
-});
-
-router.get("/:listId", async (req, res, next) => {
-  try {
-    const list = await ListAccess.findOne({
-      where: {
-        listId: req.params.listId,
-        category: "household",
-      },
-      include: {
-        model: List,
-      },
-    });
-    res.json(list);
-  } catch (error) {
-    next(error);
-  }
-});
-
-router.post("/access/:listId/:userId", async (req, res, next) => {
-  try {
-    await ListAccess.create({
-      listId: req.params.listId,
-      userId: req.params.userId,
-      category: "household",
-      confirmed: true,
-    });
+    res.json(newList.id);
     res.sendStatus(201);
   } catch (error) {
     next(error);
   }
 });
 
-// request to join a household
-router.post("/join", async (req, res, next) => {
+
+router.post("/access/:listId/:userId", async (req, res, next) => {
   try {
-    const { listId, id, firstName, lastName } = req.body;
-    const [newMember, addedMember] = await ListAccess.findOrCreate({
-      where: {
-        userId: id,
-        listId: Number(listId[0]),
-        category: "household",
-      },
-    });
+    // console.log("222222222222222222222) right before list access")
+    // console.log(req.params.userId)
+    // console.log(typeof (req.params.userId))
 
-    const householdMembers = await ListAccess.findAll({
-      where: {
-        listId,
-        confirmed: true,
-      },
+    // console.log(req.params.listId)
+    // console.log(typeof (req.params.listId))
+    await ListAccess.create({
+      listId: req.params.listId,
+      userId: req.params.userId,
+      category: "household",
+      confirmed: true,
     });
-
-    for (let i = 0; i < householdMembers.length; i++) {
-      const noty = await Notification.findOrCreate({
-        where: {
-          userId: householdMembers[i].userId,
-          notificationTitle: "New Household Request",
-          notificationBody: `${firstName} ${lastName} would like to join your household. Please choose an option below.`,
-          type: "memberRequest",
-        },
-      });
-    }
+    // console.log("hi");
+    res.sendStatus(201);
   } catch (error) {
     next(error);
   }
 });
+
+
+// request to join a household
+router.post("/join", async (req, res, next) => {
+  try {
+    const {listId, id, firstName, lastName} = req.body
+    const [newMember, addedMember] = await ListAccess.findOrCreate({
+      where: {
+        userId: id,
+        listId,
+        category: 'household',
+      }
+    })
+
+    const householdMembers = await ListAccess.findAll({
+      where: {
+        listId,
+        confirmed: true
+      }
+    })
+
+    for(let i = 0; i < householdMembers.length; i++) {
+      const noty = await Notification.findOrCreate({
+        where: {
+          userId: householdMembers[i].userId,
+          notificationTitle: 'New Household Request',
+          notificationBody: `${firstName} ${lastName} would like to join your household. Please choose an option below.`,
+          type: 'memberRequest'
+        }
+      })
+    }
+  } catch (error) {
+    next(error)
+  }
+})
 
 //add new item to ItemUserList
 router.post("/:listId", async (req, res, next) => {
@@ -135,23 +138,25 @@ router.post("/:listId", async (req, res, next) => {
   }
 });
 
+
 //get the list by id
-router.get("/:listId", async (req, res, next) => {
-  try {
-    const list = await ListAccess.findOne({
-      where: {
-        listId: req.params.listId,
-        category: "household",
-      },
-      include: {
-        model: List,
-      },
-    });
-    res.json(list);
-  } catch (error) {
-    next(error);
-  }
-});
+router.get('/:listId', async (req, res, next) => {
+    try {
+        const list = await ListAccess.findOne({
+            where: {
+                listId: req.params.listId,
+                category: 'household'
+            },
+            include: {
+                model: List,
+            }
+        })
+        res.json(list)
+    } catch (error) {
+        next(error)
+    }
+})
+
 
 //update item quantity
 router.put("/:listId/:itemId", async (req, res, next) => {
