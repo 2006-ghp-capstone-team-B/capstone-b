@@ -104,7 +104,9 @@ class Main extends React.Component {
       let time = new Date().getTime()
 
       if(!lastPush || time - lastPush > 3600000) {
-        createNotification('title', 'body')
+        const title = `Reminder: You are near ${result[0].title}`
+        const body = `You have x items on your list.`
+        createNotification(title, body)
         console.log('send notification')
         savePushTiming(time)
       }
