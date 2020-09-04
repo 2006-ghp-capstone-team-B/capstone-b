@@ -13,9 +13,12 @@ import {
 } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 import Environment from '../../config/environment';
 import firebase from '../../config/firebase';
+// import { nanoid } from 'nanoid/async/index.native'
+import { nanoid } from 'nanoid/non-secure'
+
 
 export default class App extends React.Component {
 	state = {
@@ -272,7 +275,7 @@ async function uploadImageAsync(uri) {
 	const ref = firebase
 		.storage()
 		.ref()
-		.child(uuidv4());
+		.child(nanoid());
 	const snapshot = await ref.put(blob);
 
 	blob.close();
