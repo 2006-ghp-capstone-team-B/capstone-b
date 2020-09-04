@@ -56,13 +56,13 @@ export default function App() {
   )
 }
 
-export const createNotification = (title, body, message) => {
+export const createNotification = (title, body) => {
   const newNoty = async (expoPushToken) => {
     await Notifications.scheduleNotificationAsync({
       content: {
         title,
         body,
-        data: { data: message },
+        data: { data: 'message' },
       },
       trigger: { seconds: 1 },
     });
