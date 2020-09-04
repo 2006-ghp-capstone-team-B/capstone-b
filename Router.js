@@ -2,7 +2,7 @@ import React from "react";
 import { Router, Scene } from "react-native-router-flux";
 import { Start } from "./app/screens";
 import { Login, CreateUser, Main } from "./app/screens";
-import { ListPrivate, HouseholdProfile, AllHouseholds, SingleHouseholdList, AddNewItemPrivate, AddNewItemHousehold, HouseholdFind, HouseholdCreate, Scanner } from "./app/components";
+import { ListPrivate, HouseholdProfile, AllHouseholds, SingleHouseholdList, AddNewItemPrivate, AddNewItemHousehold, HouseholdFind, HouseholdCreate, Scanner, BoughtItems } from "./app/components";
 
 
 const Routes = () => {
@@ -22,6 +22,7 @@ const Routes = () => {
         <Scene key="HouseholdFind" title="Find A Household" component={HouseholdFind}></Scene>
         <Scene key="HouseholdCreate" title="Create A New Household" component={HouseholdCreate}></Scene>
         <Scene key="Scanner" title="Scanner" component={Scanner}></Scene>
+        <Scene key="BoughtItems" title="Bought Items" component={BoughtItems}></Scene>
       </Scene>
     </Router>
   );
