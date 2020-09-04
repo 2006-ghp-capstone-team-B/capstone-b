@@ -36,7 +36,8 @@ const Start = () => {
     }
   }, [user]);
 
-  if (user !== null) {
+  if (user !== null && user[0] !== '') {
+    console.log('user', user)
     return <Main />;
   } else {
     return <Intro />;
