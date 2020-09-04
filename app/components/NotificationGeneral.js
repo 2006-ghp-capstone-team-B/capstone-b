@@ -17,7 +17,7 @@ export default function GeneraltNotification(props) {
         </Button>
       </Left>
       <Body>
-        <Text numberOfLines={1}>`${notificationTitle}`</Text>
+        <Text numberOfLines={1}>{notificationTitle}</Text>
         <Text note numberOfLines={1}>
           {notificationBody}
         </Text>
