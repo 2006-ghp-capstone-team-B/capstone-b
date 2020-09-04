@@ -1,91 +1,166 @@
-import React, { useState, useEffect } from "react";
-import Constants from "expo-constants";
+import React, { useState, useEffect, useRef } from "react";
 import * as Location from "expo-location";
 import haversine from "haversine";
 import { useDispatch, useSelector } from "react-redux";
-import { Platform, Text, View, StyleSheet } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { MaterialCommunityIcons, AntDesign, FontAwesome, Fontisto } from "react-native-vector-icons";
-import { Dashboard, UserProfile, Notifications, HouseholdProfile } from "../components";
+import { Dashboard, UserProfile } from "../components";
 import MapContainer from "./MapContainer";
 import MessageCenter from "./MessageCenter";
 import { newLocationMessage } from "../store/notifications";
 import { fetchStorePrefs } from "../store/storePrefs";
+import Geofence from "react-native-expo-geofence";
+import {Text} from 'react-native'
+import {connect} from 'react-redux'
+import { createNotification} from '../../App2'
+import { saveLocation, retrieveLocation, saveLocPermission, retrieveLocPermission, retrievePushTime, savePushTiming } from '../store/storageHelper'
 
 const BottomTab = createBottomTabNavigator();
 
-export default function Main() {
-  const [location, setLocation] = useState(null);
-  const [storePrefs, setStorePrefs] = useState(null);
-  const [prefsLoaded, setPrefsLoaded] = useState(false);
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.singleUser);
-  const stores = useSelector((state) => state.storePrefs);
+class Main extends React.Component {
+  constructor () {
+    super()
+    this.getLocation = this.getLocation.bind(this)
+    this.checkGeofence = this.checkGeofence.bind(this)
+  }
+  state = {
+    permissionStatus: '',
+    location: {},
+    geofence: [],
+    pushCallTime: null,
+    pushOk: false
+  }
 
-  const sendLocationMessage = () => {
-    dispatch(newLocationMessage(user.id));
-  };
-  const loadStorePrefs = async () => {
-    dispatch(fetchStorePrefs(user.id));
-    setPrefsLoaded(true);
-  };
+  async componentDidMount() {
+    await this.props.loadStorePrefs(this.props.singleUser.id)
+    await this.getLocation()
+    this.intervalId = setInterval(
+      () => this.tick(),
+      60000
+    )
+  }
 
-  useEffect(() => {
-    (async () => {
-      let { status } = await Location.requestPermissionsAsync();
-      if (status !== "granted") {
-        sendLocationMessage();
-      } else {
-        let location = await Location.getCurrentPositionAsync({});
-        setLocation(location);
-      }
-    })();
-  }, []);
+  componentWillUnmount() {
+    clearInterval(this.intervalId)
+  }
 
-  useEffect(() => {
-    if (user) {
-      console.log("settings", prefsLoaded);
-      loadStorePrefs();
+  getLocation = async () => {
+    let { status } = await Location.requestPermissionsAsync();
+    saveLocPermission(status)
+
+    const permission = JSON.parse(await retrieveLocPermission())
+
+    if (permission !== 'granted') {
+      this.props.sendLocationMessage(this.props.singleUser.id)
     }
-  }, [user]);
+    else {
+      let currentLocation = await Location.getCurrentPositionAsync({});
+      const oldLocation = await retrieveLocation()
+      if(!oldLocation) {
+        await saveLocation(currentLocation.coords);
+      }
+    }
+  }
 
-  // if(location) {
-  //   console.log('change in distance', haversine(start, {latitude: location.coords.latitude, longitude: location.coords.longitude}, {unit: 'mile'}))
-  // }
-  console.log("story", stores);
-  return (
-    <NavigationContainer>
-      <BottomTab.Navigator initialRouteName="Dashboard" tabBarOptions={{ activeTintColor: "#e91e63" }}>
-        <BottomTab.Screen
-          name="Dashboard"
-          component={Dashboard}
-          options={{
-            tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name="home" color={color} size={size} />,
-          }}
-        />
-        <BottomTab.Screen
-          name="Notifications"
-          component={MessageCenter}
-          options={{
-            tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name="clipboard" color={color} size={size} />,
-          }}
-        />
-        <BottomTab.Screen
-          name="My Stores"
-          component={MapContainer}
-          options={{
-            tabBarIcon: ({ color, size }) => <Fontisto name="shopping-store" color={color} size={size} />,
-          }}
-        />
-        <BottomTab.Screen
-          name="Me"
-          component={UserProfile}
-          options={{
-            tabBarIcon: ({ color, size }) => <AntDesign name="user" color={color} size={size} />,
-          }}
-        />
-      </BottomTab.Navigator>
-    </NavigationContainer>
-  );
+  tick() {
+    this.checkLocation()
+  }
+
+  checkLocation = async () => {
+    let currentLocation = await Location.getCurrentPositionAsync({});
+    const oldLocation = JSON.parse(await retrieveLocation())
+
+    if(currentLocation && oldLocation) {
+
+      const newLoc = {latitude: currentLocation.coords.latitude, longitude: currentLocation.coords.longitude}
+      const oldLoc = {latitude: oldLocation.latitude, longitude: oldLocation.longitude}
+
+      const change = haversine(oldLoc, newLoc)
+
+      if(change > .1) {
+        this.checkGeofence(newLoc)
+      }
+
+    }
+  }
+
+  checkGeofence = async (currentLocation) => {
+
+    const maxDistanceInKM = .2;
+
+    const storePrefCoords = await this.props.storePrefs.map(store => {
+      return {
+        latitude: store.store.latitude,
+        longitude: store.store.longitude,
+        title: store.store.storeName
+      }
+    })
+
+    const result = await Geofence.filterByProximity(currentLocation, storePrefCoords, maxDistanceInKM);
+
+    const lastPush = JSON.parse(await retrievePushTime())
+    if(result.length) {
+      let time = new Date().getTime()
+
+      if(!lastPush || time - lastPush > 3600000) {
+        const title = `Reminder: You are near ${result[0].title}`
+        const body = `You have x items on your list.`
+        createNotification(title, body)
+        console.log('send notification')
+        savePushTiming(time)
+      }
+    }
+  }
+
+  render () {
+
+    return (
+
+      <NavigationContainer>
+        <BottomTab.Navigator initialRouteName="Dashboard" tabBarOptions={{ activeTintColor: "#e91e63" }}>
+          <BottomTab.Screen
+            name="Dashboard"
+            component={Dashboard}
+            options={{
+              tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name="home" color={color} size={size} />,
+            }}
+          />
+          <BottomTab.Screen
+            name="Notifications"
+            component={MessageCenter}
+            options={{
+              tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name="clipboard" color={color} size={size} />,
+            }}
+          />
+          <BottomTab.Screen
+            name="My Stores"
+            component={MapContainer}
+            options={{
+              tabBarIcon: ({ color, size }) => <Fontisto name="shopping-store" color={color} size={size} />,
+            }}
+          />
+          <BottomTab.Screen
+            name="Me"
+            component={UserProfile}
+            options={{
+              tabBarIcon: ({ color, size }) => <AntDesign name="user" color={color} size={size} />,
+            }}
+          />
+        </BottomTab.Navigator>
+      </NavigationContainer>
+    );
+  }
 }
+
+const MapState = (state) => ({
+  singleUser: state.singleUser,
+  storePrefs: state.storePrefs
+})
+
+const mapDispatch = (dispatch) => ({
+  loadStorePrefs: (userId) => { dispatch(fetchStorePrefs(userId)) },
+  sendLocationMessage: (userId) => dispatch(newLocationMessage(userId))
+});
+
+export default connect(MapState, mapDispatch)(Main);

@@ -16,7 +16,10 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.capstoneb.easyPeasy"
+      "bundleIdentifier": "com.capstoneb.easyPeasy",
+      "infoPlist": {
+        "UIBackgroundModes": ["location", "fetch"]
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
