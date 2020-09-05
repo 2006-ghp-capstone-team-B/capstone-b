@@ -71,10 +71,10 @@ export default function SingleHouseholdList(props) {
         <Body>
           <Text numberOfLines={1}>{item.item.itemName}</Text>
           <Text note numberOfLines={1}>
-          Quantity: {item.quantity}  | Owner: {item.user.firstName} 
+            Quantity: {item.quantity} | Owner: {item.user.firstName}
           </Text>
           {/* <Text note numberOfLines={1}>
-            
+
           </Text> */}
         </Body>
         {item.userId === userId ? (
@@ -108,21 +108,21 @@ export default function SingleHouseholdList(props) {
               transparent
               onPress={() => alert("You cant update other people's item")}
             >
-              <Text>+</Text>
+              <Text style={{ color: "#cedbf0" }}>+</Text>
             </Button>
             <Button
               style={globalStyles.buttonPlusMinus}
               transparent
               onPress={() => alert("You cant update other people's item")}
             >
-              <Text>-</Text>
+              <Text style={{ color: "#cedbf0" }}>-</Text>
             </Button>
             <Button
               style={globalStyles.buttonPlusMinus}
               transparent
               onPress={() => alert("You cant delete other people's item")}
             >
-              <Text>x</Text>
+              <Text style={{ color: "#cedbf0" }}>x</Text>
             </Button>
           </Right>
         )}
