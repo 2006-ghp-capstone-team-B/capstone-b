@@ -8,7 +8,7 @@ import { MaterialCommunityIcons, AntDesign, FontAwesome, Fontisto } from "react-
 import { Dashboard, UserProfile } from "../components";
 import MapContainer from "./MapContainer";
 import MessageCenter from "./MessageCenter";
-import { newLocationMessage } from "../store/notifications";
+import { newLocationMessage, fetchNotifications } from "../store/notifications";
 import { fetchStorePrefs } from "../store/storePrefs";
 import Geofence from "react-native-expo-geofence";
 import {Text} from 'react-native'
@@ -33,6 +33,7 @@ class Main extends React.Component {
   }
 
   async componentDidMount() {
+    await this.props.loadMessages(this.props.singleUser.id)
     await this.props.loadStorePrefs(this.props.singleUser.id)
     await this.getLocation()
     this.intervalId = setInterval(
@@ -155,12 +156,14 @@ class Main extends React.Component {
 
 const MapState = (state) => ({
   singleUser: state.singleUser,
-  storePrefs: state.storePrefs
+  storePrefs: state.storePrefs,
+  notifications: state.notifications
 })
 
 const mapDispatch = (dispatch) => ({
   loadStorePrefs: (userId) => { dispatch(fetchStorePrefs(userId)) },
-  sendLocationMessage: (userId) => dispatch(newLocationMessage(userId))
+  sendLocationMessage: (userId) => dispatch(newLocationMessage(userId)),
+  loadMessages: (userId) => dispatch(fetchNotifications(userId))
 });
 
 export default connect(MapState, mapDispatch)(Main);
