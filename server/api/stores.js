@@ -43,10 +43,10 @@ router.post("/:userId", async (req, res, next) => {
     const newPref = await StorePreference.findOne({
       where: {
         storeId: store.id,
-        userId: req.params.userId
+        userId: req.params.userId,
       },
       include: { model: Store },
-    })
+    });
     res.status(201).json(newPref);
   } catch (error) {
     next(error);
