@@ -1,601 +1,833 @@
 [{
-  "notificationTitle": "tortor id",
-  "notificationBody": "Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum.",
-  "type": "newItem",
-  "userId": 15,
-  "notificationId": 1
-}, {
-  "notificationTitle": "quam sollicitudin",
-  "notificationBody": "Nullam porttitor lacus at turpis.",
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
   "type": "welcome",
+  "userId": 34
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 22
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 43
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 39
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 10
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 25
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 16
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 8
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 24
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 36
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 1
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 19
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 52
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 53
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 5
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 43
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 57
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 14
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 7
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 49
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 47
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 56
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 48
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 46
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 55
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 33
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 53
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 15
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 28
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 36
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 36
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 13
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 2
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 42
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 13
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 7
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 12
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 4
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 30
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 18
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 56
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 35
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 30
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 17
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 31
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 44
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 15
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 21
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 55
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 19
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 41
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 31
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 28
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 50
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 51
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 24
+}, {
+  "notificationTitle": "Welcome to Peasy!",
+  "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
+  "type": "welcome",
+  "userId": 56
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 9
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 51
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 11
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 24
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 16
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 11
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 31
+}, {
+  "notificationTitle": "New Household Created",
+  "notificationBody": "Congratulations! You set up your first household. Your household id is: 58. Don't forget to tell your roommates to join and you can start sharing your grocery list!",
+  "type": "other",
+  "userId": 1
+},{
+  "notificationTitle": "New Household Request",
+  "notificationBody": "Ariel Wainer would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
   "userId": 1,
-  "notificationId": 2
+  "requestUserId": 2,
+  "requestListId": 58,
 }, {
-  "notificationTitle": "consectetuer eget",
-  "notificationBody": "Etiam pretium iaculis justo.",
-  "type": "newItem",
-  "userId": 48,
-  "notificationId": 3
-}, {
-  "notificationTitle": "faucibus orci luctus et ultrices",
-  "notificationBody": "Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
-  "type": "memberRequest",
-  "userId": 46,
-  "notificationId": 4
-}, {
-  "notificationTitle": "primis in faucibus orci luctus",
-  "notificationBody": "Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam. Nam tristique tortor eu pede.",
-  "type": "newItem",
-  "userId": 28,
-  "notificationId": 5
-}, {
-  "notificationTitle": "quis tortor id",
-  "notificationBody": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices.",
+  "notificationTitle": "New Household Request",
+  "notificationBody": "Taihua Rubin would like to join your household. Please choose an option below.",
   "type": "memberRequest",
   "userId": 1,
-  "notificationId": 6
-}, {
-  "notificationTitle": "orci eget orci",
-  "notificationBody": "Sed sagittis.",
-  "type": "newItem",
-  "userId": 13,
-  "notificationId": 7
-}, {
-  "notificationTitle": "in est",
-  "notificationBody": "Morbi a ipsum.",
-  "type": "newItem",
-  "userId": 35,
-  "notificationId": 8
-}, {
-  "notificationTitle": "in faucibus orci luctus",
-  "notificationBody": "In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt.",
-  "type": "welcome",
-  "userId": 33,
-  "notificationId": 9
-}, {
-  "notificationTitle": "in hac habitasse platea",
-  "notificationBody": "Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis.",
-  "type": "welcome",
-  "userId": 3,
-  "notificationId": 10
-}, {
-  "notificationTitle": "nulla ultrices aliquet",
-  "notificationBody": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue.",
+  "requestUserId": 3,
+  "requestListId": 58,
+  "unread": false
+},{
+  "notificationTitle": "New Household Request",
+  "notificationBody": "Yunice Xiao would like to join your household. Please choose an option below.",
   "type": "memberRequest",
-  "userId": 42,
-  "notificationId": 11
-}, {
-  "notificationTitle": "ligula suspendisse ornare consequat",
-  "notificationBody": "Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.",
-  "type": "newItem",
-  "userId": 43,
-  "notificationId": 12
-}, {
-  "notificationTitle": "hac habitasse platea dictumst morbi",
-  "notificationBody": "Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum.",
-  "type": "other",
-  "userId": 23,
-  "notificationId": 13
-}, {
-  "notificationTitle": "eu sapien",
-  "notificationBody": "Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.",
-  "type": "welcome",
-  "userId": 35,
-  "notificationId": 14
-}, {
-  "notificationTitle": "pede justo lacinia eget tincidunt",
-  "notificationBody": "Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique.",
-  "type": "newItem",
-  "userId": 21,
-  "notificationId": 15
-}, {
-  "notificationTitle": "nulla suscipit",
-  "notificationBody": "Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia.",
-  "type": "memberRequest",
-  "userId": 2,
-  "notificationId": 16
-}, {
-  "notificationTitle": "justo sit",
-  "notificationBody": "Pellentesque ultrices mattis odio. Donec vitae nisi.",
-  "type": "welcome",
-  "userId": 41,
-  "notificationId": 17
-}, {
-  "notificationTitle": "blandit nam nulla integer pede",
-  "notificationBody": "Ut tellus.",
-  "type": "memberRequest",
-  "userId": 10,
-  "notificationId": 18
-}, {
-  "notificationTitle": "a nibh in",
-  "notificationBody": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.",
-  "type": "other",
-  "userId": 42,
-  "notificationId": 19
-}, {
-  "notificationTitle": "metus arcu adipiscing",
-  "notificationBody": "Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula.",
-  "type": "welcome",
-  "userId": 23,
-  "notificationId": 20
-}, {
-  "notificationTitle": "justo eu massa donec dapibus",
-  "notificationBody": "Etiam pretium iaculis justo. In hac habitasse platea dictumst.",
-  "type": "welcome",
-  "userId": 15,
-  "notificationId": 21
-}, {
-  "notificationTitle": "porta volutpat quam",
-  "notificationBody": "Nullam molestie nibh in lectus.",
-  "type": "welcome",
-  "userId": 46,
-  "notificationId": 22
-}, {
-  "notificationTitle": "lacinia eget tincidunt eget",
-  "notificationBody": "In blandit ultrices enim.",
-  "type": "memberRequest",
-  "userId": 29,
-  "notificationId": 23
-}, {
-  "notificationTitle": "diam vitae quam suspendisse",
-  "notificationBody": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.",
-  "type": "memberRequest",
-  "userId": 43,
-  "notificationId": 24
-}, {
-  "notificationTitle": "porta volutpat erat quisque",
-  "notificationBody": "Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.",
-  "type": "welcome",
-  "userId": 4,
-  "notificationId": 25
-}, {
-  "notificationTitle": "quam a",
-  "notificationBody": "Vestibulum sed magna at nunc commodo placerat. Praesent blandit.",
-  "type": "other",
-  "userId": 30,
-  "notificationId": 26
-}, {
-  "notificationTitle": "eleifend donec ut dolor morbi",
-  "notificationBody": "Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl.",
-  "type": "other",
-  "userId": 43,
-  "notificationId": 27
-}, {
-  "notificationTitle": "consectetuer adipiscing elit proin interdum",
-  "notificationBody": "Duis mattis egestas metus. Aenean fermentum.",
-  "type": "welcome",
-  "userId": 48,
-  "notificationId": 28
-}, {
-  "notificationTitle": "elementum in hac",
-  "notificationBody": "In sagittis dui vel nisl.",
-  "type": "other",
-  "userId": 46,
-  "notificationId": 29
-}, {
-  "notificationTitle": "vitae nisi",
-  "notificationBody": "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.",
-  "type": "welcome",
-  "userId": 22,
-  "notificationId": 30
-}, {
-  "notificationTitle": "pellentesque eget nunc",
-  "notificationBody": "Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.",
-  "type": "welcome",
-  "userId": 11,
-  "notificationId": 31
-}, {
-  "notificationTitle": "leo pellentesque ultrices mattis",
-  "notificationBody": "Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.",
-  "type": "memberRequest",
-  "userId": 32,
-  "notificationId": 32
-}, {
-  "notificationTitle": "porta volutpat erat quisque",
-  "notificationBody": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.",
-  "type": "memberRequest",
-  "userId": 43,
-  "notificationId": 33
-}, {
-  "notificationTitle": "et ultrices posuere cubilia curae",
-  "notificationBody": "Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor.",
-  "type": "memberRequest",
-  "userId": 46,
-  "notificationId": 34
-}, {
-  "notificationTitle": "cubilia curae nulla",
-  "notificationBody": "Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam. Nam tristique tortor eu pede.",
-  "type": "memberRequest",
-  "userId": 27,
-  "notificationId": 35
-}, {
-  "notificationTitle": "pede venenatis non sodales",
-  "notificationBody": "Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim.",
-  "type": "welcome",
-  "userId": 27,
-  "notificationId": 36
-}, {
-  "notificationTitle": "fusce congue",
-  "notificationBody": "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.",
-  "type": "memberRequest",
-  "userId": 26,
-  "notificationId": 37
-}, {
-  "notificationTitle": "donec ut mauris eget massa",
-  "notificationBody": "Nulla tempus.",
-  "type": "newItem",
-  "userId": 16,
-  "notificationId": 38
-}, {
-  "notificationTitle": "posuere cubilia curae donec",
-  "notificationBody": "In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt.",
-  "type": "newItem",
-  "userId": 15,
-  "notificationId": 39
-}, {
-  "notificationTitle": "molestie lorem quisque ut",
-  "notificationBody": "Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus.",
-  "type": "welcome",
-  "userId": 33,
-  "notificationId": 40
-}, {
-  "notificationTitle": "curabitur at ipsum",
-  "notificationBody": "Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
-  "type": "memberRequest",
-  "userId": 7,
-  "notificationId": 41
-}, {
-  "notificationTitle": "et magnis dis parturient",
-  "notificationBody": "Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.",
-  "type": "welcome",
-  "userId": 8,
-  "notificationId": 42
-}, {
-  "notificationTitle": "sem mauris laoreet ut rhoncus",
-  "notificationBody": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.",
-  "type": "welcome",
-  "userId": 50,
-  "notificationId": 43
-}, {
-  "notificationTitle": "quam pharetra magna",
-  "notificationBody": "Quisque ut erat. Curabitur gravida nisi at nibh.",
-  "type": "other",
-  "userId": 30,
-  "notificationId": 44
-}, {
-  "notificationTitle": "platea dictumst",
-  "notificationBody": "Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc.",
-  "type": "memberRequest",
-  "userId": 27,
-  "notificationId": 45
-}, {
-  "notificationTitle": "at nibh in",
-  "notificationBody": "In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.",
-  "type": "welcome",
-  "userId": 35,
-  "notificationId": 46
-}, {
-  "notificationTitle": "rutrum at lorem",
-  "notificationBody": "Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla.",
-  "type": "newItem",
-  "userId": 15,
-  "notificationId": 47
-}, {
-  "notificationTitle": "nunc purus phasellus in felis",
-  "notificationBody": "Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.",
-  "type": "other",
-  "userId": 20,
-  "notificationId": 48
-}, {
-  "notificationTitle": "morbi a ipsum integer",
-  "notificationBody": "Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",
-  "type": "newItem",
-  "userId": 30,
-  "notificationId": 49
-}, {
-  "notificationTitle": "ligula vehicula consequat morbi",
-  "notificationBody": "Curabitur gravida nisi at nibh. In hac habitasse platea dictumst.",
-  "type": "welcome",
-  "userId": 6,
-  "notificationId": 50
-}, {
-  "notificationTitle": "vel dapibus at diam",
-  "notificationBody": "Nunc nisl.",
-  "type": "welcome",
-  "userId": 14,
-  "notificationId": 51
-}, {
-  "notificationTitle": "adipiscing elit proin",
-  "notificationBody": "Nullam molestie nibh in lectus. Pellentesque at nulla.",
-  "type": "other",
-  "userId": 38,
-  "notificationId": 52
-}, {
-  "notificationTitle": "convallis duis consequat",
-  "notificationBody": "Nullam molestie nibh in lectus.",
-  "type": "newItem",
   "userId": 1,
-  "notificationId": 53
-}, {
-  "notificationTitle": "vestibulum aliquet ultrices erat tortor",
-  "notificationBody": "Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.",
-  "type": "welcome",
-  "userId": 46,
-  "notificationId": 54
-}, {
-  "notificationTitle": "in leo maecenas pulvinar lobortis",
-  "notificationBody": "Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.",
+  "requestUserId": 4,
+  "requestListId": 58,
+  "unread": false
+},{
+  "notificationTitle": "New Household Request",
+  "notificationBody": "Mimi Chung would like to join your household. Please choose an option below.",
   "type": "memberRequest",
-  "userId": 7,
-  "notificationId": 55
-}, {
-  "notificationTitle": "sapien in sapien",
-  "notificationBody": "Vestibulum sed magna at nunc commodo placerat. Praesent blandit.",
-  "type": "memberRequest",
-  "userId": 14,
-  "notificationId": 56
-}, {
-  "notificationTitle": "ultrices libero non mattis",
-  "notificationBody": "Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit.",
-  "type": "other",
-  "userId": 41,
-  "notificationId": 57
-}, {
-  "notificationTitle": "sapien a libero",
-  "notificationBody": "Donec dapibus.",
-  "type": "memberRequest",
-  "userId": 12,
-  "notificationId": 58
-}, {
-  "notificationTitle": "quisque erat eros viverra eget",
-  "notificationBody": "Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
-  "type": "memberRequest",
-  "userId": 39,
-  "notificationId": 59
-}, {
-  "notificationTitle": "elementum nullam varius nulla facilisi",
-  "notificationBody": "Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.",
-  "type": "newItem",
-  "userId": 4,
-  "notificationId": 60
-}, {
-  "notificationTitle": "id sapien",
-  "notificationBody": "In hac habitasse platea dictumst. Etiam faucibus cursus urna.",
-  "type": "welcome",
-  "userId": 3,
-  "notificationId": 61
-}, {
-  "notificationTitle": "odio consequat varius integer",
-  "notificationBody": "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam.",
-  "type": "welcome",
-  "userId": 39,
-  "notificationId": 62
-}, {
-  "notificationTitle": "nisl nunc rhoncus dui vel",
-  "notificationBody": "Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.",
-  "type": "other",
   "userId": 1,
-  "notificationId": 63
-}, {
-  "notificationTitle": "metus vitae ipsum aliquam non",
-  "notificationBody": "Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.",
-  "type": "other",
-  "userId": 41,
-  "notificationId": 64
-}, {
-  "notificationTitle": "maecenas rhoncus aliquam lacus",
-  "notificationBody": "Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla.",
-  "type": "other",
-  "userId": 49,
-  "notificationId": 65
-}, {
-  "notificationTitle": "erat quisque erat eros viverra",
-  "notificationBody": "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.",
-  "type": "other",
-  "userId": 32,
-  "notificationId": 66
-}, {
-  "notificationTitle": "mauris morbi",
-  "notificationBody": "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.",
-  "type": "welcome",
-  "userId": 39,
-  "notificationId": 67
-}, {
-  "notificationTitle": "nunc viverra dapibus nulla suscipit",
-  "notificationBody": "In est risus, auctor sed, tristique in, tempus sit amet, sem.",
-  "type": "welcome",
-  "userId": 26,
-  "notificationId": 68
-}, {
-  "notificationTitle": "lorem quisque",
-  "notificationBody": "Morbi vel lectus in quam fringilla rhoncus.",
+  "requestUserId": 5,
+  "requestListId": 58,
+  "unread": false
+},{
+  "notificationTitle": "New Household Request",
+  "notificationBody": "Chelsea Church would like to join your household. Please choose an option below.",
   "type": "memberRequest",
-  "userId": 2,
-  "notificationId": 69
-}, {
-  "notificationTitle": "sapien a libero",
-  "notificationBody": "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam.",
+  "userId": 1,
+  "requestUserId": 6,
+  "requestListId": 58,
+  "unread": false
+},{
+  "notificationTitle": "New Household Request",
+  "notificationBody": "David Patlut would like to join your household. Please choose an option below.",
   "type": "memberRequest",
-  "userId": 35,
-  "notificationId": 70
-}, {
-  "notificationTitle": "mauris non ligula pellentesque",
-  "notificationBody": "Mauris sit amet eros.",
+  "userId": 1,
+  "requestUserId": 7,
+  "requestListId": 58,
+  "unread": false
+},{
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
   "type": "memberRequest",
-  "userId": 42,
-  "notificationId": 71
+  "userId": 7
 }, {
-  "notificationTitle": "sapien dignissim vestibulum vestibulum",
-  "notificationBody": "Aliquam non mauris.",
-  "type": "welcome",
-  "userId": 22,
-  "notificationId": 72
-}, {
-  "notificationTitle": "odio odio",
-  "notificationBody": "Nunc rhoncus dui vel sem. Sed sagittis.",
-  "type": "welcome",
-  "userId": 16,
-  "notificationId": 73
-}, {
-  "notificationTitle": "posuere cubilia curae duis faucibus",
-  "notificationBody": "Nulla justo. Aliquam quis turpis eget elit sodales scelerisque.",
-  "type": "other",
-  "userId": 24,
-  "notificationId": 74
-}, {
-  "notificationTitle": "at feugiat non pretium",
-  "notificationBody": "Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus.",
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
   "type": "memberRequest",
-  "userId": 2,
-  "notificationId": 75
+  "userId": 53
 }, {
-  "notificationTitle": "quis lectus suspendisse potenti in",
-  "notificationBody": "Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo.",
-  "type": "other",
-  "userId": 31,
-  "notificationId": 76
-}, {
-  "notificationTitle": "in libero ut massa volutpat",
-  "notificationBody": "Nulla tempus.",
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
   "type": "memberRequest",
-  "userId": 15,
-  "notificationId": 77
+  "userId": 35
 }, {
-  "notificationTitle": "donec odio justo",
-  "notificationBody": "Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.",
-  "type": "welcome",
-  "userId": 6,
-  "notificationId": 78
-}, {
-  "notificationTitle": "sagittis nam congue risus",
-  "notificationBody": "Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.",
-  "type": "other",
-  "userId": 34,
-  "notificationId": 79
-}, {
-  "notificationTitle": "ante nulla justo aliquam quis",
-  "notificationBody": "In quis justo.",
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
   "type": "memberRequest",
-  "userId": 19,
-  "notificationId": 80
+  "userId": 20
 }, {
-  "notificationTitle": "odio odio elementum",
-  "notificationBody": "Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat.",
-  "type": "newItem",
-  "userId": 47,
-  "notificationId": 81
-}, {
-  "notificationTitle": "quisque arcu libero",
-  "notificationBody": "Maecenas rhoncus aliquam lacus.",
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
   "type": "memberRequest",
-  "userId": 9,
-  "notificationId": 82
+  "userId": 31
 }, {
-  "notificationTitle": "a pede posuere nonummy",
-  "notificationBody": "Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien.",
-  "type": "welcome",
-  "userId": 6,
-  "notificationId": 83
-}, {
-  "notificationTitle": "tortor quis",
-  "notificationBody": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend.",
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
   "type": "memberRequest",
-  "userId": 20,
-  "notificationId": 84
+  "userId": 44
 }, {
-  "notificationTitle": "vel pede morbi",
-  "notificationBody": "Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis.",
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
   "type": "memberRequest",
-  "userId": 4,
-  "notificationId": 85
+  "userId": 39
 }, {
-  "notificationTitle": "quam fringilla rhoncus mauris enim",
-  "notificationBody": "Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim.",
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
   "type": "memberRequest",
-  "userId": 35,
-  "notificationId": 86
+  "userId": 42
 }, {
-  "notificationTitle": "at nibh",
-  "notificationBody": "Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
-  "type": "welcome",
-  "userId": 13,
-  "notificationId": 87
-}, {
-  "notificationTitle": "posuere cubilia curae duis faucibus",
-  "notificationBody": "Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus.",
-  "type": "other",
-  "userId": 29,
-  "notificationId": 88
-}, {
-  "notificationTitle": "nam dui proin leo",
-  "notificationBody": "Cras pellentesque volutpat dui.",
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
   "type": "memberRequest",
-  "userId": 19,
-  "notificationId": 89
+  "userId": 22
 }, {
-  "notificationTitle": "nulla tempus",
-  "notificationBody": "Quisque ut erat.",
-  "type": "welcome",
-  "userId": 16,
-  "notificationId": 90
-}, {
-  "notificationTitle": "eros elementum pellentesque quisque",
-  "notificationBody": "Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
-  "type": "newItem",
-  "userId": 18,
-  "notificationId": 91
-}, {
-  "notificationTitle": "fusce consequat nulla",
-  "notificationBody": "In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt.",
-  "type": "welcome",
-  "userId": 42,
-  "notificationId": 92
-}, {
-  "notificationTitle": "sodales sed tincidunt eu",
-  "notificationBody": "Quisque ut erat.",
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
   "type": "memberRequest",
-  "userId": 47,
-  "notificationId": 93
+  "userId": 6
 }, {
-  "notificationTitle": "sit amet diam",
-  "notificationBody": "Aliquam quis turpis eget elit sodales scelerisque.",
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
   "type": "memberRequest",
-  "userId": 10,
-  "notificationId": 94
+  "userId": 44
 }, {
-  "notificationTitle": "est congue elementum in hac",
-  "notificationBody": "Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.",
-  "type": "newItem",
-  "userId": 8,
-  "notificationId": 95
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 9
 }, {
-  "notificationTitle": "eget eros elementum pellentesque",
-  "notificationBody": "Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum.",
-  "type": "newItem",
-  "userId": 18,
-  "notificationId": 96
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 27
 }, {
-  "notificationTitle": "et eros vestibulum ac est",
-  "notificationBody": "Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.",
-  "type": "newItem",
-  "userId": 31,
-  "notificationId": 97
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 46
 }, {
-  "notificationTitle": "amet consectetuer",
-  "notificationBody": "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
-  "type": "newItem",
-  "userId": 31,
-  "notificationId": 98
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 46
 }, {
-  "notificationTitle": "pede ullamcorper augue",
-  "notificationBody": "Etiam pretium iaculis justo.",
-  "type": "newItem",
-  "userId": 19,
-  "notificationId": 99
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 51
 }, {
-  "notificationTitle": "maecenas leo odio",
-  "notificationBody": "Etiam pretium iaculis justo.",
-  "type": "other",
-  "userId": 35,
-  "notificationId": 100
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 48
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 19
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 31
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 7
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 31
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 43
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 20
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 13
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 38
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 21
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 22
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 32
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 49
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 35
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 35
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 12
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 32
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 7
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 28
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 32
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 39
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 16
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 32
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 8
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 8
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 13
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 46
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 26
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 13
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 17
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 34
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 13
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 50
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 15
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 52
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 29
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 18
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 26
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 19
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 13
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 49
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 11
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 53
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 10
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 28
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 34
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 9
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 11
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 10
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 27
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 43
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 41
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 14
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 18
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 24
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 29
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 9
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 16
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 40
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 31
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 55
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 23
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 2
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 27
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 18
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 29
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 21
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 20
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 52
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 39
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 17
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 36
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 3
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 18
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 42
+}, {
+  "notificationTitle": "New Household Request",
+  "notificationBody": "A new member would like to join your household. Please choose an option below.",
+  "type": "memberRequest",
+  "userId": 46
 }]

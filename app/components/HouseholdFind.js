@@ -35,8 +35,7 @@ export default function HouseholdFind(props) {
   };
 
   const joinList = async (listId, userId) => {
-    const join = await dispatch(addMember(listId, userId));
-    console.log("newby", join);
+    await dispatch(addMember(listId, userId));
   };
 
   useEffect(() => {
