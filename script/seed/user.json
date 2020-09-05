@@ -1,8 +1,8 @@
 [
   {
-    "email": "Test@test.com",
-    "firstName": "test",
-    "lastName": "tester",
+    "email": "Jane@peasy.com",
+    "firstName": "Jane",
+    "lastName": "Doe",
     "password": "123qwe",
     "isAdmin": true,
     "googleId": null

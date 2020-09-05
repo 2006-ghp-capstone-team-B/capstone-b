@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function ModalRequest(props) {
   const { type, title, body, requestUserId, requestListId, closeModal } = props;
-  console.log("ari", props);
 
   const dispatch = useDispatch();
 

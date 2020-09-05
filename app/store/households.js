@@ -69,9 +69,7 @@ export const addMember = (listId, user) => async (dispatch) => {
     const { id, firstName, lastName } = user;
     await axios.post(`https://peasy-server.herokuapp.com/api/lists/join`, { listId, id, firstName, lastName });
   } catch (error) {
-    console.log("err", error);
-    console.log("res errrrrrrr", error.response);
-    console.log("req errrrrrrr", error.request);
+    console.log(error);
   }
 };
 
@@ -79,8 +77,6 @@ export const acceptMember = (userId, listId) => async (dispatch) => {
   try {
     await axios.post(`https://peasy-server.herokuapp.com/api/lists/accept`, { userId, listId });
   } catch (e) {
-    console.log("ressssssss e", e.response);
-    console.log("reqqqqqqqqe ", e.request);
     console.log(e);
   }
 };
