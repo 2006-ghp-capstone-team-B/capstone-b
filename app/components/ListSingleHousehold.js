@@ -71,14 +71,14 @@ export default function SingleHouseholdList(props) {
         <Body>
           <Text numberOfLines={1}>{item.item.itemName}</Text>
           <Text note numberOfLines={1}>
-            Ownder: {item.userId} & {item.user.firstName}
+          Quantity: {item.quantity}  | Owner: {item.user.firstName} 
           </Text>
-          <Text note numberOfLines={1}>
-            Quantity: {item.quantity}
-          </Text>
+          {/* <Text note numberOfLines={1}>
+            
+          </Text> */}
         </Body>
         {item.userId === userId ? (
-          <Right style={{ width: "35%" }}>
+          <Right style={{ width: "30%" }}>
             <Button
               style={globalStyles.buttonPlusMinus}
               transparent
@@ -102,7 +102,7 @@ export default function SingleHouseholdList(props) {
             </Button>
           </Right>
         ) : (
-          <Right style={{ width: "35%" }}>
+          <Right style={{ width: "30%" }}>
             <Button
               style={globalStyles.buttonPlusMinus}
               transparent

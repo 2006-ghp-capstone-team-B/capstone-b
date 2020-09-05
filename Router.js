@@ -17,7 +17,7 @@ const Routes = () => {
         <Scene key="AddNewItemPrivate" title="Add New Item" component={AddNewItemPrivate}></Scene>
         <Scene key="AddNewItemHousehold" title="Add New Item" component={AddNewItemHousehold}></Scene>
         <Scene key="AllHouseholds" title="All My Households" component={AllHouseholds}></Scene>
-        <Scene key="ListSingleHousehold" title="Single Household List" component={SingleHouseholdList}></Scene>
+        <Scene key="ListSingleHousehold" title="Household List" component={SingleHouseholdList}></Scene>
         <Scene key="HouseholdProfile" title="Household Profile" component={HouseholdProfile}></Scene>
         <Scene key="HouseholdFind" title="Find A Household" component={HouseholdFind}></Scene>
         <Scene key="HouseholdCreate" title="Create A New Household" component={HouseholdCreate}></Scene>
