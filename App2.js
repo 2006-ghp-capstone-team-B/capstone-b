@@ -1,19 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Provider } from "react-redux";
-import store from "./app/store";
-import Routes from './Router'
-import Constants from 'expo-constants'
-import * as Notifications from 'expo-notifications';
-import * as Permissions from 'expo-permissions';
-import {Button} from 'react-native'
+import Constants from "expo-constants";
+import * as Notifications from "expo-notifications";
+import * as Permissions from "expo-permissions";
 
 const theme = {
   Button: {
     raised: true,
   },
   h3Style: {
-    alignSelf: 'center'
-  }
+    alignSelf: "center",
+  },
 };
 
 Notifications.setNotificationHandler({
@@ -25,20 +21,19 @@ Notifications.setNotificationHandler({
 });
 
 export default function App() {
-
-  const [expoPushToken, setExpoPushToken] = useState('');
+  const [expoPushToken, setExpoPushToken] = useState("");
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
   const responseListener = useRef();
 
   useEffect(() => {
-    registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+    registerForPushNotificationsAsync().then((token) => setExpoPushToken(token));
 
-    notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
+    notificationListener.current = Notifications.addNotificationReceivedListener((notification) => {
       setNotification(notification);
     });
 
-    responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
+    responseListener.current = Notifications.addNotificationResponseReceivedListener((response) => {
       console.log(response);
     });
 
@@ -48,7 +43,7 @@ export default function App() {
     };
   }, []);
 
-  return (null)
+  return null;
 }
 
 export const createNotification = (title, body) => {
@@ -57,13 +52,13 @@ export const createNotification = (title, body) => {
       content: {
         title,
         body,
-        data: { data: 'message' },
+        data: { data: "message" },
       },
       trigger: { seconds: 1 },
     });
-  }
-  return newNoty()
-}
+  };
+  return newNoty();
+};
 
 async function registerForPushNotificationsAsync() {
   let token;
@@ -72,28 +67,27 @@ async function registerForPushNotificationsAsync() {
     const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
     let finalStatus = existingStatus;
 
-    if (existingStatus !== 'granted') {
+    if (existingStatus !== "granted") {
       const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
       finalStatus = status;
     }
-    if (finalStatus !== 'granted') {
-      console.log('here')
-      alert('Failed to get push token for push notification!');
+    if (finalStatus !== "granted") {
+      console.log("here");
+      alert("Failed to get push token for push notification!");
       return;
     }
 
     token = (await Notifications.getExpoPushTokenAsync()).data;
-
   } else {
-    alert('Must use physical device for Push Notifications');
+    alert("Must use physical device for Push Notifications");
   }
 
-  if (Platform.OS === 'android') {
-    Notifications.setNotificationChannelAsync('default', {
-      name: 'default',
+  if (Platform.OS === "android") {
+    Notifications.setNotificationChannelAsync("default", {
+      name: "default",
       importance: Notifications.AndroidImportance.MAX,
       vibrationPattern: [0, 250, 250, 250],
-      lightColor: '#FF231F7C',
+      lightColor: "#FF231F7C",
     });
   }
 
