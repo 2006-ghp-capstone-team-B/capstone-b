@@ -4,11 +4,11 @@ import { useSelector } from "react-redux";
 import { Image } from "react-native";
 
 const MyMapView = (props) => {
-  
+
 
   const storePrefs = useSelector((state) => state.storePrefs);
 
-  
+
   return (
     <MapView
       region={props.region}
@@ -19,18 +19,19 @@ const MyMapView = (props) => {
     >
       <Marker coordinate={props.region} />
       {
-        storePrefs.length 
-        ? 
-        storePrefs.map( (store) => {return (
-                <Marker key={store.storeId} coordinate={{"latitude": Number(store.store.latitude), "longitude": Number(store.store.longitude)}} >
-                  <Image source={require('../../public/heart_marker.png')} style={{height: 45, width:45 }} />
-                </Marker>
-                )
-          }) 
-        :
-        null
+        storePrefs.length
+          ?
+          storePrefs.map((store) => {
+            return (
+              <Marker key={store.storeId} coordinate={{ "latitude": Number(store.store.latitude), "longitude": Number(store.store.longitude) }} >
+                <Image source={require('../../assets/heart_marker.png')} style={{ height: 45, width: 45 }} />
+              </Marker>
+            )
+          })
+          :
+          null
       }
-      
+
     </MapView>
   );
 };
