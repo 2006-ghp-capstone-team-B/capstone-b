@@ -1,7 +1,5 @@
-const router = require('express').Router()
-const { List, ListAccess, ItemUserList, Item, Notification } = require('../db/models')
-
-
+const router = require("express").Router();
+const { List, ListAccess, ItemUserList, Item, Notification } = require("../db/models");
 
 //all the lists
 // router.get('/', async (req, res, next) => {
@@ -67,10 +65,10 @@ router.post("/", async (req, res, next) => {
 
     const noty = await Notification.create({
       userId: id,
-      notificationTitle: 'New Household Created',
+      notificationTitle: "New Household Created",
       notificationBody: `Congratulations! You set up your first household. Your household id is: ${newList.id}. Don't forget to tell your roommates to join and you can start sharing your grocery list!`,
-      type: 'other'
-    })
+      type: "other",
+    });
 
     res.json(newList.id);
     res.sendStatus(201);
@@ -78,16 +76,95 @@ router.post("/", async (req, res, next) => {
     next(error);
   }
 });
+// request to join a household
+router.post("/join", async (req, res, next) => {
+  try {
+    const { listId, id, firstName, lastName } = req.body;
+    const [newMember, addedMember] = await ListAccess.findOrCreate({
+      where: {
+        userId: id,
+        listId,
+        category: "household",
+      },
+    });
 
+    // ADDED CONFIRMATION NOTIFICATION
+    const selfNoty = await Notification.create({
+      userId: id,
+      notificationTitle: "Request Sent",
+      notificationBody: `Your request to join Household ${listId} has been submitted. We will notify you when it has been accepted.`,
+      type: "other",
+    });
+
+    const householdMembers = await ListAccess.findAll({
+      where: {
+        listId,
+        confirmed: true,
+      },
+    });
+
+    for (let i = 0; i < householdMembers.length; i++) {
+      const noty = await Notification.findOrCreate({
+        where: {
+          userId: householdMembers[i].userId,
+          notificationTitle: "New Household Request",
+          notificationBody: `${firstName} ${lastName} would like to join your household. Please choose an option below.`,
+          type: "memberRequest",
+        },
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post("/accept", async (req, res, next) => {
+  try {
+    const { userId, listId } = req.body;
+    console.log(typeof userId, "type of userId");
+    console.log(typeof listId, "type of listid");
+    const toUpdate = await ListAccess.findOne({ where: { userId, listId, category: "household", confirmed: false } });
+
+    toUpdate.confirmed = true;
+    await toUpdate.save();
+    res.json(toUpdate);
+    const notyToDelete = await Notification.destroy({ where: { requestUserId: userId, requestListId: listId } });
+    res.json("destroyed");
+
+    // create accept noty for reqUser
+    const noty = await Notification.findOrCreate({
+      where: {
+        userId: userId,
+        notificationTitle: "You've been added to a household!",
+        notificationBody: `You've been accepted into household ${listId}! Head over to your new list and start sharing items!`,
+        type: "other",
+      },
+    });
+  } catch (e) {
+    next(e);
+  }
+});
+
+//get the list by id
+router.get("/:listId", async (req, res, next) => {
+  try {
+    const list = await ListAccess.findOne({
+      where: {
+        listId: req.params.listId,
+        category: "household",
+      },
+      include: {
+        model: List,
+      },
+    });
+    res.json(list);
+  } catch (error) {
+    next(error);
+  }
+});
 
 router.post("/access/:listId/:userId", async (req, res, next) => {
   try {
-    // console.log("222222222222222222222) right before list access")
-    // console.log(req.params.userId)
-    // console.log(typeof (req.params.userId))
-
-    // console.log(req.params.listId)
-    // console.log(typeof (req.params.listId))
     await ListAccess.create({
       listId: req.params.listId,
       userId: req.params.userId,
@@ -101,49 +178,6 @@ router.post("/access/:listId/:userId", async (req, res, next) => {
   }
 });
 
-
-// request to join a household
-router.post("/join", async (req, res, next) => {
-  try {
-    const {listId, id, firstName, lastName} = req.body
-    const [newMember, addedMember] = await ListAccess.findOrCreate({
-      where: {
-        userId: id,
-        listId,
-        category: 'household',
-      }
-    })
-
-// ADDED CONFIRMATION NOTIFICATION
-    const selfNoty = await Notification.create({
-      userId: id,
-      notificationTitle: 'Request Sent',
-      notificationBody: `Your request to join Household ${listId} has been submitted. We will notify you when it has been accepted.`,
-      type: 'other'
-    })
-
-    const householdMembers = await ListAccess.findAll({
-      where: {
-        listId,
-        confirmed: true
-      }
-    })
-
-    for(let i = 0; i < householdMembers.length; i++) {
-      const noty = await Notification.findOrCreate({
-        where: {
-          userId: householdMembers[i].userId,
-          notificationTitle: 'New Household Request',
-          notificationBody: `${firstName} ${lastName} would like to join your household. Please choose an option below.`,
-          type: 'memberRequest'
-        }
-      })
-    }
-  } catch (error) {
-    next(error)
-  }
-})
-
 //add new item to ItemUserList
 router.post("/:listId", async (req, res, next) => {
   try {
@@ -153,26 +187,6 @@ router.post("/:listId", async (req, res, next) => {
     console.log(error);
   }
 });
-
-
-//get the list by id
-router.get('/:listId', async (req, res, next) => {
-    try {
-        const list = await ListAccess.findOne({
-            where: {
-                listId: req.params.listId,
-                category: 'household'
-            },
-            include: {
-                model: List,
-            }
-        })
-        res.json(list)
-    } catch (error) {
-        next(error)
-    }
-})
-
 
 //update item quantity
 router.put("/:listId/:itemId", async (req, res, next) => {
