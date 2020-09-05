@@ -1,17 +1,24 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Text, TextInput, View, ImageBackground, Button, FlatList, SafeAreaView } from "react-native";
+import { View, ImageBackground, FlatList, SafeAreaView } from "react-native";
 import { globalStyles } from "../../styles/globalStyles";
+import { Text, Body, Right, Button, ListItem, Left } from "native-base";
 
 export default function BoughtItems(props) {
 
     const {Items} = props
+    console.log("this is raw data returned from scanner", Items)
 
     const renderItem = ({ item }) => (
-        <View>
-            <Text>{item.name}</Text>
-            <Text>Price: {item.price}</Text>
-        </View>
+        <ListItem icon>
+            <Left />
+            <Body>
+            <Text numberOfLines={1}>{item.name}</Text>
+            </Body>
+            <Right style={{ width: "35%" }}>
+            <Text note numberOfLines={1}>{item.price}</Text>
+            </Right>
+        </ListItem>
     );
 
     //manually extract items and prices from the scanning output for presentation purpose !!!!(only applicable to a specific receipt in slack)
@@ -27,7 +34,16 @@ export default function BoughtItems(props) {
             <View style={globalStyles.backgroundBox}>
 
                 <View>
-                    <SafeAreaView style={{ alignItems: "center", justifyContent: "center", }}>
+                    <SafeAreaView
+                     style={{
+                        marginTop: 30,
+                        backgroundColor: "white",
+                        height: "90%",
+                        width: "95%",
+                        alignSelf: "center",
+                        borderRadius: 25,
+                      }}
+                    >
                         <FlatList
                             data={arrayObject}
                             renderItem={renderItem}
