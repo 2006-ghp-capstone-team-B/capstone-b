@@ -3,21 +3,21 @@ import { View, ImageBackground, SafeAreaView, FlatList, TouchableOpacity } from 
 import { useDispatch, useSelector } from "react-redux";
 import { globalStyles } from "../../styles/globalStyles";
 import { getListHousehold, increaseItemQuantity, decreaseItemQuantity, deleteSingleItem } from "../store/listHousehold";
-import { Text, Icon, Body, Right, Button, ListItem, Card, Left, Container } from "native-base";
+import { Text, Icon, Body, Right, Button, ListItem, Card, Left, Container, List, Content } from "native-base";
 import { Actions } from "react-native-router-flux";
 
 export default function SingleHouseholdList(props) {
-  console.log("props", props);
 
   const { listId, userId } = props;
   const listHousehold = useSelector((state) => state.listHousehold);
+  const me = useSelector((state) => state.singleUser);
 
   const dispatch = useDispatch();
   const loadHouseholdList = (id) => {
     dispatch(getListHousehold(id));
   };
-  const increase = (listId, itemId, quantity) => {
-    dispatch(increaseItemQuantity(listId, itemId, quantity));
+  const increase = (itemId, listId, userId) => {
+    dispatch(increaseItemQuantity(itemId, listId, userId));
   };
   const decrease = (listId, itemId, quantity) => {
     if (quantity > 1) {
@@ -31,128 +31,84 @@ export default function SingleHouseholdList(props) {
   useEffect(() => {
     loadHouseholdList(listId);
   }, [listId]);
-  const renderSample = ({ item }) => {
-    return (
-      <ListItem icon>
-        <Left />
-        <Body>
-          <Text numberOfLines={1}>Your First Item</Text>
-          <Text note numberOfLines={1}>
-            Quantity: 100
-          </Text>
-        </Body>
-        <Right style={{ width: "35%" }}>
-          <Button
-            style={globalStyles.buttonPlusMinus}
-            transparent
-            onPress={() => alert("This will increment your item count.")}
-          >
-            <Text>+</Text>
-          </Button>
-          <Button
-            style={globalStyles.buttonPlusMinus}
-            transparent
-            onPress={() => alert("This will decrement your item count.")}
-          >
-            <Text>-</Text>
-          </Button>
-          <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => alert("This will remove your item.")}>
-            <Text>x</Text>
-          </Button>
-        </Right>
-      </ListItem>
-    );
-  };
+
+  let reformattedList = Object.entries(listHousehold
+    .reduce((accum, item) => {
+      const {id, itemName} = item.item
+      const {id: userId, firstName} = item.user
+      const {paid, purchased, quantity} = item
+
+      if (accum[itemName]) {
+        const addUser = {userId,firstName,quantity,paid, purchased}
+        accum[itemName].users.push(addUser)
+      } else {
+        accum[itemName] = {
+          users: [{userId,firstName,quantity,paid,purchased
+          }],
+          itemId: id
+        }
+      }
+      return accum
+    }, {}))
 
   const renderItem = ({ item }) => {
-    return (
-      <ListItem icon>
-        <Left />
-        <Body>
-          <Text numberOfLines={1}>{item.item.itemName}</Text>
-          <Text note numberOfLines={1}>
-            Quantity: {item.quantity} | Owner: {item.user.firstName}
-          </Text>
-          {/* <Text note numberOfLines={1}>
+    const itemName = item[0]
+    const itemId = item[1].itemId
 
-          </Text> */}
+    return (
+      <View>
+      <ListItem itemHeader noBorder >
+        <Body style={{ flex:2}}>
+          <Text numberOfLines={1}>{itemName}</Text>
         </Body>
-        {item.userId === userId ? (
-          <Right style={{ width: "30%" }}>
+          <Right style={{flex: 1, flexDirection: 'row'}}>
             <Button
               style={globalStyles.buttonPlusMinus}
               transparent
-              onPress={() => increase(item.listId, item.itemId, item.quantity)}
+              onPress={() => increase(itemId, listId, me.id)}
             >
               <Text>+</Text>
             </Button>
             <Button
               style={globalStyles.buttonPlusMinus}
               transparent
-              onPress={() => decrease(item.listId, item.itemId, item.quantity)}
+              onPress={() => decrease(listId, itemId, quantity)}
             >
               <Text>-</Text>
             </Button>
             <Button
               style={globalStyles.buttonPlusMinus}
               transparent
-              onPress={() => deleteItem(item.listId, item.itemId)}
+              onPress={() => deleteItem(listId, itemId)}
             >
               <Text>x</Text>
             </Button>
           </Right>
-        ) : (
-          <Right style={{ width: "30%" }}>
-            <Button
-              style={globalStyles.buttonPlusMinus}
-              transparent
-              onPress={() => alert("You cant update other people's item")}
-            >
-              <Text style={{ color: "#cedbf0" }}>+</Text>
-            </Button>
-            <Button
-              style={globalStyles.buttonPlusMinus}
-              transparent
-              onPress={() => alert("You cant update other people's item")}
-            >
-              <Text style={{ color: "#cedbf0" }}>-</Text>
-            </Button>
-            <Button
-              style={globalStyles.buttonPlusMinus}
-              transparent
-              onPress={() => alert("You cant delete other people's item")}
-            >
-              <Text style={{ color: "#cedbf0" }}>x</Text>
-            </Button>
-          </Right>
-        )}
-      </ListItem>
+        </ListItem >
+          {item[1].users.map((user, idx) => {
+            return (
+              <ListItem  key={idx} noBorder >
+                <Text note >{user.firstName} | Quantity: {user.quantity}</Text>
+              </ListItem>
+            )
+          })}
+      </View>
     );
   };
-
+console.log('++', reformattedList)
   return (
     <Container>
       <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
         <View style={globalStyles.backgroundBox}>
           <View style={{ flex: 5 }}>
-            {listHousehold.length > 0 ? (
-              <SafeAreaView>
-                <FlatList data={listHousehold} renderItem={renderItem} keyExtractor={(item) => item.id.toString()} />
+            <List>
+              {reformattedList
+              ? <SafeAreaView>
+              <FlatList data={reformattedList} renderItem={renderItem} keyExtractor={(item) => item[1].itemId.toString()} />
               </SafeAreaView>
-            ) : (
-              <SafeAreaView
-                style={{
-                  marginTop: 30,
-                  backgroundColor: "white",
-                  height: "80%",
-                  width: "95%",
-                  alignSelf: "center",
-                  borderRadius: 25,
-                }}
-              >
-                <FlatList data={["sample"]} renderItem={renderSample} keyExtractor={(item) => item} />
-              </SafeAreaView>
-            )}
+              : null
+              }
+            </List>
           </View>
           <View style={{ flex: 1, marginTop: "5%" }}>
             <TouchableOpacity
