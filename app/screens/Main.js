@@ -11,15 +11,15 @@ import MessageCenter from "./MessageCenter";
 import { newLocationMessage, fetchNotifications } from "../store/notifications";
 import { fetchStorePrefs } from "../store/storePrefs";
 import Geofence from "react-native-expo-geofence";
-import {Text} from 'react-native'
-import {connect} from 'react-redux'
-import { createNotification} from '../../App2'
+import { Text } from 'react-native'
+import { connect } from 'react-redux'
+import { createNotification } from '../../PushNotifications'
 import { saveLocation, retrieveLocation, saveLocPermission, retrieveLocPermission, retrievePushTime, savePushTiming } from '../store/storageHelper'
 
 const BottomTab = createBottomTabNavigator();
 
 class Main extends React.Component {
-  constructor () {
+  constructor() {
     super()
     this.getLocation = this.getLocation.bind(this)
     this.checkGeofence = this.checkGeofence.bind(this)
@@ -58,7 +58,7 @@ class Main extends React.Component {
     else {
       let currentLocation = await Location.getCurrentPositionAsync({});
       const oldLocation = await retrieveLocation()
-      if(!oldLocation) {
+      if (!oldLocation) {
         await saveLocation(currentLocation.coords);
       }
     }
@@ -72,14 +72,14 @@ class Main extends React.Component {
     let currentLocation = await Location.getCurrentPositionAsync({});
     const oldLocation = JSON.parse(await retrieveLocation())
 
-    if(currentLocation && oldLocation) {
+    if (currentLocation && oldLocation) {
 
-      const newLoc = {latitude: currentLocation.coords.latitude, longitude: currentLocation.coords.longitude}
-      const oldLoc = {latitude: oldLocation.latitude, longitude: oldLocation.longitude}
+      const newLoc = { latitude: currentLocation.coords.latitude, longitude: currentLocation.coords.longitude }
+      const oldLoc = { latitude: oldLocation.latitude, longitude: oldLocation.longitude }
 
       const change = haversine(oldLoc, newLoc)
 
-      if(change > .1) {
+      if (change > .1) {
         this.checkGeofence(newLoc)
       }
 
@@ -101,10 +101,10 @@ class Main extends React.Component {
     const result = await Geofence.filterByProximity(currentLocation, storePrefCoords, maxDistanceInKM);
 
     const lastPush = JSON.parse(await retrievePushTime())
-    if(result.length) {
+    if (result.length) {
       let time = new Date().getTime()
 
-      if(!lastPush || time - lastPush > 3600000) {
+      if (!lastPush || time - lastPush > 3600000) {
         const title = `Reminder: You are near ${result[0].title}`
         const body = `You have x items on your list.`
         createNotification(title, body)
@@ -114,7 +114,7 @@ class Main extends React.Component {
     }
   }
 
-  render () {
+  render() {
 
     return (
 
