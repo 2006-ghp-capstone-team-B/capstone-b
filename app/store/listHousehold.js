@@ -64,6 +64,18 @@ export const increaseItemQuantity = (listId, itemId, quantity) => async (dispatc
   }
 };
 
+// NEW INCREASE THUNK
+// export const increaseItemQuantity = (itemId, listId, userId) => async (dispatch) => {
+//   try {
+//     await axios.post(`https://peasy-server.herokuapp.com/api/items/add`, { itemId, listId, userId });
+
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+
+
 export const decreaseItemQuantity = (listId, itemId, quantity) => async (dispatch) => {
   try {
     quantity -= 1;
