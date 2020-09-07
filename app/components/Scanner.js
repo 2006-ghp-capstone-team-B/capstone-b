@@ -10,11 +10,20 @@ import { globalStyles } from "../../styles/globalStyles";
 
 
 export default class App extends React.Component {
-	state = {
-		image: null,
-		uploading: false,
-		googleResponse: null
-	};
+
+
+	constructor(props) {
+    
+		super(props);
+		
+		this.state = {
+			image: null,
+			uploading: false,
+			googleResponse: null
+		};
+
+	}
+	
 
 	async componentDidMount() {
 		await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -31,7 +40,7 @@ export default class App extends React.Component {
 				>
 					<View style={styles.getStartedContainer}>
 						{image ? null : (
-							<Text style={styles.getStartedText}>Scan your receipt</Text>
+							<Text style={styles.getStartedText}>Scan my receipt</Text>
 						)}
 					</View>
 
@@ -44,8 +53,8 @@ export default class App extends React.Component {
 						<Button onPress={this._takePhoto} title="Take a photo" />
 						{this.state.googleResponse && (
 							<View style={{ flex: 1, marginTop: '3%' }}>
-								<TouchableOpacity onPress={() => Actions.BoughtItems({ Items: this.state.googleResponse.responses[0].textAnnotations[0].description })} title="Bought Items">
-									<Text style={globalStyles.button}>Your Receipt Items</Text>
+								<TouchableOpacity onPress={() => Actions.BoughtItems({ Items: this.state.googleResponse.responses[0].textAnnotations[0].description, listPrivate: this.props.listPrivate, userId: this.props.userId })} title="Bought Items">
+									<Text style={globalStyles.button}>My Receipt Items</Text>
 								</TouchableOpacity>
 							</View>
 							// <FlatList
