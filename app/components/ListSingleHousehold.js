@@ -10,12 +10,8 @@ import {
   Right,
   Button,
   ListItem,
-  Card,
-  Left,
   Container,
   List,
-  Content,
-  Separator,
 } from "native-base";
 import { Actions } from "react-native-router-flux";
 
@@ -28,16 +24,18 @@ export default function SingleHouseholdList(props) {
   const loadHouseholdList = (id) => {
     dispatch(getListHousehold(id));
   };
-  const increase = (itemId, listId, userId) => {
-    dispatch(increaseItemQuantity(itemId, listId, userId));
+  const increase = async (itemId, listId, userId) => {
+    await dispatch(increaseItemQuantity(itemId, listId, userId))
+    await dispatch(getListHousehold(listId))
   };
-  const decrease = (listId, itemId, quantity) => {
-    if (quantity > 1) {
-      dispatch(decreaseItemQuantity(listId, itemId, quantity));
-    }
+  const decrease = async (listId, itemId, quantity) => {
+      await dispatch(decreaseItemQuantity(listId, itemId, quantity))
+      await dispatch(getListHousehold(listId))
   };
-  const deleteItem = (listId, itemId) => {
-    dispatch(deleteSingleItem(listId, itemId));
+
+  const deleteItem = async (listId, itemId) => {
+    await dispatch(deleteSingleItem(listId, itemId));
+    await dispatch(getListHousehold(listId))
   };
 
   useEffect(() => {

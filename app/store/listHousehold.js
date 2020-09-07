@@ -53,35 +53,20 @@ export const getListHousehold = (listId) => async (dispatch) => {
   }
 };
 
-export const increaseItemQuantity = (listId, itemId, quantity) => async (dispatch) => {
+export const increaseItemQuantity = (itemId, listId, userId) => async (dispatch) => {
   try {
-    quantity += 1;
-    await axios.put(`https://peasy-server.herokuapp.com/api/lists/${listId}/${itemId}`, { quantity }); //update the single item
-    const { data } = await axios.get(`https://peasy-server.herokuapp.com/api/lists/household/${listId}`); //fetch the updated list
-    dispatch(increaseItem(data));
+    console.log('increasing!')
+    const {data} = await axios.post(`https://peasy-server.herokuapp.com/api/items/add`, { itemId, listId, userId });
+    dispatch(increaseItem(data))
   } catch (error) {
     console.log(error);
   }
 };
 
-// NEW INCREASE THUNK
-// export const increaseItemQuantity = (itemId, listId, userId) => async (dispatch) => {
-//   try {
-//     await axios.post(`https://peasy-server.herokuapp.com/api/items/add`, { itemId, listId, userId });
-
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-
-
-export const decreaseItemQuantity = (listId, itemId, quantity) => async (dispatch) => {
+export const decreaseItemQuantity = (itemId, listId, userId) => async (dispatch) => {
   try {
-    quantity -= 1;
-    await axios.put(`https://peasy-server.herokuapp.com/api/lists/${listId}/${itemId}`, { quantity });
-    const { data } = await axios.get(`https://peasy-server.herokuapp.com/api/lists/household/${listId}`);
-    dispatch(decreaseItem(data));
+    const {data} = await axios.post(`https://peasy-server.herokuapp.com/api/items/reduce`, { itemId, listId, userId });
+    dispatch(decreaseItem(data))
   } catch (error) {
     console.log(error);
   }
@@ -89,8 +74,7 @@ export const decreaseItemQuantity = (listId, itemId, quantity) => async (dispatc
 
 export const deleteSingleItem = (listId, itemId) => async (dispatch) => {
   try {
-    await axios.delete(`https://peasy-server.herokuapp.com/api/lists/${listId}/${itemId}`);
-    const { data } = await axios.get(`https://peasy-server.herokuapp.com/api/lists/household/${listId}`);
+    await axios.delete(`https://peasy-server.herokuapp.com/api/items/delete`, { itemId, listId, userId });
     dispatch(deleteItem(data));
   } catch (error) {
     console.log(error);

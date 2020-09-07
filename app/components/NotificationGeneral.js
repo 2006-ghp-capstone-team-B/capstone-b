@@ -12,7 +12,7 @@ export default function GeneraltNotification(props) {
   return (
     <ListItem icon>
       <Left>
-        <Button style={{ backgroundColor: "#FF9501" }}>
+        <Button style={{ backgroundColor: "#1BB49D" }}>
           <Icon active name="nutrition" />
         </Button>
       </Left>

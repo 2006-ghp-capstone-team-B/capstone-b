@@ -1,9 +1,7 @@
 import React from "react";
-import { View, ImageBackground, TouchableOpacity } from "react-native";
+import { View, ImageBackground, TouchableOpacity, Text } from "react-native";
 import { globalStyles } from "../../styles/globalStyles";
 import { Actions } from "react-native-router-flux";
-import { Text } from 'native-base';
-
 
 export default function Dashboard() {
 
@@ -13,8 +11,8 @@ export default function Dashboard() {
 
   return (
     <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
-      <View style={{ marginTop: 30, backgroundColor: 'white', height: '90%', width: '95%', alignSelf: 'center', borderRadius: 25 }}>
-        <View style={globalStyles.buttonView}>
+      <View style={globalStyles.backgroundBox}>
+        <View style={{marginTop: '5%'}}>
           <TouchableOpacity onPress={() => navigate("privateList")} title="Private List">
             <Text style={globalStyles.button}>My Private List</Text>
           </TouchableOpacity>
