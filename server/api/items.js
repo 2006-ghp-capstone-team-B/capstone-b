@@ -4,20 +4,66 @@ const { Item, Store, StorePreference, ItemUserList } = require("../db/models");
 //all the Items
 router.get("/", async (req, res, next) => {
   try {
-    const items = await items.findAll();
+    const items = await Item.findAll();
     res.json(items);
   } catch (error) {
     next(error);
   }
 });
 
-//route for each single item:  "api/items/:id"
-router.get("/:itemId", async (req, res, next) => {
+router.get("/itemUserList", async (req, res, next) => {
   try {
-    const singleItem = await Item.findByPk(req.params.itemId);
-    res.json(singleItem);
+    const item = await ItemUserList.findAll();
+    res.json(item);
   } catch (error) {
-    next(error);
+    console.log(error);
+  }
+});
+
+router.post("/add", async (req, res, next) => {
+  try {
+    const { itemId, listId, userId } = req.body;
+    const [item, created] = await ItemUserList.findCreateFind({ where: { itemId, listId, userId } });
+    item.quantity = item.quantity + 1;
+    await item.save();
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.put("/reduce", async (req, res, next) => {
+  try {
+    const { itemId, listId, userId } = req.body;
+    const item = await ItemUserList.findOne({
+      where: {
+        itemId,
+        listId,
+        userId,
+      },
+    });
+    if (item.quantity > 1) {
+      item.quantity = item.quantity - 1;
+      await item.save();
+    } else {
+      await item.destroy();
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.delete("/remove", async (req, res, next) => {
+  try {
+    const { itemId, listId, userId } = req.body;
+    const item = await ItemUserList.destroy({
+      where: {
+        itemId,
+        listId,
+        userId,
+      },
+    });
+  } catch (error) {
+    console.log(error);
   }
 });
 
@@ -31,21 +77,13 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-//NEW update item quantity
-router.put("/add", async (req, res, next) => {
+//route for each single item:  "api/items/:id"
+router.get("/:itemId", async (req, res, next) => {
   try {
-    const {itemId, listId, userId} = req.body
-    const item = await ItemUserList.findOrCreate({
-      where: {
-        itemId,
-        listId,
-        userId
-      },
-    });
-    item.quantity = item.quantity+1
-    await item.save();
+    const singleItem = await Item.findById(req.params.itemId);
+    res.json(singleItem);
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 });
 
