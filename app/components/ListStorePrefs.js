@@ -26,17 +26,7 @@ export default function ListStorePrefs(props) {
     <View>
       {item.store !== undefined ? (
         <View
-          style={{
-            backgroundColor: "white",
-            width: "80%",
-            alignSelf: "center",
-            margin: "1%",
-            borderWidth: 1,
-            borderColor: "grey",
-            borderRadius: 6,
-            padding: "2%",
-            flexDirection: "row",
-          }}
+          style={globalStyles.storePrefs}
         >
           <View style={{ flex: 3, marginLeft: "5%" }}>
             <Text>Store: {item.store.storeName}</Text>

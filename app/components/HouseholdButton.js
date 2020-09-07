@@ -10,7 +10,7 @@ export default function HouseholdButton(props) {
   return (
     <ListItem icon>
       <Left>
-        <Button style={{ backgroundColor: "green" }}>
+        <Button style={{ backgroundColor: "#A3CFB6" }}>
           <Icon active name="home" />
         </Button>
       </Left>

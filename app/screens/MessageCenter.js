@@ -5,6 +5,7 @@ import { fetchNotifications } from "../store/notifications";
 import { Container, Header, Content, Body, List, Title, Text, Button } from "native-base";
 import { Notification } from "../components";
 import ModalRequest from "../components/ModalRequest";
+import { globalStyles } from "../../styles/globalStyles";
 
 class MessageCenter extends React.Component {
   constructor() {

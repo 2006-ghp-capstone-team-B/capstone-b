@@ -9,11 +9,20 @@ export default function GeneraltNotification(props) {
   };
 
   const { id, notificationTitle, notificationBody, type } = props.message;
+
+  let iconType;
+  if(type === 'welcome') {
+    iconType = 'ios-gift'
+  } else if (type === 'newItem') {
+    iconType = 'nutrition'
+  } else {
+    iconType = 'md-star'
+  }
   return (
     <ListItem icon>
       <Left>
-        <Button style={{ backgroundColor: "#FF9501" }}>
-          <Icon active name="nutrition" />
+        <Button style={{ backgroundColor: "#1BB49D" }}>
+          <Icon active name={iconType} />
         </Button>
       </Left>
       <Body>
