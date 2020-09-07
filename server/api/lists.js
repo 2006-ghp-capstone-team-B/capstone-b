@@ -39,12 +39,35 @@ router.get("/private/:userId", async (req, res, next) => {
 router.get("/household/:listId", async (req, res, next) => {
   try {
     const listItems = await ItemUserList.findAll({
-      where: { listId: req.params.listId },
+      where: { listId: req.params.listId, purchased: false },
       include: [{ model: Item }, { model: User }],
     });
     res.json(listItems);
   } catch (error) {
     next(error);
+  }
+});
+
+router.put("/markPurchased", async (req, res, next) => {
+  try {
+    const { itemId, listId } = req.body;
+    const items = await ItemUserList.update(
+      { purchased: true },
+      {
+        where: {
+          itemId,
+          listId,
+        },
+      }
+    );
+    // send back the household list
+    const listItems = await ItemUserList.findAll({
+      where: { listId: req.params.listId, purchased: false },
+      include: [{ model: Item }, { model: User }],
+    });
+    res.json(listItems);
+  } catch (error) {
+    console.log(error);
   }
 });
 

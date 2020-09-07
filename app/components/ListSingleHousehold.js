@@ -1,18 +1,9 @@
 import React, { useEffect } from "react";
-import { View, ImageBackground, SafeAreaView, FlatList, TouchableOpacity } from "react-native";
+import { View, ImageBackground, SafeAreaView, FlatList, TouchableOpacity, Alert } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { globalStyles } from "../../styles/globalStyles";
 import { getListHousehold, increaseItemQuantity, decreaseItemQuantity, deleteSingleItem } from "../store/listHousehold";
-import {
-  Text,
-  Icon,
-  Body,
-  Right,
-  Button,
-  ListItem,
-  Container,
-  List,
-} from "native-base";
+import { Text, Icon, Body, Right, Button, ListItem, Container, List } from "native-base";
 import { Actions } from "react-native-router-flux";
 
 export default function SingleHouseholdList(props) {
@@ -25,18 +16,28 @@ export default function SingleHouseholdList(props) {
     dispatch(getListHousehold(id));
   };
   const increase = async (itemId, listId, userId) => {
-    await dispatch(increaseItemQuantity(itemId, listId, userId))
-    // await dispatch(getListHousehold(listId))
-    console.log('done')
+    await dispatch(increaseItemQuantity(itemId, listId, userId));
+    await dispatch(getListHousehold(listId));
+    console.log("done");
   };
-  const decrease = async (listId, itemId, quantity) => {
-      await dispatch(decreaseItemQuantity(listId, itemId, quantity))
-      await dispatch(getListHousehold(listId))
+  const decrease = async (listId, itemId, userId) => {
+    await dispatch(decreaseItemQuantity(listId, itemId, userId));
+    console.log("done descreasing");
+    await dispatch(getListHousehold(listId));
+    console.log("am i getting");
   };
 
   const deleteItem = async (listId, itemId) => {
-    await dispatch(deleteSingleItem(listId, itemId));
-    await dispatch(getListHousehold(listId))
+    Alert.alert("Confirm Delete", "Are you sure you want to delete this item for all the members of your household?", [
+      {
+        text: "Yes",
+        onPress: async () => {
+          await dispatch(deleteSingleItem(listId, itemId));
+          await dispatch(getListHousehold(listId));
+        },
+      },
+      { text: "No", style: "cancel" },
+    ]);
   };
 
   useEffect(() => {
@@ -76,7 +77,7 @@ export default function SingleHouseholdList(props) {
             <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => increase(itemId, listId, me.id)}>
               <Text>+</Text>
             </Button>
-            <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => decrease(listId, itemId, quantity)}>
+            <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => decrease(listId, itemId, userId)}>
               <Text>-</Text>
             </Button>
             <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => deleteItem(listId, itemId)}>
@@ -97,7 +98,7 @@ export default function SingleHouseholdList(props) {
       </View>
     );
   };
-console.log('!!', reformattedList)
+
   return (
     <Container>
       <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
