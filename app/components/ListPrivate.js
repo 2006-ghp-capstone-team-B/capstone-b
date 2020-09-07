@@ -2,16 +2,40 @@ import React, { useEffect } from "react";
 import { View, ImageBackground, SafeAreaView, FlatList, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { getListPrivate, increaseItemQuantity, decreaseItemQuantity, deleteSingleItem } from "../store/listPrivate";
-import {fetchListInfo} from "../store/listInfo"
-import { globalStyles } from '../../styles/globalStyles';
-import { Text, Icon, Body, Right, Button, ListItem, Card, Left, Container } from 'native-base';
+import { fetchListInfo } from "../store/listInfo";
+import { globalStyles } from "../../styles/globalStyles";
+import { Text, Icon, Body, Right, Button, ListItem, Card, Left, Container } from "native-base";
 import { Actions } from "react-native-router-flux";
 
 export default function ListPrivate() {
-
   const navigate = (screen) => {
     Actions[screen]();
   };
+
+  const listPrivate = useSelector((state) => state.listPrivate);
+  const listInfo = useSelector((state) => state.listInfo);
+  const user = useSelector((state) => state.singleUser);
+  const dispatch = useDispatch();
+  const loadListPrivate = async (userId) => {
+    await dispatch(fetchListInfo(userId));
+    await dispatch(getListPrivate(userId));
+  };
+  const increase = async (itemId, listId, userId) => {
+    await dispatch(increaseItemQuantity(itemId, listId, userId));
+    await dispatch(getListPrivate(userId));
+  };
+  const decrease = async (listId, itemId, userId) => {
+    await dispatch(decreaseItemQuantity(listId, itemId, userId));
+    await dispatch(getListPrivate(userId));
+  };
+  const deleteItem = async (listId, itemId, userId) => {
+    await dispatch(deleteSingleItem(listId, itemId));
+    await dispatch(getListPrivate(userId));
+  };
+
+  useEffect(() => {
+    loadListPrivate(user.id);
+  }, [user.id]);
 
   const renderItem = ({ item }) => {
     return (
@@ -19,21 +43,35 @@ export default function ListPrivate() {
         <Left />
         <Body>
           <Text numberOfLines={1}>{item.item.itemName}</Text>
-          <Text note numberOfLines={1}>Quantity: {item.quantity}</Text>
+          <Text note numberOfLines={1}>
+            Quantity: {item.quantity}
+          </Text>
         </Body>
         <Right style={{ width: "35%" }}>
-          <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => increase(item.userId, item.listId, item.itemId, item.quantity)}>
+          <Button
+            style={globalStyles.buttonPlusMinus}
+            transparent
+            onPress={async () => await increase(item.listId, item.itemId, item.userId)}
+          >
             <Text>+</Text>
           </Button>
-          <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => decrease(item.userId, item.listId, item.itemId, item.quantity)}>
+          <Button
+            style={globalStyles.buttonPlusMinus}
+            transparent
+            onPress={async () => await decrease(item.listId, item.itemId, item.userId)}
+          >
             <Text>-</Text>
           </Button>
-          <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => deleteItem(item.userId, item.listId, item.itemId)}>
+          <Button
+            style={globalStyles.buttonPlusMinus}
+            transparent
+            onPress={async () => await deleteItem(item.listId, item.itemId, item.userId)}
+          >
             <Text>x</Text>
           </Button>
         </Right>
       </ListItem>
-    )
+    );
   };
 
   const renderSample = ({ item }) => {
@@ -42,13 +80,23 @@ export default function ListPrivate() {
         <Left />
         <Body>
           <Text numberOfLines={1}>Your First Item</Text>
-          <Text note numberOfLines={1}>Quantity: 100</Text>
+          <Text note numberOfLines={1}>
+            Quantity: 100
+          </Text>
         </Body>
         <Right style={{ width: "35%" }}>
-          <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => alert("This will increment your item count.")}>
+          <Button
+            style={globalStyles.buttonPlusMinus}
+            transparent
+            onPress={() => alert("This will increment your item count.")}
+          >
             <Text>+</Text>
           </Button>
-          <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => alert("This will decrement your item count.")}>
+          <Button
+            style={globalStyles.buttonPlusMinus}
+            transparent
+            onPress={() => alert("This will decrement your item count.")}
+          >
             <Text>-</Text>
           </Button>
           <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => alert("This will remove your item.")}>
@@ -56,66 +104,58 @@ export default function ListPrivate() {
           </Button>
         </Right>
       </ListItem>
-    )
+    );
   };
-
-  const listPrivate = useSelector((state) => state.listPrivate);
-  const listInfo = useSelector((state) => state.listInfo);
-  const user = useSelector((state) => state.singleUser);
-  const dispatch = useDispatch();
-  const loadListPrivate = (userId) => {
-    dispatch(fetchListInfo(userId))
-    dispatch(getListPrivate(userId));
-  };
-  const increase = (userId, listId, itemId, quantity) => {
-    dispatch(increaseItemQuantity(userId, listId, itemId, quantity))
-  }
-  const decrease = (userId, listId, itemId, quantity) => {
-    if (quantity > 1) {
-      dispatch(decreaseItemQuantity(userId, listId, itemId, quantity))
-    }
-  }
-  const deleteItem = (userId, listId, itemId) => {
-    dispatch(deleteSingleItem(userId, listId, itemId))
-  }
-
-  useEffect(() => {
-    loadListPrivate(user.id);
-  }, [user.id]);
-
 
   return (
     <Container>
       <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
         <View style={globalStyles.backgroundBox}>
-          <View style={{flex: 2}}>
-            {!user.id || listPrivate.length === 0
-              ? <SafeAreaView style={{ marginTop: 30, backgroundColor: 'white', height: '70%', width: '95%', alignSelf: 'center', borderRadius: 25 }}>
-              <FlatList
-                data={['sample']}
-                renderItem={renderSample}
-                keyExtractor={(item) => item}
-              />
-            </SafeAreaView>
-              : <SafeAreaView style={{ marginTop: 30, backgroundColor: 'white', height: '70%', width: '95%', alignSelf: 'center', borderRadius: 25 }}>
-                <FlatList
-                  data={listPrivate}
-                  renderItem={renderItem}
-                  keyExtractor={(item) => item.item.id.toString()}
-                />
+          <View style={{ flex: 2 }}>
+            {!user.id || listPrivate.length === 0 ? (
+              <SafeAreaView
+                style={{
+                  marginTop: 30,
+                  backgroundColor: "white",
+                  height: "70%",
+                  width: "95%",
+                  alignSelf: "center",
+                  borderRadius: 25,
+                }}
+              >
+                <FlatList data={["sample"]} renderItem={renderSample} keyExtractor={(item) => item} />
               </SafeAreaView>
-            }
+            ) : (
+              <SafeAreaView
+                style={{
+                  marginTop: 30,
+                  backgroundColor: "white",
+                  height: "70%",
+                  width: "95%",
+                  alignSelf: "center",
+                  borderRadius: 25,
+                }}
+              >
+                <FlatList data={listPrivate} renderItem={renderItem} keyExtractor={(item) => item.id.toString()} />
+              </SafeAreaView>
+            )}
           </View>
-          <View style={{ flex: 1, marginTop: '3%', justifyContent: 'flex-end' }}>
-            <TouchableOpacity onPress={() => Actions.AddNewItemPrivate({listId: listInfo.listId, userId: user.id})} title="Add New Item">
+          <View style={{ flex: 1, marginTop: "3%", justifyContent: "flex-end" }}>
+            <TouchableOpacity
+              onPress={() => Actions.AddNewItemPrivate({ listId: listInfo.listId, userId: user.id })}
+              title="Add New Item"
+            >
               <Text style={globalStyles.button}>Add New Item</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => Actions.Scanner({listPrivate: listPrivate, userId: user.id})} title="Scanner">
+            <TouchableOpacity
+              onPress={() => Actions.Scanner({ listPrivate: listPrivate, userId: user.id })}
+              title="Scanner"
+            >
               <Text style={globalStyles.button}>Scan my receipt</Text>
             </TouchableOpacity>
           </View>
         </View>
       </ImageBackground>
     </Container>
-  )
+  );
 }
