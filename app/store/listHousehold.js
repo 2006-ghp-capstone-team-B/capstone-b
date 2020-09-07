@@ -47,20 +47,14 @@ export const getListHousehold = (listId) => async (dispatch) => {
   try {
     const { data } = await axios.get(`https://peasy-server.herokuapp.com/api/lists/household/${listId}`);
     dispatch(getHouseList(data));
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };
 
 export const increaseItemQuantity = (itemId, listId, userId) => async (dispatch) => {
   try {
-    console.log("new:", itemId, listId, userId);
     const { data } = await axios.post(`https://peasy-server.herokuapp.com/api/items/add`, { itemId, listId, userId });
-    console.log("data", data);
     dispatch(increaseItem(data));
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };
 
 export const decreaseItemQuantity = (itemId, listId, userId) => async (dispatch) => {
@@ -70,21 +64,19 @@ export const decreaseItemQuantity = (itemId, listId, userId) => async (dispatch)
       listId,
       userId,
     });
-    console.log("data from decrease thunk!", data);
-    dispatch(decreaseItem(data));
-  } catch (error) {
-    console.log(error);
-  }
+    if (typeof data === "string") {
+      alert("Your personal count for this item is 0, you can't decrease any further!");
+    } else {
+      dispatch(decreaseItem(data));
+    }
+  } catch (error) {}
 };
 
 export const deleteSingleItem = (listId, itemId) => async (dispatch) => {
   try {
     const { data } = await axios.put(`https://peasy-server.herokuapp.com/api/items/remove`, { itemId, listId });
-    console.log("in delete route", data);
     dispatch(deleteItem(data));
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };
 
 export const addNewItem = (item, listId, userId) => async (dispatch) => {
@@ -96,18 +88,14 @@ export const addNewItem = (item, listId, userId) => async (dispatch) => {
     await axios.post(`https://peasy-server.herokuapp.com/api/lists/${listId}`, newItem);
     const res = await axios.get(`https://peasy-server.herokuapp.com/api/lists/household/${listId}`);
     dispatch(addItem(res.data));
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };
 
 export const markPurchased = (itemId, listId) => async (dispatch) => {
   try {
     const { data } = await axios.put(`https://peasy-server.herokuapp.com/api/lists/markPurchased`, { itemId, listId });
     dispatch(getHouseList(data));
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };
 
 /**

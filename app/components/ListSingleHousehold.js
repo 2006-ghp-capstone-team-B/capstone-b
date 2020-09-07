@@ -18,13 +18,10 @@ export default function SingleHouseholdList(props) {
   const increase = async (itemId, listId, userId) => {
     await dispatch(increaseItemQuantity(itemId, listId, userId));
     await dispatch(getListHousehold(listId));
-    console.log("done");
   };
   const decrease = async (listId, itemId, userId) => {
     await dispatch(decreaseItemQuantity(listId, itemId, userId));
-    console.log("done descreasing");
     await dispatch(getListHousehold(listId));
-    console.log("am i getting");
   };
 
   const deleteItem = async (listId, itemId) => {
@@ -44,7 +41,6 @@ export default function SingleHouseholdList(props) {
     loadHouseholdList(listId);
   }, [listId]);
 
-
   let reformattedList = Object.entries(
     listHousehold.reduce((accum, item) => {
       const { id, itemName } = item.item;
@@ -63,8 +59,8 @@ export default function SingleHouseholdList(props) {
       return accum;
     }, {})
   );
-  
 
+  // console.log("reformatteddddddd", reformattedList);
   const renderItem = ({ item }) => {
     const itemName = item[0];
     const itemId = item[1].itemId;
@@ -125,7 +121,10 @@ export default function SingleHouseholdList(props) {
             >
               <Text style={globalStyles.button}>Add New Item</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => Actions.Scanner({listHousehold: listHousehold, userId: userId})} title="Scanner">
+            <TouchableOpacity
+              onPress={() => Actions.Scanner({ listHousehold: listHousehold, userId: userId })}
+              title="Scanner"
+            >
               <Text style={globalStyles.button}>Scan my receipt</Text>
             </TouchableOpacity>
           </View>
