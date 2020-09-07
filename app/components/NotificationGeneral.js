@@ -9,11 +9,20 @@ export default function GeneraltNotification(props) {
   };
 
   const { id, notificationTitle, notificationBody, type } = props.message;
+
+  let iconType;
+  if(type === 'welcome') {
+    iconType = 'party-popper'
+  } else if (type === 'newItem') {
+    iconType = 'nutrition'
+  } else {
+    iconType = 'party-popper'
+  }
   return (
     <ListItem icon>
       <Left>
         <Button style={{ backgroundColor: "#1BB49D" }}>
-          <Icon active name="nutrition" />
+          <Icon active name={iconType} />
         </Button>
       </Left>
       <Body>

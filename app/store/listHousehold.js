@@ -103,7 +103,9 @@ export default function (state = initialState, action) {
   switch (action.type) {
     case GET_HOUSE_LIST:
       return action.list;
-    case INCREASE_ITEM:
+    case INCREASE_ITEM: {
+
+    }
       return action.list;
     case DECREASE_ITEM:
       return action.list;
