@@ -13,7 +13,6 @@ import {
   HouseholdCreate,
   Scanner,
   BoughtItems,
-  CheckOffList,
 } from "./app/components";
 
 const Routes = () => {
@@ -34,7 +33,6 @@ const Routes = () => {
         <Scene key="HouseholdCreate" title="Create A New Household" component={HouseholdCreate}></Scene>
         <Scene key="Scanner" title="Scanner" component={Scanner}></Scene>
         <Scene key="BoughtItems" title="Bought Items" component={BoughtItems}></Scene>
-        <Scene key="CheckOffList" title="Check Off Items" component={CheckOffList}></Scene>
       </Scene>
     </Router>
   );

@@ -92,7 +92,7 @@ export default function SingleHouseholdList(props) {
 
         {item[1].users.map((user, idx) => {
           return (
-            <ListItem key={idx} noBorder noIndent >
+            <ListItem key={idx} noBorder noIndent>
               <Text note style={{ marginVertical: 0, marginHorizontal: 20, marginTop: -20 }}>
                 {user.firstName} | Quantity: {user.quantity}
               </Text>
@@ -112,7 +112,6 @@ export default function SingleHouseholdList(props) {
               {reformattedList ? (
                 <SafeAreaView>
                   <FlatList
-
                     data={reformattedList}
                     renderItem={renderItem}
                     keyExtractor={(item) => item[1].itemId.toString()}
@@ -127,9 +126,6 @@ export default function SingleHouseholdList(props) {
               title="Add New Item"
             >
               <Text style={globalStyles.button}>Add New Item</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => Actions.CheckOffList({ reformattedList })} title="CheckOffList">
-              <Text style={globalStyles.button}>Check Off Items</Text>
             </TouchableOpacity>
           </View>
         </View>
