@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicator, Button, Clipboard, FlatList, Image, Share, StyleSheet, Text, ScrollView, View, TouchableOpacity} from 'react-native';
+import { ActivityIndicator, Button, Clipboard, FlatList, Image, Share, StyleSheet, Text, ScrollView, View, TouchableOpacity } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
 import Environment from '../../config/environment';
@@ -43,11 +43,11 @@ export default class App extends React.Component {
 
 						<Button onPress={this._takePhoto} title="Take a photo" />
 						{this.state.googleResponse && (
-								<View style={{ flex: 1, marginTop: '3%' }}>
-									<TouchableOpacity onPress={() => Actions.BoughtItems({Items: this.state.googleResponse.responses[0].textAnnotations[0].description})} title="Bought Items">
-										<Text style={globalStyles.button}>Bought Items</Text>
-									</TouchableOpacity>
-								</View>
+							<View style={{ flex: 1, marginTop: '3%' }}>
+								<TouchableOpacity onPress={() => Actions.BoughtItems({ Items: this.state.googleResponse.responses[0].textAnnotations[0].description })} title="Bought Items">
+									<Text style={globalStyles.button}>Your Receipt Items</Text>
+								</TouchableOpacity>
+							</View>
 							// <FlatList
 							// 	data={this.state.googleResponse.responses[0].textAnnotations}
 							// 	extraData={this.state}
@@ -64,7 +64,7 @@ export default class App extends React.Component {
 	}
 
 	organize = array => {
-		return array.map(function(item, i) {
+		return array.map(function (item, i) {
 			return (
 				<View key={i}>
 					<Text>{item}</Text>
@@ -229,7 +229,7 @@ export default class App extends React.Component {
 			});
 			let response = await fetch(
 				'https://vision.googleapis.com/v1/images:annotate?key=' +
-					Environment['GOOGLE_CLOUD_VISION_API_KEY'],
+				Environment['GOOGLE_CLOUD_VISION_API_KEY'],
 				{
 					headers: {
 						Accept: 'application/json',
@@ -254,10 +254,10 @@ export default class App extends React.Component {
 async function uploadImageAsync(uri) {
 	const blob = await new Promise((resolve, reject) => {
 		const xhr = new XMLHttpRequest();
-		xhr.onload = function() {
+		xhr.onload = function () {
 			resolve(xhr.response);
 		};
-		xhr.onerror = function(e) {
+		xhr.onerror = function (e) {
 			console.log(e);
 			reject(new TypeError('Network request failed'));
 		};
