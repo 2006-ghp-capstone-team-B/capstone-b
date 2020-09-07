@@ -57,8 +57,8 @@ Feel free to reach out to us if you want to learn more about Peasy and us!
 
 | Full Name | <img src="assets/octocat.png" width="20"> |  <img src="assets/linkedin.png" width="20">| 
 | ----------- | ----------- | ----------- |
-| 🌶️Yu Xiao (Yunice) | [YuniceXiao](https://github.com/YuniceXiao) | [/in/fishxy2/](https://www.linkedin.com/in/fishxy2/) |
-| 🍏Ariel Wainer | [arielwainer4](https://github.com/arielwainer4) | [/in/arielwainer/](https://www.linkedin.com/in/arielwainer/) |
+| 🌶️Yunice (Yu) Xiao  | [YuniceXiao](https://github.com/YuniceXiao) | [/in/fishxy2/](https://www.linkedin.com/in/fishxy2/) |
+| 🥓Ariel Wainer | [arielwainer4](https://github.com/arielwainer4) | [/in/arielwainer/](https://www.linkedin.com/in/arielwainer/) |
 | 🍠Taihua Rubin | [TaihuaRubin](https://github.com/TaihuaRubin) | [/in/taihuarubin/](https://www.linkedin.com/in/taihuarubin/) |
-| 🥘Cecilia Chung Chang | [ceciliachung](https://github.com/ceciliachung) | [/in/cecilia-yu-chung-chang/](https://www.linkedin.com/in/cecilia-yu-chung-chang/) |
+| 🥘Cecilia Yu Chung Chang | [ceciliachung](https://github.com/ceciliachung) | [/in/cecilia-yu-chung-chang/](https://www.linkedin.com/in/cecilia-yu-chung-chang/) |
 
