@@ -63,6 +63,8 @@ export default function SingleHouseholdList(props) {
     }, {})
   );
 
+  console.log("^^^^^^^^^^^", reformattedList, "^^^^^^^list");
+
   const navigate = (screen) => {
     Actions[screen]();
   };
