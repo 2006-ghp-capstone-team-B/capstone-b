@@ -23,17 +23,17 @@ const getHouseList = (list) => ({
   list,
 });
 
-const increaseItem = (list) => ({
+const increaseItem = (updatedItem) => ({
   type: INCREASE_ITEM,
-  list,
+  updatedItem,
 });
-const decreaseItem = (list) => ({
+const decreaseItem = (updatedItem) => ({
   type: DECREASE_ITEM,
-  list,
+  updatedItem,
 });
-const deleteItem = (list) => ({
+const deleteItem = (deletedItem) => ({
   type: DELETE_ITEM,
-  list
+  deletedItem
 })
 const addItem = list => ({
   type: ADD_NEW_ITEM,
@@ -55,8 +55,9 @@ export const getListHousehold = (listId) => async (dispatch) => {
 
 export const increaseItemQuantity = (itemId, listId, userId) => async (dispatch) => {
   try {
-    console.log('increasing!')
+    console.log('new:', itemId, listId, userId)
     const {data} = await axios.post(`https://peasy-server.herokuapp.com/api/items/add`, { itemId, listId, userId });
+    console.log('data', data)
     dispatch(increaseItem(data))
   } catch (error) {
     console.log(error);
@@ -104,13 +105,27 @@ export default function (state = initialState, action) {
     case GET_HOUSE_LIST:
       return action.list;
     case INCREASE_ITEM: {
-
+      state.forEach(item => {
+        if (item.id === action.updatedItem.id) {
+          item.quantity = item.quantity + 1
+        }
+      })
+      return state;
     }
-      return action.list;
-    case DECREASE_ITEM:
-      return action.list;
-    case DELETE_ITEM:
-      return action.list
+    case DECREASE_ITEM: {
+      state.forEach(item => {
+        if (item.id === action.updatedItem.id) {
+          item.quantity = item.quantity - 1
+        }
+      })
+      return state;
+    }
+    case DELETE_ITEM: {
+      const newState = state.filter(
+        item => (item.id !== action.deletedItem.id)
+      )
+      return newState
+    }
     case ADD_NEW_ITEM:
       return action.list
     default:

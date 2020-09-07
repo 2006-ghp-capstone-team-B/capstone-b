@@ -17,4 +17,3 @@ export { default as AddNewItemPrivate } from "./AddNewItemPrivate";
 export { default as AddNewItemHousehold } from "./AddNewItemHousehold";
 export { default as Scanner } from "./Scanner";
 export { default as BoughtItems } from "./BoughtItems";
-export { default as CheckOffList } from "./CheckOffList";

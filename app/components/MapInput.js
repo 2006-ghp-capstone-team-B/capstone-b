@@ -32,7 +32,6 @@ const MapInput = (props) => {
         }}
         styles={{
           borderWidth: 4,
-          borderColor: 'purple',
           textInputContainer: {
             width: '100%',
             alignSelf: 'center',

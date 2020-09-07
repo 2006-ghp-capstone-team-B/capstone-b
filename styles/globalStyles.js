@@ -87,7 +87,7 @@ export const globalStyles = StyleSheet.create({
   },
   button: {
     fontSize: 20,
-    backgroundColor: "#A4C6B8",
+    backgroundColor: "#1BB49D",
     color: "#fff",
     width: "80%",
     textAlign: "center",
@@ -121,7 +121,7 @@ export const globalStyles = StyleSheet.create({
     color: "#cedbf0",
   },
   buttonRemove: {
-    backgroundColor: "#6F9A88",
+    backgroundColor: "#1BB49D",
     color: "#fff",
     width: "100%",
     textAlign: "center",
@@ -131,9 +131,11 @@ export const globalStyles = StyleSheet.create({
     fontSize: 14,
     marginTop: "5%",
     marginBottom: "5%",
+    borderRadius: 5,
+    overflow: 'hidden'
   },
   buttonSave: {
-    backgroundColor: "#6F9A88",
+    backgroundColor: "#1BB49D",
     color: "#fff",
     width: "50%",
     textAlign: "center",
@@ -143,6 +145,8 @@ export const globalStyles = StyleSheet.create({
     fontSize: 15,
     marginTop: "5%",
     marginBottom: "5%",
+    borderRadius: 5,
+    overflow: 'hidden'
   },
   modalWrapper: {
     justifyContent: "center",
@@ -165,4 +169,15 @@ export const globalStyles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 3,
   },
+  storePrefs: {
+    backgroundColor: "white",
+    width: "80%",
+    alignSelf: "center",
+    margin: "1%",
+    borderWidth: 1,
+    borderColor: "grey",
+    borderRadius: 6,
+    padding: "2%",
+    flexDirection: "row",
+  }
 });

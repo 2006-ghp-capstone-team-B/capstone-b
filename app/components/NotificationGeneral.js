@@ -12,11 +12,11 @@ export default function GeneraltNotification(props) {
 
   let iconType;
   if(type === 'welcome') {
-    iconType = 'party-popper'
+    iconType = 'ios-gift'
   } else if (type === 'newItem') {
     iconType = 'nutrition'
   } else {
-    iconType = 'party-popper'
+    iconType = 'md-star'
   }
   return (
     <ListItem icon>

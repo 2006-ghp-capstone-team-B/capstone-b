@@ -9,6 +9,9 @@ import { Actions } from "react-native-router-flux";
 
 export default function ListPrivate() {
 
+  const navigate = (screen) => {
+    Actions[screen]();
+  };
 
   const renderItem = ({ item }) => {
     return (
@@ -85,16 +88,16 @@ export default function ListPrivate() {
     <Container>
       <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
         <View style={globalStyles.backgroundBox}>
-          <View>
+          <View style={{flex: 2}}>
             {!user.id || listPrivate.length === 0
-              ? <SafeAreaView style={{ marginTop: 30, backgroundColor: 'white', height: '80%', width: '95%', alignSelf: 'center', borderRadius: 25 }}>
+              ? <SafeAreaView style={{ marginTop: 30, backgroundColor: 'white', height: '70%', width: '95%', alignSelf: 'center', borderRadius: 25 }}>
               <FlatList
                 data={['sample']}
                 renderItem={renderSample}
                 keyExtractor={(item) => item}
               />
             </SafeAreaView>
-              : <SafeAreaView style={{ marginTop: 30, backgroundColor: 'white', height: '80%', width: '95%', alignSelf: 'center', borderRadius: 25 }}>
+              : <SafeAreaView style={{ marginTop: 30, backgroundColor: 'white', height: '70%', width: '95%', alignSelf: 'center', borderRadius: 25 }}>
                 <FlatList
                   data={listPrivate}
                   renderItem={renderItem}
@@ -103,9 +106,12 @@ export default function ListPrivate() {
               </SafeAreaView>
             }
           </View>
-          <View style={{ flex: 1, marginTop: '3%' }}>
+          <View style={{ flex: 1, marginTop: '3%', justifyContent: 'flex-end' }}>
             <TouchableOpacity onPress={() => Actions.AddNewItemPrivate({listId: listInfo.listId, userId: user.id})} title="Add New Item">
               <Text style={globalStyles.button}>Add New Item</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => Actions.Scanner({listPrivate: listPrivate, userId: user.id})} title="Scanner">
+              <Text style={globalStyles.button}>Scan my receipt</Text>
             </TouchableOpacity>
           </View>
         </View>

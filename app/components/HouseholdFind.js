@@ -89,7 +89,7 @@ export default function HouseholdFind(props) {
                     </View>
 
                     <View style={{ flex: 1, alignSelf: "flex-end" }}>
-                      <Button onPress={handleSubmit} title="Find">
+                      <Button onPress={handleSubmit} title="Find" style = {{backgroundColor: '#1BB49D'}}>
                         <Text>Find</Text>
                       </Button>
                     </View>
@@ -124,7 +124,7 @@ export default function HouseholdFind(props) {
                   </Text>
                 </View>
                 <View style={{ flex: 1, justifyContent: "center", alignSelf: "center" }}>
-                  <Button
+                  <Button style={{backgroundColor: '#1BB49D'}}
                     onPress={() => {
                       joinList(listId, user);
                       alert("Your request has been sent");

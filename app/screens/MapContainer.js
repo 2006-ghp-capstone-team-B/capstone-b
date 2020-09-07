@@ -94,10 +94,7 @@ class MapContainer extends React.Component {
                   />
                 </View>
               )
-                :
-                <Text>
-
-                </Text>
+                : null
               }
               {/* These are the saved favorite stores */}
               <View styles={{ flex: 1, marginTop: "2.5%" }}>
@@ -148,7 +145,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "stretch",
     borderWidth: 4,
-    borderColor: "green",
+    borderColor: "#1BB49D",
     borderRadius: 6,
     backgroundColor: "white",
   }

@@ -26,7 +26,8 @@ export default function SingleHouseholdList(props) {
   };
   const increase = async (itemId, listId, userId) => {
     await dispatch(increaseItemQuantity(itemId, listId, userId))
-    await dispatch(getListHousehold(listId))
+    // await dispatch(getListHousehold(listId))
+    console.log('done')
   };
   const decrease = async (listId, itemId, quantity) => {
       await dispatch(decreaseItemQuantity(listId, itemId, quantity))
@@ -61,10 +62,6 @@ export default function SingleHouseholdList(props) {
     }, {})
   );
 
-  const navigate = (screen) => {
-    Actions[screen]();
-  };
-
   const renderItem = ({ item }) => {
     const itemName = item[0];
     const itemId = item[1].itemId;
@@ -90,7 +87,7 @@ export default function SingleHouseholdList(props) {
 
         {item[1].users.map((user, idx) => {
           return (
-            <ListItem key={idx} noBorder noIndent >
+            <ListItem key={idx} noBorder noIndent>
               <Text note style={{ marginVertical: 0, marginHorizontal: 20, marginTop: -20 }}>
                 {user.firstName} | Quantity: {user.quantity}
               </Text>
@@ -100,7 +97,7 @@ export default function SingleHouseholdList(props) {
       </View>
     );
   };
-
+console.log('!!', reformattedList)
   return (
     <Container>
       <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
@@ -110,7 +107,6 @@ export default function SingleHouseholdList(props) {
               {reformattedList ? (
                 <SafeAreaView>
                   <FlatList
-
                     data={reformattedList}
                     renderItem={renderItem}
                     keyExtractor={(item) => item[1].itemId.toString()}
@@ -125,9 +121,6 @@ export default function SingleHouseholdList(props) {
               title="Add New Item"
             >
               <Text style={globalStyles.button}>Add New Item</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => Actions.CheckOffList({ reformattedList })} title="CheckOffList">
-              <Text style={globalStyles.button}>Check Off Items</Text>
             </TouchableOpacity>
           </View>
         </View>
