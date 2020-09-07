@@ -3,11 +3,11 @@ import axios from "axios";
 /**
  * ACTION TYPES
  */
-const GET_HOUSE_LIST = 'GET_HOUSE_LIST'
-const INCREASE_ITEM = "INCREASE_ITEM"
-const DECREASE_ITEM = "DECREASE_ITEM"
-const DELETE_ITEM = "DELETE_ITEM"
-const ADD_NEW_ITEM = "ADD_NEW_ITEM"
+const GET_HOUSE_LIST = "GET_HOUSE_LIST";
+const INCREASE = "INCREASE";
+const DECREASE = "DECREASE";
+const DELETE = "DELETE";
+const ADD = "ADD";
 
 /**
  * INITIAL STATE
@@ -24,21 +24,21 @@ const getHouseList = (list) => ({
 });
 
 const increaseItem = (updatedItem) => ({
-  type: INCREASE_ITEM,
+  type: INCREASE,
   updatedItem,
 });
 const decreaseItem = (updatedItem) => ({
-  type: DECREASE_ITEM,
+  type: DECREASE,
   updatedItem,
 });
 const deleteItem = (deletedItem) => ({
-  type: DELETE_ITEM,
-  deletedItem
-})
-const addItem = list => ({
-  type: ADD_NEW_ITEM,
-  list
-})
+  type: DELETE,
+  deletedItem,
+});
+const addItem = (list) => ({
+  type: ADD,
+  list,
+});
 
 /**
  * THUNK CREATORS
@@ -54,10 +54,10 @@ export const getListHousehold = (listId) => async (dispatch) => {
 
 export const increaseItemQuantity = (itemId, listId, userId) => async (dispatch) => {
   try {
-    console.log('new:', itemId, listId, userId)
-    const {data} = await axios.post(`https://peasy-server.herokuapp.com/api/items/add`, { itemId, listId, userId });
-    console.log('data', data)
-    dispatch(increaseItem(data))
+    console.log("new:", itemId, listId, userId);
+    const { data } = await axios.post(`https://peasy-server.herokuapp.com/api/items/add`, { itemId, listId, userId });
+    console.log("data", data);
+    dispatch(increaseItem(data));
   } catch (error) {
     console.log(error);
   }
@@ -65,8 +65,13 @@ export const increaseItemQuantity = (itemId, listId, userId) => async (dispatch)
 
 export const decreaseItemQuantity = (itemId, listId, userId) => async (dispatch) => {
   try {
-    const {data} = await axios.post(`https://peasy-server.herokuapp.com/api/items/reduce`, { itemId, listId, userId });
-    dispatch(decreaseItem(data))
+    const { data } = await axios.put(`https://peasy-server.herokuapp.com/api/items/reduce`, {
+      itemId,
+      listId,
+      userId,
+    });
+    console.log("data from decrease thunk!", data);
+    dispatch(decreaseItem(data));
   } catch (error) {
     console.log(error);
   }
@@ -74,35 +79,36 @@ export const decreaseItemQuantity = (itemId, listId, userId) => async (dispatch)
 
 export const deleteSingleItem = (listId, itemId) => async (dispatch) => {
   try {
-    await axios.delete(`https://peasy-server.herokuapp.com/api/items/delete`, { itemId, listId, userId });
+    const { data } = await axios.put(`https://peasy-server.herokuapp.com/api/items/remove`, { itemId, listId });
+    console.log("in delete route", data);
     dispatch(deleteItem(data));
   } catch (error) {
     console.log(error);
   }
-}
+};
 
-export const addNewItem = (item, listId, userId) => async dispatch => {
+export const addNewItem = (item, listId, userId) => async (dispatch) => {
   try {
-    const { itemName, quantity } = item
-    const { data } = await axios.post(`https://peasy-server.herokuapp.com/api/items`, { itemName })
-    const { id } = data
-    const newItem = { itemId: id, userId: userId, listId: listId, quantity: quantity }
-    await axios.post(`https://peasy-server.herokuapp.com/api/lists/${listId}`, newItem)
-    const res = await axios.get(`https://peasy-server.herokuapp.com/api/lists/household/${listId}`)
-    dispatch(addItem(res.data))
+    const { itemName, quantity } = item;
+    const { data } = await axios.post(`https://peasy-server.herokuapp.com/api/items`, { itemName });
+    const { id } = data;
+    const newItem = { itemId: id, userId: userId, listId: listId, quantity: quantity };
+    await axios.post(`https://peasy-server.herokuapp.com/api/lists/${listId}`, newItem);
+    const res = await axios.get(`https://peasy-server.herokuapp.com/api/lists/household/${listId}`);
+    dispatch(addItem(res.data));
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
-export const markPurchased = (itemId, listId) => async dispatch => {
+export const markPurchased = (itemId, listId) => async (dispatch) => {
   try {
-    const {data} = await axios.put(`https://peasy-server.herokuapp.com/api/lists/markPurchased`, {itemId, listId})
-    dispatch(getHouseList(data))
+    const { data } = await axios.put(`https://peasy-server.herokuapp.com/api/lists/markPurchased`, { itemId, listId });
+    dispatch(getHouseList(data));
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
 /**
  * REDUCER
@@ -112,30 +118,28 @@ export default function (state = initialState, action) {
   switch (action.type) {
     case GET_HOUSE_LIST:
       return action.list;
-    case INCREASE_ITEM: {
-      state.forEach(item => {
+    case INCREASE: {
+      state.forEach((item) => {
         if (item.id === action.updatedItem.id) {
-          item.quantity = item.quantity + 1
+          item.quantity = item.quantity + 1;
         }
-      })
+      });
       return state;
     }
-    case DECREASE_ITEM: {
-      state.forEach(item => {
+    case DECREASE: {
+      state.forEach((item) => {
         if (item.id === action.updatedItem.id) {
-          item.quantity = item.quantity - 1
+          item.quantity = item.quantity - 1;
         }
-      })
+      });
       return state;
     }
-    case DELETE_ITEM: {
-      const newState = state.filter(
-        item => (item.id !== action.deletedItem.id)
-      )
-      return newState
+    case DELETE: {
+      const newState = state.filter((item) => item.id !== action.deletedItem.id);
+      return newState;
     }
-    case ADD_NEW_ITEM:
-      return action.list
+    case ADD:
+      return action.list;
     default:
       return state;
   }
