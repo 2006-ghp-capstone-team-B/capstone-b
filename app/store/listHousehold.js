@@ -101,6 +101,15 @@ export const addNewItem = (item, listId, userId) => async (dispatch) => {
   }
 };
 
+export const markPurchased = (itemId, listId) => async (dispatch) => {
+  try {
+    const { data } = await axios.put(`https://peasy-server.herokuapp.com/api/lists/markPurchased`, { itemId, listId });
+    dispatch(getHouseList(data));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 /**
  * REDUCER
  */
