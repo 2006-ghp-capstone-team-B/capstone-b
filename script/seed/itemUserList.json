@@ -6,6 +6,18 @@
         "quantity": 6
     },
     {
+        "userId": 1,
+        "listId": 1,
+        "itemId": 81,
+        "quantity": 2
+    },
+    {
+        "userId": 1,
+        "listId": 1,
+        "itemId": 82,
+        "quantity": 1
+    },
+    {
         "userId": 2,
         "listId": 2,
         "itemId": 2,

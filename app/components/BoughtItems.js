@@ -1,13 +1,20 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { View, ImageBackground, FlatList, SafeAreaView } from "react-native";
+import { View, ImageBackground, FlatList, SafeAreaView, TouchableOpacity } from "react-native";
 import { globalStyles } from "../../styles/globalStyles";
 import { Text, Body, Right, Button, ListItem, Left } from "native-base";
+import {deleteSingleItem} from "../store/listPrivate"
+import { Actions } from "react-native-router-flux";
+
 
 export default function BoughtItems(props) {
 
-    const { Items } = props
-    console.log("this is raw data returned from scanner", Items)
+    const { Items, listPrivate, userId} = props
+
+    const dispatch = useDispatch()
+    const deleteItem = (userId, listId, itemId) => {
+        dispatch(deleteSingleItem(userId, listId, itemId))
+    }
 
     const renderItem = ({ item }) => (
         <ListItem icon>
@@ -28,6 +35,29 @@ export default function BoughtItems(props) {
     for (let i = 0; i < numOfItem; i++) {
         arrayObject.push({ "name": ItemsAndPrices[i], "price": (ItemsAndPrices[i + numOfItem]).match(/^\$\d+\.\d{2}/g) })
     }
+    
+    //the check off function:
+    const checkOff = (arrayObject, listPrivate, userId) => {
+        let itemsToCheckOff = []
+        //if items match in receipt and private list, push them to an empty array for later deleting
+        for(let i=0; i<arrayObject.length; i++){
+            for(let j=0; j<listPrivate.length; j++){
+                if(arrayObject[i].name === listPrivate[j].item.itemName){
+                    itemsToCheckOff.push({listId: listPrivate[j].listId, itemId: listPrivate[j].itemId})
+                }
+            }
+        }
+        
+        //for every item in the above array, we send a delete request to delete those items in private list
+        for(let n=0; n<itemsToCheckOff.length; n++){
+            let {listId, itemId} = itemsToCheckOff[n]
+            deleteItem(userId, listId, itemId)
+        }
+
+        //pop back to private list page directly
+        Actions.pop()
+        Actions.pop()
+    }
 
     return (
         <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
@@ -38,7 +68,7 @@ export default function BoughtItems(props) {
                         style={{
                             marginTop: 30,
                             backgroundColor: "white",
-                            height: "90%",
+                            height: "85%",
                             width: "95%",
                             alignSelf: "center",
                             borderRadius: 25,
@@ -50,6 +80,11 @@ export default function BoughtItems(props) {
                             keyExtractor={(item, index) => index.toString()}
                         />
                     </SafeAreaView>
+                    {/* <View style={{ flex: 1, marginTop: '3%' }}> */}
+                        <TouchableOpacity onPress={() => checkOff(arrayObject, listPrivate, userId)} title="Check off my list">
+                            <Text style={globalStyles.button}>Check off my list</Text>
+                        </TouchableOpacity>
+                    {/* </View> */}
                 </View>
 
             </View>
