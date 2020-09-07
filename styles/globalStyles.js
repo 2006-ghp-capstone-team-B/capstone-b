@@ -37,16 +37,6 @@ export const globalStyles = StyleSheet.create({
     lineHeight: 20,
     textAlign: "center",
   },
-  // body: {
-  //     flex: 3,
-  //     backgroundColor: '#F2BE00',
-  //     padding: 20,
-  //     alignItems: 'center',
-  //     justifyContent: 'center',
-  // },
-  // box: {
-  //     alignItems: 'center'
-  // },
   background: {
     width: "100%",
     height: "100%",
@@ -68,12 +58,6 @@ export const globalStyles = StyleSheet.create({
     marginLeft: "15%",
     marginTop: "10%",
   },
-  // style: {
-  //     flex: 1,
-  //     justifyContent: "center",
-  //     padding: 8,
-  //     marginTop: 15,
-  // },
   LogInSignUpForm: {
     // flex: 1,
     justifyContent: "center",
@@ -85,16 +69,6 @@ export const globalStyles = StyleSheet.create({
     borderWidth: 1,
     padding: "3%",
   },
-  // buttonGroup: {
-  //     justifyContent: 'flex-end',
-  //     alignItems: 'center',
-  //     position: 'absolute',
-  //     width: '100%',
-  //     height: '100%',
-  //     flex: 1
-  // },
-  //     borderWidth: 1
-  // },
   leftIconStyle: {
     marginRight: 10,
   },
@@ -125,44 +99,27 @@ export const globalStyles = StyleSheet.create({
     marginTop: "5%",
     marginBottom: "5%",
   },
-  // mButton: {
-  //     fontSize: 16,
-  //     backgroundColor: "#6F9A88",
-  //     color: "#fff",
-  //     width: "80%",
-  //     borderRadius: 25,
-  //     textAlign: "center",
-  //     fontWeight: "bold",
-  //     marginLeft: "10%",
-  //     marginRight: "10%",
-  //     padding: "2%",
-  //     marginTop: "5%",
-  // },
-  // sButton: {
-  //     fontSize: 10,
-  //     backgroundColor: "#6F9A88",
-  //     color: "#fff",
-  //     width: "35%",
-  //     borderRadius: 25,
-  //     textAlign: "center",
-  //     fontWeight: "bold",
-  //     marginLeft: "5%",
-  //     marginRight: "5%",
-  //     padding: "2%",
-  //     marginTop: "5%",
-  // },
-  buttonPink: {
-    margin: "5%",
-    backgroundColor: "pink",
+  buttonBrown: {
+    fontSize: 20,
+    fontWeight: "bold",
+    backgroundColor: "#bc6c25",
+    color: "#fff",
+    width: "80%",
+    borderRadius: 20,
+    textAlign: "center",
+    fontWeight: "bold",
+    // padding: "2%",
+    marginLeft: "10%",
+    marginRight: "10%",
+    marginTop: "5%",
+    marginBottom: "5%",
   },
   buttonPlusMinus: {
     marginHorizontal: "-5%",
   },
-
   buttonDisabled: {
     color: "#cedbf0",
   },
-
   buttonRemove: {
     backgroundColor: "#6F9A88",
     color: "#fff",

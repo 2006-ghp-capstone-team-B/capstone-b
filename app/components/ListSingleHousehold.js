@@ -73,7 +73,7 @@ export default function SingleHouseholdList(props) {
 
     return (
       <View>
-        <ListItem itemHeader noBorder noIndent>
+        <ListItem itemHeader noBorder noIndent style={{ marginTop: -20 }}>
           <Body style={{ flex: 2 }}>
             <Text numberOfLines={1}>{itemName}</Text>
           </Body>
@@ -92,8 +92,8 @@ export default function SingleHouseholdList(props) {
 
         {item[1].users.map((user, idx) => {
           return (
-            <ListItem key={idx} noBorder noIndent>
-              <Text note>
+            <ListItem key={idx} noBorder noIndent >
+              <Text note style={{ marginVertical: 0, marginHorizontal: 20, marginTop: -20 }}>
                 {user.firstName} | Quantity: {user.quantity}
               </Text>
             </ListItem>
@@ -107,11 +107,12 @@ export default function SingleHouseholdList(props) {
     <Container>
       <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
         <View style={globalStyles.backgroundBox}>
-          <View style={{ flex: 5 }}>
+          <View style={{ flex: 3 }}>
             <List>
               {reformattedList ? (
                 <SafeAreaView>
                   <FlatList
+
                     data={reformattedList}
                     renderItem={renderItem}
                     keyExtractor={(item) => item[1].itemId.toString()}
@@ -120,7 +121,7 @@ export default function SingleHouseholdList(props) {
               ) : null}
             </List>
           </View>
-          <View style={{ flex: 1, marginTop: "5%", marginBottom: "5%" }}>
+          <View style={{ flex: 1, marginTop: "1%", marginBottom: "1%" }}>
             <TouchableOpacity
               onPress={() => Actions.AddNewItemHousehold({ listId: listId, userId: userId })}
               title="Add New Item"
