@@ -11,7 +11,7 @@ export default function RequestNotification(props) {
   return (
     <ListItem icon>
       <Left>
-        <Button style={{ backgroundColor: "#FF9501" }}>
+        <Button style={{ backgroundColor: "#1BB49D" }}>
           <Icon active name="ios-person" />
         </Button>
       </Left>
@@ -22,7 +22,6 @@ export default function RequestNotification(props) {
         </Text>
       </Body>
       <Right>
-        {/* Button displays ability to accept or reject request */}
         <Button
           transparent
           onPress={() => {

@@ -26,6 +26,7 @@ router.post("/add", async (req, res, next) => {
     const [item, created] = await ItemUserList.findCreateFind({ where: { itemId, listId, userId } });
     item.quantity = item.quantity + 1;
     await item.save();
+    res.json(item);
   } catch (error) {
     console.log(error);
   }
@@ -44,24 +45,32 @@ router.put("/reduce", async (req, res, next) => {
     if (item.quantity > 1) {
       item.quantity = item.quantity - 1;
       await item.save();
+      res.json(item);
     } else {
+      const itemCopy = JSON.parse(JSON.stringify(item));
       await item.destroy();
+      res.json(itemCopy);
     }
   } catch (error) {
     console.log(error);
   }
 });
 
-router.delete("/remove", async (req, res, next) => {
+router.put("/remove", async (req, res, next) => {
   try {
-    const { itemId, listId, userId } = req.body;
-    const item = await ItemUserList.destroy({
+    const { itemId, listId } = req.body;
+    const item = await ItemUserList.findAll({
       where: {
         itemId,
         listId,
-        userId,
       },
     });
+    const itemCopy = JSON.parse(JSON.stringify(item));
+    for (let i = 0; i < item.length; i++) {
+      await item[i].destroy();
+    }
+    // await item.destroy();
+    res.status(204).json(itemCopy);
   } catch (error) {
     console.log(error);
   }

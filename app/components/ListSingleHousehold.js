@@ -1,22 +1,9 @@
 import React, { useEffect } from "react";
-import { View, ImageBackground, SafeAreaView, FlatList, TouchableOpacity } from "react-native";
+import { View, ImageBackground, SafeAreaView, FlatList, TouchableOpacity, Alert } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { globalStyles } from "../../styles/globalStyles";
 import { getListHousehold, increaseItemQuantity, decreaseItemQuantity, deleteSingleItem } from "../store/listHousehold";
-import {
-  Text,
-  Icon,
-  Body,
-  Right,
-  Button,
-  ListItem,
-  Card,
-  Left,
-  Container,
-  List,
-  Content,
-  Separator,
-} from "native-base";
+import { Text, Icon, Body, Right, Button, ListItem, Container, List } from "native-base";
 import { Actions } from "react-native-router-flux";
 
 export default function SingleHouseholdList(props) {
@@ -28,22 +15,31 @@ export default function SingleHouseholdList(props) {
   const loadHouseholdList = (id) => {
     dispatch(getListHousehold(id));
   };
-  const increase = (itemId, listId, userId) => {
-    dispatch(increaseItemQuantity(itemId, listId, userId));
+  const increase = async (itemId, listId, userId) => {
+    await dispatch(increaseItemQuantity(itemId, listId, userId));
+    await dispatch(getListHousehold(listId));
   };
-  const decrease = (listId, itemId, quantity) => {
-    if (quantity > 1) {
-      dispatch(decreaseItemQuantity(listId, itemId, quantity));
-    }
+  const decrease = async (listId, itemId, userId) => {
+    await dispatch(decreaseItemQuantity(listId, itemId, userId));
+    await dispatch(getListHousehold(listId));
   };
-  const deleteItem = (listId, itemId) => {
-    dispatch(deleteSingleItem(listId, itemId));
+
+  const deleteItem = async (listId, itemId) => {
+    Alert.alert("Confirm Delete", "Are you sure you want to delete this item for all the members of your household?", [
+      {
+        text: "Yes",
+        onPress: async () => {
+          await dispatch(deleteSingleItem(listId, itemId));
+          await dispatch(getListHousehold(listId));
+        },
+      },
+      { text: "No", style: "cancel" },
+    ]);
   };
 
   useEffect(() => {
     loadHouseholdList(listId);
   }, [listId]);
-
 
   let reformattedList = Object.entries(
     listHousehold.reduce((accum, item) => {
@@ -63,12 +59,8 @@ export default function SingleHouseholdList(props) {
       return accum;
     }, {})
   );
-  
 
-  const navigate = (screen) => {
-    Actions[screen]();
-  };
-
+  // console.log("reformatteddddddd", reformattedList);
   const renderItem = ({ item }) => {
     const itemName = item[0];
     const itemId = item[1].itemId;
@@ -83,7 +75,7 @@ export default function SingleHouseholdList(props) {
             <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => increase(itemId, listId, me.id)}>
               <Text>+</Text>
             </Button>
-            <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => decrease(listId, itemId, quantity)}>
+            <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => decrease(listId, itemId, userId)}>
               <Text>-</Text>
             </Button>
             <Button style={globalStyles.buttonPlusMinus} transparent onPress={() => deleteItem(listId, itemId)}>
@@ -129,7 +121,10 @@ export default function SingleHouseholdList(props) {
             >
               <Text style={globalStyles.button}>Add New Item</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => Actions.Scanner({listHousehold: listHousehold, userId: userId})} title="Scanner">
+            <TouchableOpacity
+              onPress={() => Actions.Scanner({ listHousehold: listHousehold, userId: userId })}
+              title="Scanner"
+            >
               <Text style={globalStyles.button}>Scan my receipt</Text>
             </TouchableOpacity>
           </View>
