@@ -40,7 +40,6 @@ const addItem = list => ({
   list
 })
 
-
 /**
  * THUNK CREATORS
  */
@@ -106,6 +105,15 @@ export const addNewItem = (item, listId, userId) => async dispatch => {
     await axios.post(`https://peasy-server.herokuapp.com/api/lists/${listId}`, newItem)
     const res = await axios.get(`https://peasy-server.herokuapp.com/api/lists/household/${listId}`)
     dispatch(addItem(res.data))
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const markPurchased = (itemId, listId) => async dispatch => {
+  try {
+    const {data} = await axios.put(`https://peasy-server.herokuapp.com/api/lists/markPurchased`, {itemId, listId})
+    dispatch(getHouseList(data))
   } catch (error) {
     console.log(error)
   }

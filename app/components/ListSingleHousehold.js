@@ -44,6 +44,7 @@ export default function SingleHouseholdList(props) {
     loadHouseholdList(listId);
   }, [listId]);
 
+
   let reformattedList = Object.entries(
     listHousehold.reduce((accum, item) => {
       const { id, itemName } = item.item;
@@ -62,6 +63,7 @@ export default function SingleHouseholdList(props) {
       return accum;
     }, {})
   );
+  
 
   const navigate = (screen) => {
     Actions[screen]();
@@ -126,6 +128,9 @@ export default function SingleHouseholdList(props) {
               title="Add New Item"
             >
               <Text style={globalStyles.button}>Add New Item</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => Actions.Scanner({listHousehold: listHousehold, userId: userId})} title="Scanner">
+              <Text style={globalStyles.button}>Scan my receipt</Text>
             </TouchableOpacity>
           </View>
         </View>

@@ -4,16 +4,22 @@ import { View, ImageBackground, FlatList, SafeAreaView, TouchableOpacity } from 
 import { globalStyles } from "../../styles/globalStyles";
 import { Text, Body, Right, Button, ListItem, Left } from "native-base";
 import {deleteSingleItem} from "../store/listPrivate"
+import {markPurchased} from "../store/listHousehold"
 import { Actions } from "react-native-router-flux";
 
 
 export default function BoughtItems(props) {
 
-    const { Items, listPrivate, userId} = props
+    const { Items, listPrivate, listHousehold, userId} = props
+
+    console.log("this is listHousehold", listHousehold)
 
     const dispatch = useDispatch()
     const deleteItem = (userId, listId, itemId) => {
         dispatch(deleteSingleItem(userId, listId, itemId))
+    }
+    const mark = (listId, itemId) => {
+        dispatch(markPurchased(listId, itemId))
     }
 
     const renderItem = ({ item }) => (
@@ -37,26 +43,57 @@ export default function BoughtItems(props) {
     }
     
     //the check off function:
-    const checkOff = (arrayObject, listPrivate, userId) => {
-        let itemsToCheckOff = []
-        //if items match in receipt and private list, push them to an empty array for later deleting
-        for(let i=0; i<arrayObject.length; i++){
-            for(let j=0; j<listPrivate.length; j++){
-                if(arrayObject[i].name === listPrivate[j].item.itemName){
-                    itemsToCheckOff.push({listId: listPrivate[j].listId, itemId: listPrivate[j].itemId})
+    const checkOff = (arrayObject, listPrivate, listHousehold, userId) => {
+
+        console.log("listPrivate:", listPrivate, "listHousehold:", listHousehold)
+        //listhousehold === undefined, listPrivate === defined:
+        if(listHousehold === undefined){
+            let itemsToCheckOff = []
+            //if items match in receipt and private list, push them to an empty array for later deleting
+            for(let i=0; i<arrayObject.length; i++){
+                for(let j=0; j<listPrivate.length; j++){
+                    if(arrayObject[i].name === listPrivate[j].item.itemName){
+                        itemsToCheckOff.push({listId: listPrivate[j].listId, itemId: listPrivate[j].itemId})
+                    }
                 }
             }
+            
+            //for every item in the above array, we send a delete request to delete those items in private list
+            for(let n=0; n<itemsToCheckOff.length; n++){
+                let {listId, itemId} = itemsToCheckOff[n]
+                deleteItem(userId, listId, itemId)
+            }
+    
+            //pop back to private list page directly
+            Actions.pop()
+            Actions.pop()
         }
-        
-        //for every item in the above array, we send a delete request to delete those items in private list
-        for(let n=0; n<itemsToCheckOff.length; n++){
-            let {listId, itemId} = itemsToCheckOff[n]
-            deleteItem(userId, listId, itemId)
+        else if(listPrivate === undefined){
+            let itemsToCheckOff = []
+            //if items match in receipt and private list, push them to an empty array for later deleting
+            for(let i=0; i<arrayObject.length; i++){
+                for(let j=0; j<listHousehold.length; j++){
+                    if(arrayObject[i].name === listHousehold[j].item.itemName){
+                        itemsToCheckOff.push({listId: listHousehold[j].listId, itemId: listHousehold[j].itemId})
+                    }
+                }
+            }
+
+            //for every item in the above array, we send a delete request to delete those items in private list
+            for(let n=0; n<itemsToCheckOff.length; n++){
+                let {listId, itemId} = itemsToCheckOff[n]
+                mark(listId, itemId)
+            }
+    
+            //pop back to private list page directly
+            Actions.pop()
+            Actions.pop()
         }
 
-        //pop back to private list page directly
-        Actions.pop()
-        Actions.pop()
+
+        //else: listHousehold === defined: put request
+
+
     }
 
     return (
@@ -81,7 +118,7 @@ export default function BoughtItems(props) {
                         />
                     </SafeAreaView>
                     {/* <View style={{ flex: 1, marginTop: '3%' }}> */}
-                        <TouchableOpacity onPress={() => checkOff(arrayObject, listPrivate, userId)} title="Check off my list">
+                        <TouchableOpacity onPress={() => checkOff(arrayObject, listPrivate, listHousehold, userId)} title="Check off my list">
                             <Text style={globalStyles.button}>Check off my list</Text>
                         </TouchableOpacity>
                     {/* </View> */}
