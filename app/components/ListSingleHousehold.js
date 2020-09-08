@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { View, ImageBackground, SafeAreaView, FlatList, TouchableOpacity, Alert } from "react-native";
-import { useFocusEffect } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { globalStyles } from "../../styles/globalStyles";
 import { getListHousehold, increaseItemQuantity, decreaseItemQuantity, deleteSingleItem } from "../store/listHousehold";
@@ -39,17 +38,20 @@ export default function SingleHouseholdList(props) {
     ]);
   };
 
-  // useEffect(() => {
-  //   loadHouseholdList(listId);
-  // }, []);
-
-  useFocusEffect(
-    React.useCallback(() => {
+  useEffect(() => {
+    loadHouseholdList(listId);
+    const unsubscribe = props.navigation.addListener("focus", () => {
+      console.log("hello fron insdie listener!!!!!!!!!!");
       loadHouseholdList(listId);
-    }, [])
-  );
+      return unsubscribe;
+    });
+  }, []);
 
-  console.log(listHousehold, "^^^^^^^");
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     loadHouseholdList(listId);
+  //   }, [])
+  // );
   let reformattedList = Object.entries(
     listHousehold.reduce((accum, item) => {
       const { id, itemName } = item.item;
