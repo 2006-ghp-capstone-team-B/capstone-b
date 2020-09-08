@@ -21,6 +21,7 @@ export default function SingleHouseholdList(props) {
   };
   const decrease = async (listId, itemId, userId) => {
     await dispatch(decreaseItemQuantity(listId, itemId, userId));
+    console.log('decreased')
     await dispatch(getListHousehold(listId));
   };
 

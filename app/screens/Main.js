@@ -33,8 +33,8 @@ class Main extends React.Component {
   }
 
   async componentDidMount() {
-    await this.props.loadMessages(this.props.singleUser.id)
-    await this.props.loadStorePrefs(this.props.singleUser.id)
+    // await this.props.loadMessages(this.props.singleUser.id)
+    // await this.props.loadStorePrefs(this.props.singleUser.id)
     await this.getLocation()
     this.intervalId = setInterval(
       () => this.tick(),
