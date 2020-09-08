@@ -102,7 +102,7 @@ export default function SingleHouseholdList(props) {
     <Container>
       <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
         <View style={globalStyles.backgroundBox}>
-          <View style={{ flex: 3 }}>
+          <View style={{ flex: 2 }}>
             <List>
               {reformattedList ? (
                 <SafeAreaView>
