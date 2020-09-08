@@ -59,9 +59,16 @@ export const getListPrivate = (userId) => async (dispatch) => {
 
 export const increaseItemQuantity = (itemId, listId, userId) => async (dispatch) => {
   try {
-    const { data } = await axios.post(`https://peasy-server.herokuapp.com/api/items/add`, { itemId, listId, userId });
+    console.log('++', itemId)
+        console.log('--', userId)
+        console.log('**', listId)
+    const { data } = await axios.post(`https://peasy-server.herokuapp.com/api/items/add`, { itemId, listId, userId});
+    console.log('inc data', data)
     dispatch(increaseItem(data));
-  } catch (error) {}
+  } catch (error) {
+    console.log('res', error.response)
+    console.log('res', error.request)
+  }
 };
 
 // export const increaseItemQuantity = (userId, listId, itemId, quantity) => async (dispatch) => {
@@ -77,14 +84,17 @@ export const increaseItemQuantity = (itemId, listId, userId) => async (dispatch)
 
 export const decreaseItemQuantity = (itemId, listId, userId) => async (dispatch) => {
   try {
+    console.log('--', itemId, listId, userId)
     const { data } = await axios.put(`https://peasy-server.herokuapp.com/api/items/reduce`, {
       itemId,
       listId,
       userId,
     });
-
+    console.log('dec data', data)
     dispatch(decreaseItem(data));
-  } catch (error) {}
+  } catch (error) {
+    console.log(error)
+  }
 };
 
 // export const decreaseItemQuantity = (userId, listId, itemId, quantity) => async (dispatch) => {
@@ -102,7 +112,9 @@ export const deleteSingleItem = (listId, itemId) => async (dispatch) => {
   try {
     const { data } = await axios.put(`https://peasy-server.herokuapp.com/api/items/remove`, { itemId, listId });
     dispatch(deleteItem(data));
-  } catch (error) {}
+  } catch (error) {
+    console.log(error)
+  }
 };
 
 // export const deleteSingleItem = (userId, listId, itemId) => async (dispatch) => {

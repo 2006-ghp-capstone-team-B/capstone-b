@@ -8,24 +8,25 @@ import { Text, Icon, Body, Right, Button, ListItem, Card, Left, Container } from
 import { Actions } from "react-native-router-flux";
 
 export default function ListPrivate() {
-  const navigate = (screen) => {
-    Actions[screen]();
-  };
 
   const listPrivate = useSelector((state) => state.listPrivate);
   const listInfo = useSelector((state) => state.listInfo);
   const user = useSelector((state) => state.singleUser);
   const dispatch = useDispatch();
+
   const loadListPrivate = async (userId) => {
     await dispatch(fetchListInfo(userId));
     await dispatch(getListPrivate(userId));
   };
   const increase = async (itemId, listId, userId) => {
+    console.log('list', listId)
     await dispatch(increaseItemQuantity(itemId, listId, userId));
+    console.log('increasing')
     await dispatch(getListPrivate(userId));
   };
   const decrease = async (listId, itemId, userId) => {
     await dispatch(decreaseItemQuantity(listId, itemId, userId));
+    console.log('decreasing')
     await dispatch(getListPrivate(userId));
   };
   const deleteItem = async (listId, itemId, userId) => {
@@ -51,14 +52,14 @@ export default function ListPrivate() {
           <Button
             style={globalStyles.buttonPlusMinus}
             transparent
-            onPress={async () => await increase(item.listId, item.itemId, item.userId)}
+            onPress={async () => await increase(item.itemId, item.listId, item.userId)}
           >
             <Text>+</Text>
           </Button>
           <Button
             style={globalStyles.buttonPlusMinus}
             transparent
-            onPress={async () => await decrease(item.listId, item.itemId, item.userId)}
+            onPress={async () => await decrease(item.itemId, item.listId, item.userId)}
           >
             <Text>-</Text>
           </Button>

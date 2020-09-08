@@ -13,8 +13,8 @@ router.get("/", async (req, res, next) => {
 
 router.get("/itemUserList", async (req, res, next) => {
   try {
-    const item = await ItemUserList.findAll();
-    res.json(item);
+    const updatedList = await ItemUserList.findAll({ include: { model: Item } });
+    res.json(updatedList);
   } catch (error) {
     console.log(error);
   }

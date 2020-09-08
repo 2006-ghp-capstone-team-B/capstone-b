@@ -79,6 +79,7 @@ export const createNewUser = (newUser) => async (dispatch) => {
 export const login = (user) => async (dispatch) => {
   let res;
   try {
+    console.log('user', user)
     res = await axios.post(`https://peasy-server.herokuapp.com/auth/login`, user);
   } catch (authError) {
     // console.error(authError);
