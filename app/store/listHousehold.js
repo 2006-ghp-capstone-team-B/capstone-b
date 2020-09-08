@@ -79,16 +79,29 @@ export const deleteSingleItem = (listId, itemId) => async (dispatch) => {
   } catch (error) {}
 };
 
+// export const addNewItem = (item, listId, userId) => async (dispatch) => {
+//   try {
+//     const { itemName, quantity } = item;
+//     const { data } = await axios.post(`https://peasy-server.herokuapp.com/api/items`, { itemName });
+//     const { id } = data;
+//     const newItem = { itemId: id, userId: userId, listId: listId, quantity: quantity };
+//     await axios.post(`https://peasy-server.herokuapp.com/api/lists/${listId}`, newItem);
+//     const res = await axios.get(`https://peasy-server.herokuapp.com/api/lists/household/${listId}`);
+//     dispatch(addItem(res.data));
+//   } catch (error) {}
+// };
+
 export const addNewItem = (item, listId, userId) => async (dispatch) => {
   try {
-    const { itemName, quantity } = item;
-    const { data } = await axios.post(`https://peasy-server.herokuapp.com/api/items`, { itemName });
-    const { id } = data;
-    const newItem = { itemId: id, userId: userId, listId: listId, quantity: quantity };
-    await axios.post(`https://peasy-server.herokuapp.com/api/lists/${listId}`, newItem);
-    const res = await axios.get(`https://peasy-server.herokuapp.com/api/lists/household/${listId}`);
-    dispatch(addItem(res.data));
-  } catch (error) {}
+    const { data } = await axios.post("https://peasy-server.herokuapp.com/api/items/createNewItem", {
+      item,
+      listId,
+      userId,
+    });
+    dispatch(addItem(data));
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const markPurchased = (itemId, listId) => async (dispatch) => {
