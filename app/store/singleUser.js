@@ -82,12 +82,12 @@ export const login = (user) => async (dispatch) => {
     console.log('user', user)
     res = await axios.post(`https://peasy-server.herokuapp.com/auth/login`, user);
   } catch (authError) {
-    // console.error(authError);
     console.error(authError);
   }
 
   try {
     dispatch(getUser(res.data));
+    // Actions.main();
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr);
   }
