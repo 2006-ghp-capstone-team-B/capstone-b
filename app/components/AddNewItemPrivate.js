@@ -26,7 +26,7 @@ export default function AddNewItemPrivate(props) {
             if (!values.itemName) {
               errors.itemName = "Required";
             } else if (!values.quantity) {
-              errors.quantity = "Rquired";
+              errors.quantity = "Required";
             }
             return errors;
           }}

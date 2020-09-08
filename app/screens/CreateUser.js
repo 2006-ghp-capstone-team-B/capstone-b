@@ -12,10 +12,11 @@ import { Ionicons } from "react-native-vector-icons";
 
 export const CreateUser = (props) => {
   //Navigate to Log In from SignUp
-  const navigate = (screen) => {
-    Actions[screen]();
-  };
-  goToLogIn = () => navigate("login");
+  // const navigate = (screen) => {
+  //   Actions[screen]();
+  // };
+  // goToLogIn = () => navigate("login");
+  // goToMain = () => navigate("main");
 
   // Use hooks to set initial state:
   const [passwordVisibility, setPasswordVisibility] = useState(true);
@@ -59,6 +60,8 @@ export const CreateUser = (props) => {
           onSubmit={(values) => {
             props.register(values);
             saveUser(values);
+            Actions.home();
+
             // alert("Welcome To Peasy!");
           }}
         >
@@ -120,7 +123,7 @@ export const CreateUser = (props) => {
               </View>
               <Button
                 title="Already have an account? Log In"
-                onPress={goToLogIn}
+                onPress={() => { Actions.login() }}
                 titleStyle={{
                   color: "#F57C00",
                 }}
