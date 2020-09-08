@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { View, ImageBackground, SafeAreaView, FlatList, TouchableOpacity, Alert } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { globalStyles } from "../../styles/globalStyles";
 import { getListHousehold, increaseItemQuantity, decreaseItemQuantity, deleteSingleItem } from "../store/listHousehold";
@@ -12,8 +13,8 @@ export default function SingleHouseholdList(props) {
   const me = useSelector((state) => state.singleUser);
 
   const dispatch = useDispatch();
-  const loadHouseholdList = (id) => {
-    dispatch(getListHousehold(id));
+  const loadHouseholdList = async (id) => {
+    await dispatch(getListHousehold(id));
   };
   const increase = async (itemId, listId, userId) => {
     await dispatch(increaseItemQuantity(itemId, listId, userId));
@@ -21,7 +22,7 @@ export default function SingleHouseholdList(props) {
   };
   const decrease = async (listId, itemId, userId) => {
     await dispatch(decreaseItemQuantity(listId, itemId, userId));
-    console.log('decreased')
+    console.log("decreased");
     await dispatch(getListHousehold(listId));
   };
 
@@ -38,10 +39,17 @@ export default function SingleHouseholdList(props) {
     ]);
   };
 
-  useEffect(() => {
-    loadHouseholdList(listId);
-  }, [listId]);
+  // useEffect(() => {
+  //   loadHouseholdList(listId);
+  // }, []);
 
+  useFocusEffect(
+    React.useCallback(() => {
+      loadHouseholdList(listId);
+    }, [])
+  );
+
+  console.log(listHousehold, "^^^^^^^");
   let reformattedList = Object.entries(
     listHousehold.reduce((accum, item) => {
       const { id, itemName } = item.item;

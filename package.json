@@ -27,6 +27,7 @@
     "axios": "^0.20.0",
     "connect-session-sequelize": "^7.0.1",
     "expo": "~38.0.8",
+    "expo-background-fetch": "~8.3.0",
     "expo-constants": "^9.1.1",
     "expo-image-picker": "^8.4.0",
     "expo-location": "^8.3.0",
@@ -73,8 +74,7 @@
     "redux-thunk": "^2.3.0",
     "save": "^2.4.0",
     "sequelize": "^6.3.4",
-    "styled-components": "^5.1.1",
-    "expo-background-fetch": "~8.3.0"
+    "styled-components": "^5.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
