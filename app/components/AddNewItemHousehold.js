@@ -42,7 +42,7 @@ export default function AddNewItemHousehold(props) {
           onSubmit={async (values) => {
             await submitNewItem(values, listId, userId);
             await dispatch(getListHousehold(userId));
-            Actions.pop();
+            Actions.ListSingleHousehold();
           }}
         >
           {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
