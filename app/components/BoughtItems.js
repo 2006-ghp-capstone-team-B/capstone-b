@@ -6,20 +6,21 @@ import { Text, Body, Right, Button, ListItem, Left } from "native-base";
 import {deleteSingleItem} from "../store/listPrivate"
 import {markPurchased} from "../store/listHousehold"
 import { Actions } from "react-native-router-flux";
-
+import { getListPrivate } from "../store/listPrivate";
+import {getListHousehold} from "../store/listHousehold"
 
 export default function BoughtItems(props) {
 
     const { Items, listPrivate, listHousehold, userId} = props
 
-    console.log("this is listHousehold", listHousehold)
-
     const dispatch = useDispatch()
-    const deleteItem = (userId, listId, itemId) => {
-        dispatch(deleteSingleItem(userId, listId, itemId))
+    const deleteItem = async (userId, listId, itemId) => {
+        await dispatch(deleteSingleItem(listId, itemId))
+        await dispatch(getListPrivate(userId))
     }
-    const mark = (listId, itemId) => {
-        dispatch(markPurchased(listId, itemId))
+    const mark = async (listId, itemId) => {
+        await dispatch(markPurchased(listId, itemId))
+        await dispatch(getListHousehold(listId));
     }
 
     const renderItem = ({ item }) => (
@@ -45,9 +46,8 @@ export default function BoughtItems(props) {
     //the check off function:
     const checkOff = (arrayObject, listPrivate, listHousehold, userId) => {
 
-        console.log("listPrivate:", listPrivate, "listHousehold:", listHousehold)
         //listhousehold === undefined, listPrivate === defined:
-        if(listHousehold === undefined){
+        if(listPrivate !== undefined){
             let itemsToCheckOff = []
             //if items match in receipt and private list, push them to an empty array for later deleting
             for(let i=0; i<arrayObject.length; i++){
@@ -68,7 +68,7 @@ export default function BoughtItems(props) {
             Actions.pop()
             Actions.pop()
         }
-        else if(listPrivate === undefined){
+        else if(listHousehold !== undefined){
             let itemsToCheckOff = []
             //if items match in receipt and private list, push them to an empty array for later deleting
             for(let i=0; i<arrayObject.length; i++){
@@ -89,10 +89,6 @@ export default function BoughtItems(props) {
             Actions.pop()
             Actions.pop()
         }
-
-
-        //else: listHousehold === defined: put request
-
 
     }
 
