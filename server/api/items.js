@@ -13,8 +13,8 @@ router.get("/", async (req, res, next) => {
 
 router.get("/itemUserList", async (req, res, next) => {
   try {
-    const item = await ItemUserList.findAll();
-    res.json(item);
+    const updatedList = await ItemUserList.findAll({ include: { model: Item } });
+    res.json(updatedList);
   } catch (error) {
     console.log(error);
   }
@@ -42,14 +42,19 @@ router.put("/reduce", async (req, res, next) => {
         userId,
       },
     });
-    if (item.quantity > 1) {
-      item.quantity = item.quantity - 1;
-      await item.save();
-      res.json(item);
+
+    if (item === null) {
+      res.send("0");
     } else {
-      const itemCopy = JSON.parse(JSON.stringify(item));
-      await item.destroy();
-      res.json(itemCopy);
+      if (item.quantity > 1) {
+        item.quantity = item.quantity - 1;
+        await item.save();
+        res.json(item);
+      } else {
+        const itemCopy = JSON.parse(JSON.stringify(item));
+        await item.destroy();
+        res.json(itemCopy);
+      }
     }
   } catch (error) {
     console.log(error);
@@ -77,10 +82,14 @@ router.put("/remove", async (req, res, next) => {
 });
 
 //add new item to Item table
-router.post("/", async (req, res, next) => {
+router.post("/createNewItem", async (req, res, next) => {
   try {
-    const item = await Item.create(req.body);
-    res.json(item);
+    const { item, listId, userId } = req.body;
+    const { itemName, quantity } = item;
+    const newItem = await Item.create({ itemName });
+    const addedItem = await ItemUserList.create({ quantity, userId, listId, itemId: newItem.id });
+    const updatedList = await ItemUserList.findAll({ where: { userId, listId }, include: { model: Item } });
+    res.json(updatedList);
   } catch (error) {
     next(error);
   }

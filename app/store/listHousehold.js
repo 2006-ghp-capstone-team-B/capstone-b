@@ -57,14 +57,14 @@ export const increaseItemQuantity = (itemId, listId, userId) => async (dispatch)
   } catch (error) {}
 };
 
-export const decreaseItemQuantity = (itemId, listId, userId) => async (dispatch) => {
+export const decreaseItemQuantity = (listId, itemId, userId) => async (dispatch) => {
   try {
     const { data } = await axios.put(`https://peasy-server.herokuapp.com/api/items/reduce`, {
       itemId,
       listId,
       userId,
     });
-    if (typeof data === "string") {
+    if (data === 0) {
       alert("Your personal count for this item is 0, you can't decrease any further!");
     } else {
       dispatch(decreaseItem(data));
