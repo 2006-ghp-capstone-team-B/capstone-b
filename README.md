@@ -40,10 +40,44 @@ npm start
 
 Once you do npm start, a new window will open up on your browser with the expo console. For best results, please run the app on your phone (you will need to download the expo app) or on a simulator (you will be prompted to download it if you don't have any). For more information, please see [Expo's documentation](https://docs.expo.io/get-started/installation/).
 
-This is how the app will look like in your phone (Android):
-![Peasy_on_Android](./assets/)
-This is how the app will look like in the iOS simulator:
-![Peasy_on_iOS_simulator](./assets)
+
+
+---
+
+## PEASY Features:
+
+You must create an account to use Peasy! Sign Up easily with just an email address, password, and your name:
+
+<img src="assets/screenshots/peasy_intro.png" width="201">
+
+<img src="assets/screenshots/peasy_log_in.png" width="200">
+
+
+Create or join a shared household shopping list, where everyone can add the items they need to buy. If someone in your household already set up a list, just join it by introducing the household id and wait for their confirmation. 
+
+<img src="assets/screenshots/peasy_households.png" width="200">
+
+<img src="assets/screenshots/peasy_household_list.png" width="200">
+
+
+Select your preferred stores. Whenever you or a housemate is close to your preferred stores, Peasy will send a push notification reminding you to get the items from the list. Don’t worry, you will only receive these notifications a couple times per day, and only if you are within 200m of any of your preferred stores.
+
+You also have a notifications center, where you can see messages pertaining your household activities.
+
+<img src="assets/screenshots/peasy_stores.jpeg" width="200">
+
+<img src="assets/screenshots/peasy_notifications.png" width="204">
+
+
+When someone has taken care of the shopping, you can easily upload your receipt, scan it, and check-off items from the shared shopping list for easier bill splitting. 
+
+<img src="assets/screenshots/peasy_scanner.png" width="200">
+<img src="assets/screenshots/peasy_scanned.png" width="200">
+
+
+Don’t feel comfortable sharing some of your items? Add them to your private list, and only you will see them or receive reminders when you walk by your preferred store.
+
+<img src="assets/screenshots/peasy_private_list.png" width="200">
 
 
 ---

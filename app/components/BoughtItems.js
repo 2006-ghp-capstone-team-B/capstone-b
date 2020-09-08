@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { View, ImageBackground, FlatList, SafeAreaView, TouchableOpacity } from "react-native";
 import { globalStyles } from "../../styles/globalStyles";
 import { Text, Body, Right, Button, ListItem, Left } from "native-base";
-import {deleteSingleItem} from "../store/listPrivate"
-import {markPurchased} from "../store/listHousehold"
+import { deleteSingleItem } from "../store/listPrivate"
+import { markPurchased } from "../store/listHousehold"
 import { Actions } from "react-native-router-flux";
 
 
 export default function BoughtItems(props) {
 
-    const { Items, listPrivate, listHousehold, userId} = props
+    const { Items, listPrivate, listHousehold, userId } = props
 
     console.log("this is listHousehold", listHousehold)
 
@@ -41,50 +41,50 @@ export default function BoughtItems(props) {
     for (let i = 0; i < numOfItem; i++) {
         arrayObject.push({ "name": ItemsAndPrices[i], "price": (ItemsAndPrices[i + numOfItem]).match(/^\$\d+\.\d{2}/g) })
     }
-    
+
     //the check off function:
     const checkOff = (arrayObject, listPrivate, listHousehold, userId) => {
 
         console.log("listPrivate:", listPrivate, "listHousehold:", listHousehold)
         //listhousehold === undefined, listPrivate === defined:
-        if(listHousehold === undefined){
+        if (listHousehold === undefined) {
             let itemsToCheckOff = []
             //if items match in receipt and private list, push them to an empty array for later deleting
-            for(let i=0; i<arrayObject.length; i++){
-                for(let j=0; j<listPrivate.length; j++){
-                    if(arrayObject[i].name === listPrivate[j].item.itemName){
-                        itemsToCheckOff.push({listId: listPrivate[j].listId, itemId: listPrivate[j].itemId})
-                    }
-                }
-            }
-            
-            //for every item in the above array, we send a delete request to delete those items in private list
-            for(let n=0; n<itemsToCheckOff.length; n++){
-                let {listId, itemId} = itemsToCheckOff[n]
-                deleteItem(userId, listId, itemId)
-            }
-    
-            //pop back to private list page directly
-            Actions.pop()
-            Actions.pop()
-        }
-        else if(listPrivate === undefined){
-            let itemsToCheckOff = []
-            //if items match in receipt and private list, push them to an empty array for later deleting
-            for(let i=0; i<arrayObject.length; i++){
-                for(let j=0; j<listHousehold.length; j++){
-                    if(arrayObject[i].name === listHousehold[j].item.itemName){
-                        itemsToCheckOff.push({listId: listHousehold[j].listId, itemId: listHousehold[j].itemId})
+            for (let i = 0; i < arrayObject.length; i++) {
+                for (let j = 0; j < listPrivate.length; j++) {
+                    if (arrayObject[i].name === listPrivate[j].item.itemName) {
+                        itemsToCheckOff.push({ listId: listPrivate[j].listId, itemId: listPrivate[j].itemId })
                     }
                 }
             }
 
             //for every item in the above array, we send a delete request to delete those items in private list
-            for(let n=0; n<itemsToCheckOff.length; n++){
-                let {listId, itemId} = itemsToCheckOff[n]
+            for (let n = 0; n < itemsToCheckOff.length; n++) {
+                let { listId, itemId } = itemsToCheckOff[n]
+                deleteItem(userId, listId, itemId)
+            }
+
+            //pop back to private list page directly
+            Actions.pop()
+            Actions.pop()
+        }
+        else if (listPrivate === undefined) {
+            let itemsToCheckOff = []
+            //if items match in receipt and private list, push them to an empty array for later deleting
+            for (let i = 0; i < arrayObject.length; i++) {
+                for (let j = 0; j < listHousehold.length; j++) {
+                    if (arrayObject[i].name === listHousehold[j].item.itemName) {
+                        itemsToCheckOff.push({ listId: listHousehold[j].listId, itemId: listHousehold[j].itemId })
+                    }
+                }
+            }
+
+            //for every item in the above array, we send a delete request to delete those items in private list
+            for (let n = 0; n < itemsToCheckOff.length; n++) {
+                let { listId, itemId } = itemsToCheckOff[n]
                 mark(listId, itemId)
             }
-    
+
             //pop back to private list page directly
             Actions.pop()
             Actions.pop()
@@ -103,7 +103,7 @@ export default function BoughtItems(props) {
                 <View>
                     <SafeAreaView
                         style={{
-                            marginTop: 30,
+                            marginTop: 20,
                             backgroundColor: "white",
                             height: "85%",
                             width: "95%",
@@ -117,11 +117,11 @@ export default function BoughtItems(props) {
                             keyExtractor={(item, index) => index.toString()}
                         />
                     </SafeAreaView>
-                    {/* <View style={{ flex: 1, marginTop: '3%' }}> */}
+                    <View style={{ flex: 1, marginTop: '3%' }}>
                         <TouchableOpacity onPress={() => checkOff(arrayObject, listPrivate, listHousehold, userId)} title="Check off my list">
                             <Text style={globalStyles.button}>Check off my list</Text>
                         </TouchableOpacity>
-                    {/* </View> */}
+                    </View>
                 </View>
 
             </View>
