@@ -22,6 +22,9 @@ export default function AddNewItemHousehold(props) {
   const submitNewItem = async (values, listId, userId) => {
     await dispatch(addNewItem(values, listId, userId));
   };
+  const loadHousehold = async (listId) => {
+    await dispatch(getListHousehold(listId));
+  };
 
   return (
     <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
@@ -41,8 +44,8 @@ export default function AddNewItemHousehold(props) {
           }}
           onSubmit={async (values) => {
             await submitNewItem(values, listId, userId);
-            await dispatch(getListHousehold(userId));
-            Actions.ListSingleHousehold();
+            await loadHousehold(listId);
+            Actions.pop();
           }}
         >
           {({ handleChange, handleBlur, handleSubmit, values, errors }) => (

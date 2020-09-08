@@ -40,18 +40,8 @@ export default function SingleHouseholdList(props) {
 
   useEffect(() => {
     loadHouseholdList(listId);
-    const unsubscribe = props.navigation.addListener("focus", () => {
-      console.log("hello fron insdie listener!!!!!!!!!!");
-      loadHouseholdList(listId);
-      return unsubscribe;
-    });
   }, []);
 
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     loadHouseholdList(listId);
-  //   }, [])
-  // );
   let reformattedList = Object.entries(
     listHousehold.reduce((accum, item) => {
       const { id, itemName } = item.item;
@@ -71,7 +61,6 @@ export default function SingleHouseholdList(props) {
     }, {})
   );
 
-  // console.log("reformatteddddddd", reformattedList);
   const renderItem = ({ item }) => {
     const itemName = item[0];
     const itemId = item[1].itemId;
@@ -112,7 +101,7 @@ export default function SingleHouseholdList(props) {
     <Container>
       <ImageBackground source={require("../../assets/peas.jpg")} style={globalStyles.background}>
         <View style={globalStyles.backgroundBox}>
-          <View style={{ flex: 3 }}>
+          <View style={{ flex: 2 }}>
             <List>
               {reformattedList ? (
                 <SafeAreaView>
@@ -125,7 +114,7 @@ export default function SingleHouseholdList(props) {
               ) : null}
             </List>
           </View>
-          <View style={{ flex: 1, marginTop: "1%", marginBottom: "1%" }}>
+          <View style={{ flex: 1, marginTop: "1%", marginBottom: "1%" , justifyContent: 'flex-end'}}>
             <TouchableOpacity
               onPress={() => Actions.AddNewItemHousehold({ listId: listId, userId: userId })}
               title="Add New Item"
