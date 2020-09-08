@@ -11,113 +11,111 @@ import MessageCenter from "./MessageCenter";
 import { newLocationMessage, fetchNotifications } from "../store/notifications";
 import { fetchStorePrefs } from "../store/storePrefs";
 import Geofence from "react-native-expo-geofence";
-import { Text } from 'react-native'
-import { connect } from 'react-redux'
-import { createNotification } from '../../PushNotifications'
-import { saveLocation, retrieveLocation, saveLocPermission, retrieveLocPermission, retrievePushTime, savePushTiming } from '../store/storageHelper'
+import { Text } from "react-native";
+import { connect } from "react-redux";
+import { createNotification } from "../../PushNotifications";
+import {
+  saveLocation,
+  retrieveLocation,
+  saveLocPermission,
+  retrieveLocPermission,
+  retrievePushTime,
+  savePushTiming,
+} from "../store/storageHelper";
 
 const BottomTab = createBottomTabNavigator();
 
 class Main extends React.Component {
   constructor() {
-    super()
-    this.getLocation = this.getLocation.bind(this)
-    this.checkGeofence = this.checkGeofence.bind(this)
+    super();
+    this.getLocation = this.getLocation.bind(this);
+    this.checkGeofence = this.checkGeofence.bind(this);
   }
   state = {
-    permissionStatus: '',
+    permissionStatus: "",
     location: {},
     geofence: [],
     pushCallTime: null,
-    pushOk: false
-  }
+    pushOk: false,
+  };
 
   async componentDidMount() {
     // await this.props.loadMessages(this.props.singleUser.id)
     // await this.props.loadStorePrefs(this.props.singleUser.id)
-    await this.getLocation()
-    this.intervalId = setInterval(
-      () => this.tick(),
-      60000
-    )
+    await this.getLocation();
+    this.intervalId = setInterval(() => this.tick(), 60000);
   }
 
   componentWillUnmount() {
-    clearInterval(this.intervalId)
+    clearInterval(this.intervalId);
   }
 
   getLocation = async () => {
     let { status } = await Location.requestPermissionsAsync();
-    saveLocPermission(status)
+    saveLocPermission(status);
 
-    const permission = JSON.parse(await retrieveLocPermission())
+    const permission = JSON.parse(await retrieveLocPermission());
 
-    if (permission !== 'granted') {
-      this.props.sendLocationMessage(this.props.singleUser.id)
-    }
-    else {
+    if (permission !== "granted") {
+      this.props.sendLocationMessage(this.props.singleUser.id);
+    } else {
       let currentLocation = await Location.getCurrentPositionAsync({});
-      const oldLocation = await retrieveLocation()
+      const oldLocation = await retrieveLocation();
       if (!oldLocation) {
         await saveLocation(currentLocation.coords);
       }
     }
-  }
+  };
 
   tick() {
-    this.checkLocation()
+    this.checkLocation();
   }
 
   checkLocation = async () => {
     let currentLocation = await Location.getCurrentPositionAsync({});
-    const oldLocation = JSON.parse(await retrieveLocation())
+    const oldLocation = JSON.parse(await retrieveLocation());
 
     if (currentLocation && oldLocation) {
+      const newLoc = { latitude: currentLocation.coords.latitude, longitude: currentLocation.coords.longitude };
+      const oldLoc = { latitude: oldLocation.latitude, longitude: oldLocation.longitude };
 
-      const newLoc = { latitude: currentLocation.coords.latitude, longitude: currentLocation.coords.longitude }
-      const oldLoc = { latitude: oldLocation.latitude, longitude: oldLocation.longitude }
+      const change = haversine(oldLoc, newLoc);
 
-      const change = haversine(oldLoc, newLoc)
-
-      if (change > .1) {
-        this.checkGeofence(newLoc)
+      if (change > 0.1) {
+        this.checkGeofence(newLoc);
       }
-
     }
-  }
+  };
 
   checkGeofence = async (currentLocation) => {
+    const maxDistanceInKM = 0.2;
 
-    const maxDistanceInKM = .2;
-
-    const storePrefCoords = await this.props.storePrefs.map(store => {
+    const storePrefCoords = await this.props.storePrefs.map((store) => {
       return {
         latitude: store.store.latitude,
         longitude: store.store.longitude,
-        title: store.store.storeName
-      }
-    })
+        title: store.store.storeName,
+      };
+    });
 
     const result = await Geofence.filterByProximity(currentLocation, storePrefCoords, maxDistanceInKM);
 
-    const lastPush = JSON.parse(await retrievePushTime())
+    const lastPush = JSON.parse(await retrievePushTime());
     if (result.length) {
-      let time = new Date().getTime()
+      let time = new Date().getTime();
 
       if (!lastPush || time - lastPush > 3600000) {
-        const title = `Reminder: You are near ${result[0].title}`
-        const body = `You have x items on your list.`
-        createNotification(title, body)
-        console.log('send notification')
-        savePushTiming(time)
+        const title = `Reminder: You are near ${result[0].title}`;
+        const body = `You have x items on your list.`;
+        createNotification(title, body);
+        console.log("send notification");
+        savePushTiming(time);
       }
     }
-  }
+  };
 
   render() {
-
     return (
-
       <NavigationContainer>
         <BottomTab.Navigator initialRouteName="Dashboard" tabBarOptions={{ activeTintColor: "#e91e63" }}>
           <BottomTab.Screen
@@ -157,13 +155,15 @@ class Main extends React.Component {
 const MapState = (state) => ({
   singleUser: state.singleUser,
   storePrefs: state.storePrefs,
-  notifications: state.notifications
-})
+  notifications: state.notifications,
+});
 
 const mapDispatch = (dispatch) => ({
-  loadStorePrefs: (userId) => { dispatch(fetchStorePrefs(userId)) },
+  loadStorePrefs: (userId) => {
+    dispatch(fetchStorePrefs(userId));
+  },
   sendLocationMessage: (userId) => dispatch(newLocationMessage(userId)),
-  loadMessages: (userId) => dispatch(fetchNotifications(userId))
+  loadMessages: (userId) => dispatch(fetchNotifications(userId)),
 });
 
 export default connect(MapState, mapDispatch)(Main);

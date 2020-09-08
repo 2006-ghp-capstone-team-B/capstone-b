@@ -12,8 +12,8 @@ export default function SingleHouseholdList(props) {
   const me = useSelector((state) => state.singleUser);
 
   const dispatch = useDispatch();
-  const loadHouseholdList = (id) => {
-    dispatch(getListHousehold(id));
+  const loadHouseholdList = async (id) => {
+    await dispatch(getListHousehold(id));
   };
   const increase = async (itemId, listId, userId) => {
     await dispatch(increaseItemQuantity(itemId, listId, userId));
@@ -21,7 +21,7 @@ export default function SingleHouseholdList(props) {
   };
   const decrease = async (listId, itemId, userId) => {
     await dispatch(decreaseItemQuantity(listId, itemId, userId));
-    console.log('decreased')
+    console.log("decreased");
     await dispatch(getListHousehold(listId));
   };
 
@@ -40,7 +40,7 @@ export default function SingleHouseholdList(props) {
 
   useEffect(() => {
     loadHouseholdList(listId);
-  }, [listId]);
+  }, []);
 
   let reformattedList = Object.entries(
     listHousehold.reduce((accum, item) => {
@@ -61,7 +61,6 @@ export default function SingleHouseholdList(props) {
     }, {})
   );
 
-  // console.log("reformatteddddddd", reformattedList);
   const renderItem = ({ item }) => {
     const itemName = item[0];
     const itemId = item[1].itemId;
@@ -115,7 +114,7 @@ export default function SingleHouseholdList(props) {
               ) : null}
             </List>
           </View>
-          <View style={{ flex: 1, marginTop: "1%", marginBottom: "1%" }}>
+          <View style={{ flex: 1, marginTop: "1%", marginBottom: "1%" , justifyContent: 'flex-end'}}>
             <TouchableOpacity
               onPress={() => Actions.AddNewItemHousehold({ listId: listId, userId: userId })}
               title="Add New Item"
