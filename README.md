@@ -11,6 +11,7 @@ Select your preferred stores.
 Whenever you or a housemate is close to your preferred stores, Peasy will send a reminder to get the items from the list.
 Keep your private items in your specific list, only you will see these and only you will receive reminders about them.
 
+Click below to learn more about Peasy:
 [![www.youtube.com/watch?v=IcBzg9G8zfE](https://img.youtube.com/vi/IcBzg9G8zfE/0.jpg)](https://www.youtube.com/watch?v=IcBzg9G8zfE)
 
 ---
